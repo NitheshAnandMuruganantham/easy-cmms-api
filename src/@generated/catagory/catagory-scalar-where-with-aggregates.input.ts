@@ -1,0 +1,30 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { BigIntWithAggregatesFilter } from '../prisma/big-int-with-aggregates-filter.input';
+import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
+
+@InputType()
+export class catagoryScalarWhereWithAggregatesInput {
+
+    @Field(() => [catagoryScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<catagoryScalarWhereWithAggregatesInput>;
+
+    @Field(() => [catagoryScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<catagoryScalarWhereWithAggregatesInput>;
+
+    @Field(() => [catagoryScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<catagoryScalarWhereWithAggregatesInput>;
+
+    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
+    id?: BigIntWithAggregatesFilter;
+
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    name?: StringWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    created_at?: DateTimeWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updated_at?: DateTimeWithAggregatesFilter;
+}

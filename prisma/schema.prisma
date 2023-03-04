@@ -1,0 +1,200 @@
+generator nestgraphql {
+  provider                        = "node node_modules/prisma-nestjs-graphql"
+  output                          = "../src/@generated"
+  reExport                        = Directories
+  fields_Scalars_from             = "graphql-scalars"
+  fields_Scalars_input            = true
+  fields_Scalars_output           = true
+  graphqlScalars_BigInt_name      = "GraphQLBigInt"
+  graphqlScalars_BigInt_specifier = "graphql-scalars"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Block {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt     @id @default(autoincrement())
+  name       String
+  location   String
+  machines   Machines[]
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+}
+
+model catagory {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt   @id @default(autoincrement())
+  name       String
+  items      Items[]  @relation("item_catagory")
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Items {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id           BigInt         @id @default(autoincrement())
+  name         String
+  code         String
+  quantity     Int
+  unit_price   Float
+  catagory_id  BigInt
+  catagory     catagory       @relation("item_catagory", fields: [catagory_id], references: [id])
+  replacements Replacements[]
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+}
+
+model Machines {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id                   BigInt                 @id @default(autoincrement())
+  name                 String
+  section_id           BigInt
+  block_id             BigInt
+  label                String
+  profile              Json                   @default("{}")
+  priority             Int
+  block                Block                  @relation(fields: [block_id], references: [id])
+  section              Sections               @relation(fields: [section_id], references: [id])
+  maintenance          Maintenance[]
+  created_at           DateTime               @default(now())
+  updated_at           DateTime               @updatedAt
+  Ticket               Ticket[]
+  routine_maintanances routine_maintanances[]
+}
+
+model Maintenance {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id           BigInt         @id @default(autoincrement())
+  name         String
+  photo        String?
+  description  String
+  from         DateTime       @db.Timestamp(0)
+  to           DateTime       @db.Timestamp(0)
+  resolved     Boolean
+  metadata     Json           @default("{}")
+  un_planned   Boolean
+  elapsed      DateTime?      @db.Timestamp(0)
+  assignee_id  BigInt
+  assignee     Users          @relation(fields: [assignee_id], references: [id])
+  machine_id   BigInt
+  machines     Machines       @relation(fields: [machine_id], references: [id])
+  replacements Replacements[]
+  reports      Reports[]      @relation("report_maintance_id_foreign")
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @updatedAt
+  ticket       Ticket?
+}
+
+model Replacements {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id             BigInt      @id @default(autoincrement())
+  name           String
+  description    String
+  quantity       Int
+  metadata       Json        @default("{}")
+  item_id        BigInt
+  items          Items       @relation(fields: [item_id], references: [id])
+  maintanance_id BigInt
+  maintenance    Maintenance @relation(fields: [maintanance_id], references: [id])
+  created_at     DateTime    @default(now())
+  approved       Boolean     @default(false)
+  updated_at     DateTime    @updatedAt
+}
+
+model Reports {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id             BigInt      @id @default(autoincrement())
+  report         String
+  sign           String
+  tag            Json
+  validated      BigInt
+  validated_sign BigInt
+  maintance_id   BigInt
+  maintenance    Maintenance @relation("report_maintance_id_foreign", fields: [maintance_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "report_maintance_id_foreign")
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @updatedAt
+}
+
+model Sections {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt     @id @default(autoincrement())
+  name       String
+  machines   Machines[]
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+}
+
+model Users {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id                   BigInt                 @id @default(autoincrement())
+  profile              Json                   @default("{}")
+  phone                String                 @unique
+  /// @DtoCreateHidden
+  /// @DtoUpdateHidden
+  user_auth_id         String?                @unique
+  name                 String
+  maintenance          Maintenance[]
+  created_at           DateTime               @default(now())
+  updated_at           DateTime               @updatedAt
+  role                 Role
+  ticket               Ticket[]
+  routine_maintanances routine_maintanances[]
+}
+
+model Ticket {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id             BigInt        @id @default(autoincrement())
+  name           String
+  description    String
+  photos         String
+  /// @HideField({ output: false, input: true })
+  user_id        BigInt
+  /// @HideField({ output: false, input: true })
+  user           Users         @relation(fields: [user_id], references: [id])
+  maintenance_id BigInt?       @unique
+  maintenance    Maintenance?  @relation(fields: [maintenance_id], references: [id])
+  machine_id     BigInt
+  machines       Machines      @relation(fields: [machine_id], references: [id])
+  status         ticket_status
+  created_at     DateTime      @default(now())
+  updated_at     DateTime      @updatedAt
+}
+
+enum Role {
+  MANAGER
+  SUPERVISOR
+  ENGINEER
+  GUEST
+  FITTER
+  ADMIN
+}
+
+model routine_maintanances {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id          BigInt   @id @default(autoincrement())
+  name        String
+  description String
+  cron        String
+  from        String
+  to          String
+  assignee_id BigInt
+  assignee    Users    @relation(fields: [assignee_id], references: [id])
+  meachine_id BigInt
+  meachine    Machines @relation(fields: [meachine_id], references: [id])
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+enum ticket_status {
+  OPEN
+  CLOSED
+  PENDING
+}

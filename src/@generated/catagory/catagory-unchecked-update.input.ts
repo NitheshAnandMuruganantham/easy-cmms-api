@@ -1,0 +1,25 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
+import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
+import { ItemsUncheckedUpdateManyWithoutCatagoryNestedInput } from '../items/items-unchecked-update-many-without-catagory-nested.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+
+@InputType()
+export class catagoryUncheckedUpdateInput {
+
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    id?: BigIntFieldUpdateOperationsInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
+
+    @Field(() => ItemsUncheckedUpdateManyWithoutCatagoryNestedInput, {nullable:true})
+    items?: ItemsUncheckedUpdateManyWithoutCatagoryNestedInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    created_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updated_at?: DateTimeFieldUpdateOperationsInput;
+}
