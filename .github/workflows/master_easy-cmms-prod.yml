@@ -28,13 +28,13 @@ jobs:
           yarn build
 
       - name: Zip all files for upload between jobs
-            run: zip --symlinks -r nest.zip ./*
+        run: zip --symlinks -r nest.zip ./*
                 
-        - name: Upload artifact for deployment job
-            uses: actions/upload-artifact@v2
-            with:
-            name: node-app
-            path: nest.zip
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-app
+          path: nest.zip
 
   deploy:
     runs-on: ubuntu-latest
