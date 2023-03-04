@@ -54,4 +54,4 @@ jobs:
           app-name: 'easy-cmms-prod'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B05C378870EE4C65949762CF5DA17ABE }}
-          package: .
+          package: nest.zip
