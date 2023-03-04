@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
+import { Parser } from 'json2csv';
 
 @Injectable()
 export class DashboardService {
@@ -104,5 +105,99 @@ export class DashboardService {
     } else {
       return null;
     }
+  }
+  async generateCsvReportForAllMaintenance(from: Date, to: Date) {
+    const AllMaintenenceCsv = await this.prisma.maintenance.findMany({
+      where: {
+        created_at: {
+          gte: from,
+          lte: to,
+        },
+      },
+      include: {
+        machines: true,
+        assignee: true,
+        ticket: true,
+      },
+      orderBy: {
+        created_at: 'desc',
+      },
+    });
+    new Parser({
+      fields: [
+        'id',
+        'from',
+        'to',
+        'ticket_id',
+        'un_planned',
+        'elapsed',
+        'machine',
+        'assignee',
+        'created_at',
+        'resolved',
+      ],
+    });
+    const dt = [];
+    AllMaintenenceCsv.forEach((maintenance) => {
+      dt.push({
+        id: maintenance.id,
+        from: maintenance.from,
+        to: maintenance.to,
+        ticket_id: maintenance?.ticket?.id || 'N/A',
+        un_planned: maintenance.un_planned,
+        elapsed: maintenance.elapsed,
+        machine: maintenance?.machines?.name || 'N/A',
+        assignee: maintenance?.assignee?.name || 'N/A',
+        created_at: maintenance.created_at,
+        resolved: maintenance.resolved,
+      });
+    });
+    const csv = new Parser().parse(dt);
+    return csv;
+  }
+
+  async getMachineMaintanancesReport(machineId: number) {
+    const MachineMaintenanceCsv = await this.prisma.maintenance.findMany({
+      where: {
+        machine_id: machineId,
+      },
+      include: {
+        machines: true,
+        assignee: true,
+        ticket: true,
+      },
+      orderBy: {
+        created_at: 'asc',
+      },
+    });
+    new Parser({
+      fields: [
+        'id',
+        'from',
+        'to',
+        'ticket_id',
+        'un_planned',
+        'elapsed',
+        'assignee',
+        'created_at',
+        'resolved',
+      ],
+    });
+    const dt = [];
+    MachineMaintenanceCsv.forEach((maintenance) => {
+      dt.push({
+        id: maintenance.id,
+        from: maintenance.from,
+        to: maintenance.to,
+        ticket_id: maintenance?.ticket?.id || 'N/A',
+        un_planned: maintenance.un_planned,
+        elapsed: maintenance.elapsed,
+        assignee: maintenance?.assignee?.name || 'N/A',
+        created_at: maintenance.created_at,
+        resolved: maintenance.resolved,
+      });
+    });
+    const csv = new Parser().parse(dt);
+    return csv;
   }
 }
