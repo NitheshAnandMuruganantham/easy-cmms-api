@@ -60,7 +60,7 @@ export class AppService implements OnModuleInit {
       );
     });
   }
-  getPrismaMiddleware() {
-    return;
+  getHealth() {
+    return 'ok';
   }
 }

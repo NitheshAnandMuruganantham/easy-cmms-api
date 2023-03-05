@@ -1,9 +1,11 @@
 require('json-bigint-patch');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
+import { envAppConfiguration } from './getAzureConfigration';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SupertokensExceptionFilter } from './auth/auth.filter';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -23,6 +25,16 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT || 8000);
 }
-bootstrap();
+
+console.log(
+  'CUSTOMCONNSTR_APP_CONFIGURATION_URL',
+  process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL,
+);
+
+envAppConfiguration({
+  appConfigConnectionString: process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL,
+}).then(() => {
+  bootstrap();
+});
