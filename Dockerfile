@@ -6,7 +6,7 @@ USER node
 WORKDIR /home/node
 
 COPY package*.json ./
-RUN npm i yarn && yarn install && yarn prisma generate
+RUN sudo npm i -g yarn && yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 RUN yarn build
