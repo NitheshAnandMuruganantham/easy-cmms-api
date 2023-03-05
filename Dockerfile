@@ -1,4 +1,4 @@
-FROM node:16-alpine as builder
+FROM node:18 as builder
 
 ENV NODE_ENV build
 
@@ -6,12 +6,12 @@ USER node
 WORKDIR /home/node
 
 COPY package*.json ./
-RUN sudo npm i -g yarn && yarn install && yarn prisma generate
+RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 RUN yarn build
 
-FROM node:16-alpine
+FROM node:18
 
 ENV NODE_ENV production
 
