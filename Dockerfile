@@ -6,9 +6,13 @@ USER node
 WORKDIR /home/node
 
 COPY package*.json ./
+COPY prisma ./prisma/
+
+
 RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
+
 RUN yarn build
 
 FROM node:18
