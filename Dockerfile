@@ -26,4 +26,4 @@ COPY --from=builder --chown=node:node /home/node/package*.json ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
 COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
  
-CMD ["sudo","node", "dist/main.js"]
+CMD ["sudo node dist/main.js"]
