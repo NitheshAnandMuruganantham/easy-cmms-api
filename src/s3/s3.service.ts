@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as AWS from 'aws-sdk';
+import * as keygen from 'keygen';
 
 @Injectable()
 export class S3Service {
@@ -20,6 +21,18 @@ export class S3Service {
       id,
       file.mimetype,
     );
+  }
+
+  async uploadCsvReport(data: any) {
+    const key = keygen.url(keygen.medium);
+    return this.s3
+      .putObject({
+        Bucket: this.AWS_S3_BUCKET + `/reports`,
+        Key: `${key}.csv`,
+        Body: data,
+      })
+      .promise()
+      .then(() => `${this.AWS_S3_BUCKET}/reports/${key}.csv`);
   }
 
   async s3_upload(

@@ -2,10 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { Parser } from 'json2csv';
+import { S3Service } from 'src/s3/s3.service';
 
 @Injectable()
 export class DashboardService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly s3Service: S3Service,
+  ) {}
+  async s3Upload(file: any) {
+    const upload = await this.s3Service.uploadCsvReport(file);
+    return this.s3Service.getSignedUrl(upload);
+  }
   async getLastFiveDayTickets() {
     const tickets = await this.prisma.ticket.groupBy({
       _count: {
@@ -153,7 +161,8 @@ export class DashboardService {
       });
     });
     const csv = new Parser().parse(dt);
-    return csv;
+
+    return this.s3Upload(csv);
   }
 
   async getMachineMaintanancesReport(machineId: number) {
@@ -198,6 +207,6 @@ export class DashboardService {
       });
     });
     const csv = new Parser().parse(dt);
-    return csv;
+    return this.s3Upload(csv);
   }
 }

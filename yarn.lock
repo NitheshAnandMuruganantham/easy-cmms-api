@@ -5291,6 +5291,11 @@ jws@^4.0.0:
     jwa "^2.0.0"
     safe-buffer "^5.0.1"
 
+keygen@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/keygen/-/keygen-0.4.0.tgz#3b770d189e3d92a87544e1237966401c7ca7f582"
+  integrity sha512-Fam+Q+CaIsVWneZCBYfea6SQSTEHE4mU8bkqkT7eDOWhLEgOhDZvADDxi6q6dFLtWbeWJ9Z8YgVhBW5WhkH7Xw==
+
 kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"

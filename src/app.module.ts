@@ -31,6 +31,7 @@ import { getLogger } from 'log4js';
 import { RoutineMaintanancesModule } from './routine-maintanances/routine-maintanances.module';
 import { ScheduleModule } from '@nestjs/schedule/dist';
 import { authMiddleware } from './middleware/auth';
+import { Redis } from 'ioredis';
 
 @Module({
   imports: [
@@ -47,32 +48,6 @@ import { authMiddleware } from './middleware/auth';
     }),
     PrismaModule.forRoot({
       isGlobal: true,
-      prismaServiceOptions: {
-        middlewares: [
-          createPrismaRedisCache({
-            models: [
-              { model: 'Block', cacheTime: 360 },
-              { model: 'Sections', cacheTime: 360 },
-              { model: 'Machines', cacheTime: 180 },
-              { model: 'Machines', cacheTime: 180 },
-              { model: 'Maintenance', cacheTime: 30 },
-              { model: 'Maintenance', cacheTime: 30 },
-              { model: 'Users', cacheTime: 30 },
-              { model: 'Users', cacheTime: 30 },
-              { model: 'Ticket', cacheTime: 30 },
-              { model: 'routine_maintanances', cacheTime: 30 },
-            ],
-            storage: {
-              type: 'memory',
-              options: { invalidation: true, log: console },
-            },
-            onError(key) {
-              console.log(key);
-            },
-            cacheTime: 300,
-          }),
-        ],
-      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,

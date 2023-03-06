@@ -146,9 +146,21 @@ export class MaintananceService {
       'delete',
       subject('Maintenance', toRemove),
     );
-    return this.prisma.maintenance.delete({
+    const isDeleted = await this.prisma.maintenance.delete({
       where: { id },
     });
+
+    await this.prisma.ticket
+      .update({
+        where: {
+          maintenance_id: id,
+        },
+        data: {
+          status: 'OPEN',
+        },
+      })
+      .catch(() => null);
+    return isDeleted;
   }
 
   async assignee(session: SessionContainer, id: bigint) {
