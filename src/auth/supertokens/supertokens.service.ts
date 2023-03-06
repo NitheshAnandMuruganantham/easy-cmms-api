@@ -18,7 +18,7 @@ export class SupertokensService {
       appInfo: {
         appName: config.get('APP_NAME'),
         apiDomain: config.get('API_ENDPOINT'),
-        websiteDomain: 'http://localhost:5173',
+        websiteDomain: config.get('FRONTEND_URL'),
       },
       supertokens: {
         connectionURI: config.get('SUPERTOKENS_URL'),
