@@ -97,11 +97,7 @@ export class CaslAbilityFactory {
     if (user.role === 'MANAGER' || user.role === 'ADMIN') {
       // Users permissions
       can('create', 'Users');
-      can('read', 'Users', {
-        id: {
-          not: user.id,
-        },
-      });
+      can('read', 'Users');
       can('update', 'Users');
       can('delete', 'Users');
 

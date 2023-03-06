@@ -68,7 +68,15 @@ export class UsersService {
     }
     return this.prisma.users.findMany({
       where: {
-        AND: [accessibleBy(ability).Users, where],
+        AND: [
+          accessibleBy(ability).Users,
+          where,
+          {
+            user_auth_id: {
+              not: session.getUserId(),
+            },
+          },
+        ],
       },
       orderBy,
       take: limit,
