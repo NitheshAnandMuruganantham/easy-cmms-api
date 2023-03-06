@@ -28,13 +28,12 @@ async function bootstrap() {
   await app.listen(8000);
 }
 
-console.log(
-  'CUSTOMCONNSTR_APP_CONFIGURATION_URL',
-  process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL,
-);
-
-envAppConfiguration({
-  appConfigConnectionString: process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL,
-}).then(() => {
+if (process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL) {
+  envAppConfiguration({
+    appConfigConnectionString: process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL,
+  }).then(() => {
+    bootstrap();
+  });
+} else {
   bootstrap();
-});
+}
