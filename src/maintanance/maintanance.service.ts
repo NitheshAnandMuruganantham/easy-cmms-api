@@ -79,7 +79,6 @@ export class MaintananceService {
         photo: this.s3Service.getSignedUrl(ticket.photo),
       };
     });
-    console.log(result);
     return data;
   }
 

@@ -1,59 +1,35 @@
-version: '3'
+  version: '3'
+  services:
+    db:
+      image: 'postgres:latest'
+      environment:
+        POSTGRES_USER: postgres 
+        POSTGRES_PASSWORD: 123nitheshANAND 
+        POSTGRES_DB: postgres
+      ports:
+        - 5432:5432
+      networks:
+        - app_network
+      restart: unless-stopped
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin4_container
+      restart: always
+      environment:
+        PGADMIN_DEFAULT_EMAIL: anand@infraweigh.co
+        PGADMIN_DEFAULT_PASSWORD: 123nitheshANAND
+      ports:
+        - "5050:80"
 
-services:
-  db:
-    image: 'postgres:latest'
-    environment:
-      POSTGRES_USER: postgres 
-      POSTGRES_PASSWORD: postgres 
-      POSTGRES_DB: postgres
-    ports:
-      - 5432:5432
-    networks:
-      - app_network
-    restart: unless-stopped
-  supertokens_db:
-    image: 'postgres:12'
-    ports:
-      - 5433:5432
-    environment:
-      POSTGRES_USER: supertokens_user 
-      POSTGRES_PASSWORD: somePassword 
-      POSTGRES_DB: supertokens
-    networks:
-      - app_network
-    restart: unless-stopped
-    healthcheck:
-      test: ['CMD', 'pg_isready -U supertokens_user']
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  supertokens:
-    image: registry.supertokens.io/supertokens/supertokens-postgresql:4.3
-    ports:
-      - 3567:3567
-    environment:
-      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@host.docker.internal:5433/supertokens"
-      API_KEYS: tG4fUi7tdRHjOq6iL9riUcr-vrN65W
-    networks:
-      - app_network
-    restart: unless-stopped
-    healthcheck:
-      test: >
-        bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  redis:
-    image: 'redis:latest'
-    command: >
-        --requirepass admin
-    ports:
-      - 6379:6379
-    networks:
-      - app_network
-    restart: unless-stopped
-networks:
-  app_network:
-    driver: bridge
+    redis:
+      image: 'redis:latest'
+      command: >
+          --requirepass 123nitheshANAND
+      ports:
+        - 6379:6379
+      networks:
+        - app_network
+      restart: unless-stopped
+  networks:
+    app_network:
+      driver: bridge
