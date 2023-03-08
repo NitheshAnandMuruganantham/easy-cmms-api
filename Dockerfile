@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18 as builder
 
 ENV NODE_ENV build
 
@@ -28,32 +28,4 @@ COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 EXPOSE 8000
 
-CMD ["yarn", "start:prod"]
-
-
-
-# Dockerfile
-From node:18
-# Specify app directory
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-COPY prisma ./
-
-# Install dependencies
-RUN yarn install && yarn prisma generate
-
-# Paste source
-COPY . .
-
-# Build
-RUN yarn build
-
-ENV NODE_ENV production
-
-# Set port
-EXPOSE 8000
-
-# Run app
-CMD [ "npm", "run", "start:prod"] 
+CMD ["node", "dist/src/main.js"]
