@@ -40,6 +40,9 @@ export class MachinesGroupBy {
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:true})
+    machine_catagory_id?: bigint | number;
+
     @Field(() => MachinesCountAggregate, {nullable:true})
     _count?: MachinesCountAggregate;
 

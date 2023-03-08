@@ -52,7 +52,7 @@ export class TicketService {
     const result = data.map((ticket) => {
       return {
         ...ticket,
-        photos: this.s3Service.getSignedUrl(ticket.photos),
+        photos: ticket.photos && ticket.photos.length > 1 ? this.s3Service.getSignedUrl(ticket.photos) : "",
       };
     });
     return result;

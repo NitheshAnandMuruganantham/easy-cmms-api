@@ -6,6 +6,7 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { TicketUncheckedUpdateManyWithoutMachinesNestedInput } from '../ticket/ticket-unchecked-update-many-without-machines-nested.input';
+import { NullableBigIntFieldUpdateOperationsInput } from '../prisma/nullable-big-int-field-update-operations.input';
 import { routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput } from '../routine-maintanances/routine-maintanances-unchecked-update-many-without-meachine-nested.input';
 
 @InputType()
@@ -40,6 +41,9 @@ export class MachinesUncheckedUpdateWithoutMaintenanceInput {
 
     @Field(() => TicketUncheckedUpdateManyWithoutMachinesNestedInput, {nullable:true})
     Ticket?: TicketUncheckedUpdateManyWithoutMachinesNestedInput;
+
+    @Field(() => NullableBigIntFieldUpdateOperationsInput, {nullable:true})
+    machine_catagory_id?: NullableBigIntFieldUpdateOperationsInput;
 
     @Field(() => routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput;

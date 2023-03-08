@@ -8,6 +8,7 @@ import { Block } from '../block/block.model';
 import { Sections } from '../sections/sections.model';
 import { Maintenance } from '../maintenance/maintenance.model';
 import { Ticket } from '../ticket/ticket.model';
+import { machine_catagory } from '../machine-catagory/machine-catagory.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
 import { MachinesCount } from './machines-count.output';
 
@@ -52,6 +53,12 @@ export class Machines {
 
     @Field(() => [Ticket], {nullable:true})
     Ticket?: Array<Ticket>;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    machine_catagory_id!: bigint | null;
+
+    @Field(() => machine_catagory, {nullable:true})
+    machine_catagory?: machine_catagory | null;
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;

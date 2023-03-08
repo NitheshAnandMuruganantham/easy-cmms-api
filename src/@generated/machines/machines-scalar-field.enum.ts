@@ -9,7 +9,8 @@ export enum MachinesScalarFieldEnum {
     profile = "profile",
     priority = "priority",
     created_at = "created_at",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    machine_catagory_id = "machine_catagory_id"
 }
 
 

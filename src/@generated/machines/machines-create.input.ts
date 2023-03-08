@@ -7,6 +7,7 @@ import { BlockCreateNestedOneWithoutMachinesInput } from '../block/block-create-
 import { SectionsCreateNestedOneWithoutMachinesInput } from '../sections/sections-create-nested-one-without-machines.input';
 import { MaintenanceCreateNestedManyWithoutMachinesInput } from '../maintenance/maintenance-create-nested-many-without-machines.input';
 import { TicketCreateNestedManyWithoutMachinesInput } from '../ticket/ticket-create-nested-many-without-machines.input';
+import { machine_catagoryCreateNestedOneWithoutMachinesInput } from '../machine-catagory/machine-catagory-create-nested-one-without-machines.input';
 import { routine_maintanancesCreateNestedManyWithoutMeachineInput } from '../routine-maintanances/routine-maintanances-create-nested-many-without-meachine.input';
 
 @InputType()
@@ -44,6 +45,9 @@ export class MachinesCreateInput {
 
     @Field(() => TicketCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketCreateNestedManyWithoutMachinesInput;
+
+    @Field(() => machine_catagoryCreateNestedOneWithoutMachinesInput, {nullable:true})
+    machine_catagory?: machine_catagoryCreateNestedOneWithoutMachinesInput;
 
     @Field(() => routine_maintanancesCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesCreateNestedManyWithoutMeachineInput;

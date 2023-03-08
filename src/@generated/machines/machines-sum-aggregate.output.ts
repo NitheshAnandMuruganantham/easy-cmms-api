@@ -18,4 +18,7 @@ export class MachinesSumAggregate {
 
     @Field(() => Int, {nullable:true})
     priority?: number;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    machine_catagory_id?: bigint | number;
 }

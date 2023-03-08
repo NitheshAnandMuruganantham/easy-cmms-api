@@ -27,4 +27,7 @@ export class MachinesMaxAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     updated_at?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    machine_catagory_id?: true;
 }

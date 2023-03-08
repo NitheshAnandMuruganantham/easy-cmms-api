@@ -26,6 +26,7 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { MachinesService } from './machines.service';
+import { machine_catagory } from 'src/@generated/machine-catagory';
 
 @Resolver(() => Machines)
 export class MachinesResolver {
@@ -122,5 +123,13 @@ export class MachinesResolver {
     @Parent() { section_id }: Machines,
   ) {
     return this.machinesService.section(session, section_id);
+  }
+
+  @ResolveField(() => machine_catagory)
+  machine_catagory(
+    @Session() session: SessionContainer,
+    @Parent() { section_id }: Machines,
+  ) {
+    return this.machinesService.machine_catagory(session, section_id);
   }
 }

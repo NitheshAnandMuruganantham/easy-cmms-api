@@ -23,21 +23,21 @@ export class AppController {
     private readonly s3Service: S3Service,
   ) {}
 
-  //   @Get('/')
-  //   getHello(): string {
-  //     return `
-  //     <div style="width: 100%; height: 100%;" id='embedded-sandbox'></div>
-  // <script src="https://embeddable-sandbox.cdn.apollographql.com/_latest/embeddable-sandbox.umd.production.min.js"></script>
-  // <script>
-  //   new window.EmbeddedSandbox({
-  //     target: '#embedded-sandbox',
-  //     initialEndpoint: 'http://localhost:8080/graphql',
-  //     includeCookies: false,
-  //   });
-  // </script>
+    @Get('/')
+    sandbox(): string {
+      return `
+      <div style="width: 100%; height: 100%;" id='embedded-sandbox'></div>
+  <script src="https://embeddable-sandbox.cdn.apollographql.com/_latest/embeddable-sandbox.umd.production.min.js"></script>
+  <script>
+    new window.EmbeddedSandbox({
+      target: '#embedded-sandbox',
+      initialEndpoint: 'http://localhost:8080/graphql',
+      includeCookies: false,
+    });
+  </script>
 
-  //     `;
-  //   }
+      `;
+    }
 
   @Get('/healthz')
   getHello() {

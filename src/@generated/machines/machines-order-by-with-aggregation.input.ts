@@ -37,6 +37,9 @@ export class MachinesOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
 
+    @Field(() => SortOrder, {nullable:true})
+    machine_catagory_id?: keyof typeof SortOrder;
+
     @Field(() => MachinesCountOrderByAggregateInput, {nullable:true})
     _count?: MachinesCountOrderByAggregateInput;
 

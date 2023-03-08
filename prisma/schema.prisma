@@ -67,7 +67,18 @@ model Machines {
   created_at           DateTime               @default(now())
   updated_at           DateTime               @updatedAt
   Ticket               Ticket[]
+  machine_catagory_id  BigInt?
+  machine_catagory     machine_catagory?       @relation(fields: [machine_catagory_id], references: [id])
   routine_maintanances routine_maintanances[]
+}
+
+model machine_catagory {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt     @id @default(autoincrement())
+  name       String
+  machines   Machines[]
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 }
 
 model Maintenance {

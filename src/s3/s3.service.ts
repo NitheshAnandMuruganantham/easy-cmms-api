@@ -54,6 +54,7 @@ export class S3Service {
   }
 
   getSignedUrl(key?: string) {
+    try {
     if (key !== null) {
       const dt = key.split('/');
       const url = this.s3.getSignedUrl('getObject', {
@@ -66,4 +67,8 @@ export class S3Service {
       return null;
     }
   }
+ catch {
+  return ''
+}
+}
 }

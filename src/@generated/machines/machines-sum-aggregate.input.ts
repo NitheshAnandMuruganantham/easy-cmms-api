@@ -15,4 +15,7 @@ export class MachinesSumAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     priority?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    machine_catagory_id?: true;
 }

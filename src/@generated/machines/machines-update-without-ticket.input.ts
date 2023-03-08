@@ -8,6 +8,7 @@ import { BlockUpdateOneRequiredWithoutMachinesNestedInput } from '../block/block
 import { SectionsUpdateOneRequiredWithoutMachinesNestedInput } from '../sections/sections-update-one-required-without-machines-nested.input';
 import { MaintenanceUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-update-many-without-machines-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { machine_catagoryUpdateOneWithoutMachinesNestedInput } from '../machine-catagory/machine-catagory-update-one-without-machines-nested.input';
 import { routine_maintanancesUpdateManyWithoutMeachineNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-meachine-nested.input';
 
 @InputType()
@@ -42,6 +43,9 @@ export class MachinesUpdateWithoutTicketInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => machine_catagoryUpdateOneWithoutMachinesNestedInput, {nullable:true})
+    machine_catagory?: machine_catagoryUpdateOneWithoutMachinesNestedInput;
 
     @Field(() => routine_maintanancesUpdateManyWithoutMeachineNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUpdateManyWithoutMeachineNestedInput;

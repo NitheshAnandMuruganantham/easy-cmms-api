@@ -33,5 +33,8 @@ export class MachinesCountAggregate {
     updated_at!: number;
 
     @Field(() => Int, {nullable:false})
+    machine_catagory_id!: number;
+
+    @Field(() => Int, {nullable:false})
     _all!: number;
 }

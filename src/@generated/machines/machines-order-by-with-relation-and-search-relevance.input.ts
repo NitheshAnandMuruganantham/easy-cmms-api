@@ -5,6 +5,7 @@ import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-
 import { SectionsOrderByWithRelationAndSearchRelevanceInput } from '../sections/sections-order-by-with-relation-and-search-relevance.input';
 import { MaintenanceOrderByRelationAggregateInput } from '../maintenance/maintenance-order-by-relation-aggregate.input';
 import { TicketOrderByRelationAggregateInput } from '../ticket/ticket-order-by-relation-aggregate.input';
+import { machine_catagoryOrderByWithRelationAndSearchRelevanceInput } from '../machine-catagory/machine-catagory-order-by-with-relation-and-search-relevance.input';
 import { routine_maintanancesOrderByRelationAggregateInput } from '../routine-maintanances/routine-maintanances-order-by-relation-aggregate.input';
 import { MachinesOrderByRelevanceInput } from './machines-order-by-relevance.input';
 
@@ -49,6 +50,12 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => TicketOrderByRelationAggregateInput, {nullable:true})
     Ticket?: TicketOrderByRelationAggregateInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    machine_catagory_id?: keyof typeof SortOrder;
+
+    @Field(() => machine_catagoryOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    machine_catagory?: machine_catagoryOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => routine_maintanancesOrderByRelationAggregateInput, {nullable:true})
     routine_maintanances?: routine_maintanancesOrderByRelationAggregateInput;

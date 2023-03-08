@@ -28,4 +28,7 @@ export class MachinesMaxOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    machine_catagory_id?: keyof typeof SortOrder;
 }

@@ -39,6 +39,9 @@ export class MachinesUncheckedCreateWithoutTicketInput {
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:true})
+    machine_catagory_id?: bigint | number;
+
     @Field(() => routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput;
 }

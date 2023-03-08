@@ -10,6 +10,7 @@ import {
   Replacements,
   Items,
   Block,
+  machine_catagory,
 } from '@prisma/client';
 import { PureAbility, AbilityBuilder, subject } from '@casl/ability';
 import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
@@ -28,6 +29,7 @@ export type subject = Subjects<{
   Items: Items;
   ItemCatagory: catagory;
   Machines: Machines;
+  machineCatagory: machine_catagory;
   Section: Sections;
   Reports: Reports;
   Replacements: Replacements;
@@ -71,6 +73,7 @@ export class CaslAbilityFactory {
     // Wildcard permissions for testing
     can('read', 'Ticket');
     can('read', 'Section');
+    can('read', 'machineCatagory');
     can('read', 'Block');
     can('read', 'Items');
     can('read', 'Machines');

@@ -32,5 +32,8 @@ export class MachinesCountAggregateInput {
     updated_at?: true;
 
     @Field(() => Boolean, {nullable:true})
+    machine_catagory_id?: true;
+
+    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

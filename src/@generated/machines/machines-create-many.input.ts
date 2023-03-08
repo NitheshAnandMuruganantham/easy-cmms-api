@@ -33,4 +33,7 @@ export class MachinesCreateManyInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    machine_catagory_id?: bigint | number;
 }

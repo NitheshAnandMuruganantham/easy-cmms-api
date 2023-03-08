@@ -439,6 +439,8 @@ input MachinesWhereInput {
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
   Ticket: TicketListRelationFilter
+  machine_catagory_id: BigIntNullableFilter
+  machine_catagory: Machine_catagoryRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
 }
 
@@ -496,6 +498,22 @@ input SectionsWhereInput {
   AND: [SectionsWhereInput!]
   OR: [SectionsWhereInput!]
   NOT: [SectionsWhereInput!]
+  id: BigIntFilter
+  name: StringFilter
+  machines: MachinesListRelationFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+}
+
+input Machine_catagoryRelationFilter {
+  is: machine_catagoryWhereInput
+  isNot: machine_catagoryWhereInput
+}
+
+input machine_catagoryWhereInput {
+  AND: [machine_catagoryWhereInput!]
+  OR: [machine_catagoryWhereInput!]
+  NOT: [machine_catagoryWhereInput!]
   id: BigIntFilter
   name: StringFilter
   machines: MachinesListRelationFilter
@@ -894,6 +912,19 @@ type Maintenance {
   assigned: Boolean
 }
 
+type Machine_catagoryCount {
+  machines: Int!
+}
+
+type machine_catagory {
+  id: BigInt!
+  name: String!
+  machines: [Machines!]
+  created_at: DateTime!
+  updated_at: DateTime!
+  _count: Machine_catagoryCount!
+}
+
 type MachinesCount {
   maintenance: Int!
   Ticket: Int!
@@ -914,6 +945,8 @@ type Machines {
   created_at: DateTime!
   updated_at: DateTime!
   Ticket: [Ticket!]
+  machine_catagory_id: BigInt
+  machine_catagory: machine_catagory
   routine_maintanances: [routine_maintanances!]
   _count: MachinesCount!
 }
@@ -938,6 +971,7 @@ input MachinesOrderByWithAggregationInput {
   priority: SortOrder
   created_at: SortOrder
   updated_at: SortOrder
+  machine_catagory_id: SortOrder
   _count: MachinesCountOrderByAggregateInput
   _avg: MachinesAvgOrderByAggregateInput
   _max: MachinesMaxOrderByAggregateInput
@@ -955,6 +989,7 @@ input MachinesCountOrderByAggregateInput {
   priority: SortOrder
   created_at: SortOrder
   updated_at: SortOrder
+  machine_catagory_id: SortOrder
 }
 
 input MachinesAvgOrderByAggregateInput {
@@ -962,6 +997,7 @@ input MachinesAvgOrderByAggregateInput {
   section_id: SortOrder
   block_id: SortOrder
   priority: SortOrder
+  machine_catagory_id: SortOrder
 }
 
 input MachinesMaxOrderByAggregateInput {
@@ -973,6 +1009,7 @@ input MachinesMaxOrderByAggregateInput {
   priority: SortOrder
   created_at: SortOrder
   updated_at: SortOrder
+  machine_catagory_id: SortOrder
 }
 
 input MachinesMinOrderByAggregateInput {
@@ -984,6 +1021,7 @@ input MachinesMinOrderByAggregateInput {
   priority: SortOrder
   created_at: SortOrder
   updated_at: SortOrder
+  machine_catagory_id: SortOrder
 }
 
 input MachinesSumOrderByAggregateInput {
@@ -991,6 +1029,7 @@ input MachinesSumOrderByAggregateInput {
   section_id: SortOrder
   block_id: SortOrder
   priority: SortOrder
+  machine_catagory_id: SortOrder
 }
 
 type MachinesCountAggregate {
@@ -1003,6 +1042,7 @@ type MachinesCountAggregate {
   priority: Int!
   created_at: Int!
   updated_at: Int!
+  machine_catagory_id: Int!
   _all: Int!
 }
 
@@ -1011,6 +1051,7 @@ type MachinesAvgAggregate {
   section_id: Float
   block_id: Float
   priority: Float
+  machine_catagory_id: Float
 }
 
 type MachinesSumAggregate {
@@ -1018,6 +1059,7 @@ type MachinesSumAggregate {
   section_id: BigInt
   block_id: BigInt
   priority: Int
+  machine_catagory_id: BigInt
 }
 
 type MachinesMinAggregate {
@@ -1029,6 +1071,7 @@ type MachinesMinAggregate {
   priority: Int
   created_at: DateTime
   updated_at: DateTime
+  machine_catagory_id: BigInt
 }
 
 type MachinesMaxAggregate {
@@ -1040,6 +1083,7 @@ type MachinesMaxAggregate {
   priority: Int
   created_at: DateTime
   updated_at: DateTime
+  machine_catagory_id: BigInt
 }
 
 type ItemCatagoryCountAggregate {
@@ -1221,6 +1265,36 @@ type CatagoryMinAggregate {
 }
 
 type CatagoryMaxAggregate {
+  id: BigInt
+  name: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type Machine_catagoryCountAggregate {
+  id: Int!
+  name: Int!
+  created_at: Int!
+  updated_at: Int!
+  _all: Int!
+}
+
+type Machine_catagoryAvgAggregate {
+  id: Float
+}
+
+type Machine_catagorySumAggregate {
+  id: BigInt
+}
+
+type Machine_catagoryMinAggregate {
+  id: BigInt
+  name: String
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type Machine_catagoryMaxAggregate {
   id: BigInt
   name: String
   created_at: DateTime
@@ -1803,6 +1877,7 @@ input MachinesCreateWithoutBlockInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -1934,6 +2009,7 @@ input MachinesCreateWithoutMaintenanceInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -2002,6 +2078,28 @@ input TicketCreateManyMachinesInput {
   status: ticket_status!
   created_at: DateTime
   updated_at: DateTime
+}
+
+input machine_catagoryCreateNestedOneWithoutMachinesInput {
+  create: machine_catagoryCreateWithoutMachinesInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  connect: machine_catagoryWhereUniqueInput
+}
+
+input machine_catagoryCreateWithoutMachinesInput {
+  id: BigInt
+  name: String!
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+input machine_catagoryCreateOrConnectWithoutMachinesInput {
+  where: machine_catagoryWhereUniqueInput!
+  create: machine_catagoryCreateWithoutMachinesInput!
+}
+
+input machine_catagoryWhereUniqueInput {
+  id: BigInt
 }
 
 input routine_maintanancesCreateNestedManyWithoutMeachineInput {
@@ -2238,6 +2336,7 @@ input MachinesCreateWithoutTicketInput {
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   created_at: DateTime
   updated_at: DateTime
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -2391,6 +2490,7 @@ input MachinesCreateWithoutRoutine_maintanancesInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
 }
 
 input MachinesCreateOrConnectWithoutRoutine_maintanancesInput {
@@ -2470,6 +2570,7 @@ input MachinesCreateManyBlockInput {
   priority: Int!
   created_at: DateTime
   updated_at: DateTime
+  machine_catagory_id: BigInt
 }
 
 input BlockUpdateInput {
@@ -2524,6 +2625,7 @@ input MachinesUpdateWithoutBlockInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -2730,6 +2832,7 @@ input MachinesUpdateWithoutMaintenanceInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -2820,6 +2923,28 @@ input TicketUpdateManyMutationInput {
   description: StringFieldUpdateOperationsInput
   photos: StringFieldUpdateOperationsInput
   status: Enumticket_statusFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input machine_catagoryUpdateOneWithoutMachinesNestedInput {
+  create: machine_catagoryCreateWithoutMachinesInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  upsert: machine_catagoryUpsertWithoutMachinesInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: machine_catagoryWhereUniqueInput
+  update: machine_catagoryUpdateWithoutMachinesInput
+}
+
+input machine_catagoryUpsertWithoutMachinesInput {
+  update: machine_catagoryUpdateWithoutMachinesInput!
+  create: machine_catagoryCreateWithoutMachinesInput!
+}
+
+input machine_catagoryUpdateWithoutMachinesInput {
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
 }
@@ -3159,6 +3284,7 @@ input MachinesUpdateWithoutTicketInput {
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -3311,6 +3437,7 @@ input MachinesUpdateWithoutRoutine_maintanancesInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
 }
 
 input routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput {
@@ -3356,6 +3483,7 @@ input MachinesScalarWhereInput {
   priority: IntFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  machine_catagory_id: BigIntNullableFilter
 }
 
 input MachinesUpdateManyMutationInput {
@@ -3668,6 +3796,7 @@ input MachinesCreateInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -3683,6 +3812,7 @@ input MachinesUpdateInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 

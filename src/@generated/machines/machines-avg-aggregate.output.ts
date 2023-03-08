@@ -16,4 +16,7 @@ export class MachinesAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     priority?: number;
+
+    @Field(() => Float, {nullable:true})
+    machine_catagory_id?: number;
 }

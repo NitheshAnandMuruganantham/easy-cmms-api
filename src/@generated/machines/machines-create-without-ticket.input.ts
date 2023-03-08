@@ -6,6 +6,7 @@ import { Int } from '@nestjs/graphql';
 import { BlockCreateNestedOneWithoutMachinesInput } from '../block/block-create-nested-one-without-machines.input';
 import { SectionsCreateNestedOneWithoutMachinesInput } from '../sections/sections-create-nested-one-without-machines.input';
 import { MaintenanceCreateNestedManyWithoutMachinesInput } from '../maintenance/maintenance-create-nested-many-without-machines.input';
+import { machine_catagoryCreateNestedOneWithoutMachinesInput } from '../machine-catagory/machine-catagory-create-nested-one-without-machines.input';
 import { routine_maintanancesCreateNestedManyWithoutMeachineInput } from '../routine-maintanances/routine-maintanances-create-nested-many-without-meachine.input';
 
 @InputType()
@@ -40,6 +41,9 @@ export class MachinesCreateWithoutTicketInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => machine_catagoryCreateNestedOneWithoutMachinesInput, {nullable:true})
+    machine_catagory?: machine_catagoryCreateNestedOneWithoutMachinesInput;
 
     @Field(() => routine_maintanancesCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesCreateNestedManyWithoutMeachineInput;

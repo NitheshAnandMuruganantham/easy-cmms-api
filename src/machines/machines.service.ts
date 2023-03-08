@@ -150,4 +150,15 @@ export class MachinesService {
     );
     return canGet;
   }
+
+  async machine_catagory(session: SessionContainer, id: bigint) {
+    const canGet = await this.prisma.machine_catagory.findUnique({ where: { id } });
+
+    const ability = await this.casl.getCurrentUserAbility(session);
+    ForbiddenError.from(ability).throwUnlessCan(
+      'read',
+      subject('machineCatagory', canGet),
+    );
+    return canGet;
+  }
 }

@@ -7,6 +7,7 @@ import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operat
 import { MaintenanceUncheckedUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-unchecked-update-many-without-machines-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { TicketUncheckedUpdateManyWithoutMachinesNestedInput } from '../ticket/ticket-unchecked-update-many-without-machines-nested.input';
+import { NullableBigIntFieldUpdateOperationsInput } from '../prisma/nullable-big-int-field-update-operations.input';
 import { routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput } from '../routine-maintanances/routine-maintanances-unchecked-update-many-without-meachine-nested.input';
 
 @InputType()
@@ -44,6 +45,9 @@ export class MachinesUncheckedUpdateInput {
 
     @Field(() => TicketUncheckedUpdateManyWithoutMachinesNestedInput, {nullable:true})
     Ticket?: TicketUncheckedUpdateManyWithoutMachinesNestedInput;
+
+    @Field(() => NullableBigIntFieldUpdateOperationsInput, {nullable:true})
+    machine_catagory_id?: NullableBigIntFieldUpdateOperationsInput;
 
     @Field(() => routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput;

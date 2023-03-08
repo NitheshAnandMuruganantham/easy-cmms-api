@@ -72,10 +72,17 @@ export class UsersService {
           accessibleBy(ability).Users,
           where,
           {
-            user_auth_id: {
-              not: session.getUserId(),
-            },
-          },
+            OR:[
+              {user_auth_id:{
+                equals: null
+              }},
+              {
+                user_auth_id:{
+                  not:session.getUserId()
+                }
+              }
+            ]
+          }
         ],
       },
       orderBy,
