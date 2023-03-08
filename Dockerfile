@@ -1,19 +1,34 @@
-FROM node:18
+FROM node:18 as builder
 
-WORKDIR /usr/src/app
+ENV NODE_ENV build
+
+USER node
+WORKDIR /home/node
 
 COPY package*.json ./
-
 COPY prisma ./prisma/
 
-ENV NODE_ENV production
 
 RUN yarn install && yarn prisma generate
 
-COPY . .
+COPY --chown=node:node . .
 
-RUN yarn  build
+RUN yarn build
+
+FROM node:18
+
+ENV NODE_ENV production
+
+USER node
+WORKDIR /home/node
+
+COPY --from=builder --chown=node:node /home/node/package*.json ./
+COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
+COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 EXPOSE 8000
 
-CMD [ "node", "dist/main.js" ]
+CMD ["yarn", "start:prod"]
+
+
+
