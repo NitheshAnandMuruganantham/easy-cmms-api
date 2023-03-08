@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:18
 
 ENV NODE_ENV build
 
