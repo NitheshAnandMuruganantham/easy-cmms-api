@@ -9,7 +9,7 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 
-RUN yarn install && yarn prisma generate --generator-name client
+RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 
