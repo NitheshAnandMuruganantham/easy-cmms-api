@@ -17,19 +17,12 @@ export class AppService implements OnModuleInit {
   }
   onModuleInit() {
     console.log('bootstrapping..................');
-    Promise.all([this.cacheUsers(), this.getCrons()]);
+    Promise.all([this.getCrons()]);
   }
   getHello(): string {
     return 'Hello World!';
   }
 
-  async cacheUsers() {
-    console.log('caching users for faster performance 🚀');
-    const users = await this.prisma.users.findMany();
-    users.forEach(async (user) => {
-      await this.redis.set(`user_${user.user_auth_id}`, JSON.stringify(user));
-    });
-  }
   async getCrons() {
     console.log('starting cron jobs 🕐');
     const crons = await this.prisma.routine_maintanances.findMany();

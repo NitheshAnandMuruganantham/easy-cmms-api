@@ -84,7 +84,7 @@ import { Redis } from 'ioredis';
       cache: 'bounded',
       logger: getLogger(),
       cors: {
-        origin: 'http://localhost:5173',
+        origin: process.env.FRONTEND_URL,
         allowedHeaders: [
           'content-type',
           'anti-csrf',

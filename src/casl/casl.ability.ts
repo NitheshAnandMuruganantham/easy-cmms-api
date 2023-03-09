@@ -64,6 +64,7 @@ export class CaslAbilityFactory {
         },
       });
       await this.redis.set(`user_${user.user_auth_id}`, JSON.stringify(user));
+      await this.redis.expire(`user_${user.user_auth_id}`, 60);
     }
     if (!user) {
       throw new ForbiddenError('user not exists in the organization');
