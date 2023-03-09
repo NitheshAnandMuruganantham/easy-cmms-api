@@ -15,86 +15,111 @@ import {
 } from 'src/@generated/machines';
 import {
   Section,
-  SectionCount,
   SectionCreateInput,
-  SectionCreateWithoutMachinesInput,
   SectionOrderByWithRelationInput,
   SectionUpdateInput,
-  SectionUpdateWithoutMachinesInput,
   SectionWhereInput,
 } from 'src/@generated/section';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import { SessionContainer } from 'supertokens-node/recipe/session';
-import { SectionService } from './section.service';
+import { MachineCatagoriesService } from './machine_catagory.service';
+import {
+  machine_catagory,
+  machine_catagoryCreateWithoutMachinesInput,
+  machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
+  machine_catagoryUpdateOneWithoutMachinesNestedInput,
+  machine_catagoryWhereInput,
+} from 'src/@generated/machine-catagory';
+import { Machine_catagoryCount } from 'src/@generated/prisma';
 
-@Resolver(() => Section)
-export class SectionResolver {
-  constructor(private readonly sectionService: SectionService) {}
+@Resolver(() => machine_catagory)
+export class MachineCatagoriesResolver {
+  constructor(
+    private readonly machineCatagoriesService: MachineCatagoriesService,
+  ) {}
 
-  @Mutation(() => Section)
-  createSection(
+  @Mutation(() => machine_catagory)
+  createMachineCategory(
     @Session()
     session: SessionContainer,
-    @Args('createSectionInput') createSectionInput: SectionCreateWithoutMachinesInput,
+    @Args('createCategoryInput')
+    createCategoryInput: machine_catagoryCreateWithoutMachinesInput,
   ) {
-    return this.sectionService.create(session, createSectionInput);
+    return this.machineCatagoriesService.create(session, createCategoryInput);
   }
 
-  @Query(() => [Section], { name: 'sections' })
+  @Query(() => [machine_catagory], { name: 'machineCatagories' })
   findAll(
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: machine_catagoryWhereInput,
     @Args('orderBy', { nullable: true })
-    orderBy: SectionOrderByWithRelationInput,
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
     @Args('take', { type: () => Int, nullable: true }) take: number,
   ) {
-    return this.sectionService.findAll(session, where, orderBy, skip, take);
+    return this.machineCatagoriesService.findAll(
+      session,
+      where,
+      orderBy,
+      skip,
+      take,
+    );
   }
 
-  @Query(() => Int, { name: 'sectionsCount' })
+  @Query(() => Int, { name: 'machineCatagoriesCount' })
   count(
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: machine_catagoryWhereInput,
     @Args('orderBy', { nullable: true })
-    orderBy: SectionOrderByWithRelationInput,
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
     @Args('take', { type: () => Int, nullable: true }) take: number,
   ) {
-    return this.sectionService.count(session, where, orderBy, skip, take);
+    return this.machineCatagoriesService.count(
+      session,
+      where,
+      orderBy,
+      skip,
+      take,
+    );
   }
 
-  @Query(() => Section, { name: 'section' })
+  @Query(() => machine_catagory, { name: 'machineCategory' })
   findOne(
     @Session()
     session: SessionContainer,
     @Args('id', { type: () => Int }) id: number,
   ) {
-    return this.sectionService.findOne(session, id);
+    return this.machineCatagoriesService.findOne(session, id);
   }
 
-  @Mutation(() => Section)
-  updateSection(
+  @Mutation(() => machine_catagory)
+  updateMachineCatagories(
     @Session()
     session: SessionContainer,
     @Args('id', { type: () => Int }) id: number,
-    @Args('updateSectionInput') updateSectionInput: SectionUpdateWithoutMachinesInput,
+    @Args('data')
+    updateSectionInput: machine_catagoryUpdateOneWithoutMachinesNestedInput,
   ) {
-    return this.sectionService.update(session, id, updateSectionInput);
+    return this.machineCatagoriesService.update(
+      session,
+      id,
+      updateSectionInput,
+    );
   }
 
-  @Mutation(() => Section)
-  removeSection(
+  @Mutation(() => machine_catagory)
+  removeMachineCatagories(
     @Session()
     session: SessionContainer,
     @Args('id', { type: () => Int }) id: number,
   ) {
-    return this.sectionService.remove(session, id);
+    return this.machineCatagoriesService.remove(session, id);
   }
 
   @ResolveField(() => [Machines])
@@ -109,7 +134,7 @@ export class SectionResolver {
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
     @Args('take', { type: () => Int, nullable: true }) take: number,
   ) {
-    return this.sectionService.machines(
+    return this.machineCatagoriesService.machines(
       session,
       id,
       where,
@@ -118,20 +143,12 @@ export class SectionResolver {
       take,
     );
   }
-
-  @ResolveField(() => Int,{name : 'id'} )
-  id(
-    @Parent()
-    { id }: Section,
-  ) {
-    return `${id}`;
-  }
-  @ResolveField(() => SectionCount, { name: '_count' })
+  @ResolveField(() => Machine_catagoryCount, { name: '_count' })
   machinesCount(
     @Session()
     session: SessionContainer,
-    @Parent() block: Section,
+    @Parent() block: machine_catagory,
   ) {
-    return this.sectionService.machinesCount(session, block.id);
+    return this.machineCatagoriesService.machinesCount(session, block.id);
   }
 }

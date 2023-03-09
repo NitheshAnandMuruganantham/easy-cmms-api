@@ -25,6 +25,8 @@ export class BlockService {
   async create(session: SessionContainer, createBlockInput: BlockCreateInput) {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Block');
+    console.log('createBlockInput', createBlockInput);
+    
     return this.prisma.block.create({
       data: createBlockInput,
     });
@@ -40,6 +42,25 @@ export class BlockService {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Block');
     return this.prisma.block.findMany({
+      where: {
+        AND: [accessibleBy(ability).Block, where],
+      },
+      orderBy,
+      take: limit,
+      skip: offset,
+    });
+  }
+
+  async count(
+    session: SessionContainer,
+    where: BlockWhereInput,
+    orderBy: BlockOrderByWithAggregationInput,
+    limit: number,
+    offset: number,
+  ) {
+    const ability = await this.casl.getCurrentUserAbility(session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Block');
+    return this.prisma.block.count({
       where: {
         AND: [accessibleBy(ability).Block, where],
       },

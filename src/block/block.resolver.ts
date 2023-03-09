@@ -51,6 +51,19 @@ export class BlockResolver {
     return this.blockService.findAll(session, where, orderBy, limit, offset);
   }
 
+  @Query(() => Int, { name: 'blocksCount' })
+  count(
+    @Session()
+    session: SessionContainer,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number,
+    @Args('offset', { type: () => Int, nullable: true }) offset: number,
+    @Args('where', { nullable: true }) where: BlockWhereInput,
+    @Args('orderBy', { nullable: true })
+    orderBy: BlockOrderByWithAggregationInput,
+  ) {
+    return this.blockService.count(session, where, orderBy, limit, offset);
+  }
+
   @Query(() => Block, { name: 'block' })
   findOne(
     @Session()

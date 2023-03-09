@@ -919,7 +919,7 @@ type Machine_catagoryCount {
 type machine_catagory {
   id: BigInt!
   name: String!
-  machines: [Machines!]
+  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, skip: Int, take: Int): [Machines!]
   created_at: DateTime!
   updated_at: DateTime!
   _count: Machine_catagoryCount!
@@ -1685,6 +1685,7 @@ type Section {
 
 type Query {
   blocks(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): [Block!]!
+  blocksCount(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): Int!
   block(id: Int!): Block!
   itemCatagories(limit: Int, offset: Int, orderBy: ItemCatagoryOrderByWithAggregationInput, where: ItemCatagoryWhereInput): [ItemCatagory!]!
   itemCatagory(id: Int!): ItemCatagory!
@@ -1698,7 +1699,12 @@ type Query {
   maintenance(id: Int!): Maintenance!
   replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]!
   replacement(id: Int!): Replacements!
+  machineCatagories(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): [machine_catagory!]!
+  machineCatagoriesCount(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): Int!
+  machineCategory(id: Int!): machine_catagory!
   report(id: Int!): Reports!
+  sections(where: SectionWhereInput, orderBy: SectionOrderByWithRelationInput, skip: Int, take: Int): [Section!]!
+  sectionsCount(where: SectionWhereInput, orderBy: SectionOrderByWithRelationInput, skip: Int, take: Int): Int!
   section(id: Int!): Section!
   users(where: UsersWhereInput, orderBy: UsersOrderByWithRelationInput, limit: Int, offset: Int): [Users!]!
   usersCount(where: UsersWhereInput, orderBy: UsersOrderByWithRelationInput, limit: Int, offset: Int): Int!
@@ -1808,6 +1814,44 @@ input ItemCatagoryWhereInput {
   updated_at: DateTimeFilter
 }
 
+input machine_catagoryOrderByWithRelationAndSearchRelevanceInput {
+  id: SortOrder
+  name: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  created_at: SortOrder
+  updated_at: SortOrder
+  _relevance: machine_catagoryOrderByRelevanceInput
+}
+
+input machine_catagoryOrderByRelevanceInput {
+  fields: [machine_catagoryOrderByRelevanceFieldEnum!]!
+  sort: SortOrder!
+  search: String!
+}
+
+enum machine_catagoryOrderByRelevanceFieldEnum {
+  name
+}
+
+input SectionWhereInput {
+  AND: [SectionWhereInput!]
+  OR: [SectionWhereInput!]
+  NOT: [SectionWhereInput!]
+  id: BigIntFilter
+  name: StringFilter
+  machines: MachinesListRelationFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+}
+
+input SectionOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
+  created_at: SortOrder
+  updated_at: SortOrder
+}
+
 input routine_maintanancesSumOrderByAggregateInput {
   id: SortOrder
   assignee_id: SortOrder
@@ -1833,11 +1877,14 @@ type Mutation {
   createReplacement(createReplacementInput: ReplacementsCreateInput!): Replacements!
   updateReplacement(id: Int!, updateReplacementInput: ReplacementsUpdateInput!): Replacements!
   removeReplacement(id: Int!): Replacements!
+  createMachineCategory(createCategoryInput: machine_catagoryCreateWithoutMachinesInput!): machine_catagory!
+  updateMachineCatagories(id: Int!, data: machine_catagoryUpdateOneWithoutMachinesNestedInput!): machine_catagory!
+  removeMachineCatagories(id: Int!): machine_catagory!
   createReport(createReportInput: ReportsCreateInput!): Reports!
   updateReport(id: Int!, updateReportInput: ReportsUpdateInput!): Reports!
   removeReport(id: Int!): Reports!
-  createSection(createSectionInput: SectionCreateInput!): Section!
-  updateSection(id: Int!, updateSectionInput: SectionUpdateInput!): Section!
+  createSection(createSectionInput: SectionCreateWithoutMachinesInput!): Section!
+  updateSection(id: Int!, updateSectionInput: SectionUpdateWithoutMachinesInput!): Section!
   removeSection(id: Int!): Section!
   createUser(createUserInput: UsersCreateInput!): Users!
   updateUser(id: Int!, updateUserInput: UsersUpdateInput!): Users!
@@ -3880,6 +3927,16 @@ input ReplacementsUpdateInput {
   updated_at: DateTimeFieldUpdateOperationsInput
 }
 
+input machine_catagoryUpdateOneWithoutMachinesNestedInput {
+  create: machine_catagoryCreateWithoutMachinesInput
+  connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
+  upsert: machine_catagoryUpsertWithoutMachinesInput
+  disconnect: Boolean
+  delete: Boolean
+  connect: machine_catagoryWhereUniqueInput
+  update: machine_catagoryUpdateWithoutMachinesInput
+}
+
 input ReportsCreateInput {
   id: BigInt
   report: String!
@@ -3966,102 +4023,18 @@ input MaintenanceUpdateWithoutReportsInput {
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
-input SectionCreateInput {
+input SectionCreateWithoutMachinesInput {
   id: String
   name: String!
-  machines: MachinesCreateNestedManyWithoutSection_machines_sectionTosectionInput
   created_at: DateTime
   updated_at: DateTime
 }
 
-input MachinesCreateNestedManyWithoutSection_machines_sectionTosectionInput {
-  create: [MachinesCreateWithoutSection_machines_sectionTosectionInput!]
-  connectOrCreate: [MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput!]
-  createMany: MachinesCreateManySection_machines_sectionTosectionInputEnvelope
-  connect: [MachinesWhereUniqueInput!]
-}
-
-input MachinesCreateWithoutSection_machines_sectionTosectionInput {
-  id: BigInt
-  name: String!
-  label: String!
-  profile: JSON
-  priority: Int!
-  block: BlockCreateNestedOneWithoutMachinesInput!
-  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
-  created_at: DateTime
-  updated_at: DateTime
-}
-
-input MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput {
-  where: MachinesWhereUniqueInput!
-  create: MachinesCreateWithoutSection_machines_sectionTosectionInput!
-}
-
-input MachinesCreateManySection_machines_sectionTosectionInputEnvelope {
-  data: [MachinesCreateManySection_machines_sectionTosectionInput!]!
-  skipDuplicates: Boolean
-}
-
-input MachinesCreateManySection_machines_sectionTosectionInput {
-  id: BigInt
-  name: String!
-  block_id: BigInt!
-  label: String!
-  profile: JSON
-  priority: Int!
-  created_at: DateTime
-  updated_at: DateTime
-}
-
-input SectionUpdateInput {
+input SectionUpdateWithoutMachinesInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  machines: MachinesUpdateManyWithoutSection_machines_sectionTosectionNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
-}
-
-input MachinesUpdateManyWithoutSection_machines_sectionTosectionNestedInput {
-  create: [MachinesCreateWithoutSection_machines_sectionTosectionInput!]
-  connectOrCreate: [MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput!]
-  upsert: [MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput!]
-  createMany: MachinesCreateManySection_machines_sectionTosectionInputEnvelope
-  set: [MachinesWhereUniqueInput!]
-  disconnect: [MachinesWhereUniqueInput!]
-  delete: [MachinesWhereUniqueInput!]
-  connect: [MachinesWhereUniqueInput!]
-  update: [MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput!]
-  updateMany: [MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput!]
-  deleteMany: [MachinesScalarWhereInput!]
-}
-
-input MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput {
-  where: MachinesWhereUniqueInput!
-  update: MachinesUpdateWithoutSection_machines_sectionTosectionInput!
-  create: MachinesCreateWithoutSection_machines_sectionTosectionInput!
-}
-
-input MachinesUpdateWithoutSection_machines_sectionTosectionInput {
-  id: BigIntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  label: StringFieldUpdateOperationsInput
-  profile: JSON
-  priority: IntFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutMachinesNestedInput
-  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-}
-
-input MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput {
-  where: MachinesWhereUniqueInput!
-  data: MachinesUpdateWithoutSection_machines_sectionTosectionInput!
-}
-
-input MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput {
-  where: MachinesScalarWhereInput!
-  data: MachinesUpdateManyMutationInput!
 }
 
 input UsersCreateInput {

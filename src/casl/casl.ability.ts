@@ -99,6 +99,12 @@ export class CaslAbilityFactory {
     }
 
     if (user.role === 'MANAGER' || user.role === 'ADMIN') {
+      // Users machineCatagory
+      can('create', 'machineCatagory');
+      can('read', 'machineCatagory');
+      can('update', 'machineCatagory');
+      can('delete', 'machineCatagory');
+
       // Users permissions
       can('create', 'Users');
       can('read', 'Users');
@@ -125,6 +131,13 @@ export class CaslAbilityFactory {
       can('update', 'Section');
       can('delete', 'Section');
 
+      //  Block permissions
+
+      can('create', 'Block');
+      can('read', 'Block');
+      can('update', 'Block');
+      can('delete', 'Block');
+
       //  Report permissions
 
       can('create', 'Reports');
@@ -140,19 +153,23 @@ export class CaslAbilityFactory {
       can('delete', 'Maintenance');
 
       //  Replacements permissions
-
+      
       can('read', 'Replacements');
       can('update', 'Replacements');
       can('delete', 'Replacements');
-
+    
+      //  Replacements permissions
       can('create', 'Machines');
+      can('read', 'Machines');
       can('update', 'Machines');
       can('delete', 'Machines');
 
       can('create', 'Items');
+      can('read', 'Items');
       can('update', 'Items');
       can('delete', 'Items');
 
+      can('read', 'ItemCatagory');
       can('create', 'ItemCatagory');
       can('update', 'ItemCatagory');
       can('delete', 'ItemCatagory');

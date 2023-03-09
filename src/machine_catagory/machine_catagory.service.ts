@@ -8,18 +8,13 @@ import {
 } from 'src/@generated/machines';
 
 import {
-  SectionCreateInput,
-  SectionCreateWithoutMachinesInput,
-  SectionOrderByWithRelationInput,
-  SectionUpdateInput,
-  SectionUpdateWithoutMachinesInput,
-  SectionWhereInput,
-} from 'src/@generated/section';
+  machine_catagory, machine_catagoryCreateInput, machine_catagoryCreateWithoutMachinesInput, machine_catagoryOrderByWithRelationAndSearchRelevanceInput, machine_catagoryUpdateInput, machine_catagoryUpdateOneWithoutMachinesNestedInput, machine_catagoryWhereInput
+} from 'src/@generated/machine-catagory';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 
 @Injectable()
-export class SectionService {
+export class MachineCatagoriesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly caslFactory: CaslAbilityFactory,
@@ -27,45 +22,44 @@ export class SectionService {
 
   async create(
     session: SessionContainer,
-    createSectionInput: SectionCreateWithoutMachinesInput,
+    createSectionInput: machine_catagoryCreateWithoutMachinesInput,
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('create', 'Section');
-    return this.prisma.sections.create({ data: createSectionInput });
+    ForbiddenError.from(ability).throwUnlessCan('create', 'machineCatagory');
+    return this.prisma.machine_catagory.create({ data: createSectionInput });
   }
 
   async findAll(
     session: SessionContainer,
-    where: SectionWhereInput,
-    orderBy: SectionOrderByWithRelationInput,
+    where: machine_catagoryWhereInput,
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     skip: number,
     take: number,
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('read', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
-    return this.prisma.sections.findMany({
+    return this.prisma.machine_catagory.findMany({
       where,
       orderBy,
       skip,
       take,
     });
   }
-
   async count(
     session: SessionContainer,
-    where: SectionWhereInput,
-    orderBy: SectionOrderByWithRelationInput,
+    where: machine_catagoryWhereInput,
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     skip: number,
     take: number,
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('read', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
-    return this.prisma.sections.count({
+    return this.prisma.machine_catagory.count({
       where,
       orderBy,
       skip,
@@ -76,31 +70,31 @@ export class SectionService {
   async findOne(session: SessionContainer, id: number) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('read', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
-    return this.prisma.sections.findUnique({ where: { id } });
+    return this.prisma.machine_catagory.findUnique({ where: { id } });
   }
 
   async update(
     session: SessionContainer,
     id: number,
-    updateSectionInput: SectionUpdateWithoutMachinesInput,
+    updateSectionInput: machine_catagoryUpdateOneWithoutMachinesNestedInput,
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('update', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('update', 'machineCatagory');
 
     return this.prisma.sections.update({
       where: { id },
-      data: updateSectionInput,
+      data: updateSectionInput
     });
   }
 
   async remove(session: SessionContainer, id: number) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('delete', 'Section');
-    return this.prisma.sections.delete({ where: { id } });
+    ForbiddenError.from(ability).throwUnlessCan('delete', 'machineCatagory');
+    return this.prisma.machine_catagory.delete({ where: { id } });
   }
 
   async machines(
@@ -113,24 +107,24 @@ export class SectionService {
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('read', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
-    return this.prisma.sections.findUnique({ where: { id } }).machines({
+    return this.prisma.machine_catagory.findUnique({ where: { id } }).machines({
       where: {
-        AND: [accessibleBy(ability, 'read').Sections, where],
+        AND: [accessibleBy(ability, 'read').Machines, where],
       },
       orderBy,
       skip,
       take,
     });
   }
-    
+  
   async machinesCount(session: SessionContainer, id: bigint) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     const dt = this.prisma.machines.count({
       where: {
-        AND: [accessibleBy(ability).Machines, { section:{id: {equals:id}} }],
+        AND: [accessibleBy(ability).Machines, { machine_catagory:{id: {equals:id}} }],
       },
     });
     return {
