@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalFilters(new PrismaClientExceptionFilter());
   app.useGlobalFilters(new SupertokensExceptionFilter());
   app.enableCors({
-    origin: process.env.FRONTEND_URL,
+    origin: 'http://localhost:5173',
     allowedHeaders: [
       'content-type',
       'anti-csrf',

@@ -44,7 +44,7 @@ export class MachinesService {
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
     return this.prisma.machines.findMany({
-      where: { AND: [accessibleBy(ability).Machines, where] },
+      where: where,
       orderBy,
       take: limit,
       skip: offset,
@@ -63,7 +63,7 @@ export class MachinesService {
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
     return this.prisma.machines.count({
-      where: { AND: [accessibleBy(ability).Machines, where] },
+      where,
       orderBy,
       take: limit,
       skip: offset,
@@ -133,10 +133,10 @@ export class MachinesService {
     const canGet = await this.prisma.sections.findUnique({ where: { id } });
 
     const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Section', canGet),
-    );
+    // ForbiddenError.from(ability).throwUnlessCan(
+    //   'read',
+    //   subject('Section', canGet),
+    // );
     return canGet;
   }
 
@@ -144,10 +144,10 @@ export class MachinesService {
     const canGet = await this.prisma.block.findUnique({ where: { id } });
 
     const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Block', canGet),
-    );
+    // ForbiddenError.from(ability).throwUnlessCan(
+    //   'read',
+    //   subject('Block', canGet),
+    // );
     return canGet;
   }
 
@@ -155,10 +155,10 @@ export class MachinesService {
     const canGet = await this.prisma.machine_catagory.findUnique({ where: { id } });
 
     const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('machineCatagory', canGet),
-    );
+    // ForbiddenError.from(ability).throwUnlessCan(
+    //   'read',
+    //   subject('machineCatagory', canGet),
+    // );
     return canGet;
   }
 }
