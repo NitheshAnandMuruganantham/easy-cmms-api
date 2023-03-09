@@ -42,8 +42,8 @@ export class MachinesCreateWithoutMaintenanceInput {
     @Field(() => TicketCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketCreateNestedManyWithoutMachinesInput;
 
-    @Field(() => machine_catagoryCreateNestedOneWithoutMachinesInput, {nullable:true})
-    machine_catagory?: machine_catagoryCreateNestedOneWithoutMachinesInput;
+    @Field(() => machine_catagoryCreateNestedOneWithoutMachinesInput, {nullable:false})
+    machine_catagory!: machine_catagoryCreateNestedOneWithoutMachinesInput;
 
     @Field(() => routine_maintanancesCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesCreateNestedManyWithoutMeachineInput;

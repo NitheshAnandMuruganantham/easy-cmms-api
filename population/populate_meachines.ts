@@ -72,7 +72,9 @@ const SectionNameVsId = async () => {
 
 const populateMachines = async (data, sectionMap, categoriesMap) => {
     data.forEach(async (row) => {
-        await prisma.machines.create({
+if(categoriesMap[row.category] && sectionMap[row.section]){
+    console.log(row);    
+    await prisma.machines.create({
             data: {
                 name: row.machine,
                 machine_catagory:{
@@ -97,6 +99,7 @@ const populateMachines = async (data, sectionMap, categoriesMap) => {
                 label: row.machine,
             } 
         });
+    }
     })
 };
 
@@ -104,18 +107,19 @@ const populateMachines = async (data, sectionMap, categoriesMap) => {
 (async () => {
     fs.createReadStream("population/machines.csv").pipe(csv()).on("data", (data) => results.push(data)).on("end", async () => {
 
-    const uniqueSections = getUniqueSections(results);
-    console.log("generating unique sections");
-    const uniqueCategories = getUniqueCategories(results);
-    console.log("generating unique categories");
+    // const uniqueSections = getUniqueSections(results);
+    // console.log("generating unique sections");
+    // const uniqueCategories = getUniqueCategories(results);
+    // console.log("generating unique categories");
     
-    populateCategories(uniqueCategories);
-    console.log("populating categories");
-    populateSections(uniqueSections);
-    console.log("populating sections");
+    // populateCategories(uniqueCategories);
+    // console.log("populating categories");
+    // populateSections(uniqueSections);
+    // console.log("populating sections");
     const sectionMap = await SectionNameVsId();
     const categoriesMap = await catagoryNameVsId();
-    console.log("generating maps");
+    console.log(sectionMap);
+    // console.log("generating maps");
     populateMachines(results, sectionMap, categoriesMap);
     });
 })();

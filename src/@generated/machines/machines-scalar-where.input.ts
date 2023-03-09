@@ -5,7 +5,6 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 
 @InputType()
 export class MachinesScalarWhereInput {
@@ -46,6 +45,6 @@ export class MachinesScalarWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
-    @Field(() => BigIntNullableFilter, {nullable:true})
-    machine_catagory_id?: BigIntNullableFilter;
+    @Field(() => BigIntFilter, {nullable:true})
+    machine_catagory_id?: BigIntFilter;
 }

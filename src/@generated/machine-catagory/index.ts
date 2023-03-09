@@ -19,6 +19,7 @@ export { machine_catagoryUncheckedUpdateManyInput } from './machine-catagory-unc
 export { machine_catagoryUncheckedUpdateWithoutMachinesInput } from './machine-catagory-unchecked-update-without-machines.input';
 export { machine_catagoryUncheckedUpdateInput } from './machine-catagory-unchecked-update.input';
 export { machine_catagoryUpdateManyMutationInput } from './machine-catagory-update-many-mutation.input';
+export { machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput } from './machine-catagory-update-one-required-without-machines-nested.input';
 export { machine_catagoryUpdateOneWithoutMachinesNestedInput } from './machine-catagory-update-one-without-machines-nested.input';
 export { machine_catagoryUpdateWithoutMachinesInput } from './machine-catagory-update-without-machines.input';
 export { machine_catagoryUpdateInput } from './machine-catagory-update.input';

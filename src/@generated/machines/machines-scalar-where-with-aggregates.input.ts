@@ -5,7 +5,6 @@ import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-fil
 import { JsonWithAggregatesFilter } from '../prisma/json-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
-import { BigIntNullableWithAggregatesFilter } from '../prisma/big-int-nullable-with-aggregates-filter.input';
 
 @InputType()
 export class MachinesScalarWhereWithAggregatesInput {
@@ -46,6 +45,6 @@ export class MachinesScalarWhereWithAggregatesInput {
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     updated_at?: DateTimeWithAggregatesFilter;
 
-    @Field(() => BigIntNullableWithAggregatesFilter, {nullable:true})
-    machine_catagory_id?: BigIntNullableWithAggregatesFilter;
+    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
+    machine_catagory_id?: BigIntWithAggregatesFilter;
 }

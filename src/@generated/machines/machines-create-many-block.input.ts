@@ -31,6 +31,6 @@ export class MachinesCreateManyBlockInput {
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    machine_catagory_id?: bigint | number;
+    @Field(() => GraphQLBigInt, {nullable:false})
+    machine_catagory_id!: bigint | number;
 }

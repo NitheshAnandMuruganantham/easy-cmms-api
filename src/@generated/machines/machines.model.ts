@@ -54,11 +54,11 @@ export class Machines {
     @Field(() => [Ticket], {nullable:true})
     Ticket?: Array<Ticket>;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    machine_catagory_id!: bigint | null;
+    @Field(() => GraphQLBigInt, {nullable:false})
+    machine_catagory_id!: bigint;
 
-    @Field(() => machine_catagory, {nullable:true})
-    machine_catagory?: machine_catagory | null;
+    @Field(() => machine_catagory, {nullable:false})
+    machine_catagory?: machine_catagory;
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;

@@ -9,7 +9,6 @@ import { SectionsRelationFilter } from '../sections/sections-relation-filter.inp
 import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
-import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 import { Machine_catagoryRelationFilter } from '../prisma/machine-catagory-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
 
@@ -64,8 +63,8 @@ export class MachinesWhereInput {
     @Field(() => TicketListRelationFilter, {nullable:true})
     Ticket?: TicketListRelationFilter;
 
-    @Field(() => BigIntNullableFilter, {nullable:true})
-    machine_catagory_id?: BigIntNullableFilter;
+    @Field(() => BigIntFilter, {nullable:true})
+    machine_catagory_id?: BigIntFilter;
 
     @Field(() => Machine_catagoryRelationFilter, {nullable:true})
     machine_catagory?: Machine_catagoryRelationFilter;

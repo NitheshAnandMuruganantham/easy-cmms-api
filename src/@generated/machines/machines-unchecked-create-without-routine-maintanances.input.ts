@@ -42,6 +42,6 @@ export class MachinesUncheckedCreateWithoutRoutine_maintanancesInput {
     @Field(() => TicketUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketUncheckedCreateNestedManyWithoutMachinesInput;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    machine_catagory_id?: bigint | number;
+    @Field(() => GraphQLBigInt, {nullable:false})
+    machine_catagory_id!: bigint | number;
 }

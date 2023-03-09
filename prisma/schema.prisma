@@ -65,10 +65,10 @@ model Machines {
   section              Sections               @relation(fields: [section_id], references: [id])
   maintenance          Maintenance[]
   created_at           DateTime               @default(now())
-  updated_at           DateTime               @updatedAt
+  updated_at           DateTime               @updatedAt()
   Ticket               Ticket[]
-  machine_catagory_id  BigInt?
-  machine_catagory     machine_catagory?       @relation(fields: [machine_catagory_id], references: [id])
+  machine_catagory_id  BigInt
+  machine_catagory     machine_catagory       @relation(fields: [machine_catagory_id], references: [id])
   routine_maintanances routine_maintanances[]
 }
 
