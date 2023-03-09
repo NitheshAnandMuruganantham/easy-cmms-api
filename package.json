@@ -36,7 +36,11 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.2.0",
+    "@ntegral/nestjs-sentry": "^4.0.0",
     "@prisma/client": "^4.9.0",
+    "@sentry/node": "^7.41.0",
+    "@sentry/tracing": "^7.41.0",
+    "add": "^2.0.6",
     "apollo-server-core": "^3.11.1",
     "apollo-server-express": "^3.11.1",
     "aws-sdk": "^2.1298.0",
@@ -66,7 +70,8 @@
     "supertokens-node": "12.1.6",
     "twilio": "^3.84.1",
     "uuid": "^9.0.0",
-    "vscode-uri": "^3.0.7"
+    "vscode-uri": "^3.0.7",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

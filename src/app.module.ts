@@ -32,9 +32,21 @@ import { RoutineMaintanancesModule } from './routine-maintanances/routine-mainta
 import { ScheduleModule } from '@nestjs/schedule/dist';
 import { authMiddleware } from './middleware/auth';
 import { Redis } from 'ioredis';
+import { SentryModule } from '@ntegral/nestjs-sentry';
 
 @Module({
   imports: [
+    SentryModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (cfg:ConfigService) => ({
+        dsn: cfg.get('SENTRY_DSN'),
+        debug: true,
+        environment: cfg.get('NODE_ENV'),
+        release: cfg.get('RELEASE'),
+        logLevels: ['debug'],
+      }),
+      inject: [ConfigService],
+    }),
     ScheduleModule.forRoot(),
     RedisModule.forRootAsync({
       inject: [ConfigService],
