@@ -439,7 +439,7 @@ input MachinesWhereInput {
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
   Ticket: TicketListRelationFilter
-  machine_catagory_id: BigIntNullableFilter
+  machine_catagory_id: BigIntFilter
   machine_catagory: Machine_catagoryRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
 }
@@ -945,8 +945,8 @@ type Machines {
   created_at: DateTime!
   updated_at: DateTime!
   Ticket: [Ticket!]
-  machine_catagory_id: BigInt
-  machine_catagory: machine_catagory
+  machine_catagory_id: BigInt!
+  machine_catagory: machine_catagory!
   routine_maintanances: [routine_maintanances!]
   _count: MachinesCount!
 }
@@ -1877,7 +1877,7 @@ input MachinesCreateWithoutBlockInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -2009,7 +2009,7 @@ input MachinesCreateWithoutMaintenanceInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -2336,7 +2336,7 @@ input MachinesCreateWithoutTicketInput {
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   created_at: DateTime
   updated_at: DateTime
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -2490,7 +2490,7 @@ input MachinesCreateWithoutRoutine_maintanancesInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
 }
 
 input MachinesCreateOrConnectWithoutRoutine_maintanancesInput {
@@ -2570,7 +2570,7 @@ input MachinesCreateManyBlockInput {
   priority: Int!
   created_at: DateTime
   updated_at: DateTime
-  machine_catagory_id: BigInt
+  machine_catagory_id: BigInt!
 }
 
 input BlockUpdateInput {
@@ -2625,7 +2625,7 @@ input MachinesUpdateWithoutBlockInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
-  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -2832,7 +2832,7 @@ input MachinesUpdateWithoutMaintenanceInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
-  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -2927,12 +2927,10 @@ input TicketUpdateManyMutationInput {
   updated_at: DateTimeFieldUpdateOperationsInput
 }
 
-input machine_catagoryUpdateOneWithoutMachinesNestedInput {
+input machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput {
   create: machine_catagoryCreateWithoutMachinesInput
   connectOrCreate: machine_catagoryCreateOrConnectWithoutMachinesInput
   upsert: machine_catagoryUpsertWithoutMachinesInput
-  disconnect: Boolean
-  delete: Boolean
   connect: machine_catagoryWhereUniqueInput
   update: machine_catagoryUpdateWithoutMachinesInput
 }
@@ -3284,7 +3282,7 @@ input MachinesUpdateWithoutTicketInput {
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
-  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 
@@ -3437,7 +3435,7 @@ input MachinesUpdateWithoutRoutine_maintanancesInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
-  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
 }
 
 input routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput {
@@ -3483,7 +3481,7 @@ input MachinesScalarWhereInput {
   priority: IntFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
-  machine_catagory_id: BigIntNullableFilter
+  machine_catagory_id: BigIntFilter
 }
 
 input MachinesUpdateManyMutationInput {
@@ -3796,7 +3794,7 @@ input MachinesCreateInput {
   created_at: DateTime
   updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput
+  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
 
@@ -3812,7 +3810,7 @@ input MachinesUpdateInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
-  machine_catagory: machine_catagoryUpdateOneWithoutMachinesNestedInput
+  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
 

@@ -30,7 +30,10 @@ export class SectionService {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
     ForbiddenError.from(ability).throwUnlessCan('create', 'Section');
-    return this.prisma.sections.create({ data: createSectionInput });
+    return this.prisma.sections.create({ data: {
+      name:createSectionInput.name,
+      
+    } });
   }
 
   async findAll(
@@ -71,7 +74,9 @@ export class SectionService {
 
     return this.prisma.sections.update({
       where: { id },
-      data: updateSectionInput,
+      data: {
+        id: updateSectionInput.id,
+      },
     });
   }
 
