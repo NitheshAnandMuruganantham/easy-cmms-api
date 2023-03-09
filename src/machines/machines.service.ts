@@ -127,14 +127,11 @@ export class MachinesService {
 
   async block(session: SessionContainer, id: bigint) {
     const canGet = await this.prisma.block.findUnique({ where: { id } });
-
-
     return canGet;
   }
 
   async machine_catagory(session: SessionContainer, id: bigint) {
     const canGet = await this.prisma.machine_catagory.findUnique({ where: { id } });
-
     return canGet;
   }
 }

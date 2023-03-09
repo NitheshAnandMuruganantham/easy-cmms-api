@@ -128,8 +128,8 @@ export class MachinesResolver {
   @ResolveField(() => machine_catagory)
   machine_catagory(
     @Session() session: SessionContainer,
-    @Parent() { section_id }: Machines,
+    @Parent() { machine_catagory_id }: Machines,
   ) {
-    return this.machinesService.machine_catagory(session, section_id);
+    return this.machinesService.machine_catagory(session, machine_catagory_id);
   }
 }
