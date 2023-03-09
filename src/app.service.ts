@@ -56,4 +56,18 @@ export class AppService implements OnModuleInit {
   getHealth() {
     return 'ok';
   }
+
+  getMachines(take: number, skip: number, orderBy: any, where: any) {
+    return this.prisma.machines.findMany({
+      where,
+      take,
+      skip,
+      orderBy,
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
+    });
+  }
 }

@@ -1,5 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import {
+  Body,
+  Param,
   Post,
   UploadedFile,
   UseGuards,
@@ -31,7 +33,7 @@ export class AppController {
   <script>
     new window.EmbeddedSandbox({
       target: '#embedded-sandbox',
-      initialEndpoint: 'http://localhost:8080/graphql',
+      initialEndpoint: 'http://localhost:8000/graphql',
       includeCookies: false,
     });
   </script>
@@ -78,5 +80,14 @@ export class AppController {
     const id = uuid();
     const resp = await this.s3Service.uploadImage(file, id);
     return resp;
+  }
+
+  @UseGuards(new AuthGuard())
+  @Post('machines')
+  async getMachines(
+@Body()
+    { take, skip, orderBy, where }: { take: number; skip: number; orderBy: any; where: any },
+  ) {
+    return this.appService.getMachines(take, skip, orderBy, where);
   }
 }
