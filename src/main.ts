@@ -4,6 +4,7 @@ require('dotenv').config();
 import { envAppConfiguration } from './getAzureConfigration';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { urlencoded, json } from 'express';
 import { SupertokensExceptionFilter } from './auth/auth.filter';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 async function bootstrap() {
@@ -24,7 +25,7 @@ async function bootstrap() {
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     credentials: true,
   });
-
+  app.use(json({ limit: '50mb' }));
   await app.listen(8000);
 }
 

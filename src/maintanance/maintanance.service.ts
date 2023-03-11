@@ -11,6 +11,7 @@ import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { accessibleBy } from '@casl/prisma';
 import { S3Service } from 'src/s3/s3.service';
+import { nanoid } from 'nanoid';
 
 @Injectable()
 export class MaintananceService {
@@ -26,7 +27,12 @@ export class MaintananceService {
   ) {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Maintenance');
-
+    if (createMaintananceInput?.photo) {
+      createMaintananceInput.photo = await this.s3Service.uploadBase64Image(
+        createMaintananceInput.photo,
+        nanoid(10),
+      );
+    }
     const data = await this.prisma.maintenance.create({
       data: createMaintananceInput,
     });
@@ -47,7 +53,7 @@ export class MaintananceService {
             },
           });
           throw new InternalServerErrorException(
-            'can not create new maintanance',
+            'can not create new maintenance',
           );
         });
     }
@@ -130,6 +136,12 @@ export class MaintananceService {
       'update',
       subject('Maintenance', toUpdate),
     );
+    if (updateMaintananceInput?.photo?.set) {
+      updateMaintananceInput.photo.set = await this.s3Service.uploadBase64Image(
+        updateMaintananceInput.photo.set,
+        nanoid(10),
+      );
+    }
     return this.prisma.maintenance.update({
       where: { id },
       data: updateMaintananceInput,

@@ -5,7 +5,7 @@ import {
   TicketUpdateInput,
   TicketWhereInput,
 } from 'src/@generated/ticket';
-
+import { nanoid } from 'nanoid';
 import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
@@ -26,7 +26,17 @@ export class TicketService {
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Ticket');
-    return this.prisma.ticket.create({ data: createTicketInput });
+    const photo = await this.s3Service.uploadBase64Image(
+      createTicketInput.photos,
+      `${nanoid(10)}`,
+    );
+    const data = await this.prisma.ticket.create({
+      data: {
+        ...createTicketInput,
+        photos: photo,
+      },
+    });
+    return data;
   }
 
   async findAll(
@@ -52,7 +62,10 @@ export class TicketService {
     const result = data.map((ticket) => {
       return {
         ...ticket,
-        photos: ticket.photos && ticket.photos.length > 1 ? this.s3Service.getSignedUrl(ticket.photos) : "",
+        photos:
+          ticket.photos && ticket.photos.length > 1
+            ? this.s3Service.getSignedUrl(ticket.photos)
+            : '',
       };
     });
     return result;

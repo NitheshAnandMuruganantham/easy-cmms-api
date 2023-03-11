@@ -22,6 +22,41 @@ export class S3Service {
       file.mimetype,
     );
   }
+  dataURLtoFile(dataurl: string, filename: string) {
+    var binary = atob(dataurl.split(',')[1]);
+    var array = [];
+    for (var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], {
+      type: 'image/jpg',
+    });
+  }
+
+  async uploadBase64Image(url: string, id: string) {
+    const base64Data = Buffer.from(
+      url.replace(/^data:image\/\w+;base64,/, ''),
+      'base64',
+    );
+
+    const type = url.split(';')[0].split('/')[1];
+
+    const file = this.dataURLtoFile(url, id);
+
+    await this.s3
+      .upload({
+        Key: `${id}.${type}`,
+        ContentType: `image/${type}`,
+        Body: base64Data,
+        ContentEncoding: 'base64',
+        Bucket: this.AWS_S3_BUCKET + `/bills`,
+      })
+      .promise()
+      .catch((err) => {
+        console.log(err);
+      });
+    return `${this.AWS_S3_BUCKET}/bills/${id}.${type}`;
+  }
 
   async uploadCsvReport(data: any) {
     const key = keygen.url(keygen.medium);
@@ -55,20 +90,19 @@ export class S3Service {
 
   getSignedUrl(key?: string) {
     try {
-    if (key !== null) {
-      const dt = key.split('/');
-      const url = this.s3.getSignedUrl('getObject', {
-        Bucket: dt[0] + '/' + dt[1],
-        Key: dt[2],
-        Expires: 3 * 24 * 60 * 60, // 3 days
-      });
-      return url;
-    } else {
-      return null;
+      if (key !== null) {
+        const dt = key.split('/');
+        const url = this.s3.getSignedUrl('getObject', {
+          Bucket: dt[0] + '/' + dt[1],
+          Key: dt[2],
+          Expires: 3 * 24 * 60 * 60, // 3 days
+        });
+        return url;
+      } else {
+        return null;
+      }
+    } catch {
+      return '';
     }
   }
- catch {
-  return ''
-}
-}
 }
