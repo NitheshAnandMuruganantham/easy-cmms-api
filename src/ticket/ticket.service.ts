@@ -169,13 +169,11 @@ export class TicketService {
 
   async machine(session: SessionContainer, id: bigint) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
-    const machineToFind = await this.prisma.machines.findUnique({
-      where: { id },
-    });
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Machines', machineToFind),
-    );
+    const machineToFind = await this.prisma.ticket
+      .findUnique({
+        where: { id },
+      })
+      .machines();
     return machineToFind;
   }
 }
