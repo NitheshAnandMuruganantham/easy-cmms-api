@@ -148,10 +148,6 @@ export class TicketService {
     const userToFind = await this.prisma.users.findUnique({
       where: { id },
     });
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Users', userToFind),
-    );
 
     return userToFind;
   }
