@@ -1,13 +1,13 @@
-generator nestgraphql {
-  provider                        = "node node_modules/prisma-nestjs-graphql"
-  output                          = "../src/@generated"
-  reExport                        = Directories
-  fields_Scalars_from             = "graphql-scalars"
-  fields_Scalars_input            = true
-  fields_Scalars_output           = true
-  graphqlScalars_BigInt_name      = "GraphQLBigInt"
-  graphqlScalars_BigInt_specifier = "graphql-scalars"
-}
+// generator nestgraphql {
+//   provider                        = "node node_modules/prisma-nestjs-graphql"
+//   output                          = "../src/@generated"
+//   reExport                        = Directories
+//   fields_Scalars_from             = "graphql-scalars"
+//   fields_Scalars_input            = true
+//   fields_Scalars_output           = true
+//   graphqlScalars_BigInt_name      = "GraphQLBigInt"
+//   graphqlScalars_BigInt_specifier = "graphql-scalars"
+// }
 
 generator client {
   provider        = "prisma-client-js"
