@@ -91,7 +91,7 @@ export class TicketResolver {
     return this.ticketService.remove(session, id);
   }
 
-  @ResolveField(() => Users)
+  @ResolveField(() => Users, { name: 'user' })
   user(@Parent() { user_id }: Ticket, @Session() session: SessionContainer) {
     return this.ticketService.user(session, user_id);
   }

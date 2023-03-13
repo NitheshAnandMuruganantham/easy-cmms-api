@@ -123,6 +123,26 @@ export class AppController {
   }
 
   @UseGuards(new AuthGuard())
+  @Post('tickets')
+  async getTickets(
+    @Body()
+    {
+      take,
+      skip,
+      orderBy,
+      where,
+    }: {
+      take: number;
+      skip: number;
+      orderBy: any;
+      where: any;
+    },
+    @Session()
+    session: SessionContainer,
+  ) {
+    return this.appService.getTickets(session, take, skip, orderBy, where);
+  }
+  @UseGuards(new AuthGuard())
   @Post('RoutineMaintenance')
   async routineMaintenance(
     @Body()

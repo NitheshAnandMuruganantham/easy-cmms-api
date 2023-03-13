@@ -152,4 +152,66 @@ export class AppService implements OnModuleInit {
       },
     });
   }
+
+  async getTickets(
+    session: SessionContainer,
+    take: number,
+    skip: number,
+    orderBy: any,
+    where: any,
+  ) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+    if (user.role === 'SUPERVISOR') {
+      return this.prisma.ticket.findMany({
+        where: {
+          AND: [
+            {
+              user_id: {
+                equals: user.id,
+              },
+            },
+            {
+              status: {
+                not: 'CLOSED',
+              },
+            },
+          ],
+        },
+        take,
+        skip,
+        orderBy,
+        include: {
+          user: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    } else {
+      return this.prisma.ticket.findMany({
+        where,
+        take,
+        skip,
+        orderBy,
+        include: {
+          user: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    }
+  }
 }
