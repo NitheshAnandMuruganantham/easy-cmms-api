@@ -36,6 +36,7 @@ export class TicketService {
         photos: photo,
       },
     });
+
     return data;
   }
 

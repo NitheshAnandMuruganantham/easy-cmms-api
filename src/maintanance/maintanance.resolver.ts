@@ -7,7 +7,7 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { MaintananceService } from './maintanance.service';
+import { MaintenanceService } from './maintanance.service';
 import {
   Maintenance,
   MaintenanceCreateInput,
@@ -27,7 +27,7 @@ import { SessionContainer } from 'supertokens-node/recipe/session';
 
 @Resolver(() => Maintenance)
 export class MaintananceResolver {
-  constructor(private readonly maintananceService: MaintananceService) {}
+  constructor(private readonly maintananceService: MaintenanceService) {}
 
   @Mutation(() => Maintenance)
   createMaintanance(

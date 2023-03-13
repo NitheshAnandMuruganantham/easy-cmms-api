@@ -116,8 +116,10 @@ export class AppController {
       orderBy: any;
       where: any;
     },
+    @Session()
+    session: SessionContainer,
   ) {
-    return this.appService.getMaintenances(take, skip, orderBy, where);
+    return this.appService.getMaintenances(session, take, skip, orderBy, where);
   }
 
   @UseGuards(new AuthGuard())

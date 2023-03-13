@@ -4,6 +4,7 @@ import { PrismaService } from 'nestjs-prisma';
 import { Redis } from 'ioredis';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
+import { SessionContainer } from 'supertokens-node/recipe/session';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -71,24 +72,66 @@ export class AppService implements OnModuleInit {
     });
   }
 
-  getMaintenances(take: number, skip: number, orderBy: any, where: any) {
-    return this.prisma.maintenance.findMany({
-      where,
-      take,
-      skip,
-      orderBy,
-      include: {
-        assignee: true,
-        ticket: true,
-        machines: {
-          include: {
-            machine_catagory: true,
-            block: true,
-            section: true,
-          },
-        },
+  async getMaintenances(
+    session: SessionContainer,
+    take: number,
+    skip: number,
+    orderBy: any,
+    where: any,
+  ) {
+    const user_id = session.getUserId();
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: user_id,
       },
     });
+    if (user.role === 'FITTER') {
+      return this.prisma.maintenance.findMany({
+        where: {
+          AND: [
+            {
+              assignee_id: user.id,
+            },
+            {
+              resolved: false,
+            },
+            { ...where },
+          ],
+        },
+        take,
+        skip,
+        orderBy,
+        include: {
+          assignee: true,
+          ticket: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    } else {
+      return this.prisma.maintenance.findMany({
+        where,
+        take,
+        skip,
+        orderBy,
+        include: {
+          assignee: true,
+          ticket: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    }
   }
 
   getRoutine(take: number, skip: number, orderBy: any, where: any) {
