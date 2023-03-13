@@ -39,7 +39,7 @@ import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.mod
   imports: [
     SentryModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (cfg:ConfigService) => ({
+      useFactory: async (cfg: ConfigService) => ({
         dsn: cfg.get('SENTRY_DSN'),
         debug: true,
         environment: cfg.get('NODE_ENV'),
@@ -61,6 +61,12 @@ import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.mod
     }),
     PrismaModule.forRoot({
       isGlobal: true,
+      prismaServiceOptions: {
+        prismaOptions: {
+          log: ['query', 'info', 'warn'],
+          errorFormat: 'pretty',
+        },
+      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,

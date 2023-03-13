@@ -70,4 +70,43 @@ export class AppService implements OnModuleInit {
       },
     });
   }
+
+  getMaintenances(take: number, skip: number, orderBy: any, where: any) {
+    return this.prisma.maintenance.findMany({
+      where,
+      take,
+      skip,
+      orderBy,
+      include: {
+        assignee: true,
+        ticket: true,
+        machines: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
+    });
+  }
+
+  getRoutine(take: number, skip: number, orderBy: any, where: any) {
+    return this.prisma.routine_maintanances.findMany({
+      where,
+      take,
+      skip,
+      orderBy,
+      include: {
+        assignee: true,
+        meachine: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
+    });
+  }
 }

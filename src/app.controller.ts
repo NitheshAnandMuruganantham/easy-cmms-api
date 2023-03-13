@@ -25,9 +25,9 @@ export class AppController {
     private readonly s3Service: S3Service,
   ) {}
 
-    @Get('/')
-    sandbox(): string {
-      return `
+  @Get('/')
+  sandbox(): string {
+    return `
       <div style="width: 100%; height: 100%;" id='embedded-sandbox'></div>
   <script src="https://embeddable-sandbox.cdn.apollographql.com/_latest/embeddable-sandbox.umd.production.min.js"></script>
   <script>
@@ -39,7 +39,7 @@ export class AppController {
   </script>
 
       `;
-    }
+  }
 
   @Get('/healthz')
   getHello() {
@@ -85,9 +85,57 @@ export class AppController {
   @UseGuards(new AuthGuard())
   @Post('machines')
   async getMachines(
-@Body()
-    { take, skip, orderBy, where }: { take: number; skip: number; orderBy: any; where: any },
+    @Body()
+    {
+      take,
+      skip,
+      orderBy,
+      where,
+    }: {
+      take: number;
+      skip: number;
+      orderBy: any;
+      where: any;
+    },
   ) {
     return this.appService.getMachines(take, skip, orderBy, where);
+  }
+
+  @UseGuards(new AuthGuard())
+  @Post('maintenance')
+  async getMaintenance(
+    @Body()
+    {
+      take,
+      skip,
+      orderBy,
+      where,
+    }: {
+      take: number;
+      skip: number;
+      orderBy: any;
+      where: any;
+    },
+  ) {
+    return this.appService.getMaintenances(take, skip, orderBy, where);
+  }
+
+  @UseGuards(new AuthGuard())
+  @Post('RoutineMaintenance')
+  async routineMaintenance(
+    @Body()
+    {
+      take,
+      skip,
+      orderBy,
+      where,
+    }: {
+      take: number;
+      skip: number;
+      orderBy: any;
+      where: any;
+    },
+  ) {
+    return this.appService.getRoutine(take, skip, orderBy, where);
   }
 }
