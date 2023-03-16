@@ -5,6 +5,9 @@ import { Redis } from 'ioredis';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import { SessionContainer } from 'supertokens-node/recipe/session';
+import { ForbiddenError } from 'apollo-server-core';
+import { nanoid } from 'nanoid';
+import { S3Service } from 'src/s3/s3.service';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -13,6 +16,7 @@ export class AppService implements OnModuleInit {
     private readonly prisma: PrismaService,
     private readonly scheduler: SchedulerRegistry,
     private readonly redisService: RedisService,
+    private readonly s3Service: S3Service,
   ) {
     this.redis = this.redisService.getClient();
   }
@@ -212,6 +216,34 @@ export class AppService implements OnModuleInit {
           },
         },
       });
+    }
+  }
+  async raiseTicket(session: SessionContainer, data: any) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+    if (!user) {
+      throw new ForbiddenError('user not exists');
+    } else if (user.role !== 'SUPERVISOR') {
+      throw new ForbiddenError('permission error');
+    } else {
+      const photos = await this.s3Service.uploadBase64Image(
+        data.photos,
+        `${nanoid(10)}`,
+      );
+      const result = await this.prisma.ticket.create({
+        data: {
+          user_id: user.id,
+          name: data.name,
+          description: data.description,
+          machine_id: data.machine_id,
+          status: 'OPEN',
+          photos,
+        },
+      });
+      return result;
     }
   }
 }

@@ -160,4 +160,10 @@ export class AppController {
   ) {
     return this.appService.getRoutine(take, skip, orderBy, where);
   }
+
+  @Post('raiseTicket')
+  @UseGuards(new AuthGuard())
+  raiseTicket(@Session() session: SessionContainer, @Body() data: any) {
+    return this.appService.raiseTicket(session, data);
+  }
 }
