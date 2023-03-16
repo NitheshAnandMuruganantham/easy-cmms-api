@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
+import { Int } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Users } from '../users/users.model';
 import { Machines } from '../machines/machines.model';
@@ -20,11 +21,8 @@ export class routine_maintanances {
     @Field(() => String, {nullable:false})
     cron!: string;
 
-    @Field(() => String, {nullable:false})
-    from!: string;
-
-    @Field(() => String, {nullable:false})
-    to!: string;
+    @Field(() => Int, {nullable:false})
+    duration!: number;
 
     @Field(() => GraphQLBigInt, {nullable:false})
     assignee_id!: bigint;

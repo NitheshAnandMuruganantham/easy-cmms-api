@@ -3,9 +3,7 @@ import { registerEnumType } from '@nestjs/graphql';
 export enum routine_maintanancesOrderByRelevanceFieldEnum {
     name = "name",
     description = "description",
-    cron = "cron",
-    from = "from",
-    to = "to"
+    cron = "cron"
 }
 
 

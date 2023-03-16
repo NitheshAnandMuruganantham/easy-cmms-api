@@ -9,6 +9,9 @@ export class Routine_maintanancesAvgAggregate {
     id?: number;
 
     @Field(() => Float, {nullable:true})
+    duration?: number;
+
+    @Field(() => Float, {nullable:true})
     assignee_id?: number;
 
     @Field(() => Float, {nullable:true})
