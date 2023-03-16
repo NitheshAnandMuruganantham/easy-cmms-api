@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -28,11 +29,8 @@ export class routine_maintanancesScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     cron?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    from?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    to?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    duration?: IntFilter;
 
     @Field(() => BigIntFilter, {nullable:true})
     assignee_id?: BigIntFilter;

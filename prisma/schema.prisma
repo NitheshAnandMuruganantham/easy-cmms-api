@@ -194,8 +194,7 @@ model routine_maintanances {
   name        String
   description String
   cron        String
-  from        String
-  to          String
+  duration    Int
   assignee_id BigInt
   assignee    Users    @relation(fields: [assignee_id], references: [id])
   meachine_id BigInt

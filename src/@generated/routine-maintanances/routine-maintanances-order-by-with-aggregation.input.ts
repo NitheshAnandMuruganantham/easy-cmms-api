@@ -23,10 +23,7 @@ export class routine_maintanancesOrderByWithAggregationInput {
     cron?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    from?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    to?: keyof typeof SortOrder;
+    duration?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     assignee_id?: keyof typeof SortOrder;

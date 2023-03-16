@@ -9,6 +9,9 @@ export class routine_maintanancesSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    duration?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     assignee_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

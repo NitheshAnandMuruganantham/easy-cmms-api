@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { Int } from '@nestjs/graphql';
 import { Routine_maintanancesCountAggregate } from './routine-maintanances-count-aggregate.output';
 import { Routine_maintanancesAvgAggregate } from './routine-maintanances-avg-aggregate.output';
 import { Routine_maintanancesSumAggregate } from './routine-maintanances-sum-aggregate.output';
@@ -22,11 +23,8 @@ export class Routine_maintanancesGroupBy {
     @Field(() => String, {nullable:false})
     cron!: string;
 
-    @Field(() => String, {nullable:false})
-    from!: string;
-
-    @Field(() => String, {nullable:false})
-    to!: string;
+    @Field(() => Int, {nullable:false})
+    duration!: number;
 
     @Field(() => GraphQLBigInt, {nullable:false})
     assignee_id!: bigint | number;

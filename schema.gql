@@ -91,8 +91,7 @@ type routine_maintanances {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   assignee_id: BigInt!
   assignee: Users!
   meachine_id: BigInt!
@@ -535,8 +534,7 @@ input routine_maintanancesWhereInput {
   name: StringFilter
   description: StringFilter
   cron: StringFilter
-  from: StringFilter
-  to: StringFilter
+  duration: IntFilter
   assignee_id: BigIntFilter
   assignee: UsersRelationFilter
   meachine_id: BigIntFilter
@@ -1306,8 +1304,7 @@ type Routine_maintanancesCountAggregate {
   name: Int!
   description: Int!
   cron: Int!
-  from: Int!
-  to: Int!
+  duration: Int!
   assignee_id: Int!
   meachine_id: Int!
   created_at: Int!
@@ -1317,12 +1314,14 @@ type Routine_maintanancesCountAggregate {
 
 type Routine_maintanancesAvgAggregate {
   id: Float
+  duration: Float
   assignee_id: Float
   meachine_id: Float
 }
 
 type Routine_maintanancesSumAggregate {
   id: BigInt
+  duration: Int
   assignee_id: BigInt
   meachine_id: BigInt
 }
@@ -1332,8 +1331,7 @@ type Routine_maintanancesMinAggregate {
   name: String
   description: String
   cron: String
-  from: String
-  to: String
+  duration: Int
   assignee_id: BigInt
   meachine_id: BigInt
   created_at: DateTime
@@ -1345,8 +1343,7 @@ type Routine_maintanancesMaxAggregate {
   name: String
   description: String
   cron: String
-  from: String
-  to: String
+  duration: Int
   assignee_id: BigInt
   meachine_id: BigInt
   created_at: DateTime
@@ -1854,6 +1851,7 @@ input SectionOrderByWithRelationInput {
 
 input routine_maintanancesSumOrderByAggregateInput {
   id: SortOrder
+  duration: SortOrder
   assignee_id: SortOrder
   meachine_id: SortOrder
 }
@@ -2161,8 +2159,7 @@ input routine_maintanancesCreateWithoutMeachineInput {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
   updated_at: DateTime
@@ -2461,8 +2458,7 @@ input routine_maintanancesCreateManyMeachineInput {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   assignee_id: BigInt!
   created_at: DateTime
   updated_at: DateTime
@@ -2512,8 +2508,7 @@ input routine_maintanancesCreateWithoutAssigneeInput {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
   updated_at: DateTime
@@ -2560,8 +2555,7 @@ input routine_maintanancesCreateManyAssigneeInput {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   meachine_id: BigInt!
   created_at: DateTime
   updated_at: DateTime
@@ -3019,8 +3013,7 @@ input routine_maintanancesUpdateWithoutMeachineInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
-  from: StringFieldUpdateOperationsInput
-  to: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -3396,8 +3389,7 @@ input routine_maintanancesScalarWhereInput {
   name: StringFilter
   description: StringFilter
   cron: StringFilter
-  from: StringFilter
-  to: StringFilter
+  duration: IntFilter
   assignee_id: BigIntFilter
   meachine_id: BigIntFilter
   created_at: DateTimeFilter
@@ -3409,8 +3401,7 @@ input routine_maintanancesUpdateManyMutationInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
-  from: StringFieldUpdateOperationsInput
-  to: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
 }
@@ -3450,8 +3441,7 @@ input routine_maintanancesUpdateWithoutAssigneeInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
-  from: StringFieldUpdateOperationsInput
-  to: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
   meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -4094,8 +4084,7 @@ input routine_maintanancesCreateInput {
   name: String!
   description: String!
   cron: String!
-  from: String!
-  to: String!
+  duration: Int!
   assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
   meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
@@ -4107,8 +4096,7 @@ input routine_maintanancesUpdateInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
-  from: StringFieldUpdateOperationsInput
-  to: StringFieldUpdateOperationsInput
+  duration: IntFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput

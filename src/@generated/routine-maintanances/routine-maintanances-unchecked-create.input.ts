@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class routine_maintanancesUncheckedCreateInput {
@@ -17,11 +18,8 @@ export class routine_maintanancesUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     cron!: string;
 
-    @Field(() => String, {nullable:false})
-    from!: string;
-
-    @Field(() => String, {nullable:false})
-    to!: string;
+    @Field(() => Int, {nullable:false})
+    duration!: number;
 
     @Field(() => GraphQLBigInt, {nullable:false})
     assignee_id!: bigint | number;

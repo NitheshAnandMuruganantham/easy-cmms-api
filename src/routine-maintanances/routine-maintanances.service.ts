@@ -33,23 +33,26 @@ export class RoutineMaintanancesService {
       data: createRoutineMaintananceInput,
     });
     try {
-      this.schedulerRegistry.addCronJob(
-        `routine_maintanances_${data.id}`,
-        new CronJob(data.cron, async () => {
-          await this.prisma.maintenance.create({
-            data: {
-              machine_id: data.meachine_id,
-              name: data.name,
-              description: data.description,
-              resolved: false,
-              un_planned: false,
-              from: data.from,
-              to: data.to,
-              assignee_id: data.assignee_id,
-            },
-          });
-        }),
-      );
+      const j = new CronJob(data.cron, async () => {
+        const from = new Date();
+        from.setHours(from.getHours() + 1);
+        const to = new Date(from);
+        to.setHours(to.getHours() + data.duration);
+        await this.prisma.maintenance.create({
+          data: {
+            machine_id: data.meachine_id,
+            name: data.name,
+            description: data.description,
+            resolved: false,
+            un_planned: false,
+            from: from,
+            to: to,
+            assignee_id: data.assignee_id,
+          },
+        });
+      });
+      this.schedulerRegistry.addCronJob(`routine_maintenances_${data.id}`, j);
+      j.start();
       return data;
     } catch {
       await this.prisma.routine_maintanances.delete({
@@ -134,23 +137,26 @@ export class RoutineMaintanancesService {
     });
     try {
       this.schedulerRegistry.deleteCronJob(`routine_maintanances_${id}`);
-      this.schedulerRegistry.addCronJob(
-        `routine_maintanances_${id}`,
-        new CronJob(data.cron, async () => {
-          await this.prisma.maintenance.create({
-            data: {
-              machine_id: data.meachine_id,
-              name: data.name,
-              description: data.description,
-              resolved: false,
-              un_planned: false,
-              from: data.from,
-              to: data.to,
-              assignee_id: data.assignee_id,
-            },
-          });
-        }),
-      );
+      const j = new CronJob(data.cron, async () => {
+        const from = new Date();
+        from.setHours(from.getHours() + 1);
+        const to = new Date(from);
+        to.setHours(to.getMinutes() + data.duration);
+        await this.prisma.maintenance.create({
+          data: {
+            machine_id: data.meachine_id,
+            name: data.name,
+            description: data.description,
+            resolved: false,
+            un_planned: false,
+            from: from,
+            to: to,
+            assignee_id: data.assignee_id,
+          },
+        });
+      });
+      this.schedulerRegistry.addCronJob(`routine_maintenances_${data.id}`, j);
+      j.start();
     } catch {
       await this.prisma.routine_maintanances.update({
         where: { id },

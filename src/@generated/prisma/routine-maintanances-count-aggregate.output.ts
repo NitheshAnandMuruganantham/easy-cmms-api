@@ -18,10 +18,7 @@ export class Routine_maintanancesCountAggregate {
     cron!: number;
 
     @Field(() => Int, {nullable:false})
-    from!: number;
-
-    @Field(() => Int, {nullable:false})
-    to!: number;
+    duration!: number;
 
     @Field(() => Int, {nullable:false})
     assignee_id!: number;
