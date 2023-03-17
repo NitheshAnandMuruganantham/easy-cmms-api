@@ -18,6 +18,7 @@ RUN yarn build
 FROM node:18
 
 ENV NODE_ENV production
+ENV TZ "Asia/Calcutta"
 
 USER node
 WORKDIR /home/node

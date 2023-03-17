@@ -9,7 +9,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { S3Service } from './s3/s3.service';
 import { MailerService } from './mailer/mailer.service';
-import { MessengerService } from './messenger/messenger.service';
 import { CaslModule } from './casl/casl.module';
 import { AppService } from './app.service';
 import { BlockModule } from './block/block.module';
@@ -90,6 +89,8 @@ import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.mod
     }),
     TwilioModule.forRootAsync({
       inject: [ConfigService],
+      imports: [ConfigModule],
+      isGlobal: true,
       useFactory: (configService: ConfigService) => ({
         accountSid: configService.get('TWILIO_ID'),
         authToken: configService.get('TWILIO_SECRET'),
@@ -136,13 +137,7 @@ import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.mod
     RoutineMaintanancesModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    S3Service,
-    MailerService,
-    MessengerService,
-    PrismaService,
-  ],
+  providers: [AppService, S3Service, MailerService, PrismaService],
 })
 export class AppModule implements NestModule {
   constructor(private readonly config: ConfigService) {}
