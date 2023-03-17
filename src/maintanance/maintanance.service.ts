@@ -12,6 +12,8 @@ import { SessionContainer } from 'supertokens-node/recipe/session';
 import { accessibleBy } from '@casl/prisma';
 import { S3Service } from 'src/s3/s3.service';
 import { nanoid } from 'nanoid';
+import { TwilioService } from 'nestjs-twilio';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MaintenanceService {
@@ -19,6 +21,8 @@ export class MaintenanceService {
     private readonly prisma: PrismaService,
     private readonly s3Service: S3Service,
     private readonly casl: CaslAbilityFactory,
+    private readonly twilio: TwilioService,
+    private readonly config: ConfigService,
   ) {}
 
   async create(
@@ -33,8 +37,43 @@ export class MaintenanceService {
         nanoid(10),
       );
     }
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
     const data = await this.prisma.maintenance.create({
       data: createMaintenanceInput,
+      include: {
+        assignee: true,
+        machines: {
+          include: {
+            section: true,
+            machine_catagory: true,
+            block: true,
+          },
+        },
+        ticket: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
+    this.twilio.client.messages.create({
+      to: data.assignee.phone,
+      from: this.config.get('TWILIO_FROM'),
+      body:
+        `New maintenance request\n` +
+        `Name: ${data.name}\n` +
+        `Closed by: ${user.name}\n` +
+        `Description: ${data.description}\n` +
+        `Machine : ${data.machines.label}\n` +
+        `Category: ${data.machines.machine_catagory.name}\n` +
+        `Block: ${data.machines.block.name}\n` +
+        `Section: ${data.machines.section.name}\n` +
+        `from : ${data.from.toLocaleString()}\n` +
+        `to : ${data.to.toLocaleString()}\n`,
     });
     if (createMaintenanceInput?.ticket?.connect?.id) {
       await this.prisma.ticket
@@ -46,6 +85,25 @@ export class MaintenanceService {
             status: 'CLOSED',
           },
         })
+        .then(() => {
+          this.twilio.client.messages
+            .create({
+              to: data.assignee.phone,
+              from: this.config.get('TWILIO_FROM'),
+              body:
+                `New maintenance request from ${data.ticket.user.name}\n` +
+                `Name : ${user.name}\n` +
+                `Description: ${data.ticket.description}\n` +
+                `Machine : ${data.machines.label}\n` +
+                `Category: ${data.machines.machine_catagory.name}\n` +
+                `Block: ${data.machines.block.name}\n` +
+                `Section: ${data.machines.section.name}\n` +
+                `manager note: ${data.description}\n` +
+                `from : ${data.from.toLocaleString()}\n` +
+                `to : ${data.to.toLocaleString()}\n`,
+            })
+            .catch(() => null);
+        })
         .catch(() => {
           this.prisma.maintenance.delete({
             where: {
@@ -56,6 +114,25 @@ export class MaintenanceService {
             'can not create new maintenance',
           );
         });
+      await this.twilio.client.messages
+        .create({
+          to: data.ticket.user.phone,
+          from: this.config.get('TWILIO_FROM'),
+          body:
+            `Your maintenance request #${data.ticket.id} has been closed\n` +
+            `assignee : ${data.assignee.name}\n` +
+            `closed by : ${user.name}\n` +
+            `Name: ${data.name}\n` +
+            `Description: ${data.description}\n` +
+            `Machine : ${data.machines.label}\n` +
+            `Category: ${data.machines.machine_catagory.name}\n` +
+            `Block: ${data.machines.block.name}\n` +
+            `Section: ${data.machines.section.name}\n` +
+            `from : ${data.from.toLocaleString()}\n` +
+            `to : ${data.to.toLocaleString()}\n` +
+            `Thanks for using our service`,
+        })
+        .catch(() => null);
     }
     return data;
   }

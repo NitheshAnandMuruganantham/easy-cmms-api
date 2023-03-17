@@ -8,6 +8,8 @@ import { SessionContainer } from 'supertokens-node/recipe/session';
 import { ForbiddenError } from 'apollo-server-core';
 import { nanoid } from 'nanoid';
 import { S3Service } from 'src/s3/s3.service';
+import { TwilioService } from 'nestjs-twilio';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -17,6 +19,8 @@ export class AppService implements OnModuleInit {
     private readonly scheduler: SchedulerRegistry,
     private readonly redisService: RedisService,
     private readonly s3Service: S3Service,
+    private readonly twilio: TwilioService,
+    private readonly config: ConfigService,
   ) {
     this.redis = this.redisService.getClient();
   }
@@ -44,7 +48,7 @@ export class AppService implements OnModuleInit {
         from.setHours(from.getHours() + 1);
         const to = new Date(from);
         to.setHours(to.getMinutes() + data.duration);
-        await this.prisma.maintenance.create({
+        const result = await this.prisma.maintenance.create({
           data: {
             machine_id: data.meachine_id,
             name: data.name,
@@ -55,7 +59,34 @@ export class AppService implements OnModuleInit {
             to: to,
             assignee_id: data.assignee_id,
           },
+          include: {
+            assignee: true,
+            machines: {
+              include: {
+                machine_catagory: true,
+                block: true,
+                section: true,
+              },
+            },
+          },
         });
+
+        this.twilio.client.messages
+          .create({
+            to: result.assignee.phone,
+            from: this.config.get('TWILIO_FROM'),
+            body:
+              `New maintenance request\n` +
+              `Name: ${data.name}\n` +
+              `Description: ${result.description}\n` +
+              `Machine : ${result.machines.label}\n` +
+              `Category: ${result.machines.machine_catagory.name}\n` +
+              `Block: ${result.machines.block.name}\n` +
+              `Section: ${result.machines.section.name}\n` +
+              `from : ${result.from.toLocaleString()}\n` +
+              `to : ${result.to.toLocaleString()}\n`,
+          })
+          .catch(() => null);
       });
       this.scheduler.addCronJob(`routine_maintenances_${data.id}`, j);
       j.start();

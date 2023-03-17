@@ -12,6 +12,8 @@ import {
 } from 'src/@generated/routine-maintanances';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { SessionContainer } from 'supertokens-node/recipe/session';
+import { TwilioService } from 'nestjs-twilio';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class RoutineMaintanancesService {
@@ -19,6 +21,8 @@ export class RoutineMaintanancesService {
     private readonly prisma: PrismaService,
     private readonly casl: CaslAbilityFactory,
     private schedulerRegistry: SchedulerRegistry,
+    private readonly config: ConfigService,
+    private readonly twilio: TwilioService,
   ) {}
   async create(
     session: SessionContainer,
@@ -38,7 +42,7 @@ export class RoutineMaintanancesService {
         from.setHours(from.getHours() + 1);
         const to = new Date(from);
         to.setHours(to.getHours() + data.duration);
-        await this.prisma.maintenance.create({
+        const result = await this.prisma.maintenance.create({
           data: {
             machine_id: data.meachine_id,
             name: data.name,
@@ -49,7 +53,34 @@ export class RoutineMaintanancesService {
             to: to,
             assignee_id: data.assignee_id,
           },
+          include: {
+            assignee: true,
+            machines: {
+              include: {
+                machine_catagory: true,
+                block: true,
+                section: true,
+              },
+            },
+          },
         });
+
+        this.twilio.client.messages
+          .create({
+            to: result.assignee.phone,
+            from: this.config.get('TWILIO_FROM'),
+            body:
+              `New maintenance request\n` +
+              `Name: ${data.name}\n` +
+              `Description: ${result.description}\n` +
+              `Machine : ${result.machines.label}\n` +
+              `Category: ${result.machines.machine_catagory.name}\n` +
+              `Block: ${result.machines.block.name}\n` +
+              `Section: ${result.machines.section.name}\n` +
+              `from : ${result.from.toLocaleString()}\n` +
+              `to : ${result.to.toLocaleString()}\n`,
+          })
+          .catch(() => null);
       });
       this.schedulerRegistry.addCronJob(`routine_maintenances_${data.id}`, j);
       j.start();
@@ -142,7 +173,7 @@ export class RoutineMaintanancesService {
         from.setHours(from.getHours() + 1);
         const to = new Date(from);
         to.setHours(to.getMinutes() + data.duration);
-        await this.prisma.maintenance.create({
+        const result = await this.prisma.maintenance.create({
           data: {
             machine_id: data.meachine_id,
             name: data.name,
@@ -153,7 +184,34 @@ export class RoutineMaintanancesService {
             to: to,
             assignee_id: data.assignee_id,
           },
+          include: {
+            assignee: true,
+            machines: {
+              include: {
+                machine_catagory: true,
+                block: true,
+                section: true,
+              },
+            },
+          },
         });
+
+        this.twilio.client.messages
+          .create({
+            to: result.assignee.phone,
+            from: this.config.get('TWILIO_FROM'),
+            body:
+              `New maintenance request\n` +
+              `Name: ${data.name}\n` +
+              `Description: ${result.description}\n` +
+              `Machine : ${result.machines.label}\n` +
+              `Category: ${result.machines.machine_catagory.name}\n` +
+              `Block: ${result.machines.block.name}\n` +
+              `Section: ${result.machines.section.name}\n` +
+              `from : ${result.from.toLocaleString()}\n` +
+              `to : ${result.to.toLocaleString()}\n`,
+          })
+          .catch(() => null);
       });
       this.schedulerRegistry.addCronJob(`routine_maintenances_${data.id}`, j);
       j.start();

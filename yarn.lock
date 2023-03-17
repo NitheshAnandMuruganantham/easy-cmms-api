@@ -6279,10 +6279,12 @@ nestjs-prisma@^0.20.0:
     "@angular-devkit/schematics" "^13.3.0"
     "@schematics/angular" "~13.3.0"
 
-nestjs-twilio@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/nestjs-twilio/-/nestjs-twilio-2.2.1.tgz#ae4329eac751baea4ea7ee5dad9217eb75eb0e0b"
-  integrity sha512-Om7Wz1IY81sVwqhfkBwD/L+B37QyteI3PP4RmY6fK7EopQEfsKHzVvLpavItybNs5qshMfVkJlRAbKL5hBDwgw==
+nestjs-twilio@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/nestjs-twilio/-/nestjs-twilio-4.1.1.tgz#499cc7ad091f78123620ad2f547cd0e286caea79"
+  integrity sha512-yRgWa5cnlOCV0XkftLFiL7kz7s9y9WGOOv4Llkqm0zggKUk962IBtRiJVqGNIwGVpPdY7ZhSarDuFgkt0XgteA==
+  dependencies:
+    twilio "^4.7.2"
 
 netmask@^2.0.2:
   version "2.0.2"
@@ -7949,6 +7951,20 @@ twilio@^3.76.0, twilio@^3.84.1:
     q "2.0.x"
     qs "^6.9.4"
     rootpath "^0.1.2"
+    scmp "^2.1.0"
+    url-parse "^1.5.9"
+    xmlbuilder "^13.0.2"
+
+twilio@^4.7.2:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/twilio/-/twilio-4.8.0.tgz#1ad333b8a3abfc813c69101a827f23ddc52cef68"
+  integrity sha512-jJaEyFGIiIAIfAWyq94g3uo2odTyo2opRN8hzpDHpbA4SYDfhxmm4E+Z0c7AP41HEdxzDyCwMkLNXh6fBpWRiw==
+  dependencies:
+    axios "^0.26.1"
+    dayjs "^1.8.29"
+    https-proxy-agent "^5.0.0"
+    jsonwebtoken "^9.0.0"
+    qs "^6.9.4"
     scmp "^2.1.0"
     url-parse "^1.5.9"
     xmlbuilder "^13.0.2"
