@@ -4,10 +4,13 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
+import { BlockUpdateOneRequiredWithoutUsersNestedInput } from '../block/block-update-one-required-without-users-nested.input';
 import { MaintenanceUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-update-many-without-assignee-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
+import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
 import { TicketUpdateManyWithoutUserNestedInput } from '../ticket/ticket-update-many-without-user-nested.input';
+import { production_dataUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-update-many-without-updated-by-nested.input';
 
 @InputType()
 export class UsersUpdateWithoutRoutine_maintanancesInput {
@@ -27,6 +30,9 @@ export class UsersUpdateWithoutRoutine_maintanancesInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
 
+    @Field(() => BlockUpdateOneRequiredWithoutUsersNestedInput, {nullable:true})
+    block?: BlockUpdateOneRequiredWithoutUsersNestedInput;
+
     @Field(() => MaintenanceUpdateManyWithoutAssigneeNestedInput, {nullable:true})
     maintenance?: MaintenanceUpdateManyWithoutAssigneeNestedInput;
 
@@ -39,6 +45,15 @@ export class UsersUpdateWithoutRoutine_maintanancesInput {
     @Field(() => EnumRoleFieldUpdateOperationsInput, {nullable:true})
     role?: EnumRoleFieldUpdateOperationsInput;
 
+    @Field(() => UsersUpdateextra_rolesInput, {nullable:true})
+    extra_roles?: UsersUpdateextra_rolesInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    role_alias?: StringFieldUpdateOperationsInput;
+
     @Field(() => TicketUpdateManyWithoutUserNestedInput, {nullable:true})
     ticket?: TicketUpdateManyWithoutUserNestedInput;
+
+    @Field(() => production_dataUpdateManyWithoutUpdatedByNestedInput, {nullable:true})
+    production_data?: production_dataUpdateManyWithoutUpdatedByNestedInput;
 }

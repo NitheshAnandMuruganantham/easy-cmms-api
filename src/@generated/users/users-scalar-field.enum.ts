@@ -6,9 +6,12 @@ export enum UsersScalarFieldEnum {
     phone = "phone",
     user_auth_id = "user_auth_id",
     name = "name",
+    blockId = "blockId",
     created_at = "created_at",
     updated_at = "updated_at",
-    role = "role"
+    role = "role",
+    extra_roles = "extra_roles",
+    role_alias = "role_alias"
 }
 
 

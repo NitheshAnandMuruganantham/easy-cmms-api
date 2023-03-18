@@ -108,28 +108,4 @@ export class MachinesResolver {
       offset,
     );
   }
-
-  @ResolveField(() => Block)
-  block(
-    @Session() session: SessionContainer,
-    @Parent() { block_id }: Machines,
-  ) {
-    return this.machinesService.block(session, block_id);
-  }
-
-  @ResolveField(() => Sections)
-  section(
-    @Session() session: SessionContainer,
-    @Parent() { id }: Machines,
-  ) {
-    return this.machinesService.section(session, id);
-  }
-
-  @ResolveField(() => machine_catagory, { nullable: true })
-  machine_catagory(
-    @Session() session: SessionContainer,
-    @Parent() { id }: Machines,
-  ) {
-    return this.machinesService.machine_catagory(session, id);
-  }
 }

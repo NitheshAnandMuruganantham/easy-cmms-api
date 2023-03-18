@@ -21,12 +21,14 @@ datasource db {
 
 model Block {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id         BigInt     @id @default(autoincrement())
-  name       String
-  location   String
-  machines   Machines[]
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
+  id             BigInt           @id @default(autoincrement())
+  name           String
+  location       String
+  machines       Machines[]
+  created_at     DateTime         @default(now())
+  updated_at     DateTime         @updatedAt
+  Users          Users[]
+  block_settings block_settings[]
 }
 
 model catagory {
@@ -152,12 +154,18 @@ model Users {
   /// @DtoUpdateHidden
   user_auth_id         String?                @unique
   name                 String
+  blockId              BigInt                 @default(1)
+  block                Block                  @relation(fields: [blockId], references: [id])
   maintenance          Maintenance[]
   created_at           DateTime               @default(now())
   updated_at           DateTime               @updatedAt
   role                 Role
+  extra_roles          Role[]                 @default([])
+  role_alias           String                 @default("user")
   ticket               Ticket[]
   routine_maintanances routine_maintanances[]
+  /// @HideField({ output: false, input: false })
+  production_data      production_data[]
 }
 
 model Ticket {
@@ -185,6 +193,8 @@ enum Role {
   ENGINEER
   GUEST
   FITTER
+  PRODUCTION_CONTROLLER
+  INPUT_CONTROLLER
   ADMIN
 }
 
@@ -207,4 +217,29 @@ enum ticket_status {
   OPEN
   CLOSED
   PENDING
+}
+
+model block_settings {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt   @id @default(autoincrement())
+  block_id   BigInt   @unique
+  block      Block    @relation(fields: [block_id], references: [id])
+  name       String
+  value      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([block_id, name])
+}
+
+model production_data {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt   @id @default(autoincrement())
+  data       Json     @default("{}")
+  from       DateTime
+  to         DateTime
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  updated_by BigInt
+  updatedBy  Users    @relation(fields: [updated_by], references: [id])
 }

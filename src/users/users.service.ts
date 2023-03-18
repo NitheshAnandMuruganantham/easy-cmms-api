@@ -72,18 +72,23 @@ export class UsersService {
           accessibleBy(ability).Users,
           where,
           {
-            OR:[
-              {user_auth_id:{
-                equals: null
-              }},
+            OR: [
               {
-                user_auth_id:{
-                  not:session.getUserId()
-                }
-              }
-            ]
-          }
+                user_auth_id: {
+                  equals: null,
+                },
+              },
+              {
+                user_auth_id: {
+                  not: session.getUserId(),
+                },
+              },
+            ],
+          },
         ],
+      },
+      include: {
+        block: true,
       },
       orderBy,
       take: limit,
@@ -118,6 +123,9 @@ export class UsersService {
 
     const userToGet = await this.prisma.users.findUnique({
       where: { id },
+      include: {
+        block: true,
+      },
     });
 
     if (ability.cannot('read', subject('Users', userToGet))) {
@@ -136,6 +144,9 @@ export class UsersService {
 
     const userToUpdate = await this.prisma.users.findUnique({
       where: { id },
+      include: {
+        block: true,
+      },
     });
 
     if (ability.cannot('update', subject('Users', userToUpdate))) {
@@ -145,6 +156,9 @@ export class UsersService {
     return this.prisma.users.update({
       where: { id },
       data: updateUserInput,
+      include: {
+        block: true,
+      },
     });
   }
 
@@ -157,6 +171,9 @@ export class UsersService {
 
     return this.prisma.users.delete({
       where: { id },
+      include: {
+        block: true,
+      },
     });
   }
 

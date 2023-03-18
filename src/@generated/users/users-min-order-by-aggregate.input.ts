@@ -18,6 +18,9 @@ export class UsersMinOrderByAggregateInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    blockId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -25,4 +28,7 @@ export class UsersMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     role?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    role_alias?: keyof typeof SortOrder;
 }

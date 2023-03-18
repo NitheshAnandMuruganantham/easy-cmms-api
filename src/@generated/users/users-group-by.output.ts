@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { GraphQLBigInt } from 'graphql-scalars';
 import { Role } from '../prisma/role.enum';
 import { UsersCountAggregate } from './users-count-aggregate.output';
 import { UsersAvgAggregate } from './users-avg-aggregate.output';
@@ -27,6 +28,9 @@ export class UsersGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    blockId!: bigint | number;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
 
@@ -35,6 +39,12 @@ export class UsersGroupBy {
 
     @Field(() => Role, {nullable:false})
     role!: keyof typeof Role;
+
+    @Field(() => [Role], {nullable:true})
+    extra_roles?: Array<keyof typeof Role>;
+
+    @Field(() => String, {nullable:false})
+    role_alias!: string;
 
     @Field(() => UsersCountAggregate, {nullable:true})
     _count?: UsersCountAggregate;

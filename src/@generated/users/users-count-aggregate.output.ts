@@ -21,6 +21,9 @@ export class UsersCountAggregate {
     name!: number;
 
     @Field(() => Int, {nullable:false})
+    blockId!: number;
+
+    @Field(() => Int, {nullable:false})
     created_at!: number;
 
     @Field(() => Int, {nullable:false})
@@ -28,6 +31,12 @@ export class UsersCountAggregate {
 
     @Field(() => Int, {nullable:false})
     role!: number;
+
+    @Field(() => Int, {nullable:false})
+    extra_roles!: number;
+
+    @Field(() => Int, {nullable:false})
+    role_alias!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

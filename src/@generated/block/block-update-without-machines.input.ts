@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { UsersUpdateManyWithoutBlockNestedInput } from '../users/users-update-many-without-block-nested.input';
+import { block_settingsUpdateManyWithoutBlockNestedInput } from '../block-settings/block-settings-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUpdateWithoutMachinesInput {
@@ -21,4 +23,10 @@ export class BlockUpdateWithoutMachinesInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UsersUpdateManyWithoutBlockNestedInput, {nullable:true})
+    Users?: UsersUpdateManyWithoutBlockNestedInput;
+
+    @Field(() => block_settingsUpdateManyWithoutBlockNestedInput, {nullable:true})
+    block_settings?: block_settingsUpdateManyWithoutBlockNestedInput;
 }
