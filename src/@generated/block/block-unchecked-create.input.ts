@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { MachinesUncheckedCreateNestedManyWithoutBlockInput } from '../machines/machines-unchecked-create-nested-many-without-block.input';
+import { UsersUncheckedCreateNestedManyWithoutBlockInput } from '../users/users-unchecked-create-nested-many-without-block.input';
+import { block_settingsUncheckedCreateNestedManyWithoutBlockInput } from '../block-settings/block-settings-unchecked-create-nested-many-without-block.input';
 
 @InputType()
 export class BlockUncheckedCreateInput {
@@ -23,4 +25,10 @@ export class BlockUncheckedCreateInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => UsersUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
+    Users?: UsersUncheckedCreateNestedManyWithoutBlockInput;
+
+    @Field(() => block_settingsUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
+    block_settings?: block_settingsUncheckedCreateNestedManyWithoutBlockInput;
 }

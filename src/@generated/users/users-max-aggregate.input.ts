@@ -17,6 +17,9 @@ export class UsersMaxAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
+    blockId?: true;
+
+    @Field(() => Boolean, {nullable:true})
     created_at?: true;
 
     @Field(() => Boolean, {nullable:true})
@@ -24,4 +27,7 @@ export class UsersMaxAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     role?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    role_alias?: true;
 }

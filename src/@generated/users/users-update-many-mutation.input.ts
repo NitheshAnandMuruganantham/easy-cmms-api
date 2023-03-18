@@ -6,6 +6,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
+import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
 
 @InputType()
 export class UsersUpdateManyMutationInput {
@@ -33,4 +34,10 @@ export class UsersUpdateManyMutationInput {
 
     @Field(() => EnumRoleFieldUpdateOperationsInput, {nullable:true})
     role?: EnumRoleFieldUpdateOperationsInput;
+
+    @Field(() => UsersUpdateextra_rolesInput, {nullable:true})
+    extra_roles?: UsersUpdateextra_rolesInput;
+
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    role_alias?: StringFieldUpdateOperationsInput;
 }

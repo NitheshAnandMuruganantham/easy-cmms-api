@@ -20,6 +20,9 @@ export class UsersCountAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
+    blockId?: true;
+
+    @Field(() => Boolean, {nullable:true})
     created_at?: true;
 
     @Field(() => Boolean, {nullable:true})
@@ -27,6 +30,12 @@ export class UsersCountAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     role?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    extra_roles?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    role_alias?: true;
 
     @Field(() => Boolean, {nullable:true})
     _all?: true;

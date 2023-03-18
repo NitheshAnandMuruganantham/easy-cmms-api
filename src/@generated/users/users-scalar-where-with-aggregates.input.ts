@@ -6,6 +6,7 @@ import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-fil
 import { StringNullableWithAggregatesFilter } from '../prisma/string-nullable-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { EnumRoleWithAggregatesFilter } from '../prisma/enum-role-with-aggregates-filter.input';
+import { EnumRoleNullableListFilter } from '../prisma/enum-role-nullable-list-filter.input';
 
 @InputType()
 export class UsersScalarWhereWithAggregatesInput {
@@ -34,6 +35,9 @@ export class UsersScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     name?: StringWithAggregatesFilter;
 
+    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
+    blockId?: BigIntWithAggregatesFilter;
+
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     created_at?: DateTimeWithAggregatesFilter;
 
@@ -42,4 +46,10 @@ export class UsersScalarWhereWithAggregatesInput {
 
     @Field(() => EnumRoleWithAggregatesFilter, {nullable:true})
     role?: EnumRoleWithAggregatesFilter;
+
+    @Field(() => EnumRoleNullableListFilter, {nullable:true})
+    extra_roles?: EnumRoleNullableListFilter;
+
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    role_alias?: StringWithAggregatesFilter;
 }

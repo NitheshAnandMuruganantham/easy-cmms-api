@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { Role } from '../prisma/role.enum';
+import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
 
 @InputType()
 export class UsersCreateManyInput {
@@ -22,6 +23,9 @@ export class UsersCreateManyInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
+    @Field(() => GraphQLBigInt, {nullable:true})
+    blockId?: bigint | number;
+
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
@@ -30,4 +34,10 @@ export class UsersCreateManyInput {
 
     @Field(() => Role, {nullable:false})
     role!: keyof typeof Role;
+
+    @Field(() => UsersCreateextra_rolesInput, {nullable:true})
+    extra_roles?: UsersCreateextra_rolesInput;
+
+    @Field(() => String, {nullable:true})
+    role_alias?: string;
 }

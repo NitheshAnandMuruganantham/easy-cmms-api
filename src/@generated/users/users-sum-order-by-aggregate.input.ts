@@ -7,4 +7,7 @@ export class UsersSumOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     id?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    blockId?: keyof typeof SortOrder;
 }

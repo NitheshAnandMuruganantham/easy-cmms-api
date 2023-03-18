@@ -29,7 +29,14 @@ export class MachinesService {
   ) {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Machines');
-    return this.prisma.machines.create({ data: createMachineInput });
+    return this.prisma.machines.create({
+      data: createMachineInput,
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
+    });
   }
 
   async findAll(
@@ -39,13 +46,16 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
-
-
     return this.prisma.machines.findMany({
       where: where,
       orderBy,
       take: limit,
       skip: offset,
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
     });
   }
 
@@ -56,7 +66,6 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
-
     return this.prisma.machines.count({
       where,
       orderBy,
@@ -66,7 +75,14 @@ export class MachinesService {
   }
 
   async findOne(session: SessionContainer, id: number) {
-    const canget = await this.prisma.machines.findUnique({ where: { id } });
+    const canget = await this.prisma.machines.findUnique({
+      where: { id },
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
+    });
 
     return canget;
   }
@@ -86,6 +102,11 @@ export class MachinesService {
     return this.prisma.machines.update({
       where: { id },
       data: updateMachineInput,
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
     });
   }
 
@@ -96,7 +117,14 @@ export class MachinesService {
       'delete',
       subject('Machines', canDelete),
     );
-    return this.prisma.machines.delete({ where: { id } });
+    return this.prisma.machines.delete({
+      where: { id },
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
+    });
   }
 
   async maintenance(
@@ -117,17 +145,5 @@ export class MachinesService {
       take: limit,
       skip: offset,
     });
-  }
-
-  async section(session: SessionContainer, id: bigint) {
-    return this.prisma.machines.findUnique({ where: { id } }).section();
-  }
-
-  async block(session: SessionContainer, id: bigint) {
-    return this.prisma.machines.findUnique({ where: { id } }).block();
-  }
-
-  async machine_catagory(session: SessionContainer, id: bigint) {
-   return this.prisma.machines.findUnique({ where: { id } }).machine_catagory();
   }
 }
