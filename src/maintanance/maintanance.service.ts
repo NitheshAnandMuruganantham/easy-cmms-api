@@ -149,7 +149,7 @@ export class MaintenanceService {
 
     const data = await this.prisma.maintenance.findMany({
       where: {
-        AND: [accessibleBy(ability).Maintenance, where],
+        AND: [where],
       },
       orderBy,
       take: limit,
@@ -187,13 +187,12 @@ export class MaintenanceService {
 
   async findOne(session: SessionContainer, id: number) {
     const toGet = await this.prisma.maintenance.findUnique({
-      where: { id },
+      where: {
+        id,
+      },
     });
     const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Maintenance', toGet),
-    );
+
     return {
       ...toGet,
       photo: this.s3Service.getSignedUrl(toGet.photo),
@@ -255,23 +254,21 @@ export class MaintenanceService {
     const canRead = await this.prisma.users.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Users', canRead),
-    );
+
     return canRead;
   }
 
   async machine(session: SessionContainer, id: bigint) {
     const canRead = await this.prisma.machines.findUnique({
       where: { id },
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
     });
     const ability = await this.casl.getCurrentUserAbility(session);
-    ForbiddenError.from(ability).throwUnlessCan(
-      'read',
-      subject('Machines', canRead),
-    );
+
     return canRead;
   }
 

@@ -8,7 +8,13 @@ import {
 } from 'src/@generated/machines';
 
 import {
-  machine_catagory, machine_catagoryCreateInput, machine_catagoryCreateWithoutMachinesInput, machine_catagoryOrderByWithRelationAndSearchRelevanceInput, machine_catagoryUpdateInput, machine_catagoryUpdateOneWithoutMachinesNestedInput, machine_catagoryWhereInput
+  machine_catagory,
+  machine_catagoryCreateInput,
+  machine_catagoryCreateWithoutMachinesInput,
+  machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
+  machine_catagoryUpdateInput,
+  machine_catagoryUpdateOneWithoutMachinesNestedInput,
+  machine_catagoryWhereInput,
 } from 'src/@generated/machine-catagory';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { SessionContainer } from 'supertokens-node/recipe/session';
@@ -86,7 +92,7 @@ export class MachineCatagoriesService {
 
     return this.prisma.sections.update({
       where: { id },
-      data: updateSectionInput
+      data: updateSectionInput,
     });
   }
 
@@ -116,15 +122,23 @@ export class MachineCatagoriesService {
       orderBy,
       skip,
       take,
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
     });
   }
-  
+
   async machinesCount(session: SessionContainer, id: bigint) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     const dt = this.prisma.machines.count({
       where: {
-        AND: [accessibleBy(ability).Machines, { machine_catagory:{id: {equals:id}} }],
+        AND: [
+          accessibleBy(ability).Machines,
+          { machine_catagory: { id: { equals: id } } },
+        ],
       },
     });
     return {

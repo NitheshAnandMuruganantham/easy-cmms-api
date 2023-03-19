@@ -26,7 +26,7 @@ export class BlockService {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Block');
     console.log('createBlockInput', createBlockInput);
-    
+
     return this.prisma.block.create({
       data: createBlockInput,
     });
@@ -132,6 +132,11 @@ export class BlockService {
         orderBy,
         take: limit,
         skip: offset,
+        include: {
+          machine_catagory: true,
+          block: true,
+          section: true,
+        },
       });
   }
 

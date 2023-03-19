@@ -280,4 +280,12 @@ export class AppService implements OnModuleInit {
       return result;
     }
   }
+
+  getBlockSettings(block_id: number) {
+    return this.prisma.block_settings.findMany({
+      where: {
+        block_id,
+      },
+    });
+  }
 }

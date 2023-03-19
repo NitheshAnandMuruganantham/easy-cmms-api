@@ -165,11 +165,21 @@ export class TicketService {
 
   async machine(session: SessionContainer, id: bigint) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
-    const machineToFind = await this.prisma.ticket
-      .findUnique({
-        where: { id },
-      })
-      .machines();
+    const machineToFind = await this.prisma.machines.findMany({
+      where: {
+        Ticket: {
+          every: {
+            id: id,
+          },
+        },
+      },
+      include: {
+        block: true,
+        machine_catagory: true,
+        section: true,
+      },
+    });
+
     return machineToFind;
   }
 }

@@ -71,34 +71,373 @@ export class CaslAbilityFactory {
     }
     const { can, build } = new AbilityBuilder<AppAbility>(createPrismaAbility);
 
-    // Wildcard permissions for testing
-    can('read', 'Ticket');
-    can('read', 'Section');
-    can('read', 'machineCatagory');
-    can('read', 'Block');
-    can('read', 'Items');
-    can('read', 'Machines');
-    can('read', 'ItemCatagory');
-    can('read', 'Maintenance');
-    can('read', 'Users');
-    can('read', 'Ticket');
-    can('read', 'Maintenance');
-
     if (user.role === 'SUPERVISOR') {
-      // Tickets permissions
-
       can('create', 'Ticket', {
-        user_id: {
-          equals: user.id,
-        },
+        AND: [
+          {
+            user_id: {
+              equals: user.id,
+            },
+          },
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
       });
     }
 
     if (user.role === 'FITTER') {
-      can('update', 'Maintenance');
+      can('update', 'Maintenance', {
+        AND: [
+          {
+            assignee_id: {
+              equals: user.id,
+            },
+          },
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('read', 'Maintenance', {
+        AND: [
+          {
+            assignee_id: {
+              equals: user.id,
+            },
+          },
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
     }
 
-    if (user.role === 'MANAGER' || user.role === 'ADMIN') {
+    if (user.role === 'MANAGER') {
+      can('create', 'Machines', {
+        block: {
+          id: {
+            equals: user.blockId,
+          },
+        },
+      });
+      can('read', 'Machines', {
+        block: {
+          id: {
+            equals: user.blockId,
+          },
+        },
+      });
+      can('update', 'Machines', {
+        block: {
+          id: {
+            equals: user.blockId,
+          },
+        },
+      });
+      can('delete', 'Machines', {
+        block: {
+          id: {
+            equals: user.blockId,
+          },
+        },
+      });
+      can('create', 'Maintenance', {
+        AND: [
+          {
+            assignee: {
+              blockId: {
+                equals: user.blockId,
+              },
+            },
+          },
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('read', 'Maintenance', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('update', 'Maintenance', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('delete', 'Maintenance', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+
+      // Users machineCatagory
+      can('create', 'machineCatagory', {
+        block_id: {
+          equals: user.blockId,
+        },
+      });
+      can('read', 'machineCatagory', {
+        block_id: {
+          equals: user.blockId,
+        },
+      });
+      can('update', 'machineCatagory', {
+        block_id: {
+          equals: user.blockId,
+        },
+      });
+      can('delete', 'machineCatagory', {
+        block_id: {
+          equals: user.blockId,
+        },
+      });
+
+      // Users permissions
+      can('create', 'Users', {
+        blockId: {
+          equals: user.blockId,
+        },
+      });
+      can('read', 'Users', {
+        blockId: {
+          equals: user.blockId,
+        },
+      });
+      can('update', 'Users', {
+        blockId: {
+          equals: user.blockId,
+        },
+      });
+      can('delete', 'Users', {
+        blockId: {
+          equals: user.blockId,
+        },
+      });
+
+      // RoutineMaintanances permissions
+      can('create', 'RoutineMaintanances', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+          {
+            assignee: {
+              blockId: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('read', 'RoutineMaintanances', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+          {
+            assignee: {
+              blockId: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('update', 'RoutineMaintanances', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+          {
+            assignee: {
+              blockId: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('delete', 'RoutineMaintanances', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+          {
+            assignee: {
+              blockId: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+
+      // Tickets permissions
+
+      can('read', 'Ticket', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('update', 'Ticket', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+      can('delete', 'Ticket', {
+        AND: [
+          {
+            machines: {
+              block: {
+                id: {
+                  equals: user.blockId,
+                },
+              },
+            },
+          },
+        ],
+      });
+
+      //  Section permissions
+
+      can('create', 'Section', {
+        AND: [
+          {
+            block: {
+              id: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('read', 'Section', {
+        AND: [
+          {
+            block: {
+              id: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('update', 'Section', {
+        AND: [
+          {
+            block: {
+              id: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('delete', 'Section', {
+        AND: [
+          {
+            block: {
+              id: {
+                equals: user.blockId,
+              },
+            },
+          },
+        ],
+      });
+      can('read', 'Block');
+    }
+
+    if (user.role === 'ADMIN') {
       // Users machineCatagory
       can('create', 'machineCatagory');
       can('read', 'machineCatagory');
@@ -153,11 +492,11 @@ export class CaslAbilityFactory {
       can('delete', 'Maintenance');
 
       //  Replacements permissions
-      
+
       can('read', 'Replacements');
       can('update', 'Replacements');
       can('delete', 'Replacements');
-    
+
       //  Replacements permissions
       can('create', 'Machines');
       can('read', 'Machines');
