@@ -166,4 +166,10 @@ export class AppController {
   raiseTicket(@Session() session: SessionContainer, @Body() data: any) {
     return this.appService.raiseTicket(session, data);
   }
+
+  @Post('getBlockSettings')
+  @UseGuards(new AuthGuard())
+  getBlockSettings(@Session() session: SessionContainer, @Body() data: any) {
+    return this.appService.raiseTicket(session, data);
+  }
 }

@@ -46,8 +46,11 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
+    const ability = await this.casl.getCurrentUserAbility(session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
+
     return this.prisma.machines.findMany({
-      where: where,
+      where: { AND: [where, accessibleBy(ability).Machines] },
       orderBy,
       take: limit,
       skip: offset,
@@ -66,8 +69,10 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
+    const ability = await this.casl.getCurrentUserAbility(session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     return this.prisma.machines.count({
-      where,
+      where: { AND: [where, accessibleBy(ability).Machines] },
       orderBy,
       take: limit,
       skip: offset,
@@ -75,6 +80,7 @@ export class MachinesService {
   }
 
   async findOne(session: SessionContainer, id: number) {
+    const ability = await this.casl.getCurrentUserAbility(session);
     const canget = await this.prisma.machines.findUnique({
       where: { id },
       include: {
@@ -83,6 +89,10 @@ export class MachinesService {
         section: true,
       },
     });
+    ForbiddenError.from(ability).throwUnlessCan(
+      'read',
+      subject('Machines', canget),
+    );
 
     return canget;
   }

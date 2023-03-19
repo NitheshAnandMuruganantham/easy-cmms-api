@@ -113,24 +113,33 @@ export class SectionService {
   ) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
 
-    ForbiddenError.from(ability).throwUnlessCan('read', 'Section');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
-    return this.prisma.sections.findUnique({ where: { id } }).machines({
+    return this.prisma.machines.findMany({
       where: {
-        AND: [accessibleBy(ability, 'read').Sections, where],
+        AND: [
+          accessibleBy(ability, 'read').Machines,
+          where,
+          {
+            section_id: { equals: id },
+          },
+        ],
       },
       orderBy,
       skip,
       take,
     });
   }
-    
+
   async machinesCount(session: SessionContainer, id: bigint) {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     const dt = this.prisma.machines.count({
       where: {
-        AND: [accessibleBy(ability).Machines, { section:{id: {equals:id}} }],
+        AND: [
+          accessibleBy(ability).Machines,
+          { section: { id: { equals: id } } },
+        ],
       },
     });
     return {

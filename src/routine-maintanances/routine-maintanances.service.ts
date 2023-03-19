@@ -254,15 +254,25 @@ export class RoutineMaintanancesService {
   }
 
   async machine(session: SessionContainer, parent_id: bigint) {
-    const canGet = await this.prisma.routine_maintanances
-      .findUnique({
-        where: { id: parent_id },
-      })
-      .meachine();
+    const canGet = await this.prisma.machines.findMany({
+      where: {
+        routine_maintanances: {
+          every: {
+            id: parent_id,
+          },
+        },
+      },
+      include: {
+        machine_catagory: true,
+        block: true,
+        section: true,
+      },
+    });
+
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
-      subject('Machines', canGet),
+      subject('Machines', canGet as any),
     );
     return canGet;
   }
