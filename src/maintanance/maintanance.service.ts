@@ -192,7 +192,10 @@ export class MaintenanceService {
       },
     });
     const ability = await this.casl.getCurrentUserAbility(session);
-
+    ForbiddenError.from(ability).throwUnlessCan(
+      'read',
+      subject('Maintenance', toGet),
+    );
     return {
       ...toGet,
       photo: this.s3Service.getSignedUrl(toGet.photo),
@@ -207,7 +210,12 @@ export class MaintenanceService {
     const toUpdate = await this.prisma.maintenance.findUnique({
       where: { id },
     });
-    
+    const ability = await this.casl.getCurrentUserAbility(session);
+    ForbiddenError.from(ability).throwUnlessCan(
+      'update',
+      subject('Maintenance', toUpdate),
+    );
+
     if (updateMaintenanceInput?.photo?.set) {
       updateMaintenanceInput.photo.set = await this.s3Service.uploadBase64Image(
         updateMaintenanceInput.photo.set,
