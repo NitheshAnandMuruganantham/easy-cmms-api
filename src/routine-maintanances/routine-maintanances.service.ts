@@ -173,6 +173,7 @@ export class RoutineMaintanancesService {
     );
     const data = await this.prisma.routine_maintanances.update({
       where: { id },
+      // @ts-ignore
       data: updateRoutineMaintananceInput,
     });
     try {

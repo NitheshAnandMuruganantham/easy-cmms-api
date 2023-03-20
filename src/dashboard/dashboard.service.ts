@@ -3,8 +3,7 @@ import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { Parser } from 'json2csv';
 import { S3Service } from 'src/s3/s3.service';
-import * as hbs from 'hbs';
-import * as fs from 'fs';
+
 @Injectable()
 export class DashboardService {
   constructor(

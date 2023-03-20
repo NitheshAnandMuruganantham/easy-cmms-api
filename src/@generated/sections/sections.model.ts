@@ -13,14 +13,14 @@ export class Sections {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => [Machines], {nullable:true})
-    machines?: Array<Machines>;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => [Machines], {nullable:true})
+    machines?: Array<Machines>;
 
     @Field(() => SectionsCount, {nullable:false})
     _count?: SectionsCount;

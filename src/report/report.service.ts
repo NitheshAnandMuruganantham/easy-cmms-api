@@ -85,6 +85,7 @@ export class ReportService {
 
     return this.prisma.reports.update({
       where: { id },
+      // @ts-ignore
       data: updateReportInput,
     });
   }

@@ -26,14 +26,8 @@ export class ReplacementsOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     item_id?: keyof typeof SortOrder;
 
-    @Field(() => ItemsOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    items?: ItemsOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     maintanance_id?: keyof typeof SortOrder;
-
-    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
@@ -43,6 +37,12 @@ export class ReplacementsOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => ItemsOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    items?: ItemsOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => ReplacementsOrderByRelevanceInput, {nullable:true})
     _relevance?: ReplacementsOrderByRelevanceInput;

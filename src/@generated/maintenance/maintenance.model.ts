@@ -46,11 +46,17 @@ export class Maintenance {
     @Field(() => GraphQLBigInt, {nullable:false})
     assignee_id!: bigint;
 
-    @Field(() => Users, {nullable:false})
-    assignee?: Users;
-
     @Field(() => GraphQLBigInt, {nullable:false})
     machine_id!: bigint;
+
+    @Field(() => Date, {nullable:false})
+    created_at!: Date;
+
+    @Field(() => Date, {nullable:false})
+    updated_at!: Date;
+
+    @Field(() => Users, {nullable:false})
+    assignee?: Users;
 
     @Field(() => Machines, {nullable:false})
     machines?: Machines;
@@ -60,12 +66,6 @@ export class Maintenance {
 
     @Field(() => [Reports], {nullable:true})
     reports?: Array<Reports>;
-
-    @Field(() => Date, {nullable:false})
-    created_at!: Date;
-
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date;
 
     @Field(() => Ticket, {nullable:true})
     ticket?: Ticket | null;

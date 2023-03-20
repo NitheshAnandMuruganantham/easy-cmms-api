@@ -3,8 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-type-json';
-import { MaintenanceUpdateOneRequiredWithoutReportsNestedInput } from '../maintenance/maintenance-update-one-required-without-reports-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { MaintenanceUpdateOneRequiredWithoutReportsNestedInput } from '../maintenance/maintenance-update-one-required-without-reports-nested.input';
 
 @InputType()
 export class ReportsUpdateInput {
@@ -27,12 +27,12 @@ export class ReportsUpdateInput {
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     validated_sign?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => MaintenanceUpdateOneRequiredWithoutReportsNestedInput, {nullable:true})
-    maintenance?: MaintenanceUpdateOneRequiredWithoutReportsNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => MaintenanceUpdateOneRequiredWithoutReportsNestedInput, {nullable:true})
+    maintenance?: MaintenanceUpdateOneRequiredWithoutReportsNestedInput;
 }

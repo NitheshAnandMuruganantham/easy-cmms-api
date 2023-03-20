@@ -27,6 +27,12 @@ export class MachinesCreateWithoutMachine_catagoryInput {
     @Field(() => Int, {nullable:false})
     priority!: number;
 
+    @Field(() => Date, {nullable:true})
+    created_at?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updated_at?: Date | string;
+
     @Field(() => BlockCreateNestedOneWithoutMachinesInput, {nullable:false})
     block!: BlockCreateNestedOneWithoutMachinesInput;
 
@@ -35,12 +41,6 @@ export class MachinesCreateWithoutMachine_catagoryInput {
 
     @Field(() => MaintenanceCreateNestedManyWithoutMachinesInput, {nullable:true})
     maintenance?: MaintenanceCreateNestedManyWithoutMachinesInput;
-
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
 
     @Field(() => TicketCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketCreateNestedManyWithoutMachinesInput;

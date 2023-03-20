@@ -13,9 +13,6 @@ export class block_settingsOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     block_id?: keyof typeof SortOrder;
 
-    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
 
@@ -27,6 +24,9 @@ export class block_settingsOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => block_settingsOrderByRelevanceInput, {nullable:true})
     _relevance?: block_settingsOrderByRelevanceInput;

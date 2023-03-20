@@ -111,6 +111,7 @@ export class MachinesService {
     );
     return this.prisma.machines.update({
       where: { id },
+      // @ts-ignore
       data: updateMachineInput,
       include: {
         machine_catagory: true,

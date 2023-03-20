@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { MachinesListRelationFilter } from '../machines/machines-list-relation-filter.input';
 import { StringNullableListFilter } from '../prisma/string-nullable-list-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { MachinesListRelationFilter } from '../machines/machines-list-relation-filter.input';
 import { UsersListRelationFilter } from '../users/users-list-relation-filter.input';
 import { Block_settingsListRelationFilter } from '../prisma/block-settings-list-relation-filter.input';
 import { Production_dataListRelationFilter } from '../prisma/production-data-list-relation-filter.input';
@@ -30,9 +30,6 @@ export class BlockWhereInput {
     @Field(() => StringFilter, {nullable:true})
     location?: StringFilter;
 
-    @Field(() => MachinesListRelationFilter, {nullable:true})
-    machines?: MachinesListRelationFilter;
-
     @Field(() => StringNullableListFilter, {nullable:true})
     Mailings?: StringNullableListFilter;
 
@@ -41,6 +38,9 @@ export class BlockWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @Field(() => MachinesListRelationFilter, {nullable:true})
+    machines?: MachinesListRelationFilter;
 
     @Field(() => UsersListRelationFilter, {nullable:true})
     Users?: UsersListRelationFilter;

@@ -36,6 +36,15 @@ export class Machines {
     @Field(() => Int, {nullable:false})
     priority!: number;
 
+    @Field(() => Date, {nullable:false})
+    created_at!: Date;
+
+    @Field(() => Date, {nullable:false})
+    updated_at!: Date;
+
+    @Field(() => GraphQLBigInt, {nullable:false})
+    machine_catagory_id!: bigint;
+
     @Field(() => Block, {nullable:false})
     block?: Block;
 
@@ -45,17 +54,8 @@ export class Machines {
     @Field(() => [Maintenance], {nullable:true})
     maintenance?: Array<Maintenance>;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date;
-
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date;
-
     @Field(() => [Ticket], {nullable:true})
     Ticket?: Array<Ticket>;
-
-    @Field(() => GraphQLBigInt, {nullable:false})
-    machine_catagory_id!: bigint;
 
     @Field(() => machine_catagory, {nullable:false})
     machine_catagory?: machine_catagory;

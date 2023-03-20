@@ -12,12 +12,12 @@ export class SectionsUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => MachinesUncheckedCreateNestedManyWithoutSectionInput, {nullable:true})
-    machines?: MachinesUncheckedCreateNestedManyWithoutSectionInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => MachinesUncheckedCreateNestedManyWithoutSectionInput, {nullable:true})
+    machines?: MachinesUncheckedCreateNestedManyWithoutSectionInput;
 }

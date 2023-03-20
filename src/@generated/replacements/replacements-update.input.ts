@@ -4,10 +4,10 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-type-json';
-import { ItemsUpdateOneRequiredWithoutReplacementsNestedInput } from '../items/items-update-one-required-without-replacements-nested.input';
-import { MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput } from '../maintenance/maintenance-update-one-required-without-replacements-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
+import { ItemsUpdateOneRequiredWithoutReplacementsNestedInput } from '../items/items-update-one-required-without-replacements-nested.input';
+import { MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput } from '../maintenance/maintenance-update-one-required-without-replacements-nested.input';
 
 @InputType()
 export class ReplacementsUpdateInput {
@@ -27,12 +27,6 @@ export class ReplacementsUpdateInput {
     @Field(() => GraphQLJSON, {nullable:true})
     metadata?: any;
 
-    @Field(() => ItemsUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
-    items?: ItemsUpdateOneRequiredWithoutReplacementsNestedInput;
-
-    @Field(() => MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
-    maintenance?: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
@@ -41,4 +35,10 @@ export class ReplacementsUpdateInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => ItemsUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
+    items?: ItemsUpdateOneRequiredWithoutReplacementsNestedInput;
+
+    @Field(() => MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
+    maintenance?: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput;
 }

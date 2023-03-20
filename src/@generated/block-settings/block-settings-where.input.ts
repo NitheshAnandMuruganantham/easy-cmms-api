@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
-import { BlockRelationFilter } from '../block/block-relation-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class block_settingsWhereInput {
@@ -24,9 +24,6 @@ export class block_settingsWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     block_id?: BigIntFilter;
 
-    @Field(() => BlockRelationFilter, {nullable:true})
-    block?: BlockRelationFilter;
-
     @Field(() => StringFilter, {nullable:true})
     name?: StringFilter;
 
@@ -38,4 +35,7 @@ export class block_settingsWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @Field(() => BlockRelationFilter, {nullable:true})
+    block?: BlockRelationFilter;
 }

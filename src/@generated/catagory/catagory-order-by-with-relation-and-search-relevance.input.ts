@@ -13,14 +13,14 @@ export class catagoryOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
 
-    @Field(() => ItemsOrderByRelationAggregateInput, {nullable:true})
-    items?: ItemsOrderByRelationAggregateInput;
-
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => ItemsOrderByRelationAggregateInput, {nullable:true})
+    items?: ItemsOrderByRelationAggregateInput;
 
     @Field(() => catagoryOrderByRelevanceInput, {nullable:true})
     _relevance?: catagoryOrderByRelevanceInput;

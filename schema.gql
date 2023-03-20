@@ -86,9 +86,9 @@ type SectionsCount {
 type Sections {
   id: BigInt!
   name: String!
-  machines: [Machines!]
   created_at: DateTime!
   updated_at: DateTime!
+  machines: [Machines!]
   _count: SectionsCount!
 }
 
@@ -98,14 +98,14 @@ type Ticket {
   description: String!
   photos: String!
   user_id: BigInt!
-  user: Users!
   maintenance_id: BigInt
-  maintenance: Maintenance
   machine_id: BigInt!
-  machines: Machines!
   status: ticket_status!
   created_at: DateTime!
   updated_at: DateTime!
+  user: Users!
+  maintenance: Maintenance
+  machines: Machines!
   maintanance: Maintenance
   machine: Machines!
 }
@@ -123,11 +123,11 @@ type routine_maintanances {
   cron: String!
   duration: Int!
   assignee_id: BigInt!
-  assignee: Users!
   meachine_id: BigInt!
-  meachine: Machines!
   created_at: DateTime!
   updated_at: DateTime!
+  assignee: Users!
+  meachine: Machines!
 }
 
 type production_data {
@@ -139,11 +139,11 @@ type production_data {
   from: DateTime!
   to: DateTime!
   updated_by: BigInt!
-  updatedBy: Users!
   created_at: DateTime!
   updated_at: DateTime!
-  Block: Block
   blockId: BigInt
+  updatedBy: Users!
+  Block: Block
 }
 
 type UsersCount {
@@ -165,13 +165,13 @@ type Users {
   user_auth_id: String
   name: String!
   blockId: BigInt!
-  block: Block!
-  maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
   created_at: DateTime!
   updated_at: DateTime!
   role: Role!
   extra_roles: [Role!]
   role_alias: String!
+  block: Block!
+  maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
   ticket(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, limit: Int, offset: Int): [Ticket!]
   routine_maintanances: [routine_maintanances!]
   production_data: [production_data!]
@@ -182,6 +182,17 @@ type Users {
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSON
+
+enum Role {
+  MANAGER
+  SUPERVISOR
+  ENGINEER
+  GUEST
+  FITTER
+  PRODUCTION_CONTROLLER
+  INPUT_CONTROLLER
+  ADMIN
+}
 
 input MaintenanceWhereInput {
   AND: [MaintenanceWhereInput!]
@@ -198,13 +209,13 @@ input MaintenanceWhereInput {
   un_planned: BoolFilter
   elapsed: DateTimeNullableFilter
   assignee_id: BigIntFilter
-  assignee: UsersRelationFilter
   machine_id: BigIntFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+  assignee: UsersRelationFilter
   machines: MachinesRelationFilter
   replacements: ReplacementsListRelationFilter
   reports: ReportsListRelationFilter
-  created_at: DateTimeFilter
-  updated_at: DateTimeFilter
   ticket: TicketRelationFilter
 }
 
@@ -382,16 +393,38 @@ input UsersWhereInput {
   user_auth_id: StringNullableFilter
   name: StringFilter
   blockId: BigIntFilter
-  block: BlockRelationFilter
-  maintenance: MaintenanceListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
   role: EnumRoleFilter
   extra_roles: EnumRoleNullableListFilter
   role_alias: StringFilter
+  block: BlockRelationFilter
+  maintenance: MaintenanceListRelationFilter
   ticket: TicketListRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
   production_data: Production_dataListRelationFilter
+}
+
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  notIn: [Role!]
+  not: NestedEnumRoleFilter
+}
+
+input NestedEnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  notIn: [Role!]
+  not: NestedEnumRoleFilter
+}
+
+input EnumRoleNullableListFilter {
+  equals: [Role!]
+  has: Role
+  hasEvery: [Role!]
+  hasSome: [Role!]
+  isEmpty: Boolean
 }
 
 input BlockRelationFilter {
@@ -406,13 +439,21 @@ input BlockWhereInput {
   id: BigIntFilter
   name: StringFilter
   location: StringFilter
-  machines: MachinesListRelationFilter
   Mailings: StringNullableListFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  machines: MachinesListRelationFilter
   Users: UsersListRelationFilter
   block_settings: Block_settingsListRelationFilter
   production_data: Production_dataListRelationFilter
+}
+
+input StringNullableListFilter {
+  equals: [String!]
+  has: String
+  hasEvery: [String!]
+  hasSome: [String!]
+  isEmpty: Boolean
 }
 
 input MachinesListRelationFilter {
@@ -432,13 +473,13 @@ input MachinesWhereInput {
   label: StringFilter
   profile: JsonFilter
   priority: IntFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+  machine_catagory_id: BigIntFilter
   block: BlockRelationFilter
   section: SectionsRelationFilter
   maintenance: MaintenanceListRelationFilter
-  created_at: DateTimeFilter
-  updated_at: DateTimeFilter
   Ticket: TicketListRelationFilter
-  machine_catagory_id: BigIntFilter
   machine_catagory: Machine_catagoryRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
 }
@@ -476,9 +517,9 @@ input SectionsWhereInput {
   NOT: [SectionsWhereInput!]
   id: BigIntFilter
   name: StringFilter
-  machines: MachinesListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  machines: MachinesListRelationFilter
 }
 
 input MaintenanceListRelationFilter {
@@ -502,12 +543,12 @@ input TicketWhereInput {
   description: StringFilter
   photos: StringFilter
   maintenance_id: BigIntNullableFilter
-  maintenance: MaintenanceRelationFilter
   machine_id: BigIntFilter
-  machines: MachinesRelationFilter
   status: Enumticket_statusFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  maintenance: MaintenanceRelationFilter
+  machines: MachinesRelationFilter
 }
 
 input BigIntNullableFilter {
@@ -532,16 +573,6 @@ input NestedBigIntNullableFilter {
   not: NestedBigIntNullableFilter
 }
 
-input MaintenanceRelationFilter {
-  is: MaintenanceWhereInput
-  isNot: MaintenanceWhereInput
-}
-
-input MachinesRelationFilter {
-  is: MachinesWhereInput
-  isNot: MachinesWhereInput
-}
-
 input Enumticket_statusFilter {
   equals: ticket_status
   in: [ticket_status!]
@@ -556,6 +587,16 @@ input NestedEnumticket_statusFilter {
   not: NestedEnumticket_statusFilter
 }
 
+input MaintenanceRelationFilter {
+  is: MaintenanceWhereInput
+  isNot: MaintenanceWhereInput
+}
+
+input MachinesRelationFilter {
+  is: MachinesWhereInput
+  isNot: MachinesWhereInput
+}
+
 input Machine_catagoryRelationFilter {
   is: machine_catagoryWhereInput
   isNot: machine_catagoryWhereInput
@@ -567,9 +608,9 @@ input machine_catagoryWhereInput {
   NOT: [machine_catagoryWhereInput!]
   id: BigIntFilter
   name: StringFilter
-  machines: MachinesListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  machines: MachinesListRelationFilter
 }
 
 input Routine_maintanancesListRelationFilter {
@@ -588,19 +629,11 @@ input routine_maintanancesWhereInput {
   cron: StringFilter
   duration: IntFilter
   assignee_id: BigIntFilter
-  assignee: UsersRelationFilter
   meachine_id: BigIntFilter
-  meachine: MachinesRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
-}
-
-input StringNullableListFilter {
-  equals: [String!]
-  has: String
-  hasEvery: [String!]
-  hasSome: [String!]
-  isEmpty: Boolean
+  assignee: UsersRelationFilter
+  meachine: MachinesRelationFilter
 }
 
 input UsersListRelationFilter {
@@ -621,11 +654,11 @@ input block_settingsWhereInput {
   NOT: [block_settingsWhereInput!]
   id: BigIntFilter
   block_id: BigIntFilter
-  block: BlockRelationFilter
   name: StringFilter
   value: JsonFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  block: BlockRelationFilter
 }
 
 input Production_dataListRelationFilter {
@@ -646,11 +679,11 @@ input production_dataWhereInput {
   from: DateTimeFilter
   to: DateTimeFilter
   updated_by: BigIntFilter
-  updatedBy: UsersRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
-  Block: BlockRelationFilter
   blockId: BigIntNullableFilter
+  updatedBy: UsersRelationFilter
+  Block: BlockRelationFilter
 }
 
 input IntNullableFilter {
@@ -675,39 +708,6 @@ input NestedIntNullableFilter {
   not: NestedIntNullableFilter
 }
 
-input EnumRoleFilter {
-  equals: Role
-  in: [Role!]
-  notIn: [Role!]
-  not: NestedEnumRoleFilter
-}
-
-enum Role {
-  MANAGER
-  SUPERVISOR
-  ENGINEER
-  GUEST
-  FITTER
-  PRODUCTION_CONTROLLER
-  INPUT_CONTROLLER
-  ADMIN
-}
-
-input NestedEnumRoleFilter {
-  equals: Role
-  in: [Role!]
-  notIn: [Role!]
-  not: NestedEnumRoleFilter
-}
-
-input EnumRoleNullableListFilter {
-  equals: [Role!]
-  has: Role
-  hasEvery: [Role!]
-  hasSome: [Role!]
-  isEmpty: Boolean
-}
-
 input ReplacementsListRelationFilter {
   every: ReplacementsWhereInput
   some: ReplacementsWhereInput
@@ -724,12 +724,12 @@ input ReplacementsWhereInput {
   quantity: IntFilter
   metadata: JsonFilter
   item_id: BigIntFilter
-  items: ItemsRelationFilter
   maintanance_id: BigIntFilter
-  maintenance: MaintenanceRelationFilter
   created_at: DateTimeFilter
   approved: BoolFilter
   updated_at: DateTimeFilter
+  items: ItemsRelationFilter
+  maintenance: MaintenanceRelationFilter
 }
 
 input ItemsRelationFilter {
@@ -747,10 +747,10 @@ input ItemsWhereInput {
   quantity: IntFilter
   unit_price: FloatFilter
   catagory_id: BigIntFilter
-  catagory: CatagoryRelationFilter
-  replacements: ReplacementsListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  catagory: CatagoryRelationFilter
+  replacements: ReplacementsListRelationFilter
 }
 
 input FloatFilter {
@@ -786,9 +786,9 @@ input catagoryWhereInput {
   NOT: [catagoryWhereInput!]
   id: BigIntFilter
   name: StringFilter
-  items: ItemsListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  items: ItemsListRelationFilter
 }
 
 input ItemsListRelationFilter {
@@ -814,9 +814,9 @@ input ReportsWhereInput {
   validated: BigIntFilter
   validated_sign: BigIntFilter
   maintance_id: BigIntFilter
-  maintenance: MaintenanceRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+  maintenance: MaintenanceRelationFilter
 }
 
 input TicketRelationFilter {
@@ -938,9 +938,9 @@ type CatagoryCount {
 type catagory {
   id: BigInt!
   name: String!
-  items: [Items!]
   created_at: DateTime!
   updated_at: DateTime!
+  items: [Items!]
   _count: CatagoryCount!
 }
 
@@ -955,10 +955,10 @@ type Items {
   quantity: Int!
   unit_price: Float!
   catagory_id: BigInt!
-  catagory: catagory!
-  replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]
   created_at: DateTime!
   updated_at: DateTime!
+  catagory: catagory!
+  replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]
   _count: ItemsCount!
 }
 
@@ -1009,12 +1009,12 @@ type Replacements {
   quantity: Int!
   metadata: JSON!
   item_id: BigInt!
-  items: Items!
   maintanance_id: BigInt!
-  maintenance: Maintenance!
   created_at: DateTime!
   approved: Boolean!
   updated_at: DateTime!
+  items: Items!
+  maintenance: Maintenance!
   item: Items!
 }
 
@@ -1026,9 +1026,9 @@ type Reports {
   validated: BigInt!
   validated_sign: BigInt!
   maintance_id: BigInt!
-  maintenance: Maintenance!
   created_at: DateTime!
   updated_at: DateTime!
+  maintenance: Maintenance!
 }
 
 type MaintenanceCount {
@@ -1048,13 +1048,13 @@ type Maintenance {
   un_planned: Boolean!
   elapsed: DateTime
   assignee_id: BigInt!
-  assignee: Users!
   machine_id: BigInt!
+  created_at: DateTime!
+  updated_at: DateTime!
+  assignee: Users!
   machines: Machines!
   replacements: [Replacements!]
   reports: [Reports!]
-  created_at: DateTime!
-  updated_at: DateTime!
   ticket: Ticket
   _count: MaintenanceCount!
   machine: Machines!
@@ -1068,9 +1068,9 @@ type Machine_catagoryCount {
 type machine_catagory {
   id: BigInt!
   name: String!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, skip: Int, take: Int): [Machines!]
   created_at: DateTime!
   updated_at: DateTime!
+  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, skip: Int, take: Int): [Machines!]
   _count: Machine_catagoryCount!
 }
 
@@ -1088,13 +1088,13 @@ type Machines {
   label: String!
   profile: JSON!
   priority: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  machine_catagory_id: BigInt!
   block: Block!
   section: Sections!
   maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
-  created_at: DateTime!
-  updated_at: DateTime!
   Ticket: [Ticket!]
-  machine_catagory_id: BigInt!
   machine_catagory: machine_catagory!
   routine_maintanances: [routine_maintanances!]
   _count: MachinesCount!
@@ -1103,21 +1103,21 @@ type Machines {
 type block_settings {
   id: BigInt!
   block_id: BigInt!
-  block: Block!
   name: String!
   value: JSON!
   created_at: DateTime!
   updated_at: DateTime!
+  block: Block!
 }
 
 type Block {
   id: BigInt!
   name: String!
   location: String!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithAggregationInput, limit: Int, offset: Int): [Machines!]
   Mailings: [String!]
   created_at: DateTime!
   updated_at: DateTime!
+  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithAggregationInput, limit: Int, offset: Int): [Machines!]
   Users: [Users!]
   block_settings: [block_settings!]
   production_data: [production_data!]
@@ -2036,9 +2036,9 @@ input ItemCatagoryWhereInput {
 input machine_catagoryOrderByWithRelationAndSearchRelevanceInput {
   id: SortOrder
   name: SortOrder
-  machines: MachinesOrderByRelationAggregateInput
   created_at: SortOrder
   updated_at: SortOrder
+  machines: MachinesOrderByRelationAggregateInput
   _relevance: machine_catagoryOrderByRelevanceInput
 }
 
@@ -2205,13 +2205,17 @@ input BlockCreateInput {
   id: BigInt
   name: String!
   location: String!
-  machines: MachinesCreateNestedManyWithoutBlockInput
   Mailings: BlockCreateMailingsInput
   created_at: DateTime
   updated_at: DateTime
+  machines: MachinesCreateNestedManyWithoutBlockInput
   Users: UsersCreateNestedManyWithoutBlockInput
   block_settings: block_settingsCreateNestedManyWithoutBlockInput
   production_data: production_dataCreateNestedManyWithoutBlockInput
+}
+
+input BlockCreateMailingsInput {
+  set: [String!]!
 }
 
 input MachinesCreateNestedManyWithoutBlockInput {
@@ -2227,10 +2231,10 @@ input MachinesCreateWithoutBlockInput {
   label: String!
   profile: JSON
   priority: Int!
-  section: SectionsCreateNestedOneWithoutMachinesInput!
-  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   created_at: DateTime
   updated_at: DateTime
+  section: SectionsCreateNestedOneWithoutMachinesInput!
+  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
@@ -2276,11 +2280,11 @@ input MaintenanceCreateWithoutMachinesInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   assignee: UsersCreateNestedOneWithoutMaintenanceInput!
   replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
   reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
   ticket: TicketCreateNestedOneWithoutMaintenanceInput
 }
 
@@ -2296,15 +2300,19 @@ input UsersCreateWithoutMaintenanceInput {
   phone: String!
   user_auth_id: String
   name: String!
-  block: BlockCreateNestedOneWithoutUsersInput!
   created_at: DateTime
   updated_at: DateTime
   role: Role!
   extra_roles: UsersCreateextra_rolesInput
   role_alias: String
+  block: BlockCreateNestedOneWithoutUsersInput!
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
   production_data: production_dataCreateNestedManyWithoutUpdatedByInput
+}
+
+input UsersCreateextra_rolesInput {
+  set: [Role!]!
 }
 
 input BlockCreateNestedOneWithoutUsersInput {
@@ -2317,16 +2325,12 @@ input BlockCreateWithoutUsersInput {
   id: BigInt
   name: String!
   location: String!
-  machines: MachinesCreateNestedManyWithoutBlockInput
   Mailings: BlockCreateMailingsInput
   created_at: DateTime
   updated_at: DateTime
+  machines: MachinesCreateNestedManyWithoutBlockInput
   block_settings: block_settingsCreateNestedManyWithoutBlockInput
   production_data: production_dataCreateNestedManyWithoutBlockInput
-}
-
-input BlockCreateMailingsInput {
-  set: [String!]!
 }
 
 input block_settingsCreateNestedManyWithoutBlockInput {
@@ -2387,9 +2391,9 @@ input production_dataCreateWithoutBlockInput {
   actual_production: Int
   from: DateTime!
   to: DateTime!
-  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
   created_at: DateTime
   updated_at: DateTime
+  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
 }
 
 input UsersCreateNestedOneWithoutProduction_dataInput {
@@ -2404,13 +2408,13 @@ input UsersCreateWithoutProduction_dataInput {
   phone: String!
   user_auth_id: String
   name: String!
-  block: BlockCreateNestedOneWithoutUsersInput!
-  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   created_at: DateTime
   updated_at: DateTime
   role: Role!
   extra_roles: UsersCreateextra_rolesInput
   role_alias: String
+  block: BlockCreateNestedOneWithoutUsersInput!
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
 }
@@ -2433,11 +2437,11 @@ input MaintenanceCreateWithoutAssigneeInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   machines: MachinesCreateNestedOneWithoutMaintenanceInput!
   replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
   reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
   ticket: TicketCreateNestedOneWithoutMaintenanceInput
 }
 
@@ -2453,10 +2457,10 @@ input MachinesCreateWithoutMaintenanceInput {
   label: String!
   profile: JSON
   priority: Int!
-  block: BlockCreateNestedOneWithoutMachinesInput!
-  section: SectionsCreateNestedOneWithoutMachinesInput!
   created_at: DateTime
   updated_at: DateTime
+  block: BlockCreateNestedOneWithoutMachinesInput!
+  section: SectionsCreateNestedOneWithoutMachinesInput!
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
@@ -2493,19 +2497,15 @@ input UsersCreateWithoutBlockInput {
   phone: String!
   user_auth_id: String
   name: String!
-  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   created_at: DateTime
   updated_at: DateTime
   role: Role!
   extra_roles: UsersCreateextra_rolesInput
   role_alias: String
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
   production_data: production_dataCreateNestedManyWithoutUpdatedByInput
-}
-
-input UsersCreateextra_rolesInput {
-  set: [Role!]!
 }
 
 input TicketCreateNestedManyWithoutUserInput {
@@ -2520,11 +2520,11 @@ input TicketCreateWithoutUserInput {
   name: String!
   description: String!
   photos: String!
-  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
-  machines: MachinesCreateNestedOneWithoutTicketInput!
   status: ticket_status!
   created_at: DateTime
   updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  machines: MachinesCreateNestedOneWithoutTicketInput!
 }
 
 input MaintenanceCreateNestedOneWithoutTicketInput {
@@ -2544,12 +2544,12 @@ input MaintenanceCreateWithoutTicketInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   assignee: UsersCreateNestedOneWithoutMaintenanceInput!
   machines: MachinesCreateNestedOneWithoutMaintenanceInput!
   replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
   reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
 }
 
 input ReplacementsCreateNestedManyWithoutMaintenanceInput {
@@ -2565,10 +2565,10 @@ input ReplacementsCreateWithoutMaintenanceInput {
   description: String!
   quantity: Int!
   metadata: JSON
-  items: ItemsCreateNestedOneWithoutReplacementsInput!
   created_at: DateTime
   approved: Boolean
   updated_at: DateTime
+  items: ItemsCreateNestedOneWithoutReplacementsInput!
 }
 
 input ItemsCreateNestedOneWithoutReplacementsInput {
@@ -2583,9 +2583,9 @@ input ItemsCreateWithoutReplacementsInput {
   code: String!
   quantity: Int!
   unit_price: Float!
-  catagory: catagoryCreateNestedOneWithoutItemsInput!
   created_at: DateTime
   updated_at: DateTime
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
 }
 
 input catagoryCreateNestedOneWithoutItemsInput {
@@ -2709,11 +2709,11 @@ input MachinesCreateWithoutTicketInput {
   label: String!
   profile: JSON
   priority: Int!
+  created_at: DateTime
+  updated_at: DateTime
   block: BlockCreateNestedOneWithoutMachinesInput!
   section: SectionsCreateNestedOneWithoutMachinesInput!
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
-  created_at: DateTime
-  updated_at: DateTime
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
 }
@@ -2753,9 +2753,9 @@ input routine_maintanancesCreateWithoutMeachineInput {
   description: String!
   cron: String!
   duration: Int!
-  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
   updated_at: DateTime
+  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
 }
 
 input UsersCreateNestedOneWithoutRoutine_maintanancesInput {
@@ -2770,13 +2770,13 @@ input UsersCreateWithoutRoutine_maintanancesInput {
   phone: String!
   user_auth_id: String
   name: String!
-  block: BlockCreateNestedOneWithoutUsersInput!
-  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   created_at: DateTime
   updated_at: DateTime
   role: Role!
   extra_roles: UsersCreateextra_rolesInput
   role_alias: String
+  block: BlockCreateNestedOneWithoutUsersInput!
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   production_data: production_dataCreateNestedManyWithoutUpdatedByInput
 }
@@ -2811,10 +2811,10 @@ input BlockCreateWithoutProduction_dataInput {
   id: BigInt
   name: String!
   location: String!
-  machines: MachinesCreateNestedManyWithoutBlockInput
   Mailings: BlockCreateMailingsInput
   created_at: DateTime
   updated_at: DateTime
+  machines: MachinesCreateNestedManyWithoutBlockInput
   Users: UsersCreateNestedManyWithoutBlockInput
   block_settings: block_settingsCreateNestedManyWithoutBlockInput
 }
@@ -2940,9 +2940,9 @@ input routine_maintanancesCreateWithoutAssigneeInput {
   description: String!
   cron: String!
   duration: Int!
-  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
   updated_at: DateTime
+  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
 }
 
 input MachinesCreateNestedOneWithoutRoutine_maintanancesInput {
@@ -2957,11 +2957,11 @@ input MachinesCreateWithoutRoutine_maintanancesInput {
   label: String!
   profile: JSON
   priority: Int!
+  created_at: DateTime
+  updated_at: DateTime
   block: BlockCreateNestedOneWithoutMachinesInput!
   section: SectionsCreateNestedOneWithoutMachinesInput!
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
-  created_at: DateTime
-  updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
 }
@@ -2978,10 +2978,10 @@ input TicketCreateWithoutMachinesInput {
   name: String!
   description: String!
   photos: String!
-  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
   status: ticket_status!
   created_at: DateTime
   updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
 }
 
 input TicketCreateOrConnectWithoutMachinesInput {
@@ -3075,10 +3075,10 @@ input TicketCreateWithoutMaintenanceInput {
   name: String!
   description: String!
   photos: String!
-  machines: MachinesCreateNestedOneWithoutTicketInput!
   status: ticket_status!
   created_at: DateTime
   updated_at: DateTime
+  machines: MachinesCreateNestedOneWithoutTicketInput!
 }
 
 input TicketCreateOrConnectWithoutMaintenanceInput {
@@ -3202,10 +3202,10 @@ input BlockUpdateInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   location: StringFieldUpdateOperationsInput
-  machines: MachinesUpdateManyWithoutBlockNestedInput
   Mailings: BlockUpdateMailingsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  machines: MachinesUpdateManyWithoutBlockNestedInput
   Users: UsersUpdateManyWithoutBlockNestedInput
   block_settings: block_settingsUpdateManyWithoutBlockNestedInput
   production_data: production_dataUpdateManyWithoutBlockNestedInput
@@ -3221,6 +3221,15 @@ input BigIntFieldUpdateOperationsInput {
 
 input StringFieldUpdateOperationsInput {
   set: String
+}
+
+input BlockUpdateMailingsInput {
+  set: [String!]
+  push: [String!]
+}
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
 }
 
 input MachinesUpdateManyWithoutBlockNestedInput {
@@ -3249,10 +3258,10 @@ input MachinesUpdateWithoutBlockInput {
   label: StringFieldUpdateOperationsInput
   profile: JSON
   priority: IntFieldUpdateOperationsInput
-  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
-  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
+  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
@@ -3286,10 +3295,6 @@ input SectionsUpdateWithoutMachinesInput {
   updated_at: DateTimeFieldUpdateOperationsInput
 }
 
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
 input MaintenanceUpdateManyWithoutMachinesNestedInput {
   create: [MaintenanceCreateWithoutMachinesInput!]
   connectOrCreate: [MaintenanceCreateOrConnectWithoutMachinesInput!]
@@ -3321,11 +3326,11 @@ input MaintenanceUpdateWithoutMachinesInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
   replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
   reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
@@ -3360,15 +3365,24 @@ input UsersUpdateWithoutMaintenanceInput {
   phone: StringFieldUpdateOperationsInput
   user_auth_id: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutUsersNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   extra_roles: UsersUpdateextra_rolesInput
   role_alias: StringFieldUpdateOperationsInput
+  block: BlockUpdateOneRequiredWithoutUsersNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
   production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
+}
+
+input EnumRoleFieldUpdateOperationsInput {
+  set: Role
+}
+
+input UsersUpdateextra_rolesInput {
+  set: [Role!]
+  push: [Role!]
 }
 
 input BlockUpdateOneRequiredWithoutUsersNestedInput {
@@ -3388,17 +3402,12 @@ input BlockUpdateWithoutUsersInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   location: StringFieldUpdateOperationsInput
-  machines: MachinesUpdateManyWithoutBlockNestedInput
   Mailings: BlockUpdateMailingsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  machines: MachinesUpdateManyWithoutBlockNestedInput
   block_settings: block_settingsUpdateManyWithoutBlockNestedInput
   production_data: production_dataUpdateManyWithoutBlockNestedInput
-}
-
-input BlockUpdateMailingsInput {
-  set: [String!]
-  push: [String!]
 }
 
 input block_settingsUpdateManyWithoutBlockNestedInput {
@@ -3487,9 +3496,9 @@ input production_dataUpdateWithoutBlockInput {
   actual_production: NullableIntFieldUpdateOperationsInput
   from: DateTimeFieldUpdateOperationsInput
   to: DateTimeFieldUpdateOperationsInput
-  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
 }
 
 input NullableIntFieldUpdateOperationsInput {
@@ -3519,13 +3528,13 @@ input UsersUpdateWithoutProduction_dataInput {
   phone: StringFieldUpdateOperationsInput
   user_auth_id: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutUsersNestedInput
-  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   extra_roles: UsersUpdateextra_rolesInput
   role_alias: StringFieldUpdateOperationsInput
+  block: BlockUpdateOneRequiredWithoutUsersNestedInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
 }
@@ -3561,11 +3570,11 @@ input MaintenanceUpdateWithoutAssigneeInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
   replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
   reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
@@ -3588,10 +3597,10 @@ input MachinesUpdateWithoutMaintenanceInput {
   label: StringFieldUpdateOperationsInput
   profile: JSON
   priority: IntFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutMachinesNestedInput
-  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  block: BlockUpdateOneRequiredWithoutMachinesNestedInput
+  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
@@ -3648,24 +3657,15 @@ input UsersUpdateWithoutBlockInput {
   phone: StringFieldUpdateOperationsInput
   user_auth_id: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   extra_roles: UsersUpdateextra_rolesInput
   role_alias: StringFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
   production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
-}
-
-input EnumRoleFieldUpdateOperationsInput {
-  set: Role
-}
-
-input UsersUpdateextra_rolesInput {
-  set: [Role!]
-  push: [Role!]
 }
 
 input TicketUpdateManyWithoutUserNestedInput {
@@ -3693,11 +3693,15 @@ input TicketUpdateWithoutUserInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   photos: StringFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
-  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
   status: Enumticket_statusFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
+}
+
+input Enumticket_statusFieldUpdateOperationsInput {
+  set: ticket_status
 }
 
 input MaintenanceUpdateOneWithoutTicketNestedInput {
@@ -3726,12 +3730,12 @@ input MaintenanceUpdateWithoutTicketInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
   machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
   replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
   reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
 }
 
 input ReplacementsUpdateManyWithoutMaintenanceNestedInput {
@@ -3760,10 +3764,10 @@ input ReplacementsUpdateWithoutMaintenanceInput {
   description: StringFieldUpdateOperationsInput
   quantity: IntFieldUpdateOperationsInput
   metadata: JSON
-  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   approved: BoolFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
 }
 
 input ItemsUpdateOneRequiredWithoutReplacementsNestedInput {
@@ -3785,9 +3789,9 @@ input ItemsUpdateWithoutReplacementsInput {
   code: StringFieldUpdateOperationsInput
   quantity: IntFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
-  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -3941,11 +3945,11 @@ input MachinesUpdateWithoutTicketInput {
   label: StringFieldUpdateOperationsInput
   profile: JSON
   priority: IntFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   block: BlockUpdateOneRequiredWithoutMachinesNestedInput
   section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
 }
@@ -3996,9 +4000,9 @@ input routine_maintanancesUpdateWithoutMeachineInput {
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
   duration: IntFieldUpdateOperationsInput
-  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
 }
 
 input UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
@@ -4020,13 +4024,13 @@ input UsersUpdateWithoutRoutine_maintanancesInput {
   phone: StringFieldUpdateOperationsInput
   user_auth_id: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutUsersNestedInput
-  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   extra_roles: UsersUpdateextra_rolesInput
   role_alias: StringFieldUpdateOperationsInput
+  block: BlockUpdateOneRequiredWithoutUsersNestedInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
 }
@@ -4083,10 +4087,10 @@ input BlockUpdateWithoutProduction_dataInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   location: StringFieldUpdateOperationsInput
-  machines: MachinesUpdateManyWithoutBlockNestedInput
   Mailings: BlockUpdateMailingsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  machines: MachinesUpdateManyWithoutBlockNestedInput
   Users: UsersUpdateManyWithoutBlockNestedInput
   block_settings: block_settingsUpdateManyWithoutBlockNestedInput
 }
@@ -4165,10 +4169,6 @@ input routine_maintanancesUpdateManyMutationInput {
   updated_at: DateTimeFieldUpdateOperationsInput
 }
 
-input Enumticket_statusFieldUpdateOperationsInput {
-  set: ticket_status
-}
-
 input TicketUpdateWithWhereUniqueWithoutUserInput {
   where: TicketWhereUniqueInput!
   data: TicketUpdateWithoutUserInput!
@@ -4230,9 +4230,9 @@ input routine_maintanancesUpdateWithoutAssigneeInput {
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
   duration: IntFieldUpdateOperationsInput
-  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
 }
 
 input MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
@@ -4254,11 +4254,11 @@ input MachinesUpdateWithoutRoutine_maintanancesInput {
   label: StringFieldUpdateOperationsInput
   profile: JSON
   priority: IntFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   block: BlockUpdateOneRequiredWithoutMachinesNestedInput
   section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
 }
@@ -4288,10 +4288,10 @@ input TicketUpdateWithoutMachinesInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   photos: StringFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
   status: Enumticket_statusFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
 }
 
 input TicketUpdateWithWhereUniqueWithoutMachinesInput {
@@ -4374,10 +4374,10 @@ input TicketUpdateWithoutMaintenanceInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   photos: StringFieldUpdateOperationsInput
-  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
   status: Enumticket_statusFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
 }
 
 input MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput {
@@ -4520,10 +4520,10 @@ input ReplacementsCreateWithoutItemsInput {
   description: String!
   quantity: Int!
   metadata: JSON
-  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
   created_at: DateTime
   approved: Boolean
   updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
 }
 
 input MaintenanceCreateNestedOneWithoutReplacementsInput {
@@ -4543,11 +4543,11 @@ input MaintenanceCreateWithoutReplacementsInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   assignee: UsersCreateNestedOneWithoutMaintenanceInput!
   machines: MachinesCreateNestedOneWithoutMaintenanceInput!
   reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
   ticket: TicketCreateNestedOneWithoutMaintenanceInput
 }
 
@@ -4663,10 +4663,10 @@ input ReplacementsUpdateWithoutItemsInput {
   description: StringFieldUpdateOperationsInput
   quantity: IntFieldUpdateOperationsInput
   metadata: JSON
-  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   approved: BoolFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
 }
 
 input MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput {
@@ -4693,11 +4693,11 @@ input MaintenanceUpdateWithoutReplacementsInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
   machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
   reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
@@ -4751,10 +4751,10 @@ input ItemsCreateInput {
   code: String!
   quantity: Int!
   unit_price: Float!
-  catagory: catagoryCreateNestedOneWithoutItemsInput!
-  replacements: ReplacementsCreateNestedManyWithoutItemsInput
   created_at: DateTime
   updated_at: DateTime
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
 }
 
 input ItemsUpdateInput {
@@ -4763,10 +4763,10 @@ input ItemsUpdateInput {
   code: StringFieldUpdateOperationsInput
   quantity: IntFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
-  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
-  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
 }
 
 input MachinesCreateInput {
@@ -4775,11 +4775,11 @@ input MachinesCreateInput {
   label: String!
   profile: JSON
   priority: Int!
+  created_at: DateTime
+  updated_at: DateTime
   block: BlockCreateNestedOneWithoutMachinesInput!
   section: SectionsCreateNestedOneWithoutMachinesInput!
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
-  created_at: DateTime
-  updated_at: DateTime
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
@@ -4791,11 +4791,11 @@ input MachinesUpdateInput {
   label: StringFieldUpdateOperationsInput
   profile: JSON
   priority: IntFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   block: BlockUpdateOneRequiredWithoutMachinesNestedInput
   section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
@@ -4812,12 +4812,12 @@ input MaintenanceCreateInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   assignee: UsersCreateNestedOneWithoutMaintenanceInput!
   machines: MachinesCreateNestedOneWithoutMaintenanceInput!
   replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
   reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
   ticket: TicketCreateNestedOneWithoutMaintenanceInput
 }
 
@@ -4832,12 +4832,12 @@ input MaintenanceUpdateInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
   machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
   replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
   reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
@@ -4847,11 +4847,11 @@ input ReplacementsCreateInput {
   description: String!
   quantity: Int!
   metadata: JSON
-  items: ItemsCreateNestedOneWithoutReplacementsInput!
-  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
   created_at: DateTime
   approved: Boolean
   updated_at: DateTime
+  items: ItemsCreateNestedOneWithoutReplacementsInput!
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
 }
 
 input ReplacementsUpdateInput {
@@ -4860,11 +4860,11 @@ input ReplacementsUpdateInput {
   description: StringFieldUpdateOperationsInput
   quantity: IntFieldUpdateOperationsInput
   metadata: JSON
-  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
-  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   approved: BoolFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
 }
 
 input machine_catagoryUpdateOneWithoutMachinesNestedInput {
@@ -4884,9 +4884,9 @@ input ReportsCreateInput {
   tag: JSON!
   validated: BigInt!
   validated_sign: BigInt!
-  maintenance: MaintenanceCreateNestedOneWithoutReportsInput!
   created_at: DateTime
   updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutReportsInput!
 }
 
 input MaintenanceCreateNestedOneWithoutReportsInput {
@@ -4906,11 +4906,11 @@ input MaintenanceCreateWithoutReportsInput {
   metadata: JSON
   un_planned: Boolean!
   elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
   assignee: UsersCreateNestedOneWithoutMaintenanceInput!
   machines: MachinesCreateNestedOneWithoutMaintenanceInput!
   replacements: ReplacementsCreateNestedManyWithoutMaintenanceInput
-  created_at: DateTime
-  updated_at: DateTime
   ticket: TicketCreateNestedOneWithoutMaintenanceInput
 }
 
@@ -4926,9 +4926,9 @@ input ReportsUpdateInput {
   tag: JSON
   validated: BigIntFieldUpdateOperationsInput
   validated_sign: BigIntFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateOneRequiredWithoutReportsNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReportsNestedInput
 }
 
 input MaintenanceUpdateOneRequiredWithoutReportsNestedInput {
@@ -4955,11 +4955,11 @@ input MaintenanceUpdateWithoutReportsInput {
   metadata: JSON
   un_planned: BoolFieldUpdateOperationsInput
   elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
   assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
   machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
   replacements: ReplacementsUpdateManyWithoutMaintenanceNestedInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
   ticket: TicketUpdateOneWithoutMaintenanceNestedInput
 }
 
@@ -4983,13 +4983,13 @@ input UsersCreateInput {
   phone: String!
   user_auth_id: String
   name: String!
-  block: BlockCreateNestedOneWithoutUsersInput!
-  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   created_at: DateTime
   updated_at: DateTime
   role: Role!
   extra_roles: UsersCreateextra_rolesInput
   role_alias: String
+  block: BlockCreateNestedOneWithoutUsersInput!
+  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
   production_data: production_dataCreateNestedManyWithoutUpdatedByInput
@@ -5001,13 +5001,13 @@ input UsersUpdateInput {
   phone: StringFieldUpdateOperationsInput
   user_auth_id: NullableStringFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
-  block: BlockUpdateOneRequiredWithoutUsersNestedInput
-  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   role: EnumRoleFieldUpdateOperationsInput
   extra_roles: UsersUpdateextra_rolesInput
   role_alias: StringFieldUpdateOperationsInput
+  block: BlockUpdateOneRequiredWithoutUsersNestedInput
+  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
   production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
@@ -5018,11 +5018,11 @@ input TicketCreateInput {
   name: String!
   description: String!
   photos: String!
-  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
-  machines: MachinesCreateNestedOneWithoutTicketInput!
   status: ticket_status!
   created_at: DateTime
   updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutTicketInput
+  machines: MachinesCreateNestedOneWithoutTicketInput!
 }
 
 input TicketUpdateInput {
@@ -5030,11 +5030,11 @@ input TicketUpdateInput {
   name: StringFieldUpdateOperationsInput
   description: StringFieldUpdateOperationsInput
   photos: StringFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
-  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
   status: Enumticket_statusFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
+  machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
 }
 
 input production_dataCreateInput {
@@ -5045,9 +5045,9 @@ input production_dataCreateInput {
   actual_production: Int
   from: DateTime!
   to: DateTime!
-  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
   created_at: DateTime
   updated_at: DateTime
+  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
   Block: BlockCreateNestedOneWithoutProduction_dataInput
 }
 
@@ -5059,9 +5059,9 @@ input production_dataUpdateInput {
   actual_production: NullableIntFieldUpdateOperationsInput
   from: DateTimeFieldUpdateOperationsInput
   to: DateTimeFieldUpdateOperationsInput
-  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
   Block: BlockUpdateOneWithoutProduction_dataNestedInput
 }
 
@@ -5071,10 +5071,10 @@ input routine_maintanancesCreateInput {
   description: String!
   cron: String!
   duration: Int!
-  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
-  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
   created_at: DateTime
   updated_at: DateTime
+  assignee: UsersCreateNestedOneWithoutRoutine_maintanancesInput!
+  meachine: MachinesCreateNestedOneWithoutRoutine_maintanancesInput!
 }
 
 input routine_maintanancesUpdateInput {
@@ -5083,8 +5083,8 @@ input routine_maintanancesUpdateInput {
   description: StringFieldUpdateOperationsInput
   cron: StringFieldUpdateOperationsInput
   duration: IntFieldUpdateOperationsInput
-  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
-  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
+  assignee: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
+  meachine: MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput
 }

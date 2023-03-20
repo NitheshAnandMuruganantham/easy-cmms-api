@@ -4,8 +4,8 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
-import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
 
 @InputType()
 export class ItemsUpdateWithoutReplacementsInput {
@@ -25,12 +25,12 @@ export class ItemsUpdateWithoutReplacementsInput {
     @Field(() => FloatFieldUpdateOperationsInput, {nullable:true})
     unit_price?: FloatFieldUpdateOperationsInput;
 
-    @Field(() => catagoryUpdateOneRequiredWithoutItemsNestedInput, {nullable:true})
-    catagory?: catagoryUpdateOneRequiredWithoutItemsNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => catagoryUpdateOneRequiredWithoutItemsNestedInput, {nullable:true})
+    catagory?: catagoryUpdateOneRequiredWithoutItemsNestedInput;
 }

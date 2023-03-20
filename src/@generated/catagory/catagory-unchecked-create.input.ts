@@ -12,12 +12,12 @@ export class catagoryUncheckedCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => ItemsUncheckedCreateNestedManyWithoutCatagoryInput, {nullable:true})
-    items?: ItemsUncheckedCreateNestedManyWithoutCatagoryInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => ItemsUncheckedCreateNestedManyWithoutCatagoryInput, {nullable:true})
+    items?: ItemsUncheckedCreateNestedManyWithoutCatagoryInput;
 }

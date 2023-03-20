@@ -81,6 +81,7 @@ export class ItemsService {
 
     return this.prisma.items.update({
       where: { id },
+      // @ts-ignore
       data: updateItemInput,
     });
   }

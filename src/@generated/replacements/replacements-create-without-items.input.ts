@@ -23,9 +23,6 @@ export class ReplacementsCreateWithoutItemsInput {
     @Field(() => GraphQLJSON, {nullable:true})
     metadata?: any;
 
-    @Field(() => MaintenanceCreateNestedOneWithoutReplacementsInput, {nullable:false})
-    maintenance!: MaintenanceCreateNestedOneWithoutReplacementsInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
@@ -34,4 +31,7 @@ export class ReplacementsCreateWithoutItemsInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => MaintenanceCreateNestedOneWithoutReplacementsInput, {nullable:false})
+    maintenance!: MaintenanceCreateNestedOneWithoutReplacementsInput;
 }

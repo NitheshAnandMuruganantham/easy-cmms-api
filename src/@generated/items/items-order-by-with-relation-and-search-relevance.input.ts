@@ -26,17 +26,17 @@ export class ItemsOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     catagory_id?: keyof typeof SortOrder;
 
-    @Field(() => catagoryOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    catagory?: catagoryOrderByWithRelationAndSearchRelevanceInput;
-
-    @Field(() => ReplacementsOrderByRelationAggregateInput, {nullable:true})
-    replacements?: ReplacementsOrderByRelationAggregateInput;
-
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => catagoryOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    catagory?: catagoryOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => ReplacementsOrderByRelationAggregateInput, {nullable:true})
+    replacements?: ReplacementsOrderByRelationAggregateInput;
 
     @Field(() => ItemsOrderByRelevanceInput, {nullable:true})
     _relevance?: ItemsOrderByRelevanceInput;

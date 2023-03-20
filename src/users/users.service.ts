@@ -155,6 +155,7 @@ export class UsersService {
 
     return this.prisma.users.update({
       where: { id },
+      // @ts-ignore
       data: updateUserInput,
       include: {
         block: true,

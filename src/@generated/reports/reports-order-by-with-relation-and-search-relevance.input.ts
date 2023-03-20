@@ -28,14 +28,14 @@ export class ReportsOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     maintance_id?: keyof typeof SortOrder;
 
-    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => ReportsOrderByRelevanceInput, {nullable:true})
     _relevance?: ReportsOrderByRelevanceInput;

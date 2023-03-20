@@ -41,6 +41,12 @@ export class MaintenanceCreateInput {
     @Field(() => Date, {nullable:true})
     elapsed?: Date | string;
 
+    @Field(() => Date, {nullable:true})
+    created_at?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updated_at?: Date | string;
+
     @Field(() => UsersCreateNestedOneWithoutMaintenanceInput, {nullable:false})
     assignee!: UsersCreateNestedOneWithoutMaintenanceInput;
 
@@ -52,12 +58,6 @@ export class MaintenanceCreateInput {
 
     @Field(() => ReportsCreateNestedManyWithoutMaintenanceInput, {nullable:true})
     reports?: ReportsCreateNestedManyWithoutMaintenanceInput;
-
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
 
     @Field(() => TicketCreateNestedOneWithoutMaintenanceInput, {nullable:true})
     ticket?: TicketCreateNestedOneWithoutMaintenanceInput;

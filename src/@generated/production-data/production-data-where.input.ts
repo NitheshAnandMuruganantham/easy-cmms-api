@@ -3,9 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { BlockRelationFilter } from '../block/block-relation-filter.input';
-import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 
 @InputType()
 export class production_dataWhereInput {
@@ -43,18 +43,18 @@ export class production_dataWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     updated_by?: BigIntFilter;
 
-    @Field(() => UsersRelationFilter, {nullable:true})
-    updatedBy?: UsersRelationFilter;
-
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
-    @Field(() => BlockRelationFilter, {nullable:true})
-    Block?: BlockRelationFilter;
-
     @Field(() => BigIntNullableFilter, {nullable:true})
     blockId?: BigIntNullableFilter;
+
+    @Field(() => UsersRelationFilter, {nullable:true})
+    updatedBy?: UsersRelationFilter;
+
+    @Field(() => BlockRelationFilter, {nullable:true})
+    Block?: BlockRelationFilter;
 }

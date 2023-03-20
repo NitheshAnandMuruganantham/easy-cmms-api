@@ -4,11 +4,11 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { BlockUpdateOneRequiredWithoutUsersNestedInput } from '../block/block-update-one-required-without-users-nested.input';
-import { MaintenanceUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-update-many-without-assignee-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
 import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
+import { BlockUpdateOneRequiredWithoutUsersNestedInput } from '../block/block-update-one-required-without-users-nested.input';
+import { MaintenanceUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-update-many-without-assignee-nested.input';
 import { routine_maintanancesUpdateManyWithoutAssigneeNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-assignee-nested.input';
 import { production_dataUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-update-many-without-updated-by-nested.input';
 
@@ -30,12 +30,6 @@ export class UsersUpdateWithoutTicketInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => BlockUpdateOneRequiredWithoutUsersNestedInput, {nullable:true})
-    block?: BlockUpdateOneRequiredWithoutUsersNestedInput;
-
-    @Field(() => MaintenanceUpdateManyWithoutAssigneeNestedInput, {nullable:true})
-    maintenance?: MaintenanceUpdateManyWithoutAssigneeNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
@@ -50,6 +44,12 @@ export class UsersUpdateWithoutTicketInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     role_alias?: StringFieldUpdateOperationsInput;
+
+    @Field(() => BlockUpdateOneRequiredWithoutUsersNestedInput, {nullable:true})
+    block?: BlockUpdateOneRequiredWithoutUsersNestedInput;
+
+    @Field(() => MaintenanceUpdateManyWithoutAssigneeNestedInput, {nullable:true})
+    maintenance?: MaintenanceUpdateManyWithoutAssigneeNestedInput;
 
     @Field(() => routine_maintanancesUpdateManyWithoutAssigneeNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUpdateManyWithoutAssigneeNestedInput;

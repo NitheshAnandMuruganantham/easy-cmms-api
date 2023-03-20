@@ -27,17 +27,17 @@ export class MachinesCreateWithoutBlockInput {
     @Field(() => Int, {nullable:false})
     priority!: number;
 
-    @Field(() => SectionsCreateNestedOneWithoutMachinesInput, {nullable:false})
-    section!: SectionsCreateNestedOneWithoutMachinesInput;
-
-    @Field(() => MaintenanceCreateNestedManyWithoutMachinesInput, {nullable:true})
-    maintenance?: MaintenanceCreateNestedManyWithoutMachinesInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => SectionsCreateNestedOneWithoutMachinesInput, {nullable:false})
+    section!: SectionsCreateNestedOneWithoutMachinesInput;
+
+    @Field(() => MaintenanceCreateNestedManyWithoutMachinesInput, {nullable:true})
+    maintenance?: MaintenanceCreateNestedManyWithoutMachinesInput;
 
     @Field(() => TicketCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketCreateNestedManyWithoutMachinesInput;

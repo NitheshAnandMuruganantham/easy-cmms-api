@@ -91,8 +91,11 @@ export class BlockService {
       'update',
       subject('Block', canGet),
     );
+
+    // @ts-ignore
     return this.prisma.block.update({
       where: { id },
+      // @ts-ignore
       data: updateBlockInput,
     });
   }

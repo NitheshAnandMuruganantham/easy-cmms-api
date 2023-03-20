@@ -26,20 +26,20 @@ export class routine_maintanancesOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     assignee_id?: keyof typeof SortOrder;
 
-    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    assignee?: UsersOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     meachine_id?: keyof typeof SortOrder;
-
-    @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    meachine?: MachinesOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    assignee?: UsersOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    meachine?: MachinesOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => routine_maintanancesOrderByRelevanceInput, {nullable:true})
     _relevance?: routine_maintanancesOrderByRelevanceInput;

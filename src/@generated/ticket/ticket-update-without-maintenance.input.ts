@@ -2,11 +2,11 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
+import { Enumticket_statusFieldUpdateOperationsInput } from '../prisma/enumticket-status-field-update-operations.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UsersUpdateOneRequiredWithoutTicketNestedInput } from '../users/users-update-one-required-without-ticket-nested.input';
 import { HideField } from '@nestjs/graphql';
 import { MachinesUpdateOneRequiredWithoutTicketNestedInput } from '../machines/machines-update-one-required-without-ticket-nested.input';
-import { Enumticket_statusFieldUpdateOperationsInput } from '../prisma/enumticket-status-field-update-operations.input';
-import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
 export class TicketUpdateWithoutMaintenanceInput {
@@ -23,12 +23,6 @@ export class TicketUpdateWithoutMaintenanceInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     photos?: StringFieldUpdateOperationsInput;
 
-    @HideField()
-    user?: UsersUpdateOneRequiredWithoutTicketNestedInput;
-
-    @Field(() => MachinesUpdateOneRequiredWithoutTicketNestedInput, {nullable:true})
-    machines?: MachinesUpdateOneRequiredWithoutTicketNestedInput;
-
     @Field(() => Enumticket_statusFieldUpdateOperationsInput, {nullable:true})
     status?: Enumticket_statusFieldUpdateOperationsInput;
 
@@ -37,4 +31,10 @@ export class TicketUpdateWithoutMaintenanceInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @HideField()
+    user?: UsersUpdateOneRequiredWithoutTicketNestedInput;
+
+    @Field(() => MachinesUpdateOneRequiredWithoutTicketNestedInput, {nullable:true})
+    machines?: MachinesUpdateOneRequiredWithoutTicketNestedInput;
 }

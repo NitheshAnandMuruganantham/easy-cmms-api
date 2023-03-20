@@ -3,8 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
-import { UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput } from '../users/users-update-one-required-without-routine-maintanances-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput } from '../users/users-update-one-required-without-routine-maintanances-nested.input';
 
 @InputType()
 export class routine_maintanancesUpdateWithoutMeachineInput {
@@ -24,12 +24,12 @@ export class routine_maintanancesUpdateWithoutMeachineInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     duration?: IntFieldUpdateOperationsInput;
 
-    @Field(() => UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput, {nullable:true})
-    assignee?: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput, {nullable:true})
+    assignee?: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput;
 }
