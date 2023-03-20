@@ -13,14 +13,14 @@ export class catagory {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => [Items], {nullable:true})
-    items?: Array<Items>;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => [Items], {nullable:true})
+    items?: Array<Items>;
 
     @Field(() => CatagoryCount, {nullable:false})
     _count?: CatagoryCount;

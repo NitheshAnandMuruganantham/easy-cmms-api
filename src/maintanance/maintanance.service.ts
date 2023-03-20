@@ -224,6 +224,7 @@ export class MaintenanceService {
     }
     return this.prisma.maintenance.update({
       where: { id },
+      // @ts-ignore
       data: updateMaintenanceInput,
     });
   }

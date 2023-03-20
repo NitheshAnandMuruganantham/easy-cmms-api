@@ -29,12 +29,12 @@ export class production_dataUpdateWithoutBlockInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     to?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
-    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
+    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
 }

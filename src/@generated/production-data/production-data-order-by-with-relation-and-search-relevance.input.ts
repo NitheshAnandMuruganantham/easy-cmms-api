@@ -31,18 +31,18 @@ export class production_dataOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     updated_by?: keyof typeof SortOrder;
 
-    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    updatedBy?: UsersOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
 
-    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    Block?: BlockOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     blockId?: keyof typeof SortOrder;
+
+    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    updatedBy?: UsersOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    Block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 }

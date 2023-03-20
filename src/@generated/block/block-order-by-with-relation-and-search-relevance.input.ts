@@ -19,9 +19,6 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     location?: keyof typeof SortOrder;
 
-    @Field(() => MachinesOrderByRelationAggregateInput, {nullable:true})
-    machines?: MachinesOrderByRelationAggregateInput;
-
     @Field(() => SortOrder, {nullable:true})
     Mailings?: keyof typeof SortOrder;
 
@@ -30,6 +27,9 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @Field(() => MachinesOrderByRelationAggregateInput, {nullable:true})
+    machines?: MachinesOrderByRelationAggregateInput;
 
     @Field(() => UsersOrderByRelationAggregateInput, {nullable:true})
     Users?: UsersOrderByRelationAggregateInput;

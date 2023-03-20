@@ -3,9 +3,9 @@ import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { Role } from '../prisma/role.enum';
 import { Block } from '../block/block.model';
 import { Maintenance } from '../maintenance/maintenance.model';
-import { Role } from '../prisma/role.enum';
 import { Ticket } from '../ticket/ticket.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
 import { production_data } from '../production-data/production-data.model';
@@ -36,12 +36,6 @@ export class Users {
     @Field(() => GraphQLBigInt, {nullable:false})
     blockId!: bigint;
 
-    @Field(() => Block, {nullable:false})
-    block?: Block;
-
-    @Field(() => [Maintenance], {nullable:true})
-    maintenance?: Array<Maintenance>;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
@@ -56,6 +50,12 @@ export class Users {
 
     @Field(() => String, {nullable:false,defaultValue:'user'})
     role_alias!: string;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
+
+    @Field(() => [Maintenance], {nullable:true})
+    maintenance?: Array<Maintenance>;
 
     @Field(() => [Ticket], {nullable:true})
     ticket?: Array<Ticket>;

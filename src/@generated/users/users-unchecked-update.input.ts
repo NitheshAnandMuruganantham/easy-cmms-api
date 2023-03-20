@@ -4,10 +4,10 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-unchecked-update-many-without-assignee-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
 import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
+import { MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-unchecked-update-many-without-assignee-nested.input';
 import { TicketUncheckedUpdateManyWithoutUserNestedInput } from '../ticket/ticket-unchecked-update-many-without-user-nested.input';
 import { routine_maintanancesUncheckedUpdateManyWithoutAssigneeNestedInput } from '../routine-maintanances/routine-maintanances-unchecked-update-many-without-assignee-nested.input';
 import { production_dataUncheckedUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-unchecked-update-many-without-updated-by-nested.input';
@@ -33,9 +33,6 @@ export class UsersUncheckedUpdateInput {
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     blockId?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput, {nullable:true})
-    maintenance?: MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
@@ -50,6 +47,9 @@ export class UsersUncheckedUpdateInput {
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     role_alias?: StringFieldUpdateOperationsInput;
+
+    @Field(() => MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput, {nullable:true})
+    maintenance?: MaintenanceUncheckedUpdateManyWithoutAssigneeNestedInput;
 
     @Field(() => TicketUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
     ticket?: TicketUncheckedUpdateManyWithoutUserNestedInput;

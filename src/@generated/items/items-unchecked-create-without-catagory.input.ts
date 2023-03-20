@@ -23,12 +23,12 @@ export class ItemsUncheckedCreateWithoutCatagoryInput {
     @Field(() => Float, {nullable:false})
     unit_price!: number;
 
-    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutItemsInput, {nullable:true})
-    replacements?: ReplacementsUncheckedCreateNestedManyWithoutItemsInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutItemsInput, {nullable:true})
+    replacements?: ReplacementsUncheckedCreateNestedManyWithoutItemsInput;
 }

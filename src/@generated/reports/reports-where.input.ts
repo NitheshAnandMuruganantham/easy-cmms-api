@@ -3,8 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
-import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
 
 @InputType()
 export class ReportsWhereInput {
@@ -39,12 +39,12 @@ export class ReportsWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     maintance_id?: BigIntFilter;
 
-    @Field(() => MaintenanceRelationFilter, {nullable:true})
-    maintenance?: MaintenanceRelationFilter;
-
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @Field(() => MaintenanceRelationFilter, {nullable:true})
+    maintenance?: MaintenanceRelationFilter;
 }

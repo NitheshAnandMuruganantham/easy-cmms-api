@@ -75,6 +75,7 @@ export class ReplacementsService {
 
     return this.prisma.replacements.update({
       where: { id },
+      // @ts-ignore
       data: updateReplacementInput,
     });
   }

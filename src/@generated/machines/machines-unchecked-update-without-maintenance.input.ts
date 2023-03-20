@@ -38,11 +38,11 @@ export class MachinesUncheckedUpdateWithoutMaintenanceInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => TicketUncheckedUpdateManyWithoutMachinesNestedInput, {nullable:true})
-    Ticket?: TicketUncheckedUpdateManyWithoutMachinesNestedInput;
-
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     machine_catagory_id?: BigIntFieldUpdateOperationsInput;
+
+    @Field(() => TicketUncheckedUpdateManyWithoutMachinesNestedInput, {nullable:true})
+    Ticket?: TicketUncheckedUpdateManyWithoutMachinesNestedInput;
 
     @Field(() => routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedUpdateManyWithoutMeachineNestedInput;

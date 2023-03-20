@@ -29,12 +29,12 @@ export class Reports {
     @Field(() => GraphQLBigInt, {nullable:false})
     maintance_id!: bigint;
 
-    @Field(() => Maintenance, {nullable:false})
-    maintenance?: Maintenance;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => Maintenance, {nullable:false})
+    maintenance?: Maintenance;
 }

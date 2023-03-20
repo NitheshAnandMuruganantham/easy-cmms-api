@@ -31,14 +31,14 @@ export class MachinesUncheckedCreateWithoutMachine_catagoryInput {
     @Field(() => Int, {nullable:false})
     priority!: number;
 
-    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
-    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutMachinesInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
+    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutMachinesInput;
 
     @Field(() => TicketUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
     Ticket?: TicketUncheckedCreateNestedManyWithoutMachinesInput;

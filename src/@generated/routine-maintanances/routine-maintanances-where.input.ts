@@ -3,9 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class routine_maintanancesWhereInput {
@@ -37,18 +37,18 @@ export class routine_maintanancesWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     assignee_id?: BigIntFilter;
 
-    @Field(() => UsersRelationFilter, {nullable:true})
-    assignee?: UsersRelationFilter;
-
     @Field(() => BigIntFilter, {nullable:true})
     meachine_id?: BigIntFilter;
-
-    @Field(() => MachinesRelationFilter, {nullable:true})
-    meachine?: MachinesRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @Field(() => UsersRelationFilter, {nullable:true})
+    assignee?: UsersRelationFilter;
+
+    @Field(() => MachinesRelationFilter, {nullable:true})
+    meachine?: MachinesRelationFilter;
 }

@@ -26,12 +26,12 @@ export class ItemsUncheckedCreateInput {
     @Field(() => GraphQLBigInt, {nullable:false})
     catagory_id!: bigint | number;
 
-    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutItemsInput, {nullable:true})
-    replacements?: ReplacementsUncheckedCreateNestedManyWithoutItemsInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutItemsInput, {nullable:true})
+    replacements?: ReplacementsUncheckedCreateNestedManyWithoutItemsInput;
 }

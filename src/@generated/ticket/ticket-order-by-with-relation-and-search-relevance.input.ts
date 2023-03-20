@@ -25,20 +25,11 @@ export class TicketOrderByWithRelationAndSearchRelevanceInput {
     @HideField()
     user_id?: keyof typeof SortOrder;
 
-    @HideField()
-    user?: UsersOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     maintenance_id?: keyof typeof SortOrder;
 
-    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     machine_id?: keyof typeof SortOrder;
-
-    @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    machines?: MachinesOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => SortOrder, {nullable:true})
     status?: keyof typeof SortOrder;
@@ -48,6 +39,15 @@ export class TicketOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @HideField()
+    user?: UsersOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    maintenance?: MaintenanceOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    machines?: MachinesOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => TicketOrderByRelevanceInput, {nullable:true})
     _relevance?: TicketOrderByRelevanceInput;

@@ -28,14 +28,8 @@ export class Replacements {
     @Field(() => GraphQLBigInt, {nullable:false})
     item_id!: bigint;
 
-    @Field(() => Items, {nullable:false})
-    items?: Items;
-
     @Field(() => GraphQLBigInt, {nullable:false})
     maintanance_id!: bigint;
-
-    @Field(() => Maintenance, {nullable:false})
-    maintenance?: Maintenance;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date;
@@ -45,4 +39,10 @@ export class Replacements {
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => Items, {nullable:false})
+    items?: Items;
+
+    @Field(() => Maintenance, {nullable:false})
+    maintenance?: Maintenance;
 }

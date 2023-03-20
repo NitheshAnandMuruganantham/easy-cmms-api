@@ -3,12 +3,12 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { HideField } from '@nestjs/graphql';
-import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
-import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
-import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
 import { Enumticket_statusFilter } from '../prisma/enumticket-status-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { UsersRelationFilter } from '../users/users-relation-filter.input';
+import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
+import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
 
 @InputType()
 export class TicketWhereInput {
@@ -37,20 +37,11 @@ export class TicketWhereInput {
     @HideField()
     user_id?: BigIntFilter;
 
-    @HideField()
-    user?: UsersRelationFilter;
-
     @Field(() => BigIntNullableFilter, {nullable:true})
     maintenance_id?: BigIntNullableFilter;
 
-    @Field(() => MaintenanceRelationFilter, {nullable:true})
-    maintenance?: MaintenanceRelationFilter;
-
     @Field(() => BigIntFilter, {nullable:true})
     machine_id?: BigIntFilter;
-
-    @Field(() => MachinesRelationFilter, {nullable:true})
-    machines?: MachinesRelationFilter;
 
     @Field(() => Enumticket_statusFilter, {nullable:true})
     status?: Enumticket_statusFilter;
@@ -60,4 +51,13 @@ export class TicketWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @HideField()
+    user?: UsersRelationFilter;
+
+    @Field(() => MaintenanceRelationFilter, {nullable:true})
+    maintenance?: MaintenanceRelationFilter;
+
+    @Field(() => MachinesRelationFilter, {nullable:true})
+    machines?: MachinesRelationFilter;
 }

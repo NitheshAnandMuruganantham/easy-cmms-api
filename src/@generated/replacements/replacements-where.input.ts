@@ -4,10 +4,10 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
-import { ItemsRelationFilter } from '../items/items-relation-filter.input';
-import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { ItemsRelationFilter } from '../items/items-relation-filter.input';
+import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
 
 @InputType()
 export class ReplacementsWhereInput {
@@ -39,14 +39,8 @@ export class ReplacementsWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     item_id?: BigIntFilter;
 
-    @Field(() => ItemsRelationFilter, {nullable:true})
-    items?: ItemsRelationFilter;
-
     @Field(() => BigIntFilter, {nullable:true})
     maintanance_id?: BigIntFilter;
-
-    @Field(() => MaintenanceRelationFilter, {nullable:true})
-    maintenance?: MaintenanceRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
@@ -56,4 +50,10 @@ export class ReplacementsWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @Field(() => ItemsRelationFilter, {nullable:true})
+    items?: ItemsRelationFilter;
+
+    @Field(() => MaintenanceRelationFilter, {nullable:true})
+    maintenance?: MaintenanceRelationFilter;
 }

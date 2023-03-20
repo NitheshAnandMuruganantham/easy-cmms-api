@@ -58,11 +58,17 @@ export class MaintenanceWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     assignee_id?: BigIntFilter;
 
-    @Field(() => UsersRelationFilter, {nullable:true})
-    assignee?: UsersRelationFilter;
-
     @Field(() => BigIntFilter, {nullable:true})
     machine_id?: BigIntFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    created_at?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updated_at?: DateTimeFilter;
+
+    @Field(() => UsersRelationFilter, {nullable:true})
+    assignee?: UsersRelationFilter;
 
     @Field(() => MachinesRelationFilter, {nullable:true})
     machines?: MachinesRelationFilter;
@@ -72,12 +78,6 @@ export class MaintenanceWhereInput {
 
     @Field(() => ReportsListRelationFilter, {nullable:true})
     reports?: ReportsListRelationFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    created_at?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    updated_at?: DateTimeFilter;
 
     @Field(() => TicketRelationFilter, {nullable:true})
     ticket?: TicketRelationFilter;

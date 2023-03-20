@@ -12,12 +12,12 @@ export class machine_catagoryCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => MachinesCreateNestedManyWithoutMachine_catagoryInput, {nullable:true})
-    machines?: MachinesCreateNestedManyWithoutMachine_catagoryInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => MachinesCreateNestedManyWithoutMachine_catagoryInput, {nullable:true})
+    machines?: MachinesCreateNestedManyWithoutMachine_catagoryInput;
 }

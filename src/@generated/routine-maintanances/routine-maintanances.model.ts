@@ -27,18 +27,18 @@ export class routine_maintanances {
     @Field(() => GraphQLBigInt, {nullable:false})
     assignee_id!: bigint;
 
-    @Field(() => Users, {nullable:false})
-    assignee?: Users;
-
     @Field(() => GraphQLBigInt, {nullable:false})
     meachine_id!: bigint;
-
-    @Field(() => Machines, {nullable:false})
-    meachine?: Machines;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => Users, {nullable:false})
+    assignee?: Users;
+
+    @Field(() => Machines, {nullable:false})
+    meachine?: Machines;
 }

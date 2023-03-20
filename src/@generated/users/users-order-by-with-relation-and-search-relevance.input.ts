@@ -29,12 +29,6 @@ export class UsersOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     blockId?: keyof typeof SortOrder;
 
-    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
-
-    @Field(() => MaintenanceOrderByRelationAggregateInput, {nullable:true})
-    maintenance?: MaintenanceOrderByRelationAggregateInput;
-
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
@@ -49,6 +43,12 @@ export class UsersOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     role_alias?: keyof typeof SortOrder;
+
+    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => MaintenanceOrderByRelationAggregateInput, {nullable:true})
+    maintenance?: MaintenanceOrderByRelationAggregateInput;
 
     @Field(() => TicketOrderByRelationAggregateInput, {nullable:true})
     ticket?: TicketOrderByRelationAggregateInput;

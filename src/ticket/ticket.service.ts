@@ -124,6 +124,7 @@ export class TicketService {
 
     return this.prisma.ticket.update({
       where: { id },
+      // @ts-ignore
       data: updateTicketInput,
     });
   }

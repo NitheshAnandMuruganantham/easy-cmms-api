@@ -4,9 +4,9 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-type-json';
-import { MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput } from '../maintenance/maintenance-update-one-required-without-replacements-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
+import { MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput } from '../maintenance/maintenance-update-one-required-without-replacements-nested.input';
 
 @InputType()
 export class ReplacementsUpdateWithoutItemsInput {
@@ -26,9 +26,6 @@ export class ReplacementsUpdateWithoutItemsInput {
     @Field(() => GraphQLJSON, {nullable:true})
     metadata?: any;
 
-    @Field(() => MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
-    maintenance?: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
@@ -37,4 +34,7 @@ export class ReplacementsUpdateWithoutItemsInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
+    maintenance?: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput;
 }

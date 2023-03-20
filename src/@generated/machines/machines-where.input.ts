@@ -4,10 +4,10 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BlockRelationFilter } from '../block/block-relation-filter.input';
 import { SectionsRelationFilter } from '../sections/sections-relation-filter.input';
 import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-relation-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
 import { Machine_catagoryRelationFilter } from '../prisma/machine-catagory-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
@@ -45,6 +45,15 @@ export class MachinesWhereInput {
     @Field(() => IntFilter, {nullable:true})
     priority?: IntFilter;
 
+    @Field(() => DateTimeFilter, {nullable:true})
+    created_at?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updated_at?: DateTimeFilter;
+
+    @Field(() => BigIntFilter, {nullable:true})
+    machine_catagory_id?: BigIntFilter;
+
     @Field(() => BlockRelationFilter, {nullable:true})
     block?: BlockRelationFilter;
 
@@ -54,17 +63,8 @@ export class MachinesWhereInput {
     @Field(() => MaintenanceListRelationFilter, {nullable:true})
     maintenance?: MaintenanceListRelationFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    created_at?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    updated_at?: DateTimeFilter;
-
     @Field(() => TicketListRelationFilter, {nullable:true})
     Ticket?: TicketListRelationFilter;
-
-    @Field(() => BigIntFilter, {nullable:true})
-    machine_catagory_id?: BigIntFilter;
 
     @Field(() => Machine_catagoryRelationFilter, {nullable:true})
     machine_catagory?: Machine_catagoryRelationFilter;

@@ -44,14 +44,14 @@ export class MaintenanceUncheckedCreateWithoutReplacementsInput {
     @Field(() => GraphQLBigInt, {nullable:false})
     machine_id!: bigint | number;
 
-    @Field(() => ReportsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
-    reports?: ReportsUncheckedCreateNestedManyWithoutMaintenanceInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => ReportsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
+    reports?: ReportsUncheckedCreateNestedManyWithoutMaintenanceInput;
 
     @Field(() => TicketUncheckedCreateNestedOneWithoutMaintenanceInput, {nullable:true})
     ticket?: TicketUncheckedCreateNestedOneWithoutMaintenanceInput;

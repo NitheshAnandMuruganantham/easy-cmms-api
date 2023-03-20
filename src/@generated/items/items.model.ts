@@ -29,17 +29,17 @@ export class Items {
     @Field(() => GraphQLBigInt, {nullable:false})
     catagory_id!: bigint;
 
-    @Field(() => catagory, {nullable:false})
-    catagory?: catagory;
-
-    @Field(() => [Replacements], {nullable:true})
-    replacements?: Array<Replacements>;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => catagory, {nullable:false})
+    catagory?: catagory;
+
+    @Field(() => [Replacements], {nullable:true})
+    replacements?: Array<Replacements>;
 
     @Field(() => ItemsCount, {nullable:false})
     _count?: ItemsCount;

@@ -4,10 +4,10 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-type-json';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BlockUpdateOneRequiredWithoutMachinesNestedInput } from '../block/block-update-one-required-without-machines-nested.input';
 import { SectionsUpdateOneRequiredWithoutMachinesNestedInput } from '../sections/sections-update-one-required-without-machines-nested.input';
 import { MaintenanceUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-update-many-without-machines-nested.input';
-import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput } from '../machine-catagory/machine-catagory-update-one-required-without-machines-nested.input';
 import { routine_maintanancesUpdateManyWithoutMeachineNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-meachine-nested.input';
 
@@ -29,6 +29,12 @@ export class MachinesUpdateWithoutTicketInput {
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     priority?: IntFieldUpdateOperationsInput;
 
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    created_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updated_at?: DateTimeFieldUpdateOperationsInput;
+
     @Field(() => BlockUpdateOneRequiredWithoutMachinesNestedInput, {nullable:true})
     block?: BlockUpdateOneRequiredWithoutMachinesNestedInput;
 
@@ -37,12 +43,6 @@ export class MachinesUpdateWithoutTicketInput {
 
     @Field(() => MaintenanceUpdateManyWithoutMachinesNestedInput, {nullable:true})
     maintenance?: MaintenanceUpdateManyWithoutMachinesNestedInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    created_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updated_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput, {nullable:true})
     machine_catagory?: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput;

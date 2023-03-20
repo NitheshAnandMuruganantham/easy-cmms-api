@@ -33,6 +33,15 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     priority?: keyof typeof SortOrder;
 
+    @Field(() => SortOrder, {nullable:true})
+    created_at?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updated_at?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    machine_catagory_id?: keyof typeof SortOrder;
+
     @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
@@ -42,17 +51,8 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => MaintenanceOrderByRelationAggregateInput, {nullable:true})
     maintenance?: MaintenanceOrderByRelationAggregateInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    created_at?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updated_at?: keyof typeof SortOrder;
-
     @Field(() => TicketOrderByRelationAggregateInput, {nullable:true})
     Ticket?: TicketOrderByRelationAggregateInput;
-
-    @Field(() => SortOrder, {nullable:true})
-    machine_catagory_id?: keyof typeof SortOrder;
 
     @Field(() => machine_catagoryOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     machine_catagory?: machine_catagoryOrderByWithRelationAndSearchRelevanceInput;

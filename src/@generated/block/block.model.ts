@@ -19,9 +19,6 @@ export class Block {
     @Field(() => String, {nullable:false})
     location!: string;
 
-    @Field(() => [Machines], {nullable:true})
-    machines?: Array<Machines>;
-
     @Field(() => [String], {nullable:true})
     Mailings!: Array<string>;
 
@@ -30,6 +27,9 @@ export class Block {
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
+
+    @Field(() => [Machines], {nullable:true})
+    machines?: Array<Machines>;
 
     @Field(() => [Users], {nullable:true})
     Users?: Array<Users>;

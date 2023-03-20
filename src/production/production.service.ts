@@ -102,6 +102,7 @@ export class ProductionService {
     );
     return this.prisma.production_data.update({
       where: { id },
+      // @ts-ignore
       data: updateProductionInput,
       include: {
         updatedBy: true,

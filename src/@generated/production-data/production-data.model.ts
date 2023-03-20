@@ -33,18 +33,18 @@ export class production_data {
     @Field(() => GraphQLBigInt, {nullable:false})
     updated_by!: bigint;
 
-    @Field(() => Users, {nullable:false})
-    updatedBy?: Users;
-
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
-    @Field(() => Block, {nullable:true})
-    Block?: Block | null;
-
     @Field(() => GraphQLBigInt, {nullable:true})
     blockId!: bigint | null;
+
+    @Field(() => Users, {nullable:false})
+    updatedBy?: Users;
+
+    @Field(() => Block, {nullable:true})
+    Block?: Block | null;
 }

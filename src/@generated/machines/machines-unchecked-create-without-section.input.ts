@@ -28,20 +28,20 @@ export class MachinesUncheckedCreateWithoutSectionInput {
     @Field(() => Int, {nullable:false})
     priority!: number;
 
-    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
-    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutMachinesInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
-    @Field(() => TicketUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
-    Ticket?: TicketUncheckedCreateNestedManyWithoutMachinesInput;
-
     @Field(() => GraphQLBigInt, {nullable:false})
     machine_catagory_id!: bigint | number;
+
+    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
+    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutMachinesInput;
+
+    @Field(() => TicketUncheckedCreateNestedManyWithoutMachinesInput, {nullable:true})
+    Ticket?: TicketUncheckedCreateNestedManyWithoutMachinesInput;
 
     @Field(() => routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput;

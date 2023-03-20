@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { MachinesUncheckedUpdateManyWithoutBlockNestedInput } from '../machines/machines-unchecked-update-many-without-block-nested.input';
 import { BlockUpdateMailingsInput } from './block-update-mailings.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { MachinesUncheckedUpdateManyWithoutBlockNestedInput } from '../machines/machines-unchecked-update-many-without-block-nested.input';
 import { UsersUncheckedUpdateManyWithoutBlockNestedInput } from '../users/users-unchecked-update-many-without-block-nested.input';
 import { block_settingsUncheckedUpdateManyWithoutBlockNestedInput } from '../block-settings/block-settings-unchecked-update-many-without-block-nested.input';
 import { production_dataUncheckedUpdateManyWithoutBlockNestedInput } from '../production-data/production-data-unchecked-update-many-without-block-nested.input';
@@ -21,9 +21,6 @@ export class BlockUncheckedUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     location?: StringFieldUpdateOperationsInput;
 
-    @Field(() => MachinesUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
-    machines?: MachinesUncheckedUpdateManyWithoutBlockNestedInput;
-
     @Field(() => BlockUpdateMailingsInput, {nullable:true})
     Mailings?: BlockUpdateMailingsInput;
 
@@ -32,6 +29,9 @@ export class BlockUncheckedUpdateInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => MachinesUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
+    machines?: MachinesUncheckedUpdateManyWithoutBlockNestedInput;
 
     @Field(() => UsersUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
     Users?: UsersUncheckedUpdateManyWithoutBlockNestedInput;

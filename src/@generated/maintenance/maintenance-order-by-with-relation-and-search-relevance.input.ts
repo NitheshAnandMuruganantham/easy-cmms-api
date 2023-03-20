@@ -44,11 +44,17 @@ export class MaintenanceOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     assignee_id?: keyof typeof SortOrder;
 
-    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    assignee?: UsersOrderByWithRelationAndSearchRelevanceInput;
-
     @Field(() => SortOrder, {nullable:true})
     machine_id?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    created_at?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updated_at?: keyof typeof SortOrder;
+
+    @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    assignee?: UsersOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     machines?: MachinesOrderByWithRelationAndSearchRelevanceInput;
@@ -58,12 +64,6 @@ export class MaintenanceOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => ReportsOrderByRelationAggregateInput, {nullable:true})
     reports?: ReportsOrderByRelationAggregateInput;
-
-    @Field(() => SortOrder, {nullable:true})
-    created_at?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updated_at?: keyof typeof SortOrder;
 
     @Field(() => TicketOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     ticket?: TicketOrderByWithRelationAndSearchRelevanceInput;

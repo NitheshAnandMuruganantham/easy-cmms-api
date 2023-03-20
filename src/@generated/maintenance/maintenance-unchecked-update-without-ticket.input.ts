@@ -49,15 +49,15 @@ export class MaintenanceUncheckedUpdateWithoutTicketInput {
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     machine_id?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
-    replacements?: ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput;
-
-    @Field(() => ReportsUncheckedUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
-    reports?: ReportsUncheckedUpdateManyWithoutMaintenanceNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
+    replacements?: ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput;
+
+    @Field(() => ReportsUncheckedUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
+    reports?: ReportsUncheckedUpdateManyWithoutMaintenanceNestedInput;
 }

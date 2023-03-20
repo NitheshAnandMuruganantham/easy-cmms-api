@@ -30,14 +30,14 @@ export class production_dataUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     to?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
-    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
-
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
+    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
 
     @Field(() => BlockUpdateOneWithoutProduction_dataNestedInput, {nullable:true})
     Block?: BlockUpdateOneWithoutProduction_dataNestedInput;

@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { MachinesUpdateManyWithoutBlockNestedInput } from '../machines/machines-update-many-without-block-nested.input';
 import { BlockUpdateMailingsInput } from './block-update-mailings.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { MachinesUpdateManyWithoutBlockNestedInput } from '../machines/machines-update-many-without-block-nested.input';
 import { UsersUpdateManyWithoutBlockNestedInput } from '../users/users-update-many-without-block-nested.input';
 import { block_settingsUpdateManyWithoutBlockNestedInput } from '../block-settings/block-settings-update-many-without-block-nested.input';
 import { production_dataUpdateManyWithoutBlockNestedInput } from '../production-data/production-data-update-many-without-block-nested.input';
@@ -21,9 +21,6 @@ export class BlockUpdateInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     location?: StringFieldUpdateOperationsInput;
 
-    @Field(() => MachinesUpdateManyWithoutBlockNestedInput, {nullable:true})
-    machines?: MachinesUpdateManyWithoutBlockNestedInput;
-
     @Field(() => BlockUpdateMailingsInput, {nullable:true})
     Mailings?: BlockUpdateMailingsInput;
 
@@ -32,6 +29,9 @@ export class BlockUpdateInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => MachinesUpdateManyWithoutBlockNestedInput, {nullable:true})
+    machines?: MachinesUpdateManyWithoutBlockNestedInput;
 
     @Field(() => UsersUpdateManyWithoutBlockNestedInput, {nullable:true})
     Users?: UsersUpdateManyWithoutBlockNestedInput;

@@ -28,12 +28,12 @@ export class production_dataCreateWithoutBlockInput {
     @Field(() => Date, {nullable:false})
     to!: Date | string;
 
-    @Field(() => UsersCreateNestedOneWithoutProduction_dataInput, {nullable:false})
-    updatedBy!: UsersCreateNestedOneWithoutProduction_dataInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => UsersCreateNestedOneWithoutProduction_dataInput, {nullable:false})
+    updatedBy!: UsersCreateNestedOneWithoutProduction_dataInput;
 }

@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
-import { MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput } from '../maintenance/maintenance-unchecked-create-nested-many-without-assignee.input';
 import { Role } from '../prisma/role.enum';
 import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
+import { MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput } from '../maintenance/maintenance-unchecked-create-nested-many-without-assignee.input';
 import { TicketUncheckedCreateNestedManyWithoutUserInput } from '../ticket/ticket-unchecked-create-nested-many-without-user.input';
 import { production_dataUncheckedCreateNestedManyWithoutUpdatedByInput } from '../production-data/production-data-unchecked-create-nested-many-without-updated-by.input';
 
@@ -29,9 +29,6 @@ export class UsersUncheckedCreateWithoutRoutine_maintanancesInput {
     @Field(() => GraphQLBigInt, {nullable:false})
     blockId!: bigint | number;
 
-    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput, {nullable:true})
-    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
@@ -46,6 +43,9 @@ export class UsersUncheckedCreateWithoutRoutine_maintanancesInput {
 
     @Field(() => String, {nullable:true})
     role_alias?: string;
+
+    @Field(() => MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput, {nullable:true})
+    maintenance?: MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput;
 
     @Field(() => TicketUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
     ticket?: TicketUncheckedCreateNestedManyWithoutUserInput;

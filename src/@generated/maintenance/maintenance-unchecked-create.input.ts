@@ -45,17 +45,17 @@ export class MaintenanceUncheckedCreateInput {
     @Field(() => GraphQLBigInt, {nullable:false})
     machine_id!: bigint | number;
 
-    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
-    replacements?: ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput;
-
-    @Field(() => ReportsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
-    reports?: ReportsUncheckedCreateNestedManyWithoutMaintenanceInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
+    replacements?: ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput;
+
+    @Field(() => ReportsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
+    reports?: ReportsUncheckedCreateNestedManyWithoutMaintenanceInput;
 
     @Field(() => TicketUncheckedCreateNestedOneWithoutMaintenanceInput, {nullable:true})
     ticket?: TicketUncheckedCreateNestedOneWithoutMaintenanceInput;

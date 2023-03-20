@@ -45,6 +45,12 @@ export class MaintenanceUpdateWithoutReportsInput {
     @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
     elapsed?: NullableDateTimeFieldUpdateOperationsInput;
 
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    created_at?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updated_at?: DateTimeFieldUpdateOperationsInput;
+
     @Field(() => UsersUpdateOneRequiredWithoutMaintenanceNestedInput, {nullable:true})
     assignee?: UsersUpdateOneRequiredWithoutMaintenanceNestedInput;
 
@@ -53,12 +59,6 @@ export class MaintenanceUpdateWithoutReportsInput {
 
     @Field(() => ReplacementsUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
     replacements?: ReplacementsUpdateManyWithoutMaintenanceNestedInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    created_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updated_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => TicketUpdateOneWithoutMaintenanceNestedInput, {nullable:true})
     ticket?: TicketUpdateOneWithoutMaintenanceNestedInput;

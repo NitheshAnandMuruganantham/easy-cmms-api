@@ -22,12 +22,12 @@ export class routine_maintanancesCreateWithoutMeachineInput {
     @Field(() => Int, {nullable:false})
     duration!: number;
 
-    @Field(() => UsersCreateNestedOneWithoutRoutine_maintanancesInput, {nullable:false})
-    assignee!: UsersCreateNestedOneWithoutRoutine_maintanancesInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => UsersCreateNestedOneWithoutRoutine_maintanancesInput, {nullable:false})
+    assignee!: UsersCreateNestedOneWithoutRoutine_maintanancesInput;
 }

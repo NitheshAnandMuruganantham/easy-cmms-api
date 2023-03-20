@@ -25,12 +25,12 @@ export class ReportsCreateInput {
     @Field(() => GraphQLBigInt, {nullable:false})
     validated_sign!: bigint | number;
 
-    @Field(() => MaintenanceCreateNestedOneWithoutReportsInput, {nullable:false})
-    maintenance!: MaintenanceCreateNestedOneWithoutReportsInput;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => MaintenanceCreateNestedOneWithoutReportsInput, {nullable:false})
+    maintenance!: MaintenanceCreateNestedOneWithoutReportsInput;
 }
