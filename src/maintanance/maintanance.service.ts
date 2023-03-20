@@ -222,11 +222,26 @@ export class MaintenanceService {
         nanoid(10),
       );
     }
-    return this.prisma.maintenance.update({
+
+    if (updateMaintenanceInput?.resolved) {
+      await this.prisma.maintenance.update({
+        where: {
+          id,
+        },
+        data: {
+          elapsed: {
+            set: new Date(),
+          },
+        },
+      });
+    }
+
+    const updated = await this.prisma.maintenance.update({
       where: { id },
       // @ts-ignore
       data: updateMaintenanceInput,
     });
+    return updated;
   }
 
   async remove(session: SessionContainer, id: number) {
