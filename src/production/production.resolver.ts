@@ -67,7 +67,7 @@ export class ProductionDataResolver {
   }
 
   @Mutation(() => production_data)
-  updateBlock(
+  updateProduction(
     @Session()
     session: SessionContainer,
     @Args('id', { type: () => Int }) id: number,

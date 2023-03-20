@@ -41,8 +41,6 @@ export class S3Service {
 
     const type = url.split(';')[0].split('/')[1];
 
-    const file = this.dataURLtoFile(url, id);
-
     await this.s3
       .upload({
         Key: `${id}.${type}`,

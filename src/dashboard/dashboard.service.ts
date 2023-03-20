@@ -274,7 +274,7 @@ export class DashboardService {
       total_prod_quantity,
       total_maintenance_time,
       completed_maintenance_count: maintenance_down_time.length,
-      production_efficiency:
+      actual_vs_target:
         ((total_prod_quantity / total_target_production) * 100).toFixed(2) || 0,
     };
   }

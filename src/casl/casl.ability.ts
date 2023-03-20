@@ -161,6 +161,10 @@ export class CaslAbilityFactory {
       can('update', 'Items');
       can('delete', 'Items');
 
+      can('create', 'Block');
+      can('update', 'Block');
+      can('delete', 'Block');
+
       can('create', 'ItemCatagory');
       can('update', 'ItemCatagory');
       can('delete', 'ItemCatagory');
