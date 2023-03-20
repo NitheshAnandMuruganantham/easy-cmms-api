@@ -109,17 +109,6 @@ export class RoutineMaintanancesResolver {
   ) {
     return this.routineMaintanancesService.remove(session, id);
   }
-  @ResolveField(() => Machines, { name: 'meachine' })
-  machines(
-    @Session()
-    session: SessionContainer,
-    @Parent() routineMaintanance: routine_maintanances,
-  ) {
-    return this.routineMaintanancesService.machine(
-      session,
-      routineMaintanance.id,
-    );
-  }
 
   @ResolveField(() => Users, { name: 'assignee' })
   assignee(

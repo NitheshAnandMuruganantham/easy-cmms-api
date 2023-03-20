@@ -4,6 +4,7 @@ import * as Scalars from 'graphql-scalars';
 import { Machines } from '../machines/machines.model';
 import { Users } from '../users/users.model';
 import { block_settings } from '../block-settings/block-settings.model';
+import { production_data } from '../production-data/production-data.model';
 import { BlockCount } from './block-count.output';
 
 @ObjectType()
@@ -21,6 +22,9 @@ export class Block {
     @Field(() => [Machines], {nullable:true})
     machines?: Array<Machines>;
 
+    @Field(() => [String], {nullable:true})
+    Mailings!: Array<string>;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
@@ -32,6 +36,9 @@ export class Block {
 
     @Field(() => [block_settings], {nullable:true})
     block_settings?: Array<block_settings>;
+
+    @Field(() => [production_data], {nullable:true})
+    production_data?: Array<production_data>;
 
     @Field(() => BlockCount, {nullable:false})
     _count?: BlockCount;

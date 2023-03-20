@@ -281,10 +281,37 @@ export class AppService implements OnModuleInit {
     }
   }
 
-  getBlockSettings(block_id: number) {
-    return this.prisma.block_settings.findMany({
+  async getBlockSettings(block_id: bigint) {
+    const data = await this.prisma.block_settings.findMany({
       where: {
         block_id,
+      },
+    });
+    let result = {};
+    data.forEach((item) => {
+      result[item.name] = item.value;
+    });
+    return result;
+  }
+  inputProduction(data: any, block_id: bigint, user_id: bigint) {
+    return this.prisma.production_data.create({
+      data: {
+        from: data.from,
+        to: data.to,
+        actual_production: data.actual_production,
+        target_production: data.target_production,
+        total_down_time: data.total_down_time,
+        total_run_time: data.total_run_time,
+        updatedBy: {
+          connect: {
+            id: user_id,
+          },
+        },
+        Block: {
+          connect: {
+            id: block_id,
+          },
+        },
       },
     });
   }

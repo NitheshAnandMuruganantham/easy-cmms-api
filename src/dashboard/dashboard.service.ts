@@ -3,7 +3,8 @@ import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { Parser } from 'json2csv';
 import { S3Service } from 'src/s3/s3.service';
-
+import * as hbs from 'hbs';
+import * as fs from 'fs';
 @Injectable()
 export class DashboardService {
   constructor(
@@ -208,5 +209,73 @@ export class DashboardService {
     });
     const csv = new Parser().parse(dt);
     return this.s3Upload(csv);
+  }
+  async getProductionDashboard(session: SessionContainer) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+
+    const settings = await this.prisma.block_settings.findFirst({
+      where: {
+        name: 'PRODUCTION_SETTINGS',
+        block_id: user.blockId,
+      },
+    });
+
+    const report_closure_hour = settings.value['report_closure_hour'];
+
+    const production = await this.prisma.production_data.findMany({
+      where: {
+        from: {
+          gte: new Date(
+            new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
+              new Date().getDate() - 1,
+            ),
+          ),
+        },
+      },
+    });
+    let total_production_time = 0;
+    let total_downtime = 0;
+    let total_prod_quantity = 0;
+    let total_maintenance_time = 0;
+    let total_target_production = 0;
+    const maintenance_down_time = await this.prisma.maintenance.findMany({
+      where: {
+        resolved: true,
+        from: {
+          gte: new Date(
+            new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
+              new Date().getDate() - 1,
+            ),
+          ),
+        },
+      },
+    });
+    maintenance_down_time.forEach((m) => {
+      var diff = m.from.getTime() - m.elapsed.getTime();
+      var msec = diff;
+      var min = msec * 1000 * 60;
+      min = min < 0 ? 0 : min;
+      total_maintenance_time += min;
+    });
+
+    production.forEach((data) => {
+      total_prod_quantity += data.actual_production;
+      total_production_time += data.total_run_time;
+      total_downtime += data.total_down_time;
+      total_target_production += data.target_production;
+    });
+    return {
+      total_production_time,
+      total_downtime,
+      total_prod_quantity,
+      total_maintenance_time,
+      completed_maintenance_count: maintenance_down_time.length,
+      actual_vs_target:
+        ((total_prod_quantity / total_target_production) * 100).toFixed(2) || 0,
+    };
   }
 }

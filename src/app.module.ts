@@ -33,6 +33,7 @@ import { authMiddleware } from './middleware/auth';
 import { Redis } from 'ioredis';
 import { SentryModule } from '@ntegral/nestjs-sentry';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
+import { ProductionDataModule } from './production/production.module';
 
 @Module({
   imports: [
@@ -133,6 +134,7 @@ import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.mod
     UsersModule,
     TicketModule,
     AuthModule,
+    ProductionDataModule,
     DashboardModule,
     RoutineMaintanancesModule,
   ],

@@ -27,8 +27,8 @@ export class UsersCreateWithoutMaintenanceInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => BlockCreateNestedOneWithoutUsersInput, {nullable:true})
-    block?: BlockCreateNestedOneWithoutUsersInput;
+    @Field(() => BlockCreateNestedOneWithoutUsersInput, {nullable:false})
+    block!: BlockCreateNestedOneWithoutUsersInput;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

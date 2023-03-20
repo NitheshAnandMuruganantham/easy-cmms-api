@@ -14,9 +14,6 @@ export class Block_settingsMaxAggregate {
     @Field(() => String, {nullable:true})
     name?: string;
 
-    @Field(() => String, {nullable:true})
-    value?: string;
-
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 

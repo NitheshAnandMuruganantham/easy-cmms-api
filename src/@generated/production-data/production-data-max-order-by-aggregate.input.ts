@@ -9,10 +9,25 @@ export class production_dataMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    total_run_time?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    total_down_time?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    target_production?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    actual_production?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     from?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     to?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updated_by?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
@@ -21,5 +36,5 @@ export class production_dataMaxOrderByAggregateInput {
     updated_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    updated_by?: keyof typeof SortOrder;
+    blockId?: keyof typeof SortOrder;
 }

@@ -19,6 +19,9 @@ export class BlockGroupBy {
     @Field(() => String, {nullable:false})
     location!: string;
 
+    @Field(() => [String], {nullable:true})
+    Mailings?: Array<string>;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
 

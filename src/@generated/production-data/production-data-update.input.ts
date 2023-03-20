@@ -1,9 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
-import { GraphQLJSON } from 'graphql-type-json';
+import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UsersUpdateOneRequiredWithoutProduction_dataNestedInput } from '../users/users-update-one-required-without-production-data-nested.input';
+import { BlockUpdateOneWithoutProduction_dataNestedInput } from '../block/block-update-one-without-production-data-nested.input';
 
 @InputType()
 export class production_dataUpdateInput {
@@ -11,8 +12,17 @@ export class production_dataUpdateInput {
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     id?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => GraphQLJSON, {nullable:true})
-    data?: any;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    total_run_time?: NullableIntFieldUpdateOperationsInput;
+
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    total_down_time?: NullableIntFieldUpdateOperationsInput;
+
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    target_production?: NullableIntFieldUpdateOperationsInput;
+
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    actual_production?: NullableIntFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     from?: DateTimeFieldUpdateOperationsInput;
@@ -20,12 +30,15 @@ export class production_dataUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     to?: DateTimeFieldUpdateOperationsInput;
 
+    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
+    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
-    updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
+    @Field(() => BlockUpdateOneWithoutProduction_dataNestedInput, {nullable:true})
+    Block?: BlockUpdateOneWithoutProduction_dataNestedInput;
 }

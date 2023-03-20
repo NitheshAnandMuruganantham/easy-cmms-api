@@ -33,7 +33,7 @@ export class Users {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => GraphQLBigInt, {nullable:false,defaultValue:'1'})
+    @Field(() => GraphQLBigInt, {nullable:false})
     blockId!: bigint;
 
     @Field(() => Block, {nullable:false})

@@ -15,6 +15,9 @@ export class BlockCountAggregate {
     location!: number;
 
     @Field(() => Int, {nullable:false})
+    Mailings!: number;
+
+    @Field(() => Int, {nullable:false})
     created_at!: number;
 
     @Field(() => Int, {nullable:false})

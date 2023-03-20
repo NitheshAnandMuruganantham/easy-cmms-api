@@ -131,6 +131,15 @@ export class RoutineMaintanancesService {
   async findOne(session: SessionContainer, id: number) {
     const canGet = await this.prisma.routine_maintanances.findUnique({
       where: { id },
+      include: {
+        meachine: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
     });
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan(
@@ -167,7 +176,14 @@ export class RoutineMaintanancesService {
       data: updateRoutineMaintananceInput,
     });
     try {
-      this.schedulerRegistry.deleteCronJob(`routine_maintanances_${id}`);
+      const cronExists = this.schedulerRegistry.doesExist(
+        'cron',
+        `routine_maintenances_${data.id}`,
+      );
+      if (cronExists) {
+        this.schedulerRegistry.deleteCronJob(`routine_maintenances_${data.id}`);
+      }
+
       const j = new CronJob(data.cron, async () => {
         const from = new Date();
         from.setHours(from.getHours() + 1);
@@ -213,13 +229,18 @@ export class RoutineMaintanancesService {
           })
           .catch(() => null);
       });
-      this.schedulerRegistry.addCronJob(`routine_maintenances_${data.id}`, j);
+      this.schedulerRegistry.addCronJob(
+        `routine_maintenances_${data.id}${data.id}`,
+        j,
+      );
       j.start();
-    } catch {
+      return data;
+    } catch (e) {
       await this.prisma.routine_maintanances.update({
         where: { id },
         data: canUpdate,
       });
+      console.log(e);
       throw new BadRequestException("Can't update cron");
     }
   }

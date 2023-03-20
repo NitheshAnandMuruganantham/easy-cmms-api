@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Block } from '../block/block.model';
+import { GraphQLJSON } from 'graphql-type-json';
 
 @ObjectType()
 export class block_settings {
@@ -19,8 +20,8 @@ export class block_settings {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => String, {nullable:false})
-    value!: string;
+    @Field(() => GraphQLJSON, {nullable:false})
+    value!: any;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date;

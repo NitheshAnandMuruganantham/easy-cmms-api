@@ -11,6 +11,7 @@ import {
   Items,
   Block,
   machine_catagory,
+  production_data,
 } from '@prisma/client';
 import { PureAbility, AbilityBuilder, subject } from '@casl/ability';
 import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
@@ -34,6 +35,7 @@ export type subject = Subjects<{
   Reports: Reports;
   Replacements: Replacements;
   RoutineMaintanances: routine_maintanances;
+  ProductionData: production_data;
 }>;
 
 export type action = 'create' | 'read' | 'update' | 'delete';
@@ -75,6 +77,7 @@ export class CaslAbilityFactory {
     can('read', 'Section');
     can('read', 'machineCatagory');
     can('read', 'Block');
+    can('read', 'ProductionData');
     can('read', 'Items');
     can('read', 'Machines');
     can('read', 'ItemCatagory');
@@ -103,6 +106,12 @@ export class CaslAbilityFactory {
       can('read', 'Users');
       can('update', 'Users');
       can('delete', 'Users');
+
+      // production permissions
+      can('create', 'ProductionData');
+      can('read', 'ProductionData');
+      can('update', 'ProductionData');
+      can('delete', 'ProductionData');
 
       // RoutineMaintanances permissions
       can('create', 'RoutineMaintanances');
@@ -152,9 +161,20 @@ export class CaslAbilityFactory {
       can('update', 'Items');
       can('delete', 'Items');
 
+      can('create', 'Block');
+      can('update', 'Block');
+      can('delete', 'Block');
+
       can('create', 'ItemCatagory');
       can('update', 'ItemCatagory');
       can('delete', 'ItemCatagory');
+    }
+
+    if (user.extra_roles.includes('PRODUCTION_CONTROLLER')) {
+      can('create', 'ProductionData');
+      can('read', 'ProductionData');
+      can('update', 'ProductionData');
+      can('delete', 'ProductionData');
     }
 
     return build();

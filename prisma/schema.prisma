@@ -21,14 +21,16 @@ datasource db {
 
 model Block {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id             BigInt           @id @default(autoincrement())
-  name           String
-  location       String
-  machines       Machines[]
-  created_at     DateTime         @default(now())
-  updated_at     DateTime         @updatedAt
-  Users          Users[]
-  block_settings block_settings[]
+  id              BigInt            @id @default(autoincrement())
+  name            String
+  location        String
+  machines        Machines[]
+  Mailings        String[]          @default([])
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @updatedAt
+  Users           Users[]
+  block_settings  block_settings[]
+  production_data production_data[]
 }
 
 model catagory {
@@ -154,7 +156,7 @@ model Users {
   /// @DtoUpdateHidden
   user_auth_id         String?                @unique
   name                 String
-  blockId              BigInt                 @default(1)
+  blockId              BigInt
   block                Block                  @relation(fields: [blockId], references: [id])
   maintenance          Maintenance[]
   created_at           DateTime               @default(now())
@@ -222,10 +224,10 @@ enum ticket_status {
 model block_settings {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt   @id @default(autoincrement())
-  block_id   BigInt   @unique
+  block_id   BigInt
   block      Block    @relation(fields: [block_id], references: [id])
   name       String
-  value      String
+  value      Json
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -234,12 +236,17 @@ model block_settings {
 
 model production_data {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id         BigInt   @id @default(autoincrement())
-  data       Json     @default("{}")
-  from       DateTime
-  to         DateTime
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  updated_by BigInt
-  updatedBy  Users    @relation(fields: [updated_by], references: [id])
+  id                BigInt   @id @default(autoincrement())
+  total_run_time    Int?
+  total_down_time   Int?
+  target_production Int?
+  actual_production Int?
+  from              DateTime
+  to                DateTime
+  updated_by        BigInt
+  updatedBy         Users    @relation(fields: [updated_by], references: [id])
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+  Block             Block?   @relation(fields: [blockId], references: [id])
+  blockId           BigInt?
 }
