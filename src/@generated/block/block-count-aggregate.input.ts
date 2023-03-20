@@ -14,6 +14,9 @@ export class BlockCountAggregateInput {
     location?: true;
 
     @Field(() => Boolean, {nullable:true})
+    Mailings?: true;
+
+    @Field(() => Boolean, {nullable:true})
     created_at?: true;
 
     @Field(() => Boolean, {nullable:true})

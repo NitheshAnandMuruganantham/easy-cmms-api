@@ -167,9 +167,28 @@ export class AppController {
     return this.appService.raiseTicket(session, data);
   }
 
-  @Post('getBlockSettings')
+  @Get('getBlockSettings')
   @UseGuards(new AuthGuard())
-  getBlockSettings(@Session() session: SessionContainer, @Body() data: any) {
-    return this.appService.raiseTicket(session, data);
+  async getBlockSettings(@Session() session: SessionContainer) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+    return this.appService.getBlockSettings(user.blockId);
+  }
+
+  @Post('inputProduction')
+  @UseGuards(new AuthGuard())
+  async inputProduction(
+    @Session() session: SessionContainer,
+    @Body() data: any,
+  ) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+    return this.appService.inputProduction(data, user.blockId, user.id);
   }
 }

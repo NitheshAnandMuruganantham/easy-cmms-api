@@ -1,10 +1,11 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
-import { JsonFilter } from '../prisma/json-filter.input';
-import { Type } from 'class-transformer';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
+import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 
 @InputType()
 export class production_dataWhereInput {
@@ -21,9 +22,17 @@ export class production_dataWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     id?: BigIntFilter;
 
-    @Field(() => JsonFilter, {nullable:true})
-    @Type(() => JsonFilter)
-    data?: JsonFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    total_run_time?: IntNullableFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    total_down_time?: IntNullableFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    target_production?: IntNullableFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    actual_production?: IntNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     from?: DateTimeFilter;
@@ -31,15 +40,21 @@ export class production_dataWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     to?: DateTimeFilter;
 
+    @Field(() => BigIntFilter, {nullable:true})
+    updated_by?: BigIntFilter;
+
+    @Field(() => UsersRelationFilter, {nullable:true})
+    updatedBy?: UsersRelationFilter;
+
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
-    @Field(() => BigIntFilter, {nullable:true})
-    updated_by?: BigIntFilter;
+    @Field(() => BlockRelationFilter, {nullable:true})
+    Block?: BlockRelationFilter;
 
-    @Field(() => UsersRelationFilter, {nullable:true})
-    updatedBy?: UsersRelationFilter;
+    @Field(() => BigIntNullableFilter, {nullable:true})
+    blockId?: BigIntNullableFilter;
 }

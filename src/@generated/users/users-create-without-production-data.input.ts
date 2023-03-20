@@ -27,8 +27,8 @@ export class UsersCreateWithoutProduction_dataInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => BlockCreateNestedOneWithoutUsersInput, {nullable:true})
-    block?: BlockCreateNestedOneWithoutUsersInput;
+    @Field(() => BlockCreateNestedOneWithoutUsersInput, {nullable:false})
+    block!: BlockCreateNestedOneWithoutUsersInput;
 
     @Field(() => MaintenanceCreateNestedManyWithoutAssigneeInput, {nullable:true})
     maintenance?: MaintenanceCreateNestedManyWithoutAssigneeInput;

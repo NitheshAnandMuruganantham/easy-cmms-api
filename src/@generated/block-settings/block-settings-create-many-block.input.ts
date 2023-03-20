@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { GraphQLJSON } from 'graphql-type-json';
 
 @InputType()
 export class block_settingsCreateManyBlockInput {
@@ -11,8 +12,8 @@ export class block_settingsCreateManyBlockInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => String, {nullable:false})
-    value!: string;
+    @Field(() => GraphQLJSON, {nullable:false})
+    value!: any;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

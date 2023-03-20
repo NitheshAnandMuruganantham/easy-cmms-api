@@ -26,8 +26,8 @@ export class UsersUncheckedCreateWithoutProduction_dataInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    blockId?: bigint | number;
+    @Field(() => GraphQLBigInt, {nullable:false})
+    blockId!: bigint | number;
 
     @Field(() => MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput, {nullable:true})
     maintenance?: MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput;

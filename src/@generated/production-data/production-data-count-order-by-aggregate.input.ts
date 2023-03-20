@@ -9,7 +9,16 @@ export class production_dataCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    data?: keyof typeof SortOrder;
+    total_run_time?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    total_down_time?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    target_production?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    actual_production?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     from?: keyof typeof SortOrder;
@@ -18,11 +27,14 @@ export class production_dataCountOrderByAggregateInput {
     to?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    updated_by?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    updated_by?: keyof typeof SortOrder;
+    blockId?: keyof typeof SortOrder;
 }

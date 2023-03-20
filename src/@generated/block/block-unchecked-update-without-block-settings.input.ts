@@ -3,8 +3,10 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { MachinesUncheckedUpdateManyWithoutBlockNestedInput } from '../machines/machines-unchecked-update-many-without-block-nested.input';
+import { BlockUpdateMailingsInput } from './block-update-mailings.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UsersUncheckedUpdateManyWithoutBlockNestedInput } from '../users/users-unchecked-update-many-without-block-nested.input';
+import { production_dataUncheckedUpdateManyWithoutBlockNestedInput } from '../production-data/production-data-unchecked-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUncheckedUpdateWithoutBlock_settingsInput {
@@ -21,6 +23,9 @@ export class BlockUncheckedUpdateWithoutBlock_settingsInput {
     @Field(() => MachinesUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
     machines?: MachinesUncheckedUpdateManyWithoutBlockNestedInput;
 
+    @Field(() => BlockUpdateMailingsInput, {nullable:true})
+    Mailings?: BlockUpdateMailingsInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
@@ -29,4 +34,7 @@ export class BlockUncheckedUpdateWithoutBlock_settingsInput {
 
     @Field(() => UsersUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
     Users?: UsersUncheckedUpdateManyWithoutBlockNestedInput;
+
+    @Field(() => production_dataUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
+    production_data?: production_dataUncheckedUpdateManyWithoutBlockNestedInput;
 }

@@ -20,6 +20,9 @@ export class BlockOrderByWithAggregationInput {
     location?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    Mailings?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

@@ -4,6 +4,7 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { MachinesOrderByRelationAggregateInput } from '../machines/machines-order-by-relation-aggregate.input';
 import { UsersOrderByRelationAggregateInput } from '../users/users-order-by-relation-aggregate.input';
 import { block_settingsOrderByRelationAggregateInput } from '../block-settings/block-settings-order-by-relation-aggregate.input';
+import { production_dataOrderByRelationAggregateInput } from '../production-data/production-data-order-by-relation-aggregate.input';
 import { BlockOrderByRelevanceInput } from './block-order-by-relevance.input';
 
 @InputType()
@@ -22,6 +23,9 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
     machines?: MachinesOrderByRelationAggregateInput;
 
     @Field(() => SortOrder, {nullable:true})
+    Mailings?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -32,6 +36,9 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => block_settingsOrderByRelationAggregateInput, {nullable:true})
     block_settings?: block_settingsOrderByRelationAggregateInput;
+
+    @Field(() => production_dataOrderByRelationAggregateInput, {nullable:true})
+    production_data?: production_dataOrderByRelationAggregateInput;
 
     @Field(() => BlockOrderByRelevanceInput, {nullable:true})
     _relevance?: BlockOrderByRelevanceInput;

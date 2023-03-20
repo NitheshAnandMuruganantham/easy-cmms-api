@@ -2,7 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { MachinesUncheckedCreateNestedManyWithoutBlockInput } from '../machines/machines-unchecked-create-nested-many-without-block.input';
+import { BlockCreateMailingsInput } from './block-create-mailings.input';
 import { UsersUncheckedCreateNestedManyWithoutBlockInput } from '../users/users-unchecked-create-nested-many-without-block.input';
+import { production_dataUncheckedCreateNestedManyWithoutBlockInput } from '../production-data/production-data-unchecked-create-nested-many-without-block.input';
 
 @InputType()
 export class BlockUncheckedCreateWithoutBlock_settingsInput {
@@ -19,6 +21,9 @@ export class BlockUncheckedCreateWithoutBlock_settingsInput {
     @Field(() => MachinesUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
     machines?: MachinesUncheckedCreateNestedManyWithoutBlockInput;
 
+    @Field(() => BlockCreateMailingsInput, {nullable:true})
+    Mailings?: BlockCreateMailingsInput;
+
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
@@ -27,4 +32,7 @@ export class BlockUncheckedCreateWithoutBlock_settingsInput {
 
     @Field(() => UsersUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
     Users?: UsersUncheckedCreateNestedManyWithoutBlockInput;
+
+    @Field(() => production_dataUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
+    production_data?: production_dataUncheckedCreateNestedManyWithoutBlockInput;
 }

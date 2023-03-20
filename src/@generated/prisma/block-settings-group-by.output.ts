@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { GraphQLJSON } from 'graphql-type-json';
 import { Block_settingsCountAggregate } from './block-settings-count-aggregate.output';
 import { Block_settingsAvgAggregate } from '../block/block-settings-avg-aggregate.output';
 import { Block_settingsSumAggregate } from '../block/block-settings-sum-aggregate.output';
@@ -19,8 +20,8 @@ export class Block_settingsGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => String, {nullable:false})
-    value!: string;
+    @Field(() => GraphQLJSON, {nullable:false})
+    value!: any;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
