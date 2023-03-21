@@ -268,12 +268,12 @@ export class DashboardService {
       total_target_production += data.target_production;
     });
     return {
-      total_production_time,
-      total_downtime,
+      'total_production_time_(hours)': (total_production_time / 60).toFixed(2),
+      'total_downtime_(hours)': (total_downtime / 60).toFixed(2),
       total_prod_quantity,
-      total_maintenance_time,
+      'total_maintenance_time_(min)': total_maintenance_time,
       completed_maintenance_count: maintenance_down_time.length,
-      actual_vs_target:
+      'actual_vs_target_production_(%)':
         ((total_prod_quantity / total_target_production) * 100).toFixed(2) || 0,
     };
   }

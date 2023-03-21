@@ -105,7 +105,7 @@ export class TicketResolver {
   }
 
   @ResolveField(() => Machines)
-  machine(@Parent() { id }: Ticket, @Session() session: SessionContainer) {
-    return this.ticketService.machine(session, id);
+  machine(@Parent() { machines }: Ticket) {
+    return machines;
   }
 }

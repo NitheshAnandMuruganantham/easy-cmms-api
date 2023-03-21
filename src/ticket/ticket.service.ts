@@ -56,9 +56,17 @@ export class TicketService {
         AND: [where],
       },
       orderBy,
-
       skip,
       take,
+      include: {
+        machines: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
     });
     const result = data.map((ticket) => {
       return {
@@ -97,15 +105,25 @@ export class TicketService {
     const ability = await this.caslFactory.getCurrentUserAbility(session);
     const ticketToFind = await this.prisma.ticket.findUnique({
       where: { id },
+      include: {
+        machines: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
     });
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Ticket', ticketToFind),
     );
-    return {
+    const result = {
       ...ticketToFind,
       photos: this.s3Service.getSignedUrl(ticketToFind.photos),
     };
+    return result;
   }
 
   async update(
@@ -126,6 +144,15 @@ export class TicketService {
       where: { id },
       // @ts-ignore
       data: updateTicketInput,
+      include: {
+        machines: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
     });
   }
 
@@ -141,6 +168,15 @@ export class TicketService {
 
     return this.prisma.ticket.delete({
       where: { id },
+      include: {
+        machines: {
+          include: {
+            machine_catagory: true,
+            block: true,
+            section: true,
+          },
+        },
+      },
     });
   }
 
@@ -162,25 +198,5 @@ export class TicketService {
       subject('Maintenance', maintananceToFind),
     );
     return maintananceToFind;
-  }
-
-  async machine(session: SessionContainer, id: bigint) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
-    const machineToFind = await this.prisma.machines.findMany({
-      where: {
-        Ticket: {
-          every: {
-            id: id,
-          },
-        },
-      },
-      include: {
-        block: true,
-        machine_catagory: true,
-        section: true,
-      },
-    });
-
-    return machineToFind;
   }
 }

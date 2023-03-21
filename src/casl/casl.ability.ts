@@ -98,6 +98,7 @@ export class CaslAbilityFactory {
 
     if (user.role === 'FITTER') {
       can('update', 'Maintenance');
+      can('create', 'Maintenance');
     }
 
     if (user.role === 'MANAGER' || user.role === 'ADMIN') {

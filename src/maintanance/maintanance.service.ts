@@ -31,12 +31,7 @@ export class MaintenanceService {
   ) {
     const ability = await this.casl.getCurrentUserAbility(session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Maintenance');
-    if (createMaintenanceInput?.photo) {
-      createMaintenanceInput.photo = await this.s3Service.uploadBase64Image(
-        createMaintenanceInput.photo,
-        nanoid(10),
-      );
-    }
+
     const user = await this.prisma.users.findUnique({
       where: {
         user_auth_id: session.getUserId(),
@@ -60,6 +55,7 @@ export class MaintenanceService {
         },
       },
     });
+
     this.twilio.client.messages.create({
       to: data.assignee.phone,
       from: this.config.get('TWILIO_FROM'),

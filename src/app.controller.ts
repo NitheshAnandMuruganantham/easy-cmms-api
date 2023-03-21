@@ -123,6 +123,33 @@ export class AppController {
   }
 
   @UseGuards(new AuthGuard())
+  @Post('PastMaintenance')
+  async getPastMaintenance(
+    @Body()
+    {
+      take,
+      skip,
+      orderBy,
+      where,
+    }: {
+      take: number;
+      skip: number;
+      orderBy: any;
+      where: any;
+    },
+    @Session()
+    session: SessionContainer,
+  ) {
+    return this.appService.getPastMaintenances(
+      session,
+      take,
+      skip,
+      orderBy,
+      where,
+    );
+  }
+
+  @UseGuards(new AuthGuard())
   @Post('tickets')
   async getTickets(
     @Body()
@@ -190,5 +217,28 @@ export class AppController {
       },
     });
     return this.appService.inputProduction(data, user.blockId, user.id);
+  }
+
+  @Post('inputPastMaintenance')
+  @UseGuards(new AuthGuard())
+  async inputPastMaintenance(
+    @Session() session: SessionContainer,
+    @Body() data: any,
+  ) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: session.getUserId(),
+      },
+    });
+    return this.appService.inputPastMaintenance(data, user.id);
+  }
+
+  @Post('punchProduction')
+  @UseGuards(new AuthGuard())
+  async punchProduction(
+    @Session() session: SessionContainer,
+    @Body() data: any,
+  ) {
+    return this.appService.punchProduction(session.getUserId(), data);
   }
 }
