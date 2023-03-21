@@ -172,6 +172,69 @@ export class AppService implements OnModuleInit {
     }
   }
 
+  async getPastMaintenances(
+    session: SessionContainer,
+    take: number,
+    skip: number,
+    orderBy: any,
+    where: any,
+  ) {
+    const user_id = session.getUserId();
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: user_id,
+      },
+    });
+    if (user.role === 'FITTER') {
+      return this.prisma.maintenance.findMany({
+        where: {
+          AND: [
+            {
+              assignee_id: user.id,
+            },
+            { ...where },
+          ],
+        },
+        take,
+        skip,
+        orderBy: [
+          {
+            created_at: 'desc',
+          },
+        ],
+        include: {
+          assignee: true,
+          ticket: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    } else {
+      return this.prisma.maintenance.findMany({
+        where,
+        take,
+        skip,
+        orderBy,
+        include: {
+          assignee: true,
+          ticket: true,
+          machines: {
+            include: {
+              machine_catagory: true,
+              block: true,
+              section: true,
+            },
+          },
+        },
+      });
+    }
+  }
+
   getRoutine(take: number, skip: number, orderBy: any, where: any) {
     return this.prisma.routine_maintanances.findMany({
       where,
@@ -314,5 +377,79 @@ export class AppService implements OnModuleInit {
         },
       },
     });
+  }
+
+  async inputPastMaintenance(data: any, user_id: any) {
+    const photo_url = await this.s3Service.uploadBase64Image(
+      data.photo,
+      `${nanoid(10)}`,
+    );
+    return this.prisma.maintenance.create({
+      data: {
+        description: data.description,
+        photo: photo_url,
+        from: data.from,
+        to: data.to,
+        name: data.name,
+        resolved: true,
+        un_planned: true,
+        machines: {
+          connect: {
+            id: data.machine_id,
+          },
+        },
+        assignee: {
+          connect: {
+            id: user_id,
+          },
+        },
+      },
+    });
+  }
+
+  async punchProduction(user_id: string, data: any) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        user_auth_id: user_id,
+      },
+    });
+    let from = new Date();
+    let to = new Date();
+    if (data.shift === 'A') {
+      from.setHours(6, 0, 0, 0);
+      to.setHours(14, 0, 0, 0);
+    } else if (data.shift === 'B') {
+      from.setHours(14, 0, 0, 0);
+      to.setHours(22, 0, 0, 0);
+    } else if (data.shift === 'C') {
+      from = new Date(
+        new Date(from.setHours(22, 0, 0, 0)).setDate(from.getDate() - 1),
+      );
+      to.setHours(6, 0, 0, 0);
+    }
+    const production = await this.prisma.production_data.create({
+      data: {
+        from,
+        to,
+        actual_production: data.actual_production,
+        target_production: data.target_production,
+        total_down_time: data.total_down_time,
+        total_run_time: data.total_run_time,
+        updatedBy: {
+          connect: {
+            id: user.id,
+          },
+        },
+      },
+    });
+    await this.twilio.client.messages
+      .create({
+        body: `Production punched by ${user.name} at ${new Date()} for shift ${
+          data.shift
+        }`,
+        to: user.phone,
+      })
+      .catch((err) => undefined);
+    return production;
   }
 }
