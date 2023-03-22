@@ -270,7 +270,7 @@ export class DashboardService {
     return {
       'total_production_time_(hours)': (total_production_time / 60).toFixed(2),
       'total_downtime_(hours)': (total_downtime / 60).toFixed(2),
-      total_prod_quantity,
+      total_prod_quantity: (total_prod_quantity / 1000).toFixed(2),
       'total_maintenance_time_(min)': total_maintenance_time,
       completed_maintenance_count: maintenance_down_time.length,
       'actual_vs_target_production_(%)':
