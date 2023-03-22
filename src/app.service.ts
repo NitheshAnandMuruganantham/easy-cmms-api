@@ -195,7 +195,7 @@ export class AppService implements OnModuleInit {
             { ...where },
           ],
         },
-        take,
+        take: take || 30,
         skip,
         orderBy: [
           {
