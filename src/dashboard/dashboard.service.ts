@@ -236,9 +236,7 @@ export class DashboardService {
         ),
       );
     }
-    console.log('=============================');
-    console.log(from.toLocaleString());
-    console.log('=============================');
+
     const production = await this.prisma.production_data.findMany({
       where: {
         from: {
@@ -260,11 +258,13 @@ export class DashboardService {
       },
     });
     maintenance_down_time.forEach((m) => {
-      var diff = m.from.getTime() - m.elapsed.getTime();
-      var msec = diff;
-      var min = msec * 1000 * 60;
-      min = min < 0 ? 0 : min;
-      total_maintenance_time += min;
+      if (m?.from && m?.elapsed) {
+        var diff = m.from.getTime() - m.elapsed.getTime();
+        var msec = diff;
+        var min = msec * 1000 * 60;
+        min = min < 0 ? 0 : min;
+        total_maintenance_time += min;
+      }
     });
 
     production.forEach((data) => {
