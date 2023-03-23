@@ -222,7 +222,7 @@ export class DashboardService {
     const production = await this.prisma.production_data.findMany({
       where: {
         from: {
-          gte: new Date(
+          gt: new Date(
             new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
               new Date().getDate() - 1,
             ),
@@ -239,16 +239,9 @@ export class DashboardService {
       where: {
         resolved: true,
         from: {
-          gte: new Date(
+          gt: new Date(
             new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
               new Date().getDate() - 1,
-            ),
-          ),
-        },
-        to: {
-          lte: new Date(
-            new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
-              new Date().getDate(),
             ),
           ),
         },
