@@ -68,6 +68,20 @@ export class S3Service {
       .then(() => `${this.AWS_S3_BUCKET}/reports/${key}.csv`);
   }
 
+  async uploadXlsxBuffer(data: Buffer) {
+    const key = keygen.url(keygen.medium);
+    return await this.s3
+      .upload({
+        Bucket: this.AWS_S3_BUCKET + `/reports`,
+        Key: `${key}.csv`,
+        Body: data,
+      })
+      .promise()
+      .then((d) => {
+        return d.Location;
+      });
+  }
+
   async s3_upload(
     file: Buffer,
     bucket: string,

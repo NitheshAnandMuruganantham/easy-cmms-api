@@ -34,6 +34,7 @@ import { Redis } from 'ioredis';
 import { SentryModule } from '@ntegral/nestjs-sentry';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
 import { ProductionDataModule } from './production/production.module';
+import { GenerateReportModule } from './generate-report/generate-report.module';
 
 @Module({
   imports: [
@@ -137,6 +138,7 @@ import { ProductionDataModule } from './production/production.module';
     ProductionDataModule,
     DashboardModule,
     RoutineMaintanancesModule,
+    GenerateReportModule,
   ],
   controllers: [AppController],
   providers: [AppService, S3Service, MailerService, PrismaService],
