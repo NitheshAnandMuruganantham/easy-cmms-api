@@ -3,6 +3,7 @@ import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { Parser } from 'json2csv';
 import { S3Service } from 'src/s3/s3.service';
+import * as humanize from 'humanize-duration';
 
 @Injectable()
 export class DashboardService {
@@ -216,14 +217,7 @@ export class DashboardService {
       },
     });
 
-    const settings = await this.prisma.block_settings.findFirst({
-      where: {
-        name: 'PRODUCTION_SETTINGS',
-        block_id: user.blockId,
-      },
-    });
-
-    const report_closure_hour = settings.value['report_closure_hour'];
+    const report_closure_hour = 6;
 
     const production = await this.prisma.production_data.findMany({
       where: {
@@ -251,6 +245,13 @@ export class DashboardService {
             ),
           ),
         },
+        to: {
+          lte: new Date(
+            new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
+              new Date().getDate(),
+            ),
+          ),
+        },
       },
     });
     maintenance_down_time.forEach((m) => {
@@ -268,10 +269,10 @@ export class DashboardService {
       total_target_production += data.target_production;
     });
     return {
-      'total_production_time_(hours)': (total_production_time / 60).toFixed(2),
-      'total_downtime_(hours)': (total_downtime / 60).toFixed(2),
+      total_production_time: humanize(total_production_time * 60 * 1000),
+      total_downtime: humanize(total_downtime * 60 * 1000),
+      total_maintenance_time: humanize(total_maintenance_time * 60 * 1000),
       total_prod_quantity: (total_prod_quantity / 1000).toFixed(2),
-      'total_maintenance_time_(min)': total_maintenance_time,
       completed_maintenance_count: maintenance_down_time.length,
       'actual_vs_target_production_(%)':
         ((total_prod_quantity / total_target_production) * 100).toFixed(2) || 0,
