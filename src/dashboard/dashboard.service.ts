@@ -219,25 +219,30 @@ export class DashboardService {
 
     const report_closure_hour = 6;
     let from = new Date(
-      new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
+      new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
         new Date().getDate() - 1,
       ),
     );
-
     if (
-      new Date(new Date(from).setDate(from.getDate() + 1)).getTime() <
-      new Date().getTime()
+      new Date(
+        new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
+          new Date().getDate(),
+        ),
+      ).getTime() < new Date().getTime()
     ) {
       from = new Date(
-        new Date(new Date().setHours(report_closure_hour, 0, 0, 0)).setDate(
+        new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
           new Date().getDate(),
         ),
       );
     }
+    console.log('=============================');
+    console.log(from.toLocaleString());
+    console.log('=============================');
     const production = await this.prisma.production_data.findMany({
       where: {
         from: {
-          gt: from,
+          gte: from,
         },
       },
     });
@@ -250,7 +255,7 @@ export class DashboardService {
       where: {
         resolved: true,
         from: {
-          gt: from,
+          gte: from,
         },
       },
     });

@@ -416,14 +416,14 @@ export class AppService implements OnModuleInit {
     let from = new Date();
     let to = new Date();
     if (data.shift === 'A') {
-      from.setHours(6, 0, 0, 0);
+      from.setHours(6, 1, 0, 0);
       to.setHours(14, 0, 0, 0);
     } else if (data.shift === 'B') {
-      from.setHours(14, 0, 0, 0);
+      from.setHours(14, 1, 0, 0);
       to.setHours(22, 0, 0, 0);
     } else if (data.shift === 'C') {
       from = new Date(
-        new Date(from.setHours(22, 0, 0, 0)).setDate(from.getDate() - 1),
+        new Date(from.setHours(22, 1, 0, 0)).setDate(from.getDate() - 1),
       );
       to.setHours(6, 0, 0, 0);
     }
