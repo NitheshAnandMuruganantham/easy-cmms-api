@@ -26,7 +26,7 @@ export class GenerateReportService {
               lte: to,
             },
           },
-          maintenanceFilter,
+          ...maintenanceFilter,
         ],
       },
       include: {
@@ -77,7 +77,7 @@ export class GenerateReportService {
               lte: to,
             },
           },
-          ticketFilter,
+          ...ticketFilter,
         ],
       },
       include: {
@@ -164,7 +164,7 @@ export class GenerateReportService {
                 lte: to,
               },
             },
-            routineMaintenancesFilter,
+            ...routineMaintenancesFilter,
           ],
         },
         include: {
@@ -198,7 +198,7 @@ export class GenerateReportService {
               lte: to,
             },
           },
-          productionFilter,
+          ...productionFilter,
         ],
       },
       include: {

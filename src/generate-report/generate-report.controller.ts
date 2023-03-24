@@ -25,19 +25,20 @@ export class GenerateReportController {
       routineMaintenancesFilter,
       productionFilter,
     } = JSON.parse(buffer.toString('utf-8'));
-    await this.generateReportService.generateCsvReportForAllMaintenance(
-      fromDate,
-      toDate,
-      maintenanceFilter || {},
-      ticketFilter || {},
-      routineMaintenancesFilter || {},
-      productionFilter || {},
-    );
+    const data =
+      await this.generateReportService.generateCsvReportForAllMaintenance(
+        fromDate,
+        toDate,
+        maintenanceFilter || [],
+        ticketFilter || [],
+        routineMaintenancesFilter || [],
+        productionFilter || [],
+      );
     res.set({
       'Content-Type':
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'Content-Disposition': `attachment; filename=${filename}`,
     });
-    res.end(buffer);
+    res.end(data);
   }
 }
