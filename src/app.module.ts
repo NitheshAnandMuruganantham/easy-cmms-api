@@ -1,4 +1,5 @@
 import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { Module, NestModule } from '@nestjs/common';
 import { createPrismaRedisCache } from 'prisma-redis-middleware';
 import { ConfigService } from '@nestjs/config';
@@ -8,7 +9,6 @@ import { TwilioModule } from 'nestjs-twilio';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { S3Service } from './s3/s3.service';
-import { MailerService } from './mailer/mailer.service';
 import { CaslModule } from './casl/casl.module';
 import { AppService } from './app.service';
 import { BlockModule } from './block/block.module';
@@ -35,6 +35,8 @@ import { SentryModule } from '@ntegral/nestjs-sentry';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
 import { ProductionDataModule } from './production/production.module';
 import { GenerateReportModule } from './generate-report/generate-report.module';
+import { CronModule } from './cron/cron.module';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -75,10 +77,19 @@ import { GenerateReportModule } from './generate-report/generate-report.module';
     MailerModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
+        template: {
+          dir: join(__dirname, '../templates'),
+          adapter: new HandlebarsAdapter(),
+        },
+        defaults: {
+          from: `${configService.get('SMTP_FROM_NAME')} <${configService.get(
+            'SMTP_FROM',
+          )}>`,
+        },
         transport: {
           host: configService.get('SMTP_HOST'),
           port: configService.get('SMTP_PORT'),
-          secure: true,
+          secure: false,
           defaults: {
             from: configService.get('SMTP_FROM'),
           },
@@ -139,9 +150,10 @@ import { GenerateReportModule } from './generate-report/generate-report.module';
     DashboardModule,
     RoutineMaintanancesModule,
     GenerateReportModule,
+    CronModule,
   ],
   controllers: [AppController],
-  providers: [AppService, S3Service, MailerService, PrismaService],
+  providers: [AppService, S3Service, PrismaService],
 })
 export class AppModule implements NestModule {
   constructor(private readonly config: ConfigService) {}
