@@ -19,23 +19,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
-        with:
-          role-to-assume: arn:aws:iam::596164355734:role/ecr-actions
-          aws-region: ap-south-1
+      - run: docker build --tag easy-cmms-prod-server:production .
       
-      # Login to AWS ECR
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      # Build and tag the Docker image using docker/build-push-action
-      - name: Build and tag Docker image
-        id: docker-build
-        uses: docker/build-push-action@v2
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@v1
         with:
-          context: .
-          file: ./Dockerfile # Path to your Dockerfile
-          push: true # Push the image after building it
-          tags: ${{ steps.login-ecr.outputs.registry }}/easy-cmms-prod-server:${{ github.sha }} # Replace MY_ECR_REPOSITORY with your ECR repository name
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ap-south-1
+          image: easy-cmms-prod-server:production
