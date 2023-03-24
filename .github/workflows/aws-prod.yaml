@@ -1,0 +1,35 @@
+# This workflow will build and push a Docker image to Amazon ECR
+
+name: Build and Push Docker Image to AWS ECR
+
+on:
+  # Trigger the workflow on push to main branch
+  push:
+    branches: [master]
+
+  # Or trigger the workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Login to AWS ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Build and tag the Docker image using docker/build-push-action
+      - name: Build and tag Docker image
+        id: docker-build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile # Path to your Dockerfile
+          push: true # Push the image after building it
+          tags: ${{ steps.login-ecr.outputs.registry }}/easy-cmms-prod-server:${{ github.sha }} # Replace MY_ECR_REPOSITORY with your ECR repository name
