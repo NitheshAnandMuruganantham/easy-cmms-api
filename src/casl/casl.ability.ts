@@ -70,7 +70,7 @@ export class CaslAbilityFactory {
     if (!user) {
       throw new ForbiddenError('user not exists in the organization');
     }
-    const { can, build } = new AbilityBuilder<AppAbility>(createPrismaAbility);
+    const { can, build } = new AbilityBuilder<any>(createPrismaAbility);
 
     // Wildcard permissions for testing
     can('read', 'Ticket');
