@@ -96,6 +96,14 @@ export class CaslAbilityFactory {
       });
     }
 
+    if (user?.extra_roles?.includes('SUPERVISOR')) {
+      can('create', 'Ticket', {
+        user_id: {
+          equals: user.id,
+        },
+      });
+    }
+
     if (user.role === 'FITTER') {
       can('update', 'Maintenance');
       can('create', 'Maintenance');
