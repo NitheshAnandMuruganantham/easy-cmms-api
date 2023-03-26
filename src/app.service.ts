@@ -217,9 +217,13 @@ export class AppService implements OnModuleInit {
     } else {
       return this.prisma.maintenance.findMany({
         where,
-        take,
+        take: take || 30,
         skip,
-        orderBy,
+        orderBy: [
+          {
+            created_at: 'desc',
+          },
+        ],
         include: {
           assignee: true,
           ticket: true,
@@ -323,7 +327,10 @@ export class AppService implements OnModuleInit {
     });
     if (!user) {
       throw new ForbiddenError('user not exists');
-    } else if (user.role !== 'SUPERVISOR') {
+    } else if (
+      user.role !== 'SUPERVISOR' ||
+      !user.extra_roles.includes('SUPERVISOR')
+    ) {
       throw new ForbiddenError('permission error');
     } else {
       const photos = await this.s3Service.uploadBase64Image(
