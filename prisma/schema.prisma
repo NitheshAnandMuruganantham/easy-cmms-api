@@ -236,17 +236,14 @@ model block_settings {
 
 model production_data {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id                BigInt   @id @default(autoincrement())
-  total_run_time    Int?
-  total_down_time   Int?
-  target_production Int?
-  actual_production Int?
-  from              DateTime
-  to                DateTime
-  updated_by        BigInt
-  updatedBy         Users    @relation(fields: [updated_by], references: [id])
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
-  Block             Block?   @relation(fields: [blockId], references: [id])
-  blockId           BigInt?
+  id         BigInt   @id @default(autoincrement())
+  production Json     @default("{}")
+  shift      String
+  date       DateTime
+  updated_by BigInt
+  updatedBy  Users    @relation(fields: [updated_by], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Block      Block?   @relation(fields: [blockId], references: [id])
+  blockId    BigInt?
 }

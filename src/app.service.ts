@@ -327,11 +327,6 @@ export class AppService implements OnModuleInit {
     });
     if (!user) {
       throw new ForbiddenError('user not exists');
-    } else if (
-      user.role !== 'SUPERVISOR' ||
-      !user.extra_roles.includes('SUPERVISOR')
-    ) {
-      throw new ForbiddenError('permission error');
     } else {
       const photos = await this.s3Service.uploadBase64Image(
         data.photos,
@@ -362,28 +357,6 @@ export class AppService implements OnModuleInit {
       result[item.name] = item.value;
     });
     return result;
-  }
-  inputProduction(data: any, block_id: bigint, user_id: bigint) {
-    return this.prisma.production_data.create({
-      data: {
-        from: data.from,
-        to: data.to,
-        actual_production: data.actual_production,
-        target_production: data.target_production,
-        total_down_time: data.total_down_time,
-        total_run_time: data.total_run_time,
-        updatedBy: {
-          connect: {
-            id: user_id,
-          },
-        },
-        Block: {
-          connect: {
-            id: block_id,
-          },
-        },
-      },
-    });
   }
 
   async inputPastMaintenance(data: any, user_id: any) {
@@ -420,43 +393,26 @@ export class AppService implements OnModuleInit {
         user_auth_id: user_id,
       },
     });
-    let from = new Date();
-    let to = new Date();
-    if (data.shift === 'A') {
-      from.setHours(6, 1, 0, 0);
-      to.setHours(14, 0, 0, 0);
-    } else if (data.shift === 'B') {
-      from.setHours(14, 1, 0, 0);
-      to.setHours(22, 0, 0, 0);
-    } else if (data.shift === 'C') {
-      from = new Date(
-        new Date(from.setHours(22, 1, 0, 0)).setDate(from.getDate() - 1),
-      );
-      to.setHours(6, 0, 0, 0);
-    }
-    const production = await this.prisma.production_data.create({
+    console.log(data);
+    const prod = await this.prisma.production_data.create({
       data: {
-        from,
-        to,
-        actual_production: data.actual_production,
-        target_production: data.target_production,
-        total_down_time: data.total_down_time,
-        total_run_time: data.total_run_time,
         updatedBy: {
           connect: {
             id: user.id,
           },
         },
+        date: new Date(new Date(data.date).setHours(0, 0, 0, 0)).toISOString(),
+        shift: data.shift,
+        Block: {
+          connect: {
+            id: user.blockId,
+          },
+        },
+
+        production: data,
       },
     });
-    await this.twilio.client.messages
-      .create({
-        body: `Production punched by ${user.name} at ${new Date()} for shift ${
-          data.shift
-        }`,
-        to: user.phone,
-      })
-      .catch((err) => undefined);
-    return production;
+    console.log(prod);
+    return 'ok';
   }
 }

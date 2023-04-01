@@ -9,22 +9,13 @@ export class Production_dataCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
-    total_run_time!: number;
+    production!: number;
 
     @Field(() => Int, {nullable:false})
-    total_down_time!: number;
+    shift!: number;
 
     @Field(() => Int, {nullable:false})
-    target_production!: number;
-
-    @Field(() => Int, {nullable:false})
-    actual_production!: number;
-
-    @Field(() => Int, {nullable:false})
-    from!: number;
-
-    @Field(() => Int, {nullable:false})
-    to!: number;
+    date!: number;
 
     @Field(() => Int, {nullable:false})
     updated_by!: number;

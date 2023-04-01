@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Production_dataMaxAggregate {
@@ -9,23 +8,11 @@ export class Production_dataMaxAggregate {
     @Field(() => GraphQLBigInt, {nullable:true})
     id?: bigint | number;
 
-    @Field(() => Int, {nullable:true})
-    total_run_time?: number;
-
-    @Field(() => Int, {nullable:true})
-    total_down_time?: number;
-
-    @Field(() => Int, {nullable:true})
-    target_production?: number;
-
-    @Field(() => Int, {nullable:true})
-    actual_production?: number;
+    @Field(() => String, {nullable:true})
+    shift?: string;
 
     @Field(() => Date, {nullable:true})
-    from?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    to?: Date | string;
+    date?: Date | string;
 
     @Field(() => GraphQLBigInt, {nullable:true})
     updated_by?: bigint | number;

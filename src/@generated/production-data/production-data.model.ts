@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
+import { GraphQLJSON } from 'graphql-type-json';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Users } from '../users/users.model';
 import { Block } from '../block/block.model';
@@ -12,23 +12,14 @@ export class production_data {
     @Field(() => Scalars.GraphQLBigInt, {nullable:false})
     id!: bigint;
 
-    @Field(() => Int, {nullable:true})
-    total_run_time!: number | null;
+    @Field(() => GraphQLJSON, {nullable:false,defaultValue:'{}'})
+    production!: any;
 
-    @Field(() => Int, {nullable:true})
-    total_down_time!: number | null;
-
-    @Field(() => Int, {nullable:true})
-    target_production!: number | null;
-
-    @Field(() => Int, {nullable:true})
-    actual_production!: number | null;
+    @Field(() => String, {nullable:false})
+    shift!: string;
 
     @Field(() => Date, {nullable:false})
-    from!: Date;
-
-    @Field(() => Date, {nullable:false})
-    to!: Date;
+    date!: Date;
 
     @Field(() => GraphQLBigInt, {nullable:false})
     updated_by!: bigint;

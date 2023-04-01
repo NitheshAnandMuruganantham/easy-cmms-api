@@ -205,20 +205,6 @@ export class AppController {
     return this.appService.getBlockSettings(user.blockId);
   }
 
-  @Post('inputProduction')
-  @UseGuards(new AuthGuard())
-  async inputProduction(
-    @Session() session: SessionContainer,
-    @Body() data: any,
-  ) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
-    return this.appService.inputProduction(data, user.blockId, user.id);
-  }
-
   @Post('inputPastMaintenance')
   @UseGuards(new AuthGuard())
   async inputPastMaintenance(

@@ -189,26 +189,6 @@ export class GenerateReportService {
       sheet_3.push(row);
     });
 
-    const AllProductionEntry = await this.prisma.production_data.findMany({
-      where: {
-        AND: [
-          {
-            created_at: {
-              gte: from,
-              lte: to,
-            },
-          },
-          ...productionFilter,
-        ],
-      },
-      include: {
-        updatedBy: true,
-      },
-      orderBy: {
-        created_at: 'desc',
-      },
-    });
-
     let sheet_4 = [
       [
         'id',
@@ -223,19 +203,6 @@ export class GenerateReportService {
       ],
     ];
 
-    AllProductionEntry.forEach((production) => {
-      let row = [];
-      row.push(production.id);
-      row.push(new Date(production.from).toLocaleString());
-      row.push(new Date(production.to));
-      row.push(`${production?.updatedBy?.name} (${production?.updatedBy?.id})`);
-      row.push(production.actual_production);
-      row.push(production.target_production);
-      row.push(humanizeDuration(production.total_run_time * 60 * 1000));
-      row.push(humanizeDuration(production.total_down_time * 60 * 1000));
-      row.push(new Date(production.created_at).toLocaleString());
-      sheet_4.push(row);
-    });
     const buffer = xlsx.build(
       [
         {
