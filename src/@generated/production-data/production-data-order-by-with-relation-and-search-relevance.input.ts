@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { UsersOrderByWithRelationAndSearchRelevanceInput } from '../users/users-order-by-with-relation-and-search-relevance.input';
 import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
+import { production_dataOrderByRelevanceInput } from './production-data-order-by-relevance.input';
 
 @InputType()
 export class production_dataOrderByWithRelationAndSearchRelevanceInput {
@@ -11,22 +12,13 @@ export class production_dataOrderByWithRelationAndSearchRelevanceInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    total_run_time?: keyof typeof SortOrder;
+    production?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    total_down_time?: keyof typeof SortOrder;
+    shift?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    target_production?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    actual_production?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    from?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    to?: keyof typeof SortOrder;
+    date?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_by?: keyof typeof SortOrder;
@@ -45,4 +37,7 @@ export class production_dataOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     Block?: BlockOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => production_dataOrderByRelevanceInput, {nullable:true})
+    _relevance?: production_dataOrderByRelevanceInput;
 }

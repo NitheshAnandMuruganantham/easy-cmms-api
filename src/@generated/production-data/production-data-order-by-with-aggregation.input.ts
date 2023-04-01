@@ -14,22 +14,13 @@ export class production_dataOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    total_run_time?: keyof typeof SortOrder;
+    production?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    total_down_time?: keyof typeof SortOrder;
+    shift?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    target_production?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    actual_production?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    from?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    to?: keyof typeof SortOrder;
+    date?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     updated_by?: keyof typeof SortOrder;

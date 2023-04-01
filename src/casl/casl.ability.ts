@@ -86,23 +86,11 @@ export class CaslAbilityFactory {
     can('read', 'Ticket');
     can('read', 'Maintenance');
 
-    if (user.role === 'SUPERVISOR') {
-      // Tickets permissions
-
-      can('create', 'Ticket', {
-        user_id: {
-          equals: user.id,
-        },
-      });
-    }
-
-    if (user?.extra_roles?.includes('SUPERVISOR')) {
-      can('create', 'Ticket', {
-        user_id: {
-          equals: user.id,
-        },
-      });
-    }
+    can('create', 'Ticket', {
+      user_id: {
+        equals: user.id,
+      },
+    });
 
     if (user.role === 'FITTER') {
       can('update', 'Maintenance');

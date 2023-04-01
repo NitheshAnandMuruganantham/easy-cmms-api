@@ -20,28 +20,6 @@ export class DashboardController {
     return this.dashboardService.getMobileDashboard(session);
   }
 
-  @Get('getAllMaintanancesCsv/:fromDate/:toDate')
-  async getAllMaintanancesCsv(
-    @Param('fromDate') fromDate: Date,
-    @Param('toDate') toDate: Date,
-  ) {
-    const csv = await this.dashboardService.generateCsvReportForAllMaintenance(
-      new Date(fromDate),
-      new Date(toDate),
-    );
-
-    return csv;
-  }
-
-  @Get('getMachineMaintanancesReport/:machineId')
-  async getMachineMaintanancesReport(@Param('machineId') machineId: string) {
-    const csv = await this.dashboardService.getMachineMaintanancesReport(
-      parseInt(machineId),
-    );
-
-    return csv;
-  }
-
   @Get('getProductionDashboard')
   async getProductionDashboard(
     @Session() session: SessionContainer,

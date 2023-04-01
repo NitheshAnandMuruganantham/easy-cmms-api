@@ -2,12 +2,9 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum Production_dataScalarFieldEnum {
     id = "id",
-    total_run_time = "total_run_time",
-    total_down_time = "total_down_time",
-    target_production = "target_production",
-    actual_production = "actual_production",
-    from = "from",
-    to = "to",
+    production = "production",
+    shift = "shift",
+    date = "date",
     updated_by = "updated_by",
     created_at = "created_at",
     updated_at = "updated_at",

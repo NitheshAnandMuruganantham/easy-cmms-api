@@ -3,18 +3,13 @@ import { PrismaService } from 'nestjs-prisma';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 import { Parser } from 'json2csv';
 import { S3Service } from 'src/s3/s3.service';
-import * as humanize from 'humanize-duration';
+import humanizeDuration, * as humanize from 'humanize-duration';
+import { parseInt } from 'lodash';
 
 @Injectable()
 export class DashboardService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly s3Service: S3Service,
-  ) {}
-  async s3Upload(file: any) {
-    const upload = await this.s3Service.uploadCsvReport(file);
-    return this.s3Service.getSignedUrl(upload);
-  }
+  constructor(private readonly prisma: PrismaService) {}
+
   async getLastFiveDayTickets() {
     const tickets = await this.prisma.ticket.groupBy({
       _count: {
@@ -44,35 +39,80 @@ export class DashboardService {
         user_auth_id: session.getUserId(),
       },
     });
+    const Settings: any = await this.prisma.block_settings.findFirst({
+      where: {
+        block_id: user.blockId,
+        name: {
+          equals: 'REPORTING_TIME',
+        },
+      },
+    });
+
+    const reporting_time: number = Settings.value.default;
     if (user?.role === 'FITTER') {
-      const openTicketCount = await this.prisma.ticket.count({
-        where: {
-          status: 'OPEN',
-        },
-      });
-      const openMaintenanceCount = await this.prisma.maintenance.count({
+      const from = new Date().setHours(reporting_time, 0, 0, 0);
+
+      const weekMaintenancesCount = await this.prisma.maintenance.count({
         where: {
           assignee: {
             user_auth_id: session.getUserId(),
           },
-          resolved: false,
+          created_at: {
+            gte: new Date(new Date(from).setDate(new Date().getDate() - 7)),
+          },
         },
       });
-      const nextMaintenance = await this.prisma.maintenance.findFirst({
+
+      const monthMaintenancesCount = await this.prisma.maintenance.count({
         where: {
           assignee: {
             user_auth_id: session.getUserId(),
           },
-          resolved: false,
+          created_at: {
+            gte: new Date(new Date(from).setDate(new Date().getDate() - 30)),
+          },
         },
         orderBy: {
           created_at: 'asc',
         },
       });
+
+      const todayFrom = new Date(new Date().setHours(reporting_time, 0, 0, 0));
+
+      if (new Date().getHours() < reporting_time) {
+        todayFrom.setDate(new Date().getDate() - 1);
+      }
+      const todayMaintenancesCount = await this.prisma.maintenance.count({
+        where: {
+          assignee: {
+            user_auth_id: session.getUserId(),
+          },
+          created_at: {
+            gte: todayFrom,
+          },
+        },
+        orderBy: {
+          created_at: 'asc',
+        },
+      });
+
+      const TotalPendingMaintenances = await this.prisma.maintenance.count({
+        where: {
+          assignee: {
+            user_auth_id: session.getUserId(),
+          },
+          resolved: false,
+          created_at: {
+            gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+          },
+        },
+      });
+
       return {
-        openTicketCount,
-        openMaintenanceCount,
-        nextMaintenance,
+        Week_Maintenances_Count: weekMaintenancesCount,
+        Month_Maintenances_Count: monthMaintenancesCount,
+        Today_Maintenances_Count: todayMaintenancesCount,
+        Total_Pending_Maintenances: TotalPendingMaintenances,
       };
     } else if (user?.role === 'SUPERVISOR') {
       const openTicketCount = await this.prisma.ticket.count({
@@ -93,194 +133,108 @@ export class DashboardService {
           resolved: false,
         },
       });
-      const nextMaintenance = await this.prisma.maintenance.findFirst({
-        where: {
-          ticket: {
-            user: {
-              user_auth_id: session.getUserId(),
-            },
-          },
-          resolved: false,
-        },
-        orderBy: {
-          created_at: 'asc',
-        },
-      });
+
       return {
-        openTicketCount,
-        openMaintenanceCount,
-        nextMaintenance,
+        Open_Ticket_Count: openTicketCount,
+        Open_Maintenance_Count: openMaintenanceCount,
       };
     } else {
       return null;
     }
   }
-  async generateCsvReportForAllMaintenance(from: Date, to: Date) {
-    const AllMaintenenceCsv = await this.prisma.maintenance.findMany({
-      where: {
-        created_at: {
-          gte: from,
-          lte: to,
-        },
-      },
-      include: {
-        machines: true,
-        assignee: true,
-        ticket: true,
-      },
-      orderBy: {
-        created_at: 'desc',
-      },
-    });
-    new Parser({
-      fields: [
-        'id',
-        'from',
-        'to',
-        'ticket_id',
-        'un_planned',
-        'elapsed',
-        'machine',
-        'assignee',
-        'created_at',
-        'resolved',
-      ],
-    });
-    const dt = [];
-    AllMaintenenceCsv.forEach((maintenance) => {
-      dt.push({
-        id: maintenance.id,
-        from: maintenance.from,
-        to: maintenance.to,
-        ticket_id: maintenance?.ticket?.id || 'N/A',
-        un_planned: maintenance.un_planned,
-        elapsed: maintenance.elapsed,
-        machine: maintenance?.machines?.name || 'N/A',
-        assignee: maintenance?.assignee?.name || 'N/A',
-        created_at: maintenance.created_at,
-        resolved: maintenance.resolved,
-      });
-    });
-    const csv = new Parser().parse(dt);
 
-    return this.s3Upload(csv);
-  }
-
-  async getMachineMaintanancesReport(machineId: number) {
-    const MachineMaintenanceCsv = await this.prisma.maintenance.findMany({
-      where: {
-        machine_id: machineId,
-      },
-      include: {
-        machines: true,
-        assignee: true,
-        ticket: true,
-      },
-      orderBy: {
-        created_at: 'asc',
-      },
-    });
-    new Parser({
-      fields: [
-        'id',
-        'from',
-        'to',
-        'ticket_id',
-        'un_planned',
-        'elapsed',
-        'assignee',
-        'created_at',
-        'resolved',
-      ],
-    });
-    const dt = [];
-    MachineMaintenanceCsv.forEach((maintenance) => {
-      dt.push({
-        id: maintenance.id,
-        from: maintenance.from,
-        to: maintenance.to,
-        ticket_id: maintenance?.ticket?.id || 'N/A',
-        un_planned: maintenance.un_planned,
-        elapsed: maintenance.elapsed,
-        assignee: maintenance?.assignee?.name || 'N/A',
-        created_at: maintenance.created_at,
-        resolved: maintenance.resolved,
-      });
-    });
-    const csv = new Parser().parse(dt);
-    return this.s3Upload(csv);
-  }
   async getProductionDashboard(session: SessionContainer) {
-    const user = await this.prisma.users.findUnique({
+    const user = await this.prisma.users.findFirst({
       where: {
         user_auth_id: session.getUserId(),
       },
     });
-
-    const report_closure_hour = 6;
-    let from = new Date(
-      new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
-        new Date().getDate() - 1,
-      ),
+    const Settings = await this.prisma.block_settings.findMany({
+      where: {
+        block_id: user.blockId,
+        name: {
+          in: [
+            'REPORTING_TIME',
+            'UNIT_ANNOTATIONS',
+            'PRE_PROCESSING_CONFIG',
+            'PRODUCTION_SETTINGS',
+          ],
+        },
+      },
+    });
+    const reporting_time: any = Settings.find(
+      (setting) => setting.name === 'REPORTING_TIME',
     );
-    if (
-      new Date(
-        new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
-          new Date().getDate(),
-        ),
-      ).getTime() < new Date().getTime()
-    ) {
-      from = new Date(
-        new Date(new Date().setHours(report_closure_hour, 1, 0, 0)).setDate(
-          new Date().getDate(),
-        ),
-      );
-    }
 
+    const unit_annotations: any = Settings.find(
+      (setting) => setting.name === 'UNIT_ANNOTATIONS',
+    );
+
+    const production_settings = Settings.find(
+      (setting) => setting.name === 'PRE_PROCESSING_CONFIG',
+    );
+
+    const from = new Date();
+    if (from.getHours() < reporting_time.value?.default) {
+      from.setDate(from.getDate() - 1);
+    }
+    let settings: any = production_settings.value;
+    let response = {};
     const production = await this.prisma.production_data.findMany({
       where: {
-        from: {
-          gte: from,
+        date: {
+          gte: new Date(new Date(from).setHours(0, 0, 0, 0)),
         },
       },
-    });
-    let total_production_time = 0;
-    let total_downtime = 0;
-    let total_prod_quantity = 0;
-    let total_maintenance_time = 0;
-    let total_target_production = 0;
-    const maintenance_down_time = await this.prisma.maintenance.findMany({
-      where: {
-        resolved: true,
-        from: {
-          gte: from,
-        },
-      },
-    });
-    maintenance_down_time.forEach((m) => {
-      if (m?.from && m?.elapsed) {
-        var diff = m.from.getTime() - m.elapsed.getTime();
-        var msec = diff;
-        var min = msec * 1000 * 60;
-        min = min < 0 ? 0 : min;
-        total_maintenance_time += min;
-      }
     });
 
-    production.forEach((data) => {
-      total_prod_quantity += data.actual_production;
-      total_production_time += data.total_run_time;
-      total_downtime += data.total_down_time;
-      total_target_production += data.target_production;
+    settings?.to_add_values.map((duration) => {
+      response[duration] = 0;
     });
-    return {
-      total_production_time: humanize(total_production_time * 60 * 1000),
-      total_downtime: humanize(total_downtime * 60 * 1000),
-      total_maintenance_time: humanize(total_maintenance_time * 60 * 1000),
-      total_prod_quantity: (total_prod_quantity / 1000).toFixed(2),
-      completed_maintenance_count: maintenance_down_time.length,
-      'actual_vs_target_production_(%)':
-        ((total_prod_quantity / total_target_production) * 100).toFixed(2) || 0,
-    };
+
+    production.forEach((prod: any) => {
+      settings?.to_add_values.map((key) => {
+        const val =
+          typeof prod.production?.data[key] === 'string' &&
+          prod.production?.data[key].includes('.')
+            ? parseFloat(prod.production?.data[key])
+            : parseInt(`${prod.production?.data[key]}`);
+        response[key] += val;
+      });
+    });
+    const un_resolved_maintenance = await this.prisma.maintenance.count({
+      where: {
+        resolved: false,
+      },
+    });
+    const resolved_maintenance = await this.prisma.maintenance.count({
+      where: {
+        resolved: false,
+      },
+    });
+    const total__tickets_raised_count = await this.prisma.ticket.count({
+      where: {},
+    });
+    const total_work_orders = await this.prisma.maintenance.count({
+      where: {
+        resolved: false,
+      },
+    });
+    settings?.toHumanDuration.map((key) => {
+      const val = humanize(response[key] * 60 * 1000, {
+        units: ['h', 'm'],
+        maxDecimalPoints: 0,
+      });
+      response[key] = val;
+    });
+
+    unit_annotations.value?.tons.map((d) => {
+      response[d] = `${response[d]} Tons`;
+    });
+    response['un_resolved_maintenances'] = un_resolved_maintenance;
+    response['resolved_maintenances'] = resolved_maintenance;
+    response['total_work_orders'] = total_work_orders;
+    response['total_ticket_raised_count'] = total__tickets_raised_count;
+    return response;
   }
 }

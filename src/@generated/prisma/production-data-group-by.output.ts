@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
+import { GraphQLJSON } from 'graphql-type-json';
 import { Production_dataCountAggregate } from './production-data-count-aggregate.output';
 import { Production_dataAvgAggregate } from './production-data-avg-aggregate.output';
 import { Production_dataSumAggregate } from './production-data-sum-aggregate.output';
@@ -14,23 +14,14 @@ export class Production_dataGroupBy {
     @Field(() => GraphQLBigInt, {nullable:false})
     id!: bigint | number;
 
-    @Field(() => Int, {nullable:true})
-    total_run_time?: number;
+    @Field(() => GraphQLJSON, {nullable:false})
+    production!: any;
 
-    @Field(() => Int, {nullable:true})
-    total_down_time?: number;
-
-    @Field(() => Int, {nullable:true})
-    target_production?: number;
-
-    @Field(() => Int, {nullable:true})
-    actual_production?: number;
+    @Field(() => String, {nullable:false})
+    shift!: string;
 
     @Field(() => Date, {nullable:false})
-    from!: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    to!: Date | string;
+    date!: Date | string;
 
     @Field(() => GraphQLBigInt, {nullable:false})
     updated_by!: bigint | number;

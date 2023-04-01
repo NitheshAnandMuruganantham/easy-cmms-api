@@ -10,7 +10,7 @@ import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalFilters(new PrismaClientExceptionFilter());
+  // app.useGlobalFilters(new PrismaClientExceptionFilter());
   app.useGlobalFilters(new SupertokensExceptionFilter());
   app.enableCors({
     origin: process.env.FRONTEND_URL,

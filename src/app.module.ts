@@ -64,12 +64,7 @@ import { join } from 'path';
     }),
     PrismaModule.forRoot({
       isGlobal: true,
-      prismaServiceOptions: {
-        prismaOptions: {
-          log: ['query', 'info', 'warn'],
-          errorFormat: 'pretty',
-        },
-      },
+      prismaServiceOptions: {},
     }),
     ConfigModule.forRoot({
       isGlobal: true,

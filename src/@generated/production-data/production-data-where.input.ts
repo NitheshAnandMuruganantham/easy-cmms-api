@@ -1,7 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
-import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
+import { JsonFilter } from '../prisma/json-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
@@ -22,23 +23,14 @@ export class production_dataWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     id?: BigIntFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    total_run_time?: IntNullableFilter;
+    @Field(() => JsonFilter, {nullable:true})
+    production?: JsonFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    total_down_time?: IntNullableFilter;
-
-    @Field(() => IntNullableFilter, {nullable:true})
-    target_production?: IntNullableFilter;
-
-    @Field(() => IntNullableFilter, {nullable:true})
-    actual_production?: IntNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    shift?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
-    from?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    to?: DateTimeFilter;
+    date?: DateTimeFilter;
 
     @Field(() => BigIntFilter, {nullable:true})
     updated_by?: BigIntFilter;

@@ -15,6 +15,8 @@ export { production_dataCreateInput } from './production-data-create.input';
 export { production_dataMaxOrderByAggregateInput } from './production-data-max-order-by-aggregate.input';
 export { production_dataMinOrderByAggregateInput } from './production-data-min-order-by-aggregate.input';
 export { production_dataOrderByRelationAggregateInput } from './production-data-order-by-relation-aggregate.input';
+export { production_dataOrderByRelevanceFieldEnum } from './production-data-order-by-relevance-field.enum';
+export { production_dataOrderByRelevanceInput } from './production-data-order-by-relevance.input';
 export { production_dataOrderByWithAggregationInput } from './production-data-order-by-with-aggregation.input';
 export { production_dataOrderByWithRelationAndSearchRelevanceInput } from './production-data-order-by-with-relation-and-search-relevance.input';
 export { production_dataScalarWhereWithAggregatesInput } from './production-data-scalar-where-with-aggregates.input';
