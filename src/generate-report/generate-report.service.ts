@@ -188,20 +188,9 @@ export class GenerateReportService {
       row.push(maintenance.created_at);
       sheet_3.push(row);
     });
+    const prod_rows = await this.generateProductionRows(from, new Date());
 
-    let sheet_4 = [
-      [
-        'id',
-        'from',
-        'to',
-        'updated_by',
-        'total_production',
-        'target_production',
-        'total_run_time',
-        'total_down_time',
-        'created_at',
-      ],
-    ];
+    let sheet_4 = prod_rows;
 
     const buffer = xlsx.build(
       [
@@ -265,10 +254,19 @@ export class GenerateReportService {
               { wch: 20 },
               { wch: 20 },
               { wch: 20 },
-              { wch: 15 },
-              { wch: 15 },
-              { wch: 15 },
-              { wch: 15 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
               { wch: 20 },
               { wch: 20 },
               { wch: 20 },
@@ -285,5 +283,63 @@ export class GenerateReportService {
     );
 
     return buffer;
+  }
+
+  async generateProductionRows(from: any, to: any) {
+    let sheet = [];
+    const report_settings = await this.prisma.block_settings.findFirst({
+      where: {
+        AND: [
+          {
+            name: {
+              equals: 'REPORT_CONFIGURATION',
+            },
+          },
+        ],
+      },
+    });
+    sheet.push(['date', 'shift', ...report_settings.value['col_value']]);
+    const productionData = await this.prisma.production_data.findMany({
+      where: {
+        AND: [
+          {
+            date: {
+              gte: from,
+            },
+          },
+          {
+            date: {
+              lte: to,
+            },
+          },
+        ],
+      },
+    });
+    console.log(report_settings.value);
+    productionData.forEach((data) => {
+      try {
+        let row = [];
+        row.push(new Date(data.production['date']).toLocaleDateString());
+        row.push(data.production['shift']);
+        report_settings.value['col_value'].forEach((col) => {
+          if (
+            report_settings.value['parsers']['toHumanDuration'].includes(col)
+          ) {
+            row.push(
+              humanizeDuration(data.production['data'][col] * 60 * 1000, {
+                units: ['h', 'm'],
+              }),
+            );
+          } else {
+            row.push(data.production['data'][col]);
+          }
+        });
+        sheet.push(row);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    console.log(sheet);
+    return sheet;
   }
 }
