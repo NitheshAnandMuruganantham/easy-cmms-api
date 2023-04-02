@@ -40,19 +40,7 @@ export class GenerateReportService {
     });
 
     let sheet_1 = [
-      [
-        'id',
-        'from',
-        'to',
-        'elapsed',
-        'reaction_time',
-        'ticket',
-        'un_planned',
-        'machine',
-        'assignee',
-        'created_at',
-        'resolved',
-      ],
+      ['id', 'date/time', 'assignee', 'machine', 'ticket', 'status', 'name'],
     ];
 
     let sheet_2 = [
@@ -106,38 +94,24 @@ export class GenerateReportService {
       let row = [];
       row.push(maintenance.id);
       row.push(new Date(maintenance.from).toLocaleString());
-      row.push(new Date(maintenance.to).toLocaleString());
-      row.push(
-        maintenance?.elapsed
-          ? new Date(maintenance.elapsed).toLocaleString()
-          : 'N/A',
-      );
-      row.push(
-        maintenance?.elapsed
-          ? humanizeDuration(
-              new Date(maintenance?.from).getTime() -
-                new Date(maintenance.elapsed).getTime(),
-            )
-          : 'N/A',
-      );
-      row.push(
-        `${maintenance?.ticket?.name || ''} (${
-          maintenance?.ticket?.id || 'N/A'
-        })`,
-      );
-      row.push(maintenance.un_planned);
-      row.push(
-        `${maintenance?.machines?.name} (${
-          maintenance?.machines?.id || 'N/A'
-        })`,
-      );
       row.push(
         `${maintenance?.assignee?.name} (${
           maintenance?.assignee?.id || 'N/A'
         })`,
       );
-      row.push(new Date(maintenance.created_at).toLocaleString());
-      row.push(maintenance.resolved);
+      row.push(
+        `${maintenance?.machines?.name} (${
+          maintenance?.machines?.id || 'N/A'
+        })`,
+      );
+
+      row.push(
+        `${maintenance?.ticket?.name || ''} (${
+          maintenance?.ticket?.id || 'N/A'
+        })`,
+      );
+      row.push(maintenance.resolved ? 'Resolved' : 'Unresolved');
+      row.push(maintenance.name);
       sheet_1.push(row);
     });
 
@@ -341,5 +315,93 @@ export class GenerateReportService {
     });
     console.log(sheet);
     return sheet;
+  }
+
+  async getMachineMaintenancesReport(machineId: number) {
+    const MachineMaintenanceCsv = await this.prisma.maintenance.findMany({
+      where: {
+        machine_id: machineId,
+      },
+      include: {
+        machines: true,
+        assignee: true,
+        ticket: true,
+      },
+      orderBy: {
+        created_at: 'asc',
+      },
+    });
+    const fields = [
+      ['id', 'date/time', 'assignee', 'machine', 'ticket', 'status', 'name'],
+    ];
+    const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
+      where: {
+        machine_id: {
+          equals: machineId,
+        },
+      },
+      include: {
+        machines: true,
+        assignee: true,
+        ticket: true,
+      },
+      orderBy: {
+        created_at: 'asc',
+      },
+    });
+    AllMaintenanceCsv.forEach((maintenance) => {
+      let row = [];
+      row.push(maintenance.id);
+      row.push(new Date(maintenance.from).toLocaleString());
+      row.push(
+        `${maintenance?.assignee?.name} (${
+          maintenance?.assignee?.id || 'N/A'
+        })`,
+      );
+      row.push(
+        `${maintenance?.machines?.name} (${
+          maintenance?.machines?.id || 'N/A'
+        })`,
+      );
+
+      row.push(
+        `${maintenance?.ticket?.name || ''} (${
+          maintenance?.ticket?.id || 'N/A'
+        })`,
+      );
+      row.push(maintenance.resolved ? 'Resolved' : 'Unresolved');
+      row.push(maintenance.name);
+      fields.push(row);
+    });
+    const buffer = xlsx.build(
+      [
+        {
+          name: 'maintenances',
+          data: fields,
+          options: {
+            '!cols': [
+              { wch: 6 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 20 },
+              { wch: 30 },
+              { wch: 20 },
+              { wch: 15 },
+              { wch: 15 },
+              { wch: 20 },
+              { wch: 20 },
+            ],
+          },
+        },
+      ],
+      {
+        writeOptions: {
+          bookType: 'xlsx',
+          ignoreEC: true,
+        },
+      },
+    );
+
+    return buffer;
   }
 }
