@@ -41,4 +41,25 @@ export class GenerateReportController {
     });
     res.end(data);
   }
+
+  @Get('getMachineMaintenancesReport/:machineId')
+  async getMachineMaintenancesReport(
+    @Param('machineId') machineId: string,
+    @Res({
+      passthrough: true,
+    })
+    res: any,
+  ) {
+    const filename = 'report.xlsx';
+    const data = await this.generateReportService.getMachineMaintenancesReport(
+      parseInt(machineId),
+    );
+
+    res.set({
+      'Content-Type':
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'Content-Disposition': `attachment; filename=${filename}`,
+    });
+    res.end(data);
+  }
 }
