@@ -20,15 +20,8 @@ export class CronService {
     block.forEach(async (element) => {
       const buffer =
         await this.ReportService.generateCsvReportForAllMaintenance(
-          new Date(
-            new Date(new Date().setDate(new Date().getDate() - 1)).setHours(
-              6,
-              1,
-              0,
-              0,
-            ),
-          ),
-          new Date(new Date().setHours(6, 0, 0, 0)),
+          new Date(new Date().setHours(0, 0, 0, 0)),
+          new Date(new Date().setHours(24, 60, 60, 60)),
           [],
           [],
           [],
