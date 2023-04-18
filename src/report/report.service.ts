@@ -27,6 +27,7 @@ export class ReportService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Reports');
 
     return this.prisma.reports.create({
+      // @ts-ignore
       data: createReportInput,
     });
   }

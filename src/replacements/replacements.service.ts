@@ -27,6 +27,7 @@ export class ReplacementsService {
     );
 
     ForbiddenError.from(ability).throwUnlessCan('create', 'Replacements');
+    // @ts-ignore
     return this.prisma.replacements.create({ data: createReplacementInput });
   }
 

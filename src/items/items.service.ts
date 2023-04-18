@@ -33,6 +33,7 @@ export class ItemsService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Items');
 
     return this.prisma.items.create({
+      // @ts-ignore
       data: createItemInput,
     });
   }

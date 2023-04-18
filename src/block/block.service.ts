@@ -27,7 +27,9 @@ export class BlockService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Block');
     console.log('createBlockInput', createBlockInput);
 
+    // @ts-ignore
     return this.prisma.block.create({
+      // @ts-ignore
       data: createBlockInput,
     });
   }

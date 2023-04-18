@@ -33,6 +33,7 @@ export class TicketService {
       `${nanoid(10)}`,
     );
     const data = await this.prisma.ticket.create({
+      // @ts-ignore
       data: {
         ...createTicketInput,
         block: {

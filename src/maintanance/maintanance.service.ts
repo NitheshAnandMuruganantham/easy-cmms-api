@@ -33,6 +33,7 @@ export class MaintenanceService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Maintenance');
 
     const data: any = await this.prisma.maintenance.create({
+      // @ts-ignore
       data: {
         ...createMaintenanceInput,
         block: {
