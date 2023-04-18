@@ -17,6 +17,8 @@ export class GenerateReportService {
     ticketFilter: any,
     routineMaintenancesFilter: any,
     productionFilter: any,
+    custom_production_from?: Date,
+    custom_production_to?: Date,
   ) {
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
@@ -178,7 +180,12 @@ export class GenerateReportService {
       row.push(maintenance.created_at);
       sheet_3.push(row);
     });
-    const prod_rows = await this.generateProductionRows(from, new Date());
+    const prod_rows = await this.generateProductionRows(
+      from || custom_production_from,
+      to || custom_production_to,
+      productionFilter,
+      block_id,
+    );
 
     let sheet_4 = prod_rows;
 
@@ -275,15 +282,28 @@ export class GenerateReportService {
     return buffer;
   }
 
-  async generateProductionRows(from: any, to: any) {
+  async generateProductionRows(
+    from: any,
+    to: any,
+    productionFilter: any,
+    block_id: bigint,
+  ) {
     let sheet = [];
     const report_settings = await this.prisma.block_settings.findFirst({
       where: {
         AND: [
           {
+            block_id: {
+              equals: block_id,
+            },
+          },
+          {
             name: {
               equals: 'REPORT_CONFIGURATION',
             },
+          },
+          {
+            AND: productionFilter || [],
           },
         ],
       },

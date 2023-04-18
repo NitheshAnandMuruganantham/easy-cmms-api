@@ -50,13 +50,8 @@ export class RoutineMaintanancesService {
         const to = new Date(from);
         to.setHours(to.getHours() + data.duration);
         const result: any = await this.prisma.maintenance.create({
-          // @ts-ignore
           data: {
-            block: {
-              connect: {
-                id: session.User.blockId,
-              },
-            },
+            block_id: session.User.blockId,
             machine_id: data.meachine_id,
             name: data.name,
             description: data.description,
