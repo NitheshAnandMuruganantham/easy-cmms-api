@@ -34,6 +34,7 @@ export class RoutineMaintanancesService {
       'RoutineMaintanances',
     );
     const data = await this.prisma.routine_maintanances.create({
+      // @ts-ignore
       data: {
         ...createRoutineMaintananceInput,
         block: {

@@ -26,6 +26,7 @@ export class ProductionService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'ProductionData');
 
     return this.prisma.production_data.create({
+      // @ts-ignore
       data: createBlockInput,
     });
   }
@@ -162,6 +163,7 @@ export class ProductionService {
     );
     return this.prisma.production_data.update({
       where: { id },
+      // @ts-ignore
       data: updateProductionInput,
       include: {
         updatedBy: true,

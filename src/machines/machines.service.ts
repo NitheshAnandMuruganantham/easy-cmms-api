@@ -35,6 +35,7 @@ export class MachinesService {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Machines');
     return this.prisma.machines.create({
+      // @ts-ignore
       data: {
         ...createMachineInput,
         block: {
