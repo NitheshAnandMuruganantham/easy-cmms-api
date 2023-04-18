@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { BlockCreateNestedOneWithoutProduction_dataInput } from '../block/block-create-nested-one-without-production-data.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataCreateWithoutUpdatedByInput {
@@ -25,6 +26,6 @@ export class production_dataCreateWithoutUpdatedByInput {
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
-    @Field(() => BlockCreateNestedOneWithoutProduction_dataInput, {nullable:true})
-    Block?: BlockCreateNestedOneWithoutProduction_dataInput;
+    @HideField()
+    Block!: BlockCreateNestedOneWithoutProduction_dataInput;
 }

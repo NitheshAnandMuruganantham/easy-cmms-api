@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ItemsCountAggregateInput {
@@ -27,6 +28,9 @@ export class ItemsCountAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     updated_at?: true;
+
+    @HideField()
+    block_id?: true;
 
     @Field(() => Boolean, {nullable:true})
     _all?: true;

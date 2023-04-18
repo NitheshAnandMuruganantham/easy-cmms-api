@@ -7,4 +7,7 @@ export class Machine_catagorySumAggregate {
 
     @Field(() => GraphQLBigInt, {nullable:true})
     id?: bigint | number;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
 }

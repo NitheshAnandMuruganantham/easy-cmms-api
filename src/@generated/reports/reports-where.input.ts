@@ -4,7 +4,9 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class ReportsWhereInput {
@@ -45,6 +47,12 @@ export class ReportsWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
+    @HideField()
+    block_id?: BigIntFilter;
+
     @Field(() => MaintenanceRelationFilter, {nullable:true})
     maintenance?: MaintenanceRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
 }

@@ -8,7 +8,7 @@ import {
   MaintenanceWhereInput,
 } from 'src/@generated/maintenance';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { accessibleBy } from '@casl/prisma';
 import { S3Service } from 'src/s3/s3.service';
 import { nanoid } from 'nanoid';
@@ -29,16 +29,18 @@ export class MaintenanceService {
     session: SessionContainer,
     createMaintenanceInput: MaintenanceCreateInput,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Maintenance');
 
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
+    const data: any = await this.prisma.maintenance.create({
+      data: {
+        ...createMaintenanceInput,
+        block: {
+          connect: {
+            id: session.User.id,
+          },
+        },
       },
-    });
-    const data = await this.prisma.maintenance.create({
-      data: createMaintenanceInput,
       include: {
         assignee: true,
         machines: {
@@ -62,7 +64,7 @@ export class MaintenanceService {
       body:
         `New maintenance request\n` +
         `Name: ${data.name}\n` +
-        `Closed by: ${user.name}\n` +
+        `Closed by: ${session.User.name}\n` +
         `Description: ${data.description}\n` +
         `Machine : ${data.machines.label}\n` +
         `Category: ${data.machines.machine_catagory.name}\n` +
@@ -88,7 +90,7 @@ export class MaintenanceService {
               from: this.config.get('TWILIO_FROM'),
               body:
                 `New maintenance request from ${data.ticket.user.name}\n` +
-                `Name : ${user.name}\n` +
+                `Name : ${session.User.name}\n` +
                 `Description: ${data.ticket.description}\n` +
                 `Machine : ${data.machines.label}\n` +
                 `Category: ${data.machines.machine_catagory.name}\n` +
@@ -117,7 +119,7 @@ export class MaintenanceService {
           body:
             `Your maintenance request #${data.ticket.id} has been closed\n` +
             `assignee : ${data.assignee.name}\n` +
-            `closed by : ${user.name}\n` +
+            `closed by : ${session.User.name}\n` +
             `Name: ${data.name}\n` +
             `Description: ${data.description}\n` +
             `Machine : ${data.machines.label}\n` +
@@ -140,7 +142,7 @@ export class MaintenanceService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Maintenance');
 
     const data = await this.prisma.maintenance.findMany({
@@ -168,7 +170,7 @@ export class MaintenanceService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Maintenance');
 
     return this.prisma.maintenance.count({
@@ -187,7 +189,7 @@ export class MaintenanceService {
         id,
       },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Maintenance', toGet),
@@ -206,7 +208,7 @@ export class MaintenanceService {
     const toUpdate = await this.prisma.maintenance.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('Maintenance', toUpdate),
@@ -244,7 +246,7 @@ export class MaintenanceService {
     const toRemove = await this.prisma.maintenance.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('Maintenance', toRemove),
@@ -283,34 +285,32 @@ export class MaintenanceService {
         section: true,
       },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     return canRead;
   }
 
   async replacements(session: SessionContainer, id: bigint) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Replacements');
     return this.prisma.maintenance
       .findUnique({
         where: { id },
       })
       .replacements({
-        where: accessibleBy(await this.casl.getCurrentUserAbility(session))
-          .Replacements,
+        where: accessibleBy(ability).Replacements,
       });
   }
 
   async reports(session: SessionContainer, id: bigint) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Reports');
     return this.prisma.maintenance
       .findUnique({
         where: { id },
       })
       .reports({
-        where: accessibleBy(await this.casl.getCurrentUserAbility(session))
-          .Reports,
+        where: accessibleBy(ability).Reports,
       });
   }
 
@@ -323,7 +323,7 @@ export class MaintenanceService {
     if (!canGet) {
       return null;
     }
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Ticket', canGet),

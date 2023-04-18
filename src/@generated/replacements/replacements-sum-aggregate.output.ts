@@ -18,4 +18,7 @@ export class ReplacementsSumAggregate {
 
     @Field(() => GraphQLBigInt, {nullable:true})
     maintanance_id?: bigint | number;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
 }

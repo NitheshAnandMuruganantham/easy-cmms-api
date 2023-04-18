@@ -7,6 +7,7 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class MaintenanceScalarWhereInput {
@@ -61,4 +62,7 @@ export class MaintenanceScalarWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @HideField()
+    block_id?: BigIntFilter;
 }

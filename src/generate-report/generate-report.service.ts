@@ -10,6 +10,7 @@ export class GenerateReportService {
   constructor(private readonly prisma: PrismaService) {}
 
   async generateCsvReportForAllMaintenance(
+    block_id: bigint,
     from: Date,
     to: Date,
     maintenanceFilter: any,
@@ -20,6 +21,11 @@ export class GenerateReportService {
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
         AND: [
+          {
+            block_id: {
+              equals: block_id,
+            },
+          },
           {
             created_at: {
               gte: from,
@@ -59,6 +65,11 @@ export class GenerateReportService {
     const AllTicketCsv = await this.prisma.ticket.findMany({
       where: {
         AND: [
+          {
+            block_id: {
+              equals: block_id,
+            },
+          },
           {
             created_at: {
               gte: from,
@@ -132,6 +143,11 @@ export class GenerateReportService {
       await this.prisma.routine_maintanances.findMany({
         where: {
           AND: [
+            {
+              block_id: {
+                equals: block_id,
+              },
+            },
             {
               created_at: {
                 gte: from,
@@ -278,18 +294,17 @@ export class GenerateReportService {
         AND: [
           {
             date: {
-              gte: from,
+              gte: new Date(new Date(from).setHours(0, 0, 0, 0)),
             },
           },
           {
             date: {
-              lte: to,
+              lte: new Date(new Date(to).setHours(24, 60, 60, 0)),
             },
           },
         ],
       },
     });
-    console.log(report_settings.value);
     productionData.forEach((data) => {
       try {
         let row = [];

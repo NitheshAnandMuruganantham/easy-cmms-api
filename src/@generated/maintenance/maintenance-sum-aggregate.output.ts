@@ -14,4 +14,7 @@ export class MaintenanceSumAggregate {
 
     @Field(() => GraphQLBigInt, {nullable:true})
     machine_id?: bigint | number;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
 }

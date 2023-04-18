@@ -41,6 +41,9 @@ export class TicketOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
 
+    @HideField()
+    block_id?: keyof typeof SortOrder;
+
     @Field(() => TicketCountOrderByAggregateInput, {nullable:true})
     _count?: TicketCountOrderByAggregateInput;
 

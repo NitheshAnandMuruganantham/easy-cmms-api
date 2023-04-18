@@ -23,7 +23,7 @@ import {
 } from 'src/@generated/machines';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { BlockService } from './block.service';
 @Resolver(() => Block)
 export class BlockResolver {

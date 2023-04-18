@@ -11,6 +11,8 @@ import { UsersUpdateOneRequiredWithoutMaintenanceNestedInput } from '../users/us
 import { MachinesUpdateOneRequiredWithoutMaintenanceNestedInput } from '../machines/machines-update-one-required-without-maintenance-nested.input';
 import { ReportsUpdateManyWithoutMaintenanceNestedInput } from '../reports/reports-update-many-without-maintenance-nested.input';
 import { TicketUpdateOneWithoutMaintenanceNestedInput } from '../ticket/ticket-update-one-without-maintenance-nested.input';
+import { BlockUpdateOneRequiredWithoutMaintenanceNestedInput } from '../block/block-update-one-required-without-maintenance-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class MaintenanceUpdateWithoutReplacementsInput {
@@ -62,4 +64,7 @@ export class MaintenanceUpdateWithoutReplacementsInput {
 
     @Field(() => TicketUpdateOneWithoutMaintenanceNestedInput, {nullable:true})
     ticket?: TicketUpdateOneWithoutMaintenanceNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutMaintenanceNestedInput;
 }

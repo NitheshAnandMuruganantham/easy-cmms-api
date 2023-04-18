@@ -4,6 +4,7 @@ import * as Scalars from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Maintenance } from '../maintenance/maintenance.model';
+import { Block } from '../block/block.model';
 
 @ObjectType()
 export class Reports {
@@ -35,6 +36,12 @@ export class Reports {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Maintenance, {nullable:false})
     maintenance?: Maintenance;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 }

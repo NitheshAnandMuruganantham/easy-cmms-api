@@ -7,6 +7,7 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { GraphQLJSON } from 'graphql-type-json';
 import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
+import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput } from '../replacements/replacements-unchecked-update-many-without-maintenance-nested.input';
 import { TicketUncheckedUpdateOneWithoutMaintenanceNestedInput } from '../ticket/ticket-unchecked-update-one-without-maintenance-nested.input';
 
@@ -54,6 +55,9 @@ export class MaintenanceUncheckedUpdateWithoutReportsInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @HideField()
+    block_id?: BigIntFieldUpdateOperationsInput;
 
     @Field(() => ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput, {nullable:true})
     replacements?: ReplacementsUncheckedUpdateManyWithoutMaintenanceNestedInput;

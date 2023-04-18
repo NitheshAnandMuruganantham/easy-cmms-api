@@ -24,7 +24,7 @@ import {
   UsersWhereInput,
 } from 'src/@generated/users';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { subject } from '@casl/ability';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class UsersService {
     private readonly casl: CaslAbilityFactory,
   ) {}
   async create(session: SessionContainer, createUserInput: UsersCreateInput) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     if (ability.cannot('create', 'Users')) {
       new UnauthorizedException("You don't have permission to create user");
     }
@@ -45,7 +45,11 @@ export class UsersService {
 
     try {
       return this.prisma.users.create({
-        data: { ...createUserInput, user_auth_id: signUpResult.user.id },
+        data: {
+          ...createUserInput,
+          user_auth_id: signUpResult.user.id,
+          blockId: session.User.blockId,
+        } as any,
       });
     } catch (error) {
       new BadRequestException(
@@ -61,7 +65,7 @@ export class UsersService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     if (ability.cannot('read', 'Users')) {
       new UnauthorizedException("You don't have permission to read user");
@@ -74,13 +78,8 @@ export class UsersService {
           {
             OR: [
               {
-                user_auth_id: {
-                  equals: null,
-                },
-              },
-              {
-                user_auth_id: {
-                  not: session.getUserId(),
+                id: {
+                  not: session.User.id,
                 },
               },
             ],
@@ -103,7 +102,7 @@ export class UsersService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     if (ability.cannot('read', 'Users')) {
       new UnauthorizedException("You don't have permission to read user");
@@ -119,7 +118,7 @@ export class UsersService {
   }
 
   async findOne(session: SessionContainer, id: number) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     const userToGet = await this.prisma.users.findUnique({
       where: { id },
@@ -140,7 +139,7 @@ export class UsersService {
     id: number,
     updateUserInput: UsersUpdateInput,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     const userToUpdate = await this.prisma.users.findUnique({
       where: { id },
@@ -164,7 +163,7 @@ export class UsersService {
   }
 
   async remove(session: SessionContainer, id: number) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     if (ability.cannot('delete', 'Users')) {
       new UnauthorizedException("You don't have permission to read user");
@@ -186,7 +185,7 @@ export class UsersService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     if (ability.cannot('read', 'Maintenance')) {
       new UnauthorizedException("You don't have permission to read user");
@@ -214,7 +213,7 @@ export class UsersService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     if (ability.cannot('read', 'Ticket')) {
       new UnauthorizedException("You don't have permission to read user");

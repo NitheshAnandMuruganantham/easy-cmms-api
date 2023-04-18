@@ -25,7 +25,7 @@ import {
 } from 'src/@generated/section';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { SectionService } from './section.service';
 
 @Resolver(() => Section)
@@ -36,7 +36,8 @@ export class SectionResolver {
   createSection(
     @Session()
     session: SessionContainer,
-    @Args('createSectionInput') createSectionInput: SectionCreateWithoutMachinesInput,
+    @Args('createSectionInput')
+    createSectionInput: SectionCreateWithoutMachinesInput,
   ) {
     return this.sectionService.create(session, createSectionInput);
   }
@@ -83,7 +84,8 @@ export class SectionResolver {
     @Session()
     session: SessionContainer,
     @Args('id', { type: () => Int }) id: number,
-    @Args('updateSectionInput') updateSectionInput: SectionUpdateWithoutMachinesInput,
+    @Args('updateSectionInput')
+    updateSectionInput: SectionUpdateWithoutMachinesInput,
   ) {
     return this.sectionService.update(session, id, updateSectionInput);
   }
@@ -119,7 +121,7 @@ export class SectionResolver {
     );
   }
 
-  @ResolveField(() => Int,{name : 'id'} )
+  @ResolveField(() => Int, { name: 'id' })
   id(
     @Parent()
     { id }: Section,

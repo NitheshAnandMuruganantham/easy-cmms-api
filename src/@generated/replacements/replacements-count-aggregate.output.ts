@@ -36,5 +36,8 @@ export class ReplacementsCountAggregate {
     updated_at!: number;
 
     @Field(() => Int, {nullable:false})
+    block_id!: number;
+
+    @Field(() => Int, {nullable:false})
     _all!: number;
 }

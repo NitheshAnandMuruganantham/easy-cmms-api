@@ -9,7 +9,8 @@ export enum Routine_maintanancesScalarFieldEnum {
     assignee_id = "assignee_id",
     meachine_id = "meachine_id",
     created_at = "created_at",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    block_id = "block_id"
 }
 
 

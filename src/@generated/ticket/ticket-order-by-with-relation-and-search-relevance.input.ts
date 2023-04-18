@@ -5,6 +5,7 @@ import { HideField } from '@nestjs/graphql';
 import { UsersOrderByWithRelationAndSearchRelevanceInput } from '../users/users-order-by-with-relation-and-search-relevance.input';
 import { MaintenanceOrderByWithRelationAndSearchRelevanceInput } from '../maintenance/maintenance-order-by-with-relation-and-search-relevance.input';
 import { MachinesOrderByWithRelationAndSearchRelevanceInput } from '../machines/machines-order-by-with-relation-and-search-relevance.input';
+import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
 import { TicketOrderByRelevanceInput } from './ticket-order-by-relevance.input';
 
 @InputType()
@@ -41,6 +42,9 @@ export class TicketOrderByWithRelationAndSearchRelevanceInput {
     updated_at?: keyof typeof SortOrder;
 
     @HideField()
+    block_id?: keyof typeof SortOrder;
+
+    @HideField()
     user?: UsersOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => MaintenanceOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
@@ -48,6 +52,9 @@ export class TicketOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => MachinesOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     machines?: MachinesOrderByWithRelationAndSearchRelevanceInput;
+
+    @HideField()
+    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => TicketOrderByRelevanceInput, {nullable:true})
     _relevance?: TicketOrderByRelevanceInput;

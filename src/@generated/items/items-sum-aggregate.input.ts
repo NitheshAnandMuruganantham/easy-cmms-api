@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ItemsSumAggregateInput {
@@ -15,4 +16,7 @@ export class ItemsSumAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     catagory_id?: true;
+
+    @HideField()
+    block_id?: true;
 }

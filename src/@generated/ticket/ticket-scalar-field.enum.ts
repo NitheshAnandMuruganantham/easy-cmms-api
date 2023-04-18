@@ -10,7 +10,8 @@ export enum TicketScalarFieldEnum {
     machine_id = "machine_id",
     status = "status",
     created_at = "created_at",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    block_id = "block_id"
 }
 
 

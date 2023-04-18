@@ -19,7 +19,7 @@ import { Users } from 'src/@generated/users';
 import { Maintenance } from 'src/@generated/maintenance';
 import { Machines } from 'src/@generated/machines';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { UseGuards } from '@nestjs/common';
 
@@ -36,7 +36,7 @@ export class TicketResolver {
       ...createTicketInput,
       user: {
         connect: {
-          user_auth_id: session.getUserId(),
+          id: session.User.id,
         },
       },
     });

@@ -4,6 +4,8 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { GraphQLJSON } from 'graphql-type-json';
 import { MaintenanceCreateNestedOneWithoutReplacementsInput } from '../maintenance/maintenance-create-nested-one-without-replacements.input';
+import { BlockCreateNestedOneWithoutReplacementsInput } from '../block/block-create-nested-one-without-replacements.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReplacementsCreateWithoutItemsInput {
@@ -34,4 +36,7 @@ export class ReplacementsCreateWithoutItemsInput {
 
     @Field(() => MaintenanceCreateNestedOneWithoutReplacementsInput, {nullable:false})
     maintenance!: MaintenanceCreateNestedOneWithoutReplacementsInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutReplacementsInput;
 }

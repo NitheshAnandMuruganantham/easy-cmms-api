@@ -1,7 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
+import { GraphQLBigInt } from 'graphql-scalars';
 import { Machines } from '../machines/machines.model';
+import { Block } from '../block/block.model';
 import { SectionsCount } from './sections-count.output';
 
 @ObjectType()
@@ -13,6 +15,9 @@ export class Sections {
     @Field(() => String, {nullable:false})
     name!: string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
@@ -21,6 +26,9 @@ export class Sections {
 
     @Field(() => [Machines], {nullable:true})
     machines?: Array<Machines>;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 
     @Field(() => SectionsCount, {nullable:false})
     _count?: SectionsCount;

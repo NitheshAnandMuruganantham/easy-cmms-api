@@ -8,6 +8,7 @@ import { Machines } from '../machines/machines.model';
 import { Replacements } from '../replacements/replacements.model';
 import { Reports } from '../reports/reports.model';
 import { Ticket } from '../ticket/ticket.model';
+import { Block } from '../block/block.model';
 import { MaintenanceCount } from './maintenance-count.output';
 
 @ObjectType()
@@ -55,6 +56,9 @@ export class Maintenance {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Users, {nullable:false})
     assignee?: Users;
 
@@ -69,6 +73,9 @@ export class Maintenance {
 
     @Field(() => Ticket, {nullable:true})
     ticket?: Ticket | null;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 
     @Field(() => MaintenanceCount, {nullable:false})
     _count?: MaintenanceCount;

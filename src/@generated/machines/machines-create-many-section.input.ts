@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 import { GraphQLJSON } from 'graphql-type-json';
 import { Int } from '@nestjs/graphql';
 
@@ -13,7 +14,7 @@ export class MachinesCreateManySectionInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
+    @HideField()
     block_id!: bigint | number;
 
     @Field(() => String, {nullable:false})

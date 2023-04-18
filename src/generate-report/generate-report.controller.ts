@@ -1,6 +1,8 @@
 import { Controller, Get, Res, Param, UseGuards, Body } from '@nestjs/common';
 import { GenerateReportService } from './generate-report.service';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { Session } from 'src/auth/session.decorator';
+import SessionContainer from 'src/types/session';
 
 @UseGuards(new AuthGuard())
 @Controller('generate-report')
@@ -14,6 +16,8 @@ export class GenerateReportController {
       passthrough: true,
     })
     res: any,
+    @Session()
+    session: SessionContainer,
   ) {
     const filename = 'report.xlsx';
     const buffer = Buffer.from(filter, 'base64');
@@ -27,6 +31,7 @@ export class GenerateReportController {
     } = JSON.parse(buffer.toString('utf-8'));
     const data =
       await this.generateReportService.generateCsvReportForAllMaintenance(
+        session.User.blockId,
         fromDate,
         toDate,
         maintenanceFilter || [],

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 import { MachinesUncheckedCreateNestedManyWithoutMachine_catagoryInput } from '../machines/machines-unchecked-create-nested-many-without-machine-catagory.input';
 
 @InputType()
@@ -11,6 +12,9 @@ export class machine_catagoryUncheckedCreateInput {
 
     @Field(() => String, {nullable:false})
     name!: string;
+
+    @HideField()
+    block_id!: bigint | number;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { MachinesCreateNestedManyWithoutSectionInput } from '../machines/machines-create-nested-many-without-section.input';
+import { BlockCreateNestedOneWithoutSectionsInput } from '../block/block-create-nested-one-without-sections.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class SectionsCreateInput {
@@ -20,4 +22,7 @@ export class SectionsCreateInput {
 
     @Field(() => MachinesCreateNestedManyWithoutSectionInput, {nullable:true})
     machines?: MachinesCreateNestedManyWithoutSectionInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutSectionsInput;
 }

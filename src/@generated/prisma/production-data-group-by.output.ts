@@ -32,8 +32,8 @@ export class Production_dataGroupBy {
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    blockId?: bigint | number;
+    @Field(() => GraphQLBigInt, {nullable:false})
+    blockId!: bigint | number;
 
     @Field(() => Production_dataCountAggregate, {nullable:true})
     _count?: Production_dataCountAggregate;

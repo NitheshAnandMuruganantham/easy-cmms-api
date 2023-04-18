@@ -6,6 +6,7 @@ import { ticket_status } from '../prisma/ticket-status.enum';
 import { Users } from '../users/users.model';
 import { Maintenance } from '../maintenance/maintenance.model';
 import { Machines } from '../machines/machines.model';
+import { Block } from '../block/block.model';
 
 @ObjectType()
 export class Ticket {
@@ -40,6 +41,9 @@ export class Ticket {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Users, {nullable:false})
     user?: Users;
 
@@ -48,4 +52,7 @@ export class Ticket {
 
     @Field(() => Machines, {nullable:false})
     machines?: Machines;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 }

@@ -6,8 +6,10 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { ItemsRelationFilter } from '../items/items-relation-filter.input';
 import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class ReplacementsWhereInput {
@@ -51,9 +53,15 @@ export class ReplacementsWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
+    @HideField()
+    block_id?: BigIntFilter;
+
     @Field(() => ItemsRelationFilter, {nullable:true})
     items?: ItemsRelationFilter;
 
     @Field(() => MaintenanceRelationFilter, {nullable:true})
     maintenance?: MaintenanceRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
 }

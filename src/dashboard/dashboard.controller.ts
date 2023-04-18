@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { Param, UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { DashboardService } from './dashboard.service';
 import { Session } from '../auth/session.decorator';
 @Controller('dashboard')

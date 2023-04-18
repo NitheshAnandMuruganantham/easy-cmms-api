@@ -5,6 +5,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableBigIntFieldUpdateOperationsInput } from '../prisma/nullable-big-int-field-update-operations.input';
 import { Enumticket_statusFieldUpdateOperationsInput } from '../prisma/enumticket-status-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class TicketUncheckedUpdateWithoutUserInput {
@@ -35,4 +36,7 @@ export class TicketUncheckedUpdateWithoutUserInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @HideField()
+    block_id?: BigIntFieldUpdateOperationsInput;
 }

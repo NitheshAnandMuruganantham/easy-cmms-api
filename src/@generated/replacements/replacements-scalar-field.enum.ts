@@ -10,7 +10,8 @@ export enum ReplacementsScalarFieldEnum {
     maintanance_id = "maintanance_id",
     created_at = "created_at",
     approved = "approved",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    block_id = "block_id"
 }
 
 

@@ -24,7 +24,7 @@ import {
 import { Sections } from 'src/@generated/sections';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { MachinesService } from './machines.service';
 import { machine_catagory } from 'src/@generated/machine-catagory';
 
@@ -108,4 +108,5 @@ export class MachinesResolver {
       offset,
     );
   }
+  // @re
 }

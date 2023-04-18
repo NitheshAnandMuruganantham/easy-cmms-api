@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ItemsCreateManyCatagoryInput {
@@ -27,4 +28,7 @@ export class ItemsCreateManyCatagoryInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @HideField()
+    block_id!: bigint | number;
 }

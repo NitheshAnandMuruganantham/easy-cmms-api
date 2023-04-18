@@ -23,7 +23,7 @@ import { Ticket } from 'src/@generated/ticket';
 import { UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 
 @Resolver(() => Maintenance)
 export class MaintananceResolver {

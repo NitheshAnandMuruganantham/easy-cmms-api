@@ -26,6 +26,9 @@ export class ReportsUncheckedUpdateManyWithoutReportsInput {
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     validated_sign?: BigIntFieldUpdateOperationsInput;
 
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    maintance_id?: BigIntFieldUpdateOperationsInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 

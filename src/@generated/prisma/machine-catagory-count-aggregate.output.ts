@@ -12,6 +12,9 @@ export class Machine_catagoryCountAggregate {
     name!: number;
 
     @Field(() => Int, {nullable:false})
+    block_id!: number;
+
+    @Field(() => Int, {nullable:false})
     created_at!: number;
 
     @Field(() => Int, {nullable:false})

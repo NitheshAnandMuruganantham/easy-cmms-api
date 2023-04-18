@@ -5,7 +5,9 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-unchecked-update-many-without-items-nested.input';
+import { machines_itemsUncheckedUpdateManyWithoutItemsNestedInput } from '../machines-items/machines-items-unchecked-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUncheckedUpdateInput {
@@ -34,6 +36,12 @@ export class ItemsUncheckedUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
 
+    @HideField()
+    block_id?: BigIntFieldUpdateOperationsInput;
+
     @Field(() => ReplacementsUncheckedUpdateManyWithoutItemsNestedInput, {nullable:true})
     replacements?: ReplacementsUncheckedUpdateManyWithoutItemsNestedInput;
+
+    @Field(() => machines_itemsUncheckedUpdateManyWithoutItemsNestedInput, {nullable:true})
+    machines_items?: machines_itemsUncheckedUpdateManyWithoutItemsNestedInput;
 }

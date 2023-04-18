@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import humanizeDuration, * as humanize from 'humanize-duration';
 import {
   production_dataCreateInput,
@@ -22,7 +22,7 @@ export class ProductionService {
     session: SessionContainer,
     createBlockInput: production_dataCreateInput,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'ProductionData');
 
     return this.prisma.production_data.create({
@@ -37,7 +37,7 @@ export class ProductionService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'ProductionData');
     return this.prisma.production_data.findMany({
       where: {
@@ -59,7 +59,7 @@ export class ProductionService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'ProductionData');
     return this.prisma.production_data.count({
       where: {
@@ -80,7 +80,7 @@ export class ProductionService {
       },
     });
 
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('ProductionData', canGet),
@@ -155,14 +155,13 @@ export class ProductionService {
     const canGet = await this.prisma.production_data.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('ProductionData', canGet),
     );
     return this.prisma.production_data.update({
       where: { id },
-      // @ts-ignore
       data: updateProductionInput,
       include: {
         updatedBy: true,
@@ -174,7 +173,7 @@ export class ProductionService {
     const canGet = await this.prisma.production_data.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('ProductionData', canGet),

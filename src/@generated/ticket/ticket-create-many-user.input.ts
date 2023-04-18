@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { ticket_status } from '../prisma/ticket-status.enum';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class TicketCreateManyUserInput {
@@ -32,4 +33,7 @@ export class TicketCreateManyUserInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @HideField()
+    block_id!: bigint | number;
 }

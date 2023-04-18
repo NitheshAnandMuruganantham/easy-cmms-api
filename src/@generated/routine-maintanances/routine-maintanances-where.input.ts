@@ -4,8 +4,10 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class routine_maintanancesWhereInput {
@@ -46,9 +48,15 @@ export class routine_maintanancesWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
+    @HideField()
+    block_id?: BigIntFilter;
+
     @Field(() => UsersRelationFilter, {nullable:true})
     assignee?: UsersRelationFilter;
 
     @Field(() => MachinesRelationFilter, {nullable:true})
     meachine?: MachinesRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
 }

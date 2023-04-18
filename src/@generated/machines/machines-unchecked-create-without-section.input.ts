@@ -1,11 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 import { GraphQLJSON } from 'graphql-type-json';
 import { Int } from '@nestjs/graphql';
 import { MaintenanceUncheckedCreateNestedManyWithoutMachinesInput } from '../maintenance/maintenance-unchecked-create-nested-many-without-machines.input';
 import { TicketUncheckedCreateNestedManyWithoutMachinesInput } from '../ticket/ticket-unchecked-create-nested-many-without-machines.input';
 import { routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput } from '../routine-maintanances/routine-maintanances-unchecked-create-nested-many-without-meachine.input';
+import { machines_itemsUncheckedCreateNestedManyWithoutMachineInput } from '../machines-items/machines-items-unchecked-create-nested-many-without-machine.input';
 
 @InputType()
 export class MachinesUncheckedCreateWithoutSectionInput {
@@ -16,7 +18,7 @@ export class MachinesUncheckedCreateWithoutSectionInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
+    @HideField()
     block_id!: bigint | number;
 
     @Field(() => String, {nullable:false})
@@ -45,4 +47,7 @@ export class MachinesUncheckedCreateWithoutSectionInput {
 
     @Field(() => routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput;
+
+    @Field(() => machines_itemsUncheckedCreateNestedManyWithoutMachineInput, {nullable:true})
+    machines_items?: machines_itemsUncheckedCreateNestedManyWithoutMachineInput;
 }

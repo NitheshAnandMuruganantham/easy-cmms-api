@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Users } from '../users/users.model';
 import { Machines } from '../machines/machines.model';
+import { Block } from '../block/block.model';
 
 @ObjectType()
 export class routine_maintanances {
@@ -36,9 +37,15 @@ export class routine_maintanances {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Users, {nullable:false})
     assignee?: Users;
 
     @Field(() => Machines, {nullable:false})
     meachine?: Machines;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 }

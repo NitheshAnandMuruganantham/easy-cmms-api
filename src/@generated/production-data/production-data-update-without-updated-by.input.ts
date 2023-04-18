@@ -4,7 +4,8 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { BlockUpdateOneWithoutProduction_dataNestedInput } from '../block/block-update-one-without-production-data-nested.input';
+import { BlockUpdateOneRequiredWithoutProduction_dataNestedInput } from '../block/block-update-one-required-without-production-data-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataUpdateWithoutUpdatedByInput {
@@ -27,6 +28,6 @@ export class production_dataUpdateWithoutUpdatedByInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => BlockUpdateOneWithoutProduction_dataNestedInput, {nullable:true})
-    Block?: BlockUpdateOneWithoutProduction_dataNestedInput;
+    @HideField()
+    Block?: BlockUpdateOneRequiredWithoutProduction_dataNestedInput;
 }

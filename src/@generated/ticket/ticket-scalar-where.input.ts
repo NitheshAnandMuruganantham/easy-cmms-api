@@ -48,4 +48,7 @@ export class TicketScalarWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @HideField()
+    block_id?: BigIntFilter;
 }

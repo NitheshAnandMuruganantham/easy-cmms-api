@@ -8,6 +8,16 @@ import { MachinesListRelationFilter } from '../machines/machines-list-relation-f
 import { UsersListRelationFilter } from '../users/users-list-relation-filter.input';
 import { Block_settingsListRelationFilter } from '../prisma/block-settings-list-relation-filter.input';
 import { Production_dataListRelationFilter } from '../prisma/production-data-list-relation-filter.input';
+import { CatagoryListRelationFilter } from '../prisma/catagory-list-relation-filter.input';
+import { ItemsListRelationFilter } from '../items/items-list-relation-filter.input';
+import { Machine_catagoryListRelationFilter } from '../prisma/machine-catagory-list-relation-filter.input';
+import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-relation-filter.input';
+import { ReplacementsListRelationFilter } from '../replacements/replacements-list-relation-filter.input';
+import { ReportsListRelationFilter } from '../reports/reports-list-relation-filter.input';
+import { SectionsListRelationFilter } from '../sections/sections-list-relation-filter.input';
+import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
+import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
+import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class BlockWhereInput {
@@ -50,4 +60,34 @@ export class BlockWhereInput {
 
     @Field(() => Production_dataListRelationFilter, {nullable:true})
     production_data?: Production_dataListRelationFilter;
+
+    @Field(() => CatagoryListRelationFilter, {nullable:true})
+    catagory?: CatagoryListRelationFilter;
+
+    @Field(() => ItemsListRelationFilter, {nullable:true})
+    Items?: ItemsListRelationFilter;
+
+    @Field(() => Machine_catagoryListRelationFilter, {nullable:true})
+    machine_catagory?: Machine_catagoryListRelationFilter;
+
+    @Field(() => MaintenanceListRelationFilter, {nullable:true})
+    Maintenance?: MaintenanceListRelationFilter;
+
+    @Field(() => ReplacementsListRelationFilter, {nullable:true})
+    Replacements?: ReplacementsListRelationFilter;
+
+    @Field(() => ReportsListRelationFilter, {nullable:true})
+    Reports?: ReportsListRelationFilter;
+
+    @Field(() => SectionsListRelationFilter, {nullable:true})
+    Sections?: SectionsListRelationFilter;
+
+    @Field(() => TicketListRelationFilter, {nullable:true})
+    Ticket?: TicketListRelationFilter;
+
+    @Field(() => Routine_maintanancesListRelationFilter, {nullable:true})
+    routine_maintanances?: Routine_maintanancesListRelationFilter;
+
+    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
+    machines_items?: Machines_itemsListRelationFilter;
 }

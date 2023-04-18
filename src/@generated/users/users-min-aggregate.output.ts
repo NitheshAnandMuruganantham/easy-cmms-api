@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Role } from '../prisma/role.enum';
 
@@ -13,7 +14,7 @@ export class UsersMinAggregate {
     @Field(() => String, {nullable:true})
     phone?: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     user_auth_id?: string;
 
     @Field(() => String, {nullable:true})

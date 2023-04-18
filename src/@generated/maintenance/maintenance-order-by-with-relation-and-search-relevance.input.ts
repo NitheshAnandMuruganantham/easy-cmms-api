@@ -1,11 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { HideField } from '@nestjs/graphql';
 import { UsersOrderByWithRelationAndSearchRelevanceInput } from '../users/users-order-by-with-relation-and-search-relevance.input';
 import { MachinesOrderByWithRelationAndSearchRelevanceInput } from '../machines/machines-order-by-with-relation-and-search-relevance.input';
 import { ReplacementsOrderByRelationAggregateInput } from '../replacements/replacements-order-by-relation-aggregate.input';
 import { ReportsOrderByRelationAggregateInput } from '../reports/reports-order-by-relation-aggregate.input';
 import { TicketOrderByWithRelationAndSearchRelevanceInput } from '../ticket/ticket-order-by-with-relation-and-search-relevance.input';
+import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
 import { MaintenanceOrderByRelevanceInput } from './maintenance-order-by-relevance.input';
 
 @InputType()
@@ -53,6 +55,9 @@ export class MaintenanceOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
 
+    @HideField()
+    block_id?: keyof typeof SortOrder;
+
     @Field(() => UsersOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     assignee?: UsersOrderByWithRelationAndSearchRelevanceInput;
 
@@ -67,6 +72,9 @@ export class MaintenanceOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => TicketOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
     ticket?: TicketOrderByWithRelationAndSearchRelevanceInput;
+
+    @HideField()
+    block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => MaintenanceOrderByRelevanceInput, {nullable:true})
     _relevance?: MaintenanceOrderByRelevanceInput;

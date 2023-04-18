@@ -16,4 +16,7 @@ export class Routine_maintanancesAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     meachine_id?: number;
+
+    @Field(() => Float, {nullable:true})
+    block_id?: number;
 }

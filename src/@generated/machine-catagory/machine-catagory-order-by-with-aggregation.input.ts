@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { HideField } from '@nestjs/graphql';
 import { machine_catagoryCountOrderByAggregateInput } from './machine-catagory-count-order-by-aggregate.input';
 import { machine_catagoryAvgOrderByAggregateInput } from './machine-catagory-avg-order-by-aggregate.input';
 import { machine_catagoryMaxOrderByAggregateInput } from './machine-catagory-max-order-by-aggregate.input';
@@ -15,6 +16,9 @@ export class machine_catagoryOrderByWithAggregationInput {
 
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+
+    @HideField()
+    block_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;

@@ -35,4 +35,7 @@ export class TicketMinOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     updated_at?: keyof typeof SortOrder;
+
+    @HideField()
+    block_id?: keyof typeof SortOrder;
 }

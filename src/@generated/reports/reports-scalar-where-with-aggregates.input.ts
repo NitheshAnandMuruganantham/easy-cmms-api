@@ -4,6 +4,7 @@ import { BigIntWithAggregatesFilter } from '../prisma/big-int-with-aggregates-fi
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { JsonWithAggregatesFilter } from '../prisma/json-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReportsScalarWhereWithAggregatesInput {
@@ -43,4 +44,7 @@ export class ReportsScalarWhereWithAggregatesInput {
 
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     updated_at?: DateTimeWithAggregatesFilter;
+
+    @HideField()
+    block_id?: BigIntWithAggregatesFilter;
 }

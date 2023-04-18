@@ -6,6 +6,8 @@ import { UsersCreateNestedOneWithoutMaintenanceInput } from '../users/users-crea
 import { MachinesCreateNestedOneWithoutMaintenanceInput } from '../machines/machines-create-nested-one-without-maintenance.input';
 import { ReplacementsCreateNestedManyWithoutMaintenanceInput } from '../replacements/replacements-create-nested-many-without-maintenance.input';
 import { TicketCreateNestedOneWithoutMaintenanceInput } from '../ticket/ticket-create-nested-one-without-maintenance.input';
+import { BlockCreateNestedOneWithoutMaintenanceInput } from '../block/block-create-nested-one-without-maintenance.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class MaintenanceCreateWithoutReportsInput {
@@ -57,4 +59,7 @@ export class MaintenanceCreateWithoutReportsInput {
 
     @Field(() => TicketCreateNestedOneWithoutMaintenanceInput, {nullable:true})
     ticket?: TicketCreateNestedOneWithoutMaintenanceInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutMaintenanceInput;
 }

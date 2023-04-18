@@ -24,6 +24,9 @@ export class ItemsUncheckedUpdateManyWithoutItemsInput {
     @Field(() => FloatFieldUpdateOperationsInput, {nullable:true})
     unit_price?: FloatFieldUpdateOperationsInput;
 
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    catagory_id?: BigIntFieldUpdateOperationsInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 

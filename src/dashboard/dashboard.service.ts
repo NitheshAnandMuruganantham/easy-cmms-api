@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { Parser } from 'json2csv';
 import { S3Service } from 'src/s3/s3.service';
 import humanizeDuration, * as humanize from 'humanize-duration';
@@ -34,14 +34,9 @@ export class DashboardService {
     });
   }
   async getMobileDashboard(session: SessionContainer) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
     const Settings: any = await this.prisma.block_settings.findFirst({
       where: {
-        block_id: user.blockId,
+        block_id: session.User.blockId,
         name: {
           equals: 'REPORTING_TIME',
         },
@@ -49,13 +44,13 @@ export class DashboardService {
     });
 
     const reporting_time: number = Settings.value.default;
-    if (user?.role === 'FITTER') {
+    if (session.User?.role === 'FITTER') {
       const from = new Date().setHours(reporting_time, 0, 0, 0);
 
       const weekMaintenancesCount = await this.prisma.maintenance.count({
         where: {
           assignee: {
-            user_auth_id: session.getUserId(),
+            id: session.User.id,
           },
           created_at: {
             gte: new Date(new Date(from).setDate(new Date().getDate() - 7)),
@@ -66,7 +61,7 @@ export class DashboardService {
       const monthMaintenancesCount = await this.prisma.maintenance.count({
         where: {
           assignee: {
-            user_auth_id: session.getUserId(),
+            id: session.User.id,
           },
           created_at: {
             gte: new Date(new Date(from).setDate(new Date().getDate() - 30)),
@@ -85,7 +80,7 @@ export class DashboardService {
       const todayMaintenancesCount = await this.prisma.maintenance.count({
         where: {
           assignee: {
-            user_auth_id: session.getUserId(),
+            id: session.User.id,
           },
           created_at: {
             gte: todayFrom,
@@ -99,7 +94,7 @@ export class DashboardService {
       const TotalPendingMaintenances = await this.prisma.maintenance.count({
         where: {
           assignee: {
-            user_auth_id: session.getUserId(),
+            id: session.User.id,
           },
           resolved: false,
           created_at: {
@@ -114,11 +109,11 @@ export class DashboardService {
         Today_Maintenances_Count: todayMaintenancesCount,
         Total_Pending_Maintenances: TotalPendingMaintenances,
       };
-    } else if (user?.role === 'SUPERVISOR') {
+    } else if (session.User.role === 'SUPERVISOR') {
       const openTicketCount = await this.prisma.ticket.count({
         where: {
           user: {
-            user_auth_id: session.getUserId(),
+            id: session.User.id,
           },
           status: 'OPEN',
         },
@@ -127,7 +122,7 @@ export class DashboardService {
         where: {
           ticket: {
             user: {
-              user_auth_id: session.getUserId(),
+              id: session.User.id,
             },
           },
           resolved: false,
@@ -144,14 +139,9 @@ export class DashboardService {
   }
 
   async getProductionDashboard(session: SessionContainer) {
-    const user = await this.prisma.users.findFirst({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
     const Settings = await this.prisma.block_settings.findMany({
       where: {
-        block_id: user.blockId,
+        block_id: session.User.blockId,
         name: {
           in: [
             'REPORTING_TIME',

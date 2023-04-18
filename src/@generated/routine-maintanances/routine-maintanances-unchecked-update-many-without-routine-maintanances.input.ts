@@ -26,6 +26,9 @@ export class routine_maintanancesUncheckedUpdateManyWithoutRoutine_maintanancesI
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     assignee_id?: BigIntFieldUpdateOperationsInput;
 
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    meachine_id?: BigIntFieldUpdateOperationsInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 

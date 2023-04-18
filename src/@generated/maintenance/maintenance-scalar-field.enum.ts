@@ -14,7 +14,8 @@ export enum MaintenanceScalarFieldEnum {
     assignee_id = "assignee_id",
     machine_id = "machine_id",
     created_at = "created_at",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    block_id = "block_id"
 }
 
 

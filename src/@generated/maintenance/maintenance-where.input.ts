@@ -7,11 +7,13 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
 import { ReplacementsListRelationFilter } from '../replacements/replacements-list-relation-filter.input';
 import { ReportsListRelationFilter } from '../reports/reports-list-relation-filter.input';
 import { TicketRelationFilter } from '../ticket/ticket-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class MaintenanceWhereInput {
@@ -67,6 +69,9 @@ export class MaintenanceWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
+    @HideField()
+    block_id?: BigIntFilter;
+
     @Field(() => UsersRelationFilter, {nullable:true})
     assignee?: UsersRelationFilter;
 
@@ -81,4 +86,7 @@ export class MaintenanceWhereInput {
 
     @Field(() => TicketRelationFilter, {nullable:true})
     ticket?: TicketRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
 }

@@ -4,7 +4,7 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
@@ -41,12 +41,12 @@ export class production_dataWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
-    @Field(() => BigIntNullableFilter, {nullable:true})
-    blockId?: BigIntNullableFilter;
+    @HideField()
+    blockId?: BigIntFilter;
 
     @Field(() => UsersRelationFilter, {nullable:true})
     updatedBy?: UsersRelationFilter;
 
-    @Field(() => BlockRelationFilter, {nullable:true})
+    @HideField()
     Block?: BlockRelationFilter;
 }

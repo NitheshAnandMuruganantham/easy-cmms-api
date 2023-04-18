@@ -15,6 +15,9 @@ export class CatagoryCountAggregate {
     created_at!: number;
 
     @Field(() => Int, {nullable:false})
+    block_id!: number;
+
+    @Field(() => Int, {nullable:false})
     updated_at!: number;
 
     @Field(() => Int, {nullable:false})

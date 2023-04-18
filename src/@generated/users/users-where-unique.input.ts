@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class UsersWhereUniqueInput {
@@ -11,6 +12,6 @@ export class UsersWhereUniqueInput {
     @Field(() => String, {nullable:true})
     phone?: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     user_auth_id?: string;
 }

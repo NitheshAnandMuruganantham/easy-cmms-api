@@ -35,4 +35,7 @@ export class TicketUncheckedUpdateWithoutMaintenanceInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @HideField()
+    block_id?: BigIntFieldUpdateOperationsInput;
 }

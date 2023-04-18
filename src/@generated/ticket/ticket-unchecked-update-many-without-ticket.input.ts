@@ -28,6 +28,9 @@ export class TicketUncheckedUpdateManyWithoutTicketInput {
     @Field(() => NullableBigIntFieldUpdateOperationsInput, {nullable:true})
     maintenance_id?: NullableBigIntFieldUpdateOperationsInput;
 
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    machine_id?: BigIntFieldUpdateOperationsInput;
+
     @Field(() => Enumticket_statusFieldUpdateOperationsInput, {nullable:true})
     status?: Enumticket_statusFieldUpdateOperationsInput;
 

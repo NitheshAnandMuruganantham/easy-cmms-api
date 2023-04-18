@@ -16,4 +16,34 @@ export class BlockCount {
 
     @Field(() => Int, {nullable:false})
     production_data?: number;
+
+    @Field(() => Int, {nullable:false})
+    catagory?: number;
+
+    @Field(() => Int, {nullable:false})
+    Items?: number;
+
+    @Field(() => Int, {nullable:false})
+    machine_catagory?: number;
+
+    @Field(() => Int, {nullable:false})
+    Maintenance?: number;
+
+    @Field(() => Int, {nullable:false})
+    Replacements?: number;
+
+    @Field(() => Int, {nullable:false})
+    Reports?: number;
+
+    @Field(() => Int, {nullable:false})
+    Sections?: number;
+
+    @Field(() => Int, {nullable:false})
+    Ticket?: number;
+
+    @Field(() => Int, {nullable:false})
+    routine_maintanances?: number;
+
+    @Field(() => Int, {nullable:false})
+    machines_items?: number;
 }

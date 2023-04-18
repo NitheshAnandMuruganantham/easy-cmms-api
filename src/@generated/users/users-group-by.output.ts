@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { HideField } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Role } from '../prisma/role.enum';
 import { UsersCountAggregate } from './users-count-aggregate.output';
@@ -22,7 +23,7 @@ export class UsersGroupBy {
     @Field(() => String, {nullable:false})
     phone!: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     user_auth_id?: string;
 
     @Field(() => String, {nullable:false})

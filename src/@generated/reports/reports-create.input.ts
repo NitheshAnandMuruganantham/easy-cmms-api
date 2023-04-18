@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { MaintenanceCreateNestedOneWithoutReportsInput } from '../maintenance/maintenance-create-nested-one-without-reports.input';
+import { BlockCreateNestedOneWithoutReportsInput } from '../block/block-create-nested-one-without-reports.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReportsCreateInput {
@@ -33,4 +35,7 @@ export class ReportsCreateInput {
 
     @Field(() => MaintenanceCreateNestedOneWithoutReportsInput, {nullable:false})
     maintenance!: MaintenanceCreateNestedOneWithoutReportsInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutReportsInput;
 }

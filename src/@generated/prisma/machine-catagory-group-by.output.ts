@@ -16,6 +16,9 @@ export class Machine_catagoryGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
 

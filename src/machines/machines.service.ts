@@ -1,6 +1,7 @@
 import { ForbiddenError, subject } from '@casl/ability';
 import { accessibleBy } from '@casl/prisma';
 import { Injectable } from '@nestjs/common';
+import { take } from 'lodash';
 import { PrismaService } from 'nestjs-prisma';
 import {
   MachinesCreateInput,
@@ -8,13 +9,17 @@ import {
   MachinesUpdateInput,
   MachinesWhereInput,
 } from 'src/@generated/machines';
+import {
+  machines_itemsOrderByWithRelationAndSearchRelevanceInput,
+  machines_itemsWhereInput,
+} from 'src/@generated/machines-items';
 
 import {
   MaintenanceWhereInput,
   MaintenanceOrderByWithRelationInput,
 } from 'src/@generated/maintenance';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 
 @Injectable()
 export class MachinesService {
@@ -27,10 +32,17 @@ export class MachinesService {
     session: SessionContainer,
     createMachineInput: MachinesCreateInput,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Machines');
     return this.prisma.machines.create({
-      data: createMachineInput,
+      data: {
+        ...createMachineInput,
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
+      },
       include: {
         machine_catagory: true,
         block: true,
@@ -46,7 +58,7 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
     return this.prisma.machines.findMany({
@@ -69,7 +81,7 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     return this.prisma.machines.count({
       where: { AND: [where, accessibleBy(ability).Machines] },
@@ -80,7 +92,7 @@ export class MachinesService {
   }
 
   async findOne(session: SessionContainer, id: number) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     const canget = await this.prisma.machines.findUnique({
       where: { id },
       include: {
@@ -104,7 +116,7 @@ export class MachinesService {
   ) {
     const canUpdate = await this.prisma.machines.findUnique({ where: { id } });
 
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('Machines', canUpdate),
@@ -123,7 +135,7 @@ export class MachinesService {
 
   async remove(session: SessionContainer, id: number) {
     const canDelete = await this.prisma.machines.findUnique({ where: { id } });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('Machines', canDelete),
@@ -146,7 +158,7 @@ export class MachinesService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Maintenance');
     this.prisma.machines.findUnique({ where: { id } }).maintenance({
       where: {
@@ -156,5 +168,26 @@ export class MachinesService {
       take: limit,
       skip: offset,
     });
+  }
+  async items(
+    session: SessionContainer,
+    machine_id: bigint,
+    where: machines_itemsWhereInput,
+    orderBy: machines_itemsOrderByWithRelationAndSearchRelevanceInput,
+    limit: number,
+    offset: number,
+  ) {
+    return this.prisma.machines
+      .findUnique({
+        where: {
+          id: machine_id,
+        },
+      })
+      .machines_items({
+        where,
+        orderBy,
+        take: limit,
+        skip: offset,
+      });
   }
 }

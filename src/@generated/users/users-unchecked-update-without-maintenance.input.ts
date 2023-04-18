@@ -4,6 +4,7 @@ import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update
 import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
+import { HideField } from '@nestjs/graphql';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
 import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
@@ -23,13 +24,13 @@ export class UsersUncheckedUpdateWithoutMaintenanceInput {
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     phone?: StringFieldUpdateOperationsInput;
 
-    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     user_auth_id?: NullableStringFieldUpdateOperationsInput;
 
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    @HideField()
     blockId?: BigIntFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})

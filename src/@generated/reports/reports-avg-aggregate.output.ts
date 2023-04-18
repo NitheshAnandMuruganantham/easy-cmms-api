@@ -16,4 +16,7 @@ export class ReportsAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     maintance_id?: number;
+
+    @Field(() => Float, {nullable:true})
+    block_id?: number;
 }
