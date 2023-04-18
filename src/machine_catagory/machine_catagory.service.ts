@@ -17,7 +17,7 @@ import {
   machine_catagoryWhereInput,
 } from 'src/@generated/machine-catagory';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 
 @Injectable()
 export class MachineCatagoriesService {
@@ -30,10 +30,21 @@ export class MachineCatagoriesService {
     session: SessionContainer,
     createSectionInput: machine_catagoryCreateWithoutMachinesInput,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('create', 'machineCatagory');
-    return this.prisma.machine_catagory.create({ data: createSectionInput });
+    return this.prisma.machine_catagory.create({
+      data: {
+        ...createSectionInput,
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
+      },
+    });
   }
 
   async findAll(
@@ -43,7 +54,9 @@ export class MachineCatagoriesService {
     skip: number,
     take: number,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
@@ -61,7 +74,9 @@ export class MachineCatagoriesService {
     skip: number,
     take: number,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
@@ -74,7 +89,9 @@ export class MachineCatagoriesService {
   }
 
   async findOne(session: SessionContainer, id: number) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'machineCatagory');
 
@@ -86,18 +103,22 @@ export class MachineCatagoriesService {
     id: number,
     updateSectionInput: machine_catagoryUpdateOneWithoutMachinesNestedInput,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('update', 'machineCatagory');
 
     return this.prisma.sections.update({
       where: { id },
-      data: updateSectionInput,
+      data: { ...updateSectionInput, block_id: session.User.blockId },
     });
   }
 
   async remove(session: SessionContainer, id: number) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('delete', 'machineCatagory');
     return this.prisma.machine_catagory.delete({ where: { id } });
@@ -111,7 +132,9 @@ export class MachineCatagoriesService {
     skip: number,
     take: number,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
@@ -131,7 +154,9 @@ export class MachineCatagoriesService {
   }
 
   async machinesCount(session: SessionContainer, id: bigint) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
     const dt = this.prisma.machines.count({
       where: {

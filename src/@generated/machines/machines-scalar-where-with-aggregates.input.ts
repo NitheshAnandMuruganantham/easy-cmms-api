@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntWithAggregatesFilter } from '../prisma/big-int-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { JsonWithAggregatesFilter } from '../prisma/json-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
@@ -27,7 +28,7 @@ export class MachinesScalarWhereWithAggregatesInput {
     @Field(() => BigIntWithAggregatesFilter, {nullable:true})
     section_id?: BigIntWithAggregatesFilter;
 
-    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
+    @HideField()
     block_id?: BigIntWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})

@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput } from '../replacements/replacements-unchecked-create-nested-many-without-maintenance.input';
 import { TicketUncheckedCreateNestedOneWithoutMaintenanceInput } from '../ticket/ticket-unchecked-create-nested-one-without-maintenance.input';
 
@@ -49,6 +50,9 @@ export class MaintenanceUncheckedCreateWithoutReportsInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @HideField()
+    block_id!: bigint | number;
 
     @Field(() => ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput, {nullable:true})
     replacements?: ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput;

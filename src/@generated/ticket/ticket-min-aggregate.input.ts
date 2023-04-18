@@ -34,4 +34,7 @@ export class TicketMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     updated_at?: true;
+
+    @HideField()
+    block_id?: true;
 }

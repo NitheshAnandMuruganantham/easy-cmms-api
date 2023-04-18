@@ -6,6 +6,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReplacementsScalarWhereInput {
@@ -48,4 +49,7 @@ export class ReplacementsScalarWhereInput {
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
+
+    @HideField()
+    block_id?: BigIntFilter;
 }

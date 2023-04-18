@@ -9,7 +9,8 @@ export enum ReportsScalarFieldEnum {
     validated_sign = "validated_sign",
     maintance_id = "maintance_id",
     created_at = "created_at",
-    updated_at = "updated_at"
+    updated_at = "updated_at",
+    block_id = "block_id"
 }
 
 

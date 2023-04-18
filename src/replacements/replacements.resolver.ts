@@ -18,7 +18,7 @@ import {
 import { Maintenance } from 'src/@generated/maintenance';
 import { ReplacementsService } from './replacements.service';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 

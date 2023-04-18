@@ -8,6 +8,7 @@ import { UsersUpdateOneRequiredWithoutTicketNestedInput } from '../users/users-u
 import { HideField } from '@nestjs/graphql';
 import { MaintenanceUpdateOneWithoutTicketNestedInput } from '../maintenance/maintenance-update-one-without-ticket-nested.input';
 import { MachinesUpdateOneRequiredWithoutTicketNestedInput } from '../machines/machines-update-one-required-without-ticket-nested.input';
+import { BlockUpdateOneRequiredWithoutTicketNestedInput } from '../block/block-update-one-required-without-ticket-nested.input';
 
 @InputType()
 export class TicketUpdateInput {
@@ -41,4 +42,7 @@ export class TicketUpdateInput {
 
     @Field(() => MachinesUpdateOneRequiredWithoutTicketNestedInput, {nullable:true})
     machines?: MachinesUpdateOneRequiredWithoutTicketNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutTicketNestedInput;
 }

@@ -35,6 +35,9 @@ export class TicketCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     updated_at?: true;
 
+    @HideField()
+    block_id?: true;
+
     @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

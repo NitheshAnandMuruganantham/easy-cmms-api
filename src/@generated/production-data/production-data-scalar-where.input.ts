@@ -4,7 +4,7 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { BigIntNullableFilter } from '../prisma/big-int-nullable-filter.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataScalarWhereInput {
@@ -39,6 +39,6 @@ export class production_dataScalarWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
-    @Field(() => BigIntNullableFilter, {nullable:true})
-    blockId?: BigIntNullableFilter;
+    @HideField()
+    blockId?: BigIntFilter;
 }

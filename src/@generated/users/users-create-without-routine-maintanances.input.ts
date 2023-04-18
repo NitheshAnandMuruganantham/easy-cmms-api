@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { HideField } from '@nestjs/graphql';
 import { Role } from '../prisma/role.enum';
 import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
 import { BlockCreateNestedOneWithoutUsersInput } from '../block/block-create-nested-one-without-users.input';
@@ -21,7 +22,7 @@ export class UsersCreateWithoutRoutine_maintanancesInput {
     @Field(() => String, {nullable:false})
     phone!: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     user_auth_id?: string;
 
     @Field(() => String, {nullable:false})
@@ -42,7 +43,7 @@ export class UsersCreateWithoutRoutine_maintanancesInput {
     @Field(() => String, {nullable:true})
     role_alias?: string;
 
-    @Field(() => BlockCreateNestedOneWithoutUsersInput, {nullable:false})
+    @HideField()
     block!: BlockCreateNestedOneWithoutUsersInput;
 
     @Field(() => MaintenanceCreateNestedManyWithoutAssigneeInput, {nullable:true})

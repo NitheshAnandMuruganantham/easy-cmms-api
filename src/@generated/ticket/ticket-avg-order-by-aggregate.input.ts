@@ -17,4 +17,7 @@ export class TicketAvgOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     machine_id?: keyof typeof SortOrder;
+
+    @HideField()
+    block_id?: keyof typeof SortOrder;
 }

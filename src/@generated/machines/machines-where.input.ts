@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -11,6 +12,7 @@ import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-r
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
 import { Machine_catagoryRelationFilter } from '../prisma/machine-catagory-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
+import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class MachinesWhereInput {
@@ -33,7 +35,7 @@ export class MachinesWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     section_id?: BigIntFilter;
 
-    @Field(() => BigIntFilter, {nullable:true})
+    @HideField()
     block_id?: BigIntFilter;
 
     @Field(() => StringFilter, {nullable:true})
@@ -54,7 +56,7 @@ export class MachinesWhereInput {
     @Field(() => BigIntFilter, {nullable:true})
     machine_catagory_id?: BigIntFilter;
 
-    @Field(() => BlockRelationFilter, {nullable:true})
+    @HideField()
     block?: BlockRelationFilter;
 
     @Field(() => SectionsRelationFilter, {nullable:true})
@@ -71,4 +73,7 @@ export class MachinesWhereInput {
 
     @Field(() => Routine_maintanancesListRelationFilter, {nullable:true})
     routine_maintanances?: Routine_maintanancesListRelationFilter;
+
+    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
+    machines_items?: Machines_itemsListRelationFilter;
 }

@@ -4,6 +4,7 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { UsersCreateNestedOneWithoutProduction_dataInput } from '../users/users-create-nested-one-without-production-data.input';
 import { BlockCreateNestedOneWithoutProduction_dataInput } from '../block/block-create-nested-one-without-production-data.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataCreateInput {
@@ -29,6 +30,6 @@ export class production_dataCreateInput {
     @Field(() => UsersCreateNestedOneWithoutProduction_dataInput, {nullable:false})
     updatedBy!: UsersCreateNestedOneWithoutProduction_dataInput;
 
-    @Field(() => BlockCreateNestedOneWithoutProduction_dataInput, {nullable:true})
-    Block?: BlockCreateNestedOneWithoutProduction_dataInput;
+    @HideField()
+    Block!: BlockCreateNestedOneWithoutProduction_dataInput;
 }

@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataCreateManyUpdatedByInput {
@@ -24,6 +25,6 @@ export class production_dataCreateManyUpdatedByInput {
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    blockId?: bigint | number;
+    @HideField()
+    blockId!: bigint | number;
 }

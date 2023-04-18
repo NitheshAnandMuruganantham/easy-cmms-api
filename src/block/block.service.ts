@@ -13,7 +13,7 @@ import {
   MachinesWhereInput,
 } from 'src/@generated/machines';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { accessibleBy } from '@casl/prisma';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class BlockService {
     private readonly casl: CaslAbilityFactory,
   ) {}
   async create(session: SessionContainer, createBlockInput: BlockCreateInput) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('create', 'Block');
     console.log('createBlockInput', createBlockInput);
 
@@ -39,7 +39,7 @@ export class BlockService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Block');
     return this.prisma.block.findMany({
       where: {
@@ -58,7 +58,7 @@ export class BlockService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Block');
     return this.prisma.block.count({
       where: {
@@ -72,7 +72,7 @@ export class BlockService {
 
   async findOne(session: SessionContainer, id: number) {
     const canGet = await this.prisma.block.findUnique({ where: { id } });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Block', canGet),
@@ -86,7 +86,7 @@ export class BlockService {
     updateBlockInput: BlockUpdateInput,
   ) {
     const canGet = await this.prisma.block.findUnique({ where: { id } });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('Block', canGet),
@@ -102,7 +102,7 @@ export class BlockService {
 
   async remove(session: SessionContainer, id: number) {
     const canGet = await this.prisma.block.findUnique({ where: { id } });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('Block', canGet),
@@ -121,7 +121,7 @@ export class BlockService {
     limit?: number,
     offset?: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
     return this.prisma.block
@@ -144,7 +144,7 @@ export class BlockService {
   }
 
   async machinesCount(session: SessionContainer, id: bigint) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
 
     const dt = this.prisma.machines.count({

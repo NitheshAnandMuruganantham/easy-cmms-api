@@ -38,6 +38,9 @@ export class Routine_maintanancesGroupBy {
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
+
     @Field(() => Routine_maintanancesCountAggregate, {nullable:true})
     _count?: Routine_maintanancesCountAggregate;
 

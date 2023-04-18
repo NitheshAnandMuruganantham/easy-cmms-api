@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class machine_catagoryCreateManyInput {
@@ -10,6 +11,9 @@ export class machine_catagoryCreateManyInput {
 
     @Field(() => String, {nullable:false})
     name!: string;
+
+    @HideField()
+    block_id!: bigint | number;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

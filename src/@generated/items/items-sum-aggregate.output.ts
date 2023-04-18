@@ -19,4 +19,7 @@ export class ItemsSumAggregate {
 
     @Field(() => GraphQLBigInt, {nullable:true})
     catagory_id?: bigint | number;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
 }

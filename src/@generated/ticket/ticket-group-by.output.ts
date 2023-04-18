@@ -42,6 +42,9 @@ export class TicketGroupBy {
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
+
     @Field(() => TicketCountAggregate, {nullable:true})
     _count?: TicketCountAggregate;
 

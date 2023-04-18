@@ -5,8 +5,11 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { CatagoryRelationFilter } from '../prisma/catagory-relation-filter.input';
 import { ReplacementsListRelationFilter } from '../replacements/replacements-list-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
+import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class ItemsWhereInput {
@@ -44,9 +47,18 @@ export class ItemsWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
 
+    @HideField()
+    block_id?: BigIntFilter;
+
     @Field(() => CatagoryRelationFilter, {nullable:true})
     catagory?: CatagoryRelationFilter;
 
     @Field(() => ReplacementsListRelationFilter, {nullable:true})
     replacements?: ReplacementsListRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
+
+    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
+    machines_items?: Machines_itemsListRelationFilter;
 }

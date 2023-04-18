@@ -10,16 +10,24 @@ export class GenerateReportService {
   constructor(private readonly prisma: PrismaService) {}
 
   async generateCsvReportForAllMaintenance(
+    block_id: bigint,
     from: Date,
     to: Date,
     maintenanceFilter: any,
     ticketFilter: any,
     routineMaintenancesFilter: any,
     productionFilter: any,
+    custom_production_from?: Date,
+    custom_production_to?: Date,
   ) {
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
         AND: [
+          {
+            block_id: {
+              equals: block_id,
+            },
+          },
           {
             created_at: {
               gte: from,
@@ -59,6 +67,11 @@ export class GenerateReportService {
     const AllTicketCsv = await this.prisma.ticket.findMany({
       where: {
         AND: [
+          {
+            block_id: {
+              equals: block_id,
+            },
+          },
           {
             created_at: {
               gte: from,
@@ -133,6 +146,11 @@ export class GenerateReportService {
         where: {
           AND: [
             {
+              block_id: {
+                equals: block_id,
+              },
+            },
+            {
               created_at: {
                 gte: from,
                 lte: to,
@@ -162,7 +180,12 @@ export class GenerateReportService {
       row.push(maintenance.created_at);
       sheet_3.push(row);
     });
-    const prod_rows = await this.generateProductionRows(from, new Date());
+    const prod_rows = await this.generateProductionRows(
+      from || custom_production_from,
+      to || custom_production_to,
+      productionFilter,
+      block_id,
+    );
 
     let sheet_4 = prod_rows;
 
@@ -259,15 +282,28 @@ export class GenerateReportService {
     return buffer;
   }
 
-  async generateProductionRows(from: any, to: any) {
+  async generateProductionRows(
+    from: any,
+    to: any,
+    productionFilter: any,
+    block_id: bigint,
+  ) {
     let sheet = [];
     const report_settings = await this.prisma.block_settings.findFirst({
       where: {
         AND: [
           {
+            block_id: {
+              equals: block_id,
+            },
+          },
+          {
             name: {
               equals: 'REPORT_CONFIGURATION',
             },
+          },
+          {
+            AND: productionFilter || [],
           },
         ],
       },
@@ -278,18 +314,17 @@ export class GenerateReportService {
         AND: [
           {
             date: {
-              gte: from,
+              gte: new Date(new Date(from).setHours(0, 0, 0, 0)),
             },
           },
           {
             date: {
-              lte: to,
+              lte: new Date(new Date(to).setHours(24, 60, 60, 0)),
             },
           },
         ],
       },
     });
-    console.log(report_settings.value);
     productionData.forEach((data) => {
       try {
         let row = [];

@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common/decorators';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { ProductionService } from './production.service';
 import {
   production_data,

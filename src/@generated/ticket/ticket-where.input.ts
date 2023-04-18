@@ -9,6 +9,7 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UsersRelationFilter } from '../users/users-relation-filter.input';
 import { MaintenanceRelationFilter } from '../maintenance/maintenance-relation-filter.input';
 import { MachinesRelationFilter } from '../machines/machines-relation-filter.input';
+import { BlockRelationFilter } from '../block/block-relation-filter.input';
 
 @InputType()
 export class TicketWhereInput {
@@ -53,6 +54,9 @@ export class TicketWhereInput {
     updated_at?: DateTimeFilter;
 
     @HideField()
+    block_id?: BigIntFilter;
+
+    @HideField()
     user?: UsersRelationFilter;
 
     @Field(() => MaintenanceRelationFilter, {nullable:true})
@@ -60,4 +64,7 @@ export class TicketWhereInput {
 
     @Field(() => MachinesRelationFilter, {nullable:true})
     machines?: MachinesRelationFilter;
+
+    @HideField()
+    block?: BlockRelationFilter;
 }

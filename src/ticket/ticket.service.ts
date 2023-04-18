@@ -7,7 +7,7 @@ import {
 } from 'src/@generated/ticket';
 import { nanoid } from 'nanoid';
 import { PrismaService } from 'nestjs-prisma';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { ForbiddenError, subject } from '@casl/ability';
 import { S3Service } from 'src/s3/s3.service';
@@ -24,7 +24,9 @@ export class TicketService {
     session: SessionContainer,
     createTicketInput: TicketCreateInput,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     ForbiddenError.from(ability).throwUnlessCan('create', 'Ticket');
     const photo = await this.s3Service.uploadBase64Image(
       createTicketInput.photos,
@@ -33,6 +35,11 @@ export class TicketService {
     const data = await this.prisma.ticket.create({
       data: {
         ...createTicketInput,
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
         photos: photo,
       },
     });
@@ -47,7 +54,9 @@ export class TicketService {
     skip: number,
     take: number,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'Ticket');
 
@@ -87,7 +96,9 @@ export class TicketService {
     skip: number,
     take: number,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
 
     ForbiddenError.from(ability).throwUnlessCan('read', 'Ticket');
 
@@ -102,7 +113,9 @@ export class TicketService {
   }
 
   async findOne(session: SessionContainer, id: number) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     const ticketToFind = await this.prisma.ticket.findUnique({
       where: { id },
       include: {
@@ -131,7 +144,9 @@ export class TicketService {
     id: number,
     updateTicketInput: TicketUpdateInput,
   ) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     const ticketToUpdate = await this.prisma.ticket.findUnique({
       where: { id },
     });
@@ -157,7 +172,9 @@ export class TicketService {
   }
 
   async remove(session: SessionContainer, id: number) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     const ticketToDelete = await this.prisma.ticket.findUnique({
       where: { id },
     });
@@ -181,7 +198,9 @@ export class TicketService {
   }
 
   async user(session: SessionContainer, id: bigint) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
     const userToFind = await this.prisma.users.findUnique({
       where: { id },
     });
@@ -189,14 +208,16 @@ export class TicketService {
     return userToFind;
   }
   async maintanance(session: SessionContainer, id: bigint) {
-    const ability = await this.caslFactory.getCurrentUserAbility(session);
-    const maintananceToFind = await this.prisma.maintenance.findUnique({
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
+    const maintenanceToFind = await this.prisma.maintenance.findUnique({
       where: { id },
     });
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
-      subject('Maintenance', maintananceToFind),
+      subject('Maintenance', maintenanceToFind),
     );
-    return maintananceToFind;
+    return maintenanceToFind;
   }
 }

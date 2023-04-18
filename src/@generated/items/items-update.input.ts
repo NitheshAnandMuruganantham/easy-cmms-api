@@ -7,6 +7,9 @@ import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-op
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
 import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-update-many-without-items-nested.input';
+import { BlockUpdateOneRequiredWithoutItemsNestedInput } from '../block/block-update-one-required-without-items-nested.input';
+import { HideField } from '@nestjs/graphql';
+import { machines_itemsUpdateManyWithoutItemsNestedInput } from '../machines-items/machines-items-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUpdateInput {
@@ -37,4 +40,10 @@ export class ItemsUpdateInput {
 
     @Field(() => ReplacementsUpdateManyWithoutItemsNestedInput, {nullable:true})
     replacements?: ReplacementsUpdateManyWithoutItemsNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutItemsNestedInput;
+
+    @Field(() => machines_itemsUpdateManyWithoutItemsNestedInput, {nullable:true})
+    machines_items?: machines_itemsUpdateManyWithoutItemsNestedInput;
 }

@@ -16,4 +16,7 @@ export class ItemsAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     catagory_id?: number;
+
+    @Field(() => Float, {nullable:true})
+    block_id?: number;
 }

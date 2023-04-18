@@ -5,6 +5,8 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { GraphQLJSON } from 'graphql-type-json';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { MaintenanceUpdateOneRequiredWithoutReportsNestedInput } from '../maintenance/maintenance-update-one-required-without-reports-nested.input';
+import { BlockUpdateOneRequiredWithoutReportsNestedInput } from '../block/block-update-one-required-without-reports-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReportsUpdateInput {
@@ -35,4 +37,7 @@ export class ReportsUpdateInput {
 
     @Field(() => MaintenanceUpdateOneRequiredWithoutReportsNestedInput, {nullable:true})
     maintenance?: MaintenanceUpdateOneRequiredWithoutReportsNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutReportsNestedInput;
 }

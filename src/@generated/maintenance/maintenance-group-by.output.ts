@@ -54,6 +54,9 @@ export class MaintenanceGroupBy {
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
+
     @Field(() => MaintenanceCountAggregate, {nullable:true})
     _count?: MaintenanceCountAggregate;
 

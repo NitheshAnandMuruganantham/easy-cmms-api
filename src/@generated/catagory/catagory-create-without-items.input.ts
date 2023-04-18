@@ -1,6 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
+import { BlockCreateNestedOneWithoutCatagoryInput } from '../block/block-create-nested-one-without-catagory.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class catagoryCreateWithoutItemsInput {
@@ -16,4 +18,7 @@ export class catagoryCreateWithoutItemsInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutCatagoryInput;
 }

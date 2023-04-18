@@ -19,6 +19,9 @@ export class CatagoryGroupBy {
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
+
     @Field(() => Date, {nullable:false})
     updated_at!: Date | string;
 

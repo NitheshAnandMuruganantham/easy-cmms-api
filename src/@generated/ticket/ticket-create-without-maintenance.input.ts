@@ -5,6 +5,7 @@ import { ticket_status } from '../prisma/ticket-status.enum';
 import { UsersCreateNestedOneWithoutTicketInput } from '../users/users-create-nested-one-without-ticket.input';
 import { HideField } from '@nestjs/graphql';
 import { MachinesCreateNestedOneWithoutTicketInput } from '../machines/machines-create-nested-one-without-ticket.input';
+import { BlockCreateNestedOneWithoutTicketInput } from '../block/block-create-nested-one-without-ticket.input';
 
 @InputType()
 export class TicketCreateWithoutMaintenanceInput {
@@ -35,4 +36,7 @@ export class TicketCreateWithoutMaintenanceInput {
 
     @Field(() => MachinesCreateNestedOneWithoutTicketInput, {nullable:false})
     machines!: MachinesCreateNestedOneWithoutTicketInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutTicketInput;
 }

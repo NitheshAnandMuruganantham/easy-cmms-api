@@ -14,7 +14,11 @@ import {
   ReplacementsWhereInput,
 } from 'src/@generated/replacements';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
+import {
+  MachinesOrderByWithRelationInput,
+  MachinesWhereInput,
+} from 'src/@generated/machines';
 
 @Injectable()
 export class ItemsService {
@@ -24,7 +28,7 @@ export class ItemsService {
   ) {}
 
   async create(session: SessionContainer, createItemInput: ItemsCreateInput) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     ForbiddenError.from(ability).throwUnlessCan('create', 'Items');
 
@@ -40,7 +44,7 @@ export class ItemsService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     ForbiddenError.from(ability).throwUnlessCan('create', 'Items');
 
@@ -58,7 +62,7 @@ export class ItemsService {
     const canGet = await this.prisma.items.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Items', canGet),
@@ -73,7 +77,7 @@ export class ItemsService {
     const canUpdate = await this.prisma.items.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('Items', canUpdate),
@@ -90,7 +94,7 @@ export class ItemsService {
     const canRemove = await this.prisma.items.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('Items', canRemove),
@@ -112,7 +116,7 @@ export class ItemsService {
     limit: number,
     offset: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Replacements');
 
     return this.prisma.items.findUnique({ where: { id } }).replacements({
@@ -123,5 +127,26 @@ export class ItemsService {
       take: limit,
       skip: offset,
     });
+  }
+  async machines_items(
+    session: SessionContainer,
+    machine_id: bigint,
+    where: MachinesWhereInput,
+    orderBy: MachinesOrderByWithRelationInput,
+    limit: number,
+    offset: number,
+  ) {
+    this.prisma.items
+      .findUnique({
+        where: {
+          id: machine_id,
+        },
+      })
+      .machines_items({
+        where,
+        orderBy,
+        take: limit,
+        skip: offset,
+      });
   }
 }

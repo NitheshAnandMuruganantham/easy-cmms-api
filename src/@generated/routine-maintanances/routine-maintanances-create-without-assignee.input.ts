@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { MachinesCreateNestedOneWithoutRoutine_maintanancesInput } from '../machines/machines-create-nested-one-without-routine-maintanances.input';
+import { BlockCreateNestedOneWithoutRoutine_maintanancesInput } from '../block/block-create-nested-one-without-routine-maintanances.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class routine_maintanancesCreateWithoutAssigneeInput {
@@ -30,4 +32,7 @@ export class routine_maintanancesCreateWithoutAssigneeInput {
 
     @Field(() => MachinesCreateNestedOneWithoutRoutine_maintanancesInput, {nullable:false})
     meachine!: MachinesCreateNestedOneWithoutRoutine_maintanancesInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutRoutine_maintanancesInput;
 }

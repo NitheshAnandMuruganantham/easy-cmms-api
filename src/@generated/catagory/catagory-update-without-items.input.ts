@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { BigIntFieldUpdateOperationsInput } from '../prisma/big-int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { BlockUpdateOneRequiredWithoutCatagoryNestedInput } from '../block/block-update-one-required-without-catagory-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class catagoryUpdateWithoutItemsInput {
@@ -18,4 +20,7 @@ export class catagoryUpdateWithoutItemsInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutCatagoryNestedInput;
 }

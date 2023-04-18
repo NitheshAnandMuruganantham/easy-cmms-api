@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
+import { GraphQLBigInt } from 'graphql-scalars';
 import { SectionsCountAggregate } from './sections-count-aggregate.output';
 import { SectionsAvgAggregate } from './sections-avg-aggregate.output';
 import { SectionsSumAggregate } from './sections-sum-aggregate.output';
@@ -15,6 +16,9 @@ export class SectionsGroupBy {
 
     @Field(() => String, {nullable:false})
     name!: string;
+
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint | number;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;

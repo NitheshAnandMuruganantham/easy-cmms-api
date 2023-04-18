@@ -13,7 +13,7 @@ import { AppService } from './app.service';
 import { AuthGuard } from './auth/auth.guard';
 import { v4 as uuid } from 'uuid';
 import { Session } from './auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from './types/session';
 import { PrismaService } from 'nestjs-prisma';
 import { ForbiddenException } from '@nestjs/common/exceptions';
 
@@ -51,7 +51,7 @@ export class AppController {
   async postExample(
     @Session() session: SessionContainer,
   ): Promise<{ token: any }> {
-    const jwt = session.getAccessTokenPayload()['jwt'];
+    const jwt = session.Session.getAccessTokenPayload()['jwt'];
     return { token: jwt };
   }
 
@@ -61,13 +61,8 @@ export class AppController {
     @Session()
     session: SessionContainer,
   ) {
-    const user = this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
-    if (user) {
-      return user;
+    if (session.User) {
+      return session.User;
     } else {
       throw new ForbiddenException('user not exists !!');
     }
@@ -97,8 +92,10 @@ export class AppController {
       orderBy: any;
       where: any;
     },
+    @Session()
+    session: SessionContainer,
   ) {
-    return this.appService.getMachines(take, skip, orderBy, where);
+    return this.appService.getMachines(session, take, skip, orderBy, where);
   }
 
   @UseGuards(new AuthGuard())
@@ -184,8 +181,10 @@ export class AppController {
       orderBy: any;
       where: any;
     },
+    @Session()
+    session: SessionContainer,
   ) {
-    return this.appService.getRoutine(take, skip, orderBy, where);
+    return this.appService.getRoutine(session, take, skip, orderBy, where);
   }
 
   @Post('raiseTicket')
@@ -197,12 +196,7 @@ export class AppController {
   @Get('getBlockSettings')
   @UseGuards(new AuthGuard())
   async getBlockSettings(@Session() session: SessionContainer) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
-    return this.appService.getBlockSettings(user.blockId);
+    return this.appService.getBlockSettings(session);
   }
 
   @Post('inputPastMaintenance')
@@ -211,12 +205,7 @@ export class AppController {
     @Session() session: SessionContainer,
     @Body() data: any,
   ) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
-    return this.appService.inputPastMaintenance(data, user.id);
+    return this.appService.inputPastMaintenance(session, data);
   }
 
   @Post('punchProduction')
@@ -225,6 +214,6 @@ export class AppController {
     @Session() session: SessionContainer,
     @Body() data: any,
   ) {
-    return this.appService.punchProduction(session.getUserId(), data);
+    return this.appService.punchProduction(session, data);
   }
 }

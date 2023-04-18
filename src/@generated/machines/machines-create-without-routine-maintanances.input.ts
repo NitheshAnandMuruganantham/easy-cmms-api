@@ -4,10 +4,12 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
 import { Int } from '@nestjs/graphql';
 import { BlockCreateNestedOneWithoutMachinesInput } from '../block/block-create-nested-one-without-machines.input';
+import { HideField } from '@nestjs/graphql';
 import { SectionsCreateNestedOneWithoutMachinesInput } from '../sections/sections-create-nested-one-without-machines.input';
 import { MaintenanceCreateNestedManyWithoutMachinesInput } from '../maintenance/maintenance-create-nested-many-without-machines.input';
 import { TicketCreateNestedManyWithoutMachinesInput } from '../ticket/ticket-create-nested-many-without-machines.input';
 import { machine_catagoryCreateNestedOneWithoutMachinesInput } from '../machine-catagory/machine-catagory-create-nested-one-without-machines.input';
+import { machines_itemsCreateNestedManyWithoutMachineInput } from '../machines-items/machines-items-create-nested-many-without-machine.input';
 
 @InputType()
 export class MachinesCreateWithoutRoutine_maintanancesInput {
@@ -33,7 +35,7 @@ export class MachinesCreateWithoutRoutine_maintanancesInput {
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
 
-    @Field(() => BlockCreateNestedOneWithoutMachinesInput, {nullable:false})
+    @HideField()
     block!: BlockCreateNestedOneWithoutMachinesInput;
 
     @Field(() => SectionsCreateNestedOneWithoutMachinesInput, {nullable:false})
@@ -47,4 +49,7 @@ export class MachinesCreateWithoutRoutine_maintanancesInput {
 
     @Field(() => machine_catagoryCreateNestedOneWithoutMachinesInput, {nullable:false})
     machine_catagory!: machine_catagoryCreateNestedOneWithoutMachinesInput;
+
+    @Field(() => machines_itemsCreateNestedManyWithoutMachineInput, {nullable:true})
+    machines_items?: machines_itemsCreateNestedManyWithoutMachineInput;
 }

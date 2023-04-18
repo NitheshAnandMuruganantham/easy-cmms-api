@@ -6,6 +6,8 @@ import { Float } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { catagory } from '../catagory/catagory.model';
 import { Replacements } from '../replacements/replacements.model';
+import { Block } from '../block/block.model';
+import { machines_items } from '../machines-items/machines-items.model';
 import { ItemsCount } from './items-count.output';
 
 @ObjectType()
@@ -35,11 +37,20 @@ export class Items {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => catagory, {nullable:false})
     catagory?: catagory;
 
     @Field(() => [Replacements], {nullable:true})
     replacements?: Array<Replacements>;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
+
+    @Field(() => [machines_items], {nullable:true})
+    machines_items?: Array<machines_items>;
 
     @Field(() => ItemsCount, {nullable:false})
     _count?: ItemsCount;

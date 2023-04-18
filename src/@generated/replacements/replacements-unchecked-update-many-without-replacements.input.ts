@@ -26,6 +26,9 @@ export class ReplacementsUncheckedUpdateManyWithoutReplacementsInput {
     metadata?: any;
 
     @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
+    item_id?: BigIntFieldUpdateOperationsInput;
+
+    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
     maintanance_id?: BigIntFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})

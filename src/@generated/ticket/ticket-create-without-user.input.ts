@@ -4,6 +4,8 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { ticket_status } from '../prisma/ticket-status.enum';
 import { MaintenanceCreateNestedOneWithoutTicketInput } from '../maintenance/maintenance-create-nested-one-without-ticket.input';
 import { MachinesCreateNestedOneWithoutTicketInput } from '../machines/machines-create-nested-one-without-ticket.input';
+import { BlockCreateNestedOneWithoutTicketInput } from '../block/block-create-nested-one-without-ticket.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class TicketCreateWithoutUserInput {
@@ -34,4 +36,7 @@ export class TicketCreateWithoutUserInput {
 
     @Field(() => MachinesCreateNestedOneWithoutTicketInput, {nullable:false})
     machines!: MachinesCreateNestedOneWithoutTicketInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutTicketInput;
 }

@@ -7,6 +7,8 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput } from '../maintenance/maintenance-update-one-required-without-replacements-nested.input';
+import { BlockUpdateOneRequiredWithoutReplacementsNestedInput } from '../block/block-update-one-required-without-replacements-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class ReplacementsUpdateWithoutItemsInput {
@@ -37,4 +39,7 @@ export class ReplacementsUpdateWithoutItemsInput {
 
     @Field(() => MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput, {nullable:true})
     maintenance?: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutReplacementsNestedInput;
 }

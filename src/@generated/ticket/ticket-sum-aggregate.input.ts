@@ -16,4 +16,7 @@ export class TicketSumAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     machine_id?: true;
+
+    @HideField()
+    block_id?: true;
 }

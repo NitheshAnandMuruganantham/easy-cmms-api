@@ -11,7 +11,7 @@ import {
   routine_maintanancesWhereInput,
 } from 'src/@generated/routine-maintanances';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
 
@@ -28,13 +28,20 @@ export class RoutineMaintanancesService {
     session: SessionContainer,
     createRoutineMaintananceInput: routine_maintanancesCreateInput,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'create',
       'RoutineMaintanances',
     );
     const data = await this.prisma.routine_maintanances.create({
-      data: createRoutineMaintananceInput,
+      data: {
+        ...createRoutineMaintananceInput,
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
+      },
     });
     try {
       const j = new CronJob(data.cron, async () => {
@@ -42,8 +49,9 @@ export class RoutineMaintanancesService {
         from.setHours(from.getHours() + 1);
         const to = new Date(from);
         to.setHours(to.getHours() + data.duration);
-        const result = await this.prisma.maintenance.create({
+        const result: any = await this.prisma.maintenance.create({
           data: {
+            block_id: session.User.blockId,
             machine_id: data.meachine_id,
             name: data.name,
             description: data.description,
@@ -102,7 +110,7 @@ export class RoutineMaintanancesService {
     limit?: number,
     offset?: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'RoutineMaintanances');
     return this.prisma.routine_maintanances.findMany({
       where,
@@ -118,7 +126,7 @@ export class RoutineMaintanancesService {
     limit?: number,
     offset?: number,
   ) {
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'RoutineMaintanances');
     return this.prisma.routine_maintanances.count({
       where,
@@ -141,7 +149,7 @@ export class RoutineMaintanancesService {
         },
       },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('RoutineMaintanances', canGet),
@@ -166,7 +174,7 @@ export class RoutineMaintanancesService {
       where: { id },
     });
 
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
       subject('RoutineMaintanances', canUpdate),
@@ -192,6 +200,7 @@ export class RoutineMaintanancesService {
         to.setHours(to.getMinutes() + data.duration);
         const result = await this.prisma.maintenance.create({
           data: {
+            block_id: session.User.blockId,
             machine_id: data.meachine_id,
             name: data.name,
             description: data.description,
@@ -250,7 +259,7 @@ export class RoutineMaintanancesService {
     const canDelete = await this.prisma.routine_maintanances.findUnique({
       where: { id },
     });
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
       subject('RoutineMaintanances', canDelete),
@@ -291,7 +300,7 @@ export class RoutineMaintanancesService {
       },
     });
 
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Machines', canGet as any),
@@ -305,7 +314,7 @@ export class RoutineMaintanancesService {
         where: { id: parent_id },
       })
       .assignee();
-    const ability = await this.casl.getCurrentUserAbility(session);
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
       subject('Users', canGet),

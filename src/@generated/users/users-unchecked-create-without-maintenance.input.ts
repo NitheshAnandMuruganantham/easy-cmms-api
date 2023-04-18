@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
+import { HideField } from '@nestjs/graphql';
 import { Role } from '../prisma/role.enum';
 import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
 import { TicketUncheckedCreateNestedManyWithoutUserInput } from '../ticket/ticket-unchecked-create-nested-many-without-user.input';
@@ -20,13 +21,13 @@ export class UsersUncheckedCreateWithoutMaintenanceInput {
     @Field(() => String, {nullable:false})
     phone!: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     user_auth_id?: string;
 
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
+    @HideField()
     blockId!: bigint | number;
 
     @Field(() => Date, {nullable:true})

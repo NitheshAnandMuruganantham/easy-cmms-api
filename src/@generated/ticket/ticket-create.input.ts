@@ -6,6 +6,7 @@ import { UsersCreateNestedOneWithoutTicketInput } from '../users/users-create-ne
 import { HideField } from '@nestjs/graphql';
 import { MaintenanceCreateNestedOneWithoutTicketInput } from '../maintenance/maintenance-create-nested-one-without-ticket.input';
 import { MachinesCreateNestedOneWithoutTicketInput } from '../machines/machines-create-nested-one-without-ticket.input';
+import { BlockCreateNestedOneWithoutTicketInput } from '../block/block-create-nested-one-without-ticket.input';
 
 @InputType()
 export class TicketCreateInput {
@@ -39,4 +40,7 @@ export class TicketCreateInput {
 
     @Field(() => MachinesCreateNestedOneWithoutTicketInput, {nullable:false})
     machines!: MachinesCreateNestedOneWithoutTicketInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutTicketInput;
 }

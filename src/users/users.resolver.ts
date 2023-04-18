@@ -1,4 +1,3 @@
-import { UseGuards } from '@nestjs/common/decorators';
 import {
   Resolver,
   Query,
@@ -25,9 +24,8 @@ import {
   UsersUpdateInput,
   UsersWhereInput,
 } from 'src/@generated/users';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { UsersService } from './users.service';
 
 @Resolver(() => Users)

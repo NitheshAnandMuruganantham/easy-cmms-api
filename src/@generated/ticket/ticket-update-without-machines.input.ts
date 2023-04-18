@@ -7,6 +7,7 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { UsersUpdateOneRequiredWithoutTicketNestedInput } from '../users/users-update-one-required-without-ticket-nested.input';
 import { HideField } from '@nestjs/graphql';
 import { MaintenanceUpdateOneWithoutTicketNestedInput } from '../maintenance/maintenance-update-one-without-ticket-nested.input';
+import { BlockUpdateOneRequiredWithoutTicketNestedInput } from '../block/block-update-one-required-without-ticket-nested.input';
 
 @InputType()
 export class TicketUpdateWithoutMachinesInput {
@@ -37,4 +38,7 @@ export class TicketUpdateWithoutMachinesInput {
 
     @Field(() => MaintenanceUpdateOneWithoutTicketNestedInput, {nullable:true})
     maintenance?: MaintenanceUpdateOneWithoutTicketNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutTicketNestedInput;
 }

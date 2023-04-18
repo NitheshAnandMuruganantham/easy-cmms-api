@@ -6,11 +6,13 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BlockUpdateOneRequiredWithoutMachinesNestedInput } from '../block/block-update-one-required-without-machines-nested.input';
+import { HideField } from '@nestjs/graphql';
 import { SectionsUpdateOneRequiredWithoutMachinesNestedInput } from '../sections/sections-update-one-required-without-machines-nested.input';
 import { MaintenanceUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-update-many-without-machines-nested.input';
 import { TicketUpdateManyWithoutMachinesNestedInput } from '../ticket/ticket-update-many-without-machines-nested.input';
 import { machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput } from '../machine-catagory/machine-catagory-update-one-required-without-machines-nested.input';
 import { routine_maintanancesUpdateManyWithoutMeachineNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-meachine-nested.input';
+import { machines_itemsUpdateManyWithoutMachineNestedInput } from '../machines-items/machines-items-update-many-without-machine-nested.input';
 
 @InputType()
 export class MachinesUpdateInput {
@@ -36,7 +38,7 @@ export class MachinesUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => BlockUpdateOneRequiredWithoutMachinesNestedInput, {nullable:true})
+    @HideField()
     block?: BlockUpdateOneRequiredWithoutMachinesNestedInput;
 
     @Field(() => SectionsUpdateOneRequiredWithoutMachinesNestedInput, {nullable:true})
@@ -53,4 +55,7 @@ export class MachinesUpdateInput {
 
     @Field(() => routine_maintanancesUpdateManyWithoutMeachineNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUpdateManyWithoutMeachineNestedInput;
+
+    @Field(() => machines_itemsUpdateManyWithoutMachineNestedInput, {nullable:true})
+    machines_items?: machines_itemsUpdateManyWithoutMachineNestedInput;
 }

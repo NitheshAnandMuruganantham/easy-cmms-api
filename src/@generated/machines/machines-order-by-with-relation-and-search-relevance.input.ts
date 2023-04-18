@@ -1,12 +1,14 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { HideField } from '@nestjs/graphql';
 import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
 import { SectionsOrderByWithRelationAndSearchRelevanceInput } from '../sections/sections-order-by-with-relation-and-search-relevance.input';
 import { MaintenanceOrderByRelationAggregateInput } from '../maintenance/maintenance-order-by-relation-aggregate.input';
 import { TicketOrderByRelationAggregateInput } from '../ticket/ticket-order-by-relation-aggregate.input';
 import { machine_catagoryOrderByWithRelationAndSearchRelevanceInput } from '../machine-catagory/machine-catagory-order-by-with-relation-and-search-relevance.input';
 import { routine_maintanancesOrderByRelationAggregateInput } from '../routine-maintanances/routine-maintanances-order-by-relation-aggregate.input';
+import { machines_itemsOrderByRelationAggregateInput } from '../machines-items/machines-items-order-by-relation-aggregate.input';
 import { MachinesOrderByRelevanceInput } from './machines-order-by-relevance.input';
 
 @InputType()
@@ -21,7 +23,7 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     section_id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     block_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -42,7 +44,7 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     machine_catagory_id?: keyof typeof SortOrder;
 
-    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    @HideField()
     block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => SectionsOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
@@ -59,6 +61,9 @@ export class MachinesOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => routine_maintanancesOrderByRelationAggregateInput, {nullable:true})
     routine_maintanances?: routine_maintanancesOrderByRelationAggregateInput;
+
+    @Field(() => machines_itemsOrderByRelationAggregateInput, {nullable:true})
+    machines_items?: machines_itemsOrderByRelationAggregateInput;
 
     @Field(() => MachinesOrderByRelevanceInput, {nullable:true})
     _relevance?: MachinesOrderByRelevanceInput;

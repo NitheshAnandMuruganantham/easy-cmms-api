@@ -11,6 +11,9 @@ export class Machine_catagoryMinAggregate {
     @Field(() => String, {nullable:true})
     name?: string;
 
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
+
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 

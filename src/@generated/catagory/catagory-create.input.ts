@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { ItemsCreateNestedManyWithoutCatagoryInput } from '../items/items-create-nested-many-without-catagory.input';
+import { BlockCreateNestedOneWithoutCatagoryInput } from '../block/block-create-nested-one-without-catagory.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class catagoryCreateInput {
@@ -20,4 +22,7 @@ export class catagoryCreateInput {
 
     @Field(() => ItemsCreateNestedManyWithoutCatagoryInput, {nullable:true})
     items?: ItemsCreateNestedManyWithoutCatagoryInput;
+
+    @HideField()
+    block!: BlockCreateNestedOneWithoutCatagoryInput;
 }

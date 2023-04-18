@@ -36,4 +36,7 @@ export class TicketCreateManyInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @HideField()
+    block_id!: bigint | number;
 }

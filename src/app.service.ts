@@ -2,15 +2,16 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { RedisService } from '@liaoliaots/nestjs-redis';
 import { PrismaService } from 'nestjs-prisma';
 import { Redis } from 'ioredis';
-import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
+import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
-import { SessionContainer } from 'supertokens-node/recipe/session';
-import { ForbiddenError } from 'apollo-server-core';
+import SessionContainer from './types/session';
+import { accessibleBy } from '@casl/prisma';
 import { nanoid } from 'nanoid';
 import { S3Service } from 'src/s3/s3.service';
 import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
-
+import { CaslAbilityFactory } from './casl/casl.ability';
+import { ForbiddenError } from '@casl/ability';
 @Injectable()
 export class AppService implements OnModuleInit {
   redis: Redis;
@@ -20,6 +21,7 @@ export class AppService implements OnModuleInit {
     private readonly redisService: RedisService,
     private readonly s3Service: S3Service,
     private readonly twilio: TwilioService,
+    private readonly casl: CaslAbilityFactory,
     private readonly config: ConfigService,
   ) {
     this.redis = this.redisService.getClient();
@@ -28,10 +30,6 @@ export class AppService implements OnModuleInit {
     console.log('bootstrapping..................');
     Promise.all([this.getCrons()]);
   }
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   async getCrons() {
     console.log('starting cron jobs 🕐');
     const crons = await this.prisma.routine_maintanances.findMany();
@@ -50,6 +48,7 @@ export class AppService implements OnModuleInit {
         to.setHours(to.getMinutes() + data.duration);
         const result = await this.prisma.maintenance.create({
           data: {
+            block_id: data.block_id,
             machine_id: data.meachine_id,
             name: data.name,
             description: data.description,
@@ -96,9 +95,18 @@ export class AppService implements OnModuleInit {
     return 'ok';
   }
 
-  getMachines(take: number, skip: number, orderBy: any, where: any) {
+  async getMachines(
+    session: SessionContainer,
+    take: number,
+    skip: number,
+    orderBy: any,
+    where: any,
+  ) {
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
+
     return this.prisma.machines.findMany({
-      where,
+      where: { AND: [where, accessibleBy(ability).Machines] },
       take,
       skip,
       orderBy,
@@ -117,18 +125,15 @@ export class AppService implements OnModuleInit {
     orderBy: any,
     where: any,
   ) {
-    const user_id = session.getUserId();
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: user_id,
-      },
-    });
-    if (user.role === 'FITTER') {
+    if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
         where: {
           AND: [
             {
-              assignee_id: user.id,
+              assignee_id: session.User.id,
+            },
+            {
+              block_id: session.User.blockId,
             },
             {
               resolved: false,
@@ -153,7 +158,16 @@ export class AppService implements OnModuleInit {
       });
     } else {
       return this.prisma.maintenance.findMany({
-        where,
+        where: {
+          AND: [
+            {
+              ...where,
+            },
+            {
+              block_id: session.User.blockId,
+            },
+          ],
+        },
         take,
         skip,
         orderBy,
@@ -179,18 +193,15 @@ export class AppService implements OnModuleInit {
     orderBy: any,
     where: any,
   ) {
-    const user_id = session.getUserId();
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: user_id,
-      },
-    });
-    if (user.role === 'FITTER') {
+    if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
         where: {
           AND: [
             {
-              assignee_id: user.id,
+              assignee_id: session.User.id,
+            },
+            {
+              block_id: session.User.blockId,
             },
             { ...where },
           ],
@@ -216,7 +227,16 @@ export class AppService implements OnModuleInit {
       });
     } else {
       return this.prisma.maintenance.findMany({
-        where,
+        where: {
+          AND: [
+            {
+              ...where,
+            },
+            {
+              block_id: session.User.blockId,
+            },
+          ],
+        },
         take: take || 30,
         skip,
         orderBy: [
@@ -239,9 +259,28 @@ export class AppService implements OnModuleInit {
     }
   }
 
-  getRoutine(take: number, skip: number, orderBy: any, where: any) {
+  async getRoutine(
+    session: SessionContainer,
+    take: number,
+    skip: number,
+    orderBy: any,
+    where: any,
+  ) {
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
+
+    ForbiddenError.from(ability).throwUnlessCan('read', 'RoutineMaintanances');
+
     return this.prisma.routine_maintanances.findMany({
-      where,
+      where: {
+        AND: [
+          where,
+          {
+            block_id: {
+              equals: session.User.blockId,
+            },
+          },
+        ],
+      },
       take,
       skip,
       orderBy,
@@ -265,18 +304,18 @@ export class AppService implements OnModuleInit {
     orderBy: any,
     where: any,
   ) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
-      },
-    });
-    if (user.role === 'SUPERVISOR') {
+    if (session.User.role === 'SUPERVISOR') {
       return this.prisma.ticket.findMany({
         where: {
           AND: [
             {
               user_id: {
-                equals: user.id,
+                equals: session.User.id,
+              },
+            },
+            {
+              block_id: {
+                equals: session.User.blockId,
               },
             },
             {
@@ -302,7 +341,16 @@ export class AppService implements OnModuleInit {
       });
     } else {
       return this.prisma.ticket.findMany({
-        where,
+        where: {
+          AND: [
+            where,
+            {
+              block_id: {
+                equals: session.User.blockId,
+              },
+            },
+          ],
+        },
         take,
         skip,
         orderBy,
@@ -320,36 +368,28 @@ export class AppService implements OnModuleInit {
     }
   }
   async raiseTicket(session: SessionContainer, data: any) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: session.getUserId(),
+    const photos = await this.s3Service.uploadBase64Image(
+      data.photos,
+      `${nanoid(10)}`,
+    );
+    const result = await this.prisma.ticket.create({
+      data: {
+        block_id: session.User.blockId,
+        user_id: session.User.id,
+        name: data.name,
+        description: data.description,
+        machine_id: data.machine_id,
+        status: 'OPEN',
+        photos,
       },
     });
-    if (!user) {
-      throw new ForbiddenError('user not exists');
-    } else {
-      const photos = await this.s3Service.uploadBase64Image(
-        data.photos,
-        `${nanoid(10)}`,
-      );
-      const result = await this.prisma.ticket.create({
-        data: {
-          user_id: user.id,
-          name: data.name,
-          description: data.description,
-          machine_id: data.machine_id,
-          status: 'OPEN',
-          photos,
-        },
-      });
-      return result;
-    }
+    return result;
   }
 
-  async getBlockSettings(block_id: bigint) {
+  async getBlockSettings(session: SessionContainer) {
     const data = await this.prisma.block_settings.findMany({
       where: {
-        block_id,
+        block_id: session.User.blockId,
       },
     });
     let result = {};
@@ -359,13 +399,18 @@ export class AppService implements OnModuleInit {
     return result;
   }
 
-  async inputPastMaintenance(data: any, user_id: any) {
+  async inputPastMaintenance(session: SessionContainer, data: any) {
     const photo_url = await this.s3Service.uploadBase64Image(
       data.photo,
       `${nanoid(10)}`,
     );
     return this.prisma.maintenance.create({
       data: {
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
         description: data.description,
         photo: photo_url,
         from: data.from,
@@ -380,39 +425,31 @@ export class AppService implements OnModuleInit {
         },
         assignee: {
           connect: {
-            id: user_id,
+            id: session.User.id,
           },
         },
       },
     });
   }
 
-  async punchProduction(user_id: string, data: any) {
-    const user = await this.prisma.users.findUnique({
-      where: {
-        user_auth_id: user_id,
-      },
-    });
-    console.log(data);
+  async punchProduction(session: SessionContainer, data: any) {
     const prod = await this.prisma.production_data.create({
       data: {
         updatedBy: {
           connect: {
-            id: user.id,
+            id: session.User.id,
           },
         },
         date: new Date(new Date(data.date).setHours(0, 0, 0, 0)).toISOString(),
         shift: data.shift,
         Block: {
           connect: {
-            id: user.blockId,
+            id: session.User.blockId,
           },
         },
-
         production: data,
       },
     });
-    console.log(prod);
     return 'ok';
   }
 }

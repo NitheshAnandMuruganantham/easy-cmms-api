@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { HideField } from '@nestjs/graphql';
 import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
 import { MaintenanceOrderByRelationAggregateInput } from '../maintenance/maintenance-order-by-relation-aggregate.input';
 import { TicketOrderByRelationAggregateInput } from '../ticket/ticket-order-by-relation-aggregate.input';
@@ -20,13 +21,13 @@ export class UsersOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     phone?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     user_auth_id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
+    @HideField()
     blockId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -44,7 +45,7 @@ export class UsersOrderByWithRelationAndSearchRelevanceInput {
     @Field(() => SortOrder, {nullable:true})
     role_alias?: keyof typeof SortOrder;
 
-    @Field(() => BlockOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
+    @HideField()
     block?: BlockOrderByWithRelationAndSearchRelevanceInput;
 
     @Field(() => MaintenanceOrderByRelationAggregateInput, {nullable:true})

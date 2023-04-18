@@ -5,6 +5,8 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput } from '../users/users-update-one-required-without-routine-maintanances-nested.input';
+import { BlockUpdateOneRequiredWithoutRoutine_maintanancesNestedInput } from '../block/block-update-one-required-without-routine-maintanances-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class routine_maintanancesUpdateWithoutMeachineInput {
@@ -32,4 +34,7 @@ export class routine_maintanancesUpdateWithoutMeachineInput {
 
     @Field(() => UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput, {nullable:true})
     assignee?: UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput;
+
+    @HideField()
+    block?: BlockUpdateOneRequiredWithoutRoutine_maintanancesNestedInput;
 }

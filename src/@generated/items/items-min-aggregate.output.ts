@@ -31,4 +31,7 @@ export class ItemsMinAggregate {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
+
+    @Field(() => GraphQLBigInt, {nullable:true})
+    block_id?: bigint | number;
 }

@@ -6,6 +6,7 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Items } from '../items/items.model';
 import { Maintenance } from '../maintenance/maintenance.model';
+import { Block } from '../block/block.model';
 
 @ObjectType()
 export class Replacements {
@@ -40,9 +41,15 @@ export class Replacements {
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
 
+    @Field(() => GraphQLBigInt, {nullable:false})
+    block_id!: bigint;
+
     @Field(() => Items, {nullable:false})
     items?: Items;
 
     @Field(() => Maintenance, {nullable:false})
     maintenance?: Maintenance;
+
+    @Field(() => Block, {nullable:false})
+    block?: Block;
 }

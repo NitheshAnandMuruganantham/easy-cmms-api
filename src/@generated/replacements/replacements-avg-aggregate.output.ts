@@ -16,4 +16,7 @@ export class ReplacementsAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     maintanance_id?: number;
+
+    @Field(() => Float, {nullable:true})
+    block_id?: number;
 }

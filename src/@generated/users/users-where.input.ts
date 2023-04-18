@@ -4,6 +4,7 @@ import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { JsonFilter } from '../prisma/json-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { HideField } from '@nestjs/graphql';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumRoleFilter } from '../prisma/enum-role-filter.input';
 import { EnumRoleNullableListFilter } from '../prisma/enum-role-nullable-list-filter.input';
@@ -34,13 +35,13 @@ export class UsersWhereInput {
     @Field(() => StringFilter, {nullable:true})
     phone?: StringFilter;
 
-    @Field(() => StringNullableFilter, {nullable:true})
+    @HideField()
     user_auth_id?: StringNullableFilter;
 
     @Field(() => StringFilter, {nullable:true})
     name?: StringFilter;
 
-    @Field(() => BigIntFilter, {nullable:true})
+    @HideField()
     blockId?: BigIntFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
@@ -58,7 +59,7 @@ export class UsersWhereInput {
     @Field(() => StringFilter, {nullable:true})
     role_alias?: StringFilter;
 
-    @Field(() => BlockRelationFilter, {nullable:true})
+    @HideField()
     block?: BlockRelationFilter;
 
     @Field(() => MaintenanceListRelationFilter, {nullable:true})

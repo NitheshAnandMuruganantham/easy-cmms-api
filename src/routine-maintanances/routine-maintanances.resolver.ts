@@ -17,7 +17,7 @@ import {
 } from 'src/@generated/routine-maintanances';
 import { Users } from 'src/@generated/users';
 import { Session } from 'src/auth/session.decorator';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+import SessionContainer from '../types/session';
 import { RoutineMaintanancesService } from './routine-maintanances.service';
 
 @Resolver(() => routine_maintanances)

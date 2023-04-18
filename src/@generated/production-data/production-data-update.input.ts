@@ -5,7 +5,8 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UsersUpdateOneRequiredWithoutProduction_dataNestedInput } from '../users/users-update-one-required-without-production-data-nested.input';
-import { BlockUpdateOneWithoutProduction_dataNestedInput } from '../block/block-update-one-without-production-data-nested.input';
+import { BlockUpdateOneRequiredWithoutProduction_dataNestedInput } from '../block/block-update-one-required-without-production-data-nested.input';
+import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataUpdateInput {
@@ -31,6 +32,6 @@ export class production_dataUpdateInput {
     @Field(() => UsersUpdateOneRequiredWithoutProduction_dataNestedInput, {nullable:true})
     updatedBy?: UsersUpdateOneRequiredWithoutProduction_dataNestedInput;
 
-    @Field(() => BlockUpdateOneWithoutProduction_dataNestedInput, {nullable:true})
-    Block?: BlockUpdateOneWithoutProduction_dataNestedInput;
+    @HideField()
+    Block?: BlockUpdateOneRequiredWithoutProduction_dataNestedInput;
 }
