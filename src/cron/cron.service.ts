@@ -34,22 +34,6 @@ export class CronService {
           [],
           [],
           [],
-          new Date(
-            new Date(new Date().setDate(new Date().getDate() - 1)).setHours(
-              0,
-              0,
-              0,
-              0,
-            ),
-          ),
-          new Date(
-            new Date(new Date().setDate(new Date().getDate() - 1)).setHours(
-              24,
-              60,
-              60,
-              60,
-            ),
-          ),
         );
       if (element.Mailings == null) return;
       const mail = await this.mailService
