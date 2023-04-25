@@ -14,7 +14,6 @@ import { Reports } from '../reports/reports.model';
 import { Sections } from '../sections/sections.model';
 import { Ticket } from '../ticket/ticket.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
-import { machines_items } from '../machines-items/machines-items.model';
 import { BlockCount } from './block-count.output';
 
 @ObjectType()
@@ -76,9 +75,6 @@ export class Block {
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;
-
-    @Field(() => [machines_items], {nullable:true})
-    machines_items?: Array<machines_items>;
 
     @Field(() => BlockCount, {nullable:false})
     _count?: BlockCount;

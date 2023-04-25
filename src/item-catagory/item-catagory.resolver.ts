@@ -62,6 +62,25 @@ export class ItemCatagoryResolver {
     );
   }
 
+  @Query(() => Int, { name: 'itemCatagoriesCount' })
+  count(
+    @Session()
+    session: SessionContainer,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number,
+    @Args('offset', { type: () => Int, nullable: true }) offset: number,
+    @Args('orderBy', { nullable: true })
+    orderBy: ItemCatagoryOrderByWithAggregationInput,
+    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput,
+  ) {
+    return this.itemCatagoryService.count(
+      session,
+      where,
+      orderBy,
+      limit,
+      offset,
+    );
+  }
+
   @Query(() => ItemCatagory, { name: 'itemCatagory' })
   findOne(
     @Session()
@@ -116,12 +135,20 @@ export class ItemCatagoryResolver {
     );
   }
 
-  @ResolveField(() => CatagoryCount)
+  @ResolveField(() => CatagoryCount, { name: '_count' })
   countItems(
     @Session()
     session: SessionContainer,
     @Parent() { id }: ItemCatagory,
   ) {
-    return this.itemCatagoryService.count(session, id);
+    return this.itemCatagoryService.countItems(session, id);
+  }
+
+  @ResolveField(() => Int, { name: 'id' })
+  id(
+    @Parent()
+    { id }: ItemCatagory,
+  ) {
+    return `${id}`;
   }
 }

@@ -6,7 +6,6 @@ import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operat
 import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { ReplacementsUncheckedUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-unchecked-update-many-without-items-nested.input';
-import { machines_itemsUncheckedUpdateManyWithoutItemsNestedInput } from '../machines-items/machines-items-unchecked-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUncheckedUpdateWithoutBlockInput {
@@ -37,7 +36,4 @@ export class ItemsUncheckedUpdateWithoutBlockInput {
 
     @Field(() => ReplacementsUncheckedUpdateManyWithoutItemsNestedInput, {nullable:true})
     replacements?: ReplacementsUncheckedUpdateManyWithoutItemsNestedInput;
-
-    @Field(() => machines_itemsUncheckedUpdateManyWithoutItemsNestedInput, {nullable:true})
-    machines_items?: machines_itemsUncheckedUpdateManyWithoutItemsNestedInput;
 }

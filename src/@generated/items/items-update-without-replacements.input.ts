@@ -8,7 +8,6 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
 import { BlockUpdateOneRequiredWithoutItemsNestedInput } from '../block/block-update-one-required-without-items-nested.input';
 import { HideField } from '@nestjs/graphql';
-import { machines_itemsUpdateManyWithoutItemsNestedInput } from '../machines-items/machines-items-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUpdateWithoutReplacementsInput {
@@ -39,7 +38,4 @@ export class ItemsUpdateWithoutReplacementsInput {
 
     @HideField()
     block?: BlockUpdateOneRequiredWithoutItemsNestedInput;
-
-    @Field(() => machines_itemsUpdateManyWithoutItemsNestedInput, {nullable:true})
-    machines_items?: machines_itemsUpdateManyWithoutItemsNestedInput;
 }

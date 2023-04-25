@@ -7,7 +7,6 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { catagory } from '../catagory/catagory.model';
 import { Replacements } from '../replacements/replacements.model';
 import { Block } from '../block/block.model';
-import { machines_items } from '../machines-items/machines-items.model';
 import { ItemsCount } from './items-count.output';
 
 @ObjectType()
@@ -48,9 +47,6 @@ export class Items {
 
     @Field(() => Block, {nullable:false})
     block?: Block;
-
-    @Field(() => [machines_items], {nullable:true})
-    machines_items?: Array<machines_items>;
 
     @Field(() => ItemsCount, {nullable:false})
     _count?: ItemsCount;

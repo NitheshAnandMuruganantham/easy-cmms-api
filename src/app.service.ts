@@ -452,4 +452,62 @@ export class AppService implements OnModuleInit {
     });
     return 'ok';
   }
+
+  async requestSpares(session: SessionContainer, data: any) {
+    try {
+      if (session.User.role !== 'FITTER') {
+        throw new Error('Only Fitters can request spares');
+      } else {
+        const maintanance = await this.prisma.maintenance.findUnique({
+          where: {
+            id: data.maintenance_id,
+          },
+        });
+        if (maintanance.block_id !== session.User.blockId) {
+          throw new Error('You are not authorized to do this');
+        } else {
+          await this.prisma.replacements.createMany({
+            data: data.bom.map((item) => {
+              return {
+                name: `replacement for maintenance id #${maintanance.id}`,
+                description: `maintenance description : ${maintanance.name}`,
+                quantity: item.quantity,
+                approved: false,
+                block_id: session.User.blockId,
+                item_id: item.id,
+                maintanance_id: data.maintenance_id,
+              };
+            }),
+          });
+        }
+        return 'ok';
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  }
+
+  async getAllReplacementsRequests(session: SessionContainer) {
+    if (session.User.role !== 'FITTER') {
+      throw new Error('Only Fitters can request spares');
+    } else {
+      const replacements = await this.prisma.replacements.findMany({
+        where: {
+          block_id: session.User.blockId,
+          maintenance: {
+            assignee_id: session.User.id,
+          },
+        },
+        orderBy: {
+          created_at: 'desc',
+        },
+        include: {
+          maintenance: true,
+          items: true,
+        },
+      });
+      return replacements;
+    }
+  }
 }

@@ -7,7 +7,4 @@ export class ItemsCount {
 
     @Field(() => Int, {nullable:false})
     replacements?: number;
-
-    @Field(() => Int, {nullable:false})
-    machines_items?: number;
 }

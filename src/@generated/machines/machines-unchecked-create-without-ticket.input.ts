@@ -6,7 +6,6 @@ import { GraphQLJSON } from 'graphql-type-json';
 import { Int } from '@nestjs/graphql';
 import { MaintenanceUncheckedCreateNestedManyWithoutMachinesInput } from '../maintenance/maintenance-unchecked-create-nested-many-without-machines.input';
 import { routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput } from '../routine-maintanances/routine-maintanances-unchecked-create-nested-many-without-meachine.input';
-import { machines_itemsUncheckedCreateNestedManyWithoutMachineInput } from '../machines-items/machines-items-unchecked-create-nested-many-without-machine.input';
 
 @InputType()
 export class MachinesUncheckedCreateWithoutTicketInput {
@@ -46,7 +45,4 @@ export class MachinesUncheckedCreateWithoutTicketInput {
 
     @Field(() => routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedCreateNestedManyWithoutMeachineInput;
-
-    @Field(() => machines_itemsUncheckedCreateNestedManyWithoutMachineInput, {nullable:true})
-    machines_items?: machines_itemsUncheckedCreateNestedManyWithoutMachineInput;
 }

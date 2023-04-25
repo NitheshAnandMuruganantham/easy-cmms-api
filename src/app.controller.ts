@@ -216,4 +216,16 @@ export class AppController {
   ) {
     return this.appService.punchProduction(session, data);
   }
+
+  @Post('requestSpare')
+  @UseGuards(new AuthGuard())
+  async requestSpare(@Session() session: SessionContainer, @Body() data: any) {
+    return this.appService.requestSpares(session, data);
+  }
+
+  @Get('/getAllReplacementsRequests')
+  @UseGuards(new AuthGuard())
+  async getAllReplacementsRequests(@Session() session: SessionContainer) {
+    return this.appService.getAllReplacementsRequests(session);
+  }
 }

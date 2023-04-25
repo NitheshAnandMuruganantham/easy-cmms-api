@@ -27,7 +27,7 @@ export class ItemCatagoryService {
     createItemCatagoryInput: ItemCatagoryCreateInput,
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
-    ForbiddenError.from(ability).throwUnlessCan('create', 'ItemCatagory');
+    ForbiddenError.from(ability).throwUnlessCan('create', 'catagory');
     return this.prisma.catagory.create({
       // @ts-ignore
       data: { ...createItemCatagoryInput, block_id: session.User.blockId },
@@ -42,9 +42,28 @@ export class ItemCatagoryService {
     offset: number,
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
-    ForbiddenError.from(ability).throwUnlessCan('read', 'ItemCatagory');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'catagory');
 
     return this.prisma.catagory.findMany({
+      where: {
+        AND: [accessibleBy(ability).catagory, where],
+      },
+      orderBy,
+      take: limit,
+      skip: offset,
+    });
+  }
+  async count(
+    session: SessionContainer,
+    where: ItemCatagoryWhereInput,
+    orderBy: ItemCatagoryOrderByWithAggregationInput,
+    limit: number,
+    offset: number,
+  ) {
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'catagory');
+
+    return this.prisma.catagory.count({
       where: {
         AND: [accessibleBy(ability).catagory, where],
       },
@@ -59,7 +78,7 @@ export class ItemCatagoryService {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
-      subject('ItemCatagory', canGet),
+      subject('catagory', canGet),
     );
     return canGet;
   }
@@ -73,7 +92,7 @@ export class ItemCatagoryService {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'update',
-      subject('ItemCatagory', canUpdate),
+      subject('catagory', canUpdate),
     );
 
     return this.prisma.catagory.update({
@@ -88,7 +107,7 @@ export class ItemCatagoryService {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan(
       'delete',
-      subject('ItemCatagory', canDelete),
+      subject('catagory', canDelete),
     );
     return this.prisma.catagory.delete({ where: { id } });
   }
@@ -118,7 +137,7 @@ export class ItemCatagoryService {
       });
   }
 
-  async count(session: SessionContainer, parentId: bigint) {
+  async countItems(session: SessionContainer, parentId: bigint) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
 
     const count = await this.prisma.items.count({

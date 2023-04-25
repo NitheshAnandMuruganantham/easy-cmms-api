@@ -6,7 +6,6 @@ import { Float } from '@nestjs/graphql';
 import { ReplacementsCreateNestedManyWithoutItemsInput } from '../replacements/replacements-create-nested-many-without-items.input';
 import { BlockCreateNestedOneWithoutItemsInput } from '../block/block-create-nested-one-without-items.input';
 import { HideField } from '@nestjs/graphql';
-import { machines_itemsCreateNestedManyWithoutItemsInput } from '../machines-items/machines-items-create-nested-many-without-items.input';
 
 @InputType()
 export class ItemsCreateWithoutCatagoryInput {
@@ -37,7 +36,4 @@ export class ItemsCreateWithoutCatagoryInput {
 
     @HideField()
     block!: BlockCreateNestedOneWithoutItemsInput;
-
-    @Field(() => machines_itemsCreateNestedManyWithoutItemsInput, {nullable:true})
-    machines_items?: machines_itemsCreateNestedManyWithoutItemsInput;
 }

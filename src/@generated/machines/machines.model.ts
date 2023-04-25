@@ -10,7 +10,6 @@ import { Maintenance } from '../maintenance/maintenance.model';
 import { Ticket } from '../ticket/ticket.model';
 import { machine_catagory } from '../machine-catagory/machine-catagory.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
-import { machines_items } from '../machines-items/machines-items.model';
 import { MachinesCount } from './machines-count.output';
 
 @ObjectType()
@@ -63,9 +62,6 @@ export class Machines {
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;
-
-    @Field(() => [machines_items], {nullable:true})
-    machines_items?: Array<machines_items>;
 
     @Field(() => MachinesCount, {nullable:false})
     _count?: MachinesCount;

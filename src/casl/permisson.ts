@@ -9,6 +9,12 @@ const getPermission = (user: any) => {
       equals: user.blockId,
     },
   });
+
+  can('read', 'Items', {
+    block_id: {
+      equals: user.blockId,
+    },
+  });
   can('read', 'Section', {
     blockId: { equals: user.blockId },
   });
@@ -46,7 +52,7 @@ const getPermission = (user: any) => {
     can('create', 'Maintenance');
   }
 
-  if (user.role === 'MANAGER') {
+  if (user.role === 'MANAGER' || user.role === 'ADMIN') {
     // Users permissions
     can('read', 'Block');
     can('create', 'Users', {
@@ -113,6 +119,7 @@ const getPermission = (user: any) => {
     //  Replacements permissions
 
     can('read', 'Replacements');
+    can('create', 'Replacements');
     can('update', 'Replacements');
     can('delete', 'Replacements');
 
@@ -128,9 +135,15 @@ const getPermission = (user: any) => {
     can('update', 'Block');
     can('delete', 'Block');
 
-    can('create', 'ItemCatagory');
-    can('update', 'ItemCatagory');
-    can('delete', 'ItemCatagory');
+    can('create', 'catagory');
+    can('read', 'catagory');
+    can('update', 'catagory');
+    can('delete', 'catagory');
+
+    can('create', 'Items');
+    can('read', 'Items');
+    can('update', 'Items');
+    can('delete', 'Items');
   }
 
   if (user.extra_roles.includes('PRODUCTION_CONTROLLER')) {

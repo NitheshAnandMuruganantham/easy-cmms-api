@@ -170,25 +170,4 @@ export class MachinesService {
       skip: offset,
     });
   }
-  async items(
-    session: SessionContainer,
-    machine_id: bigint,
-    where: machines_itemsWhereInput,
-    orderBy: machines_itemsOrderByWithRelationAndSearchRelevanceInput,
-    limit: number,
-    offset: number,
-  ) {
-    return this.prisma.machines
-      .findUnique({
-        where: {
-          id: machine_id,
-        },
-      })
-      .machines_items({
-        where,
-        orderBy,
-        take: limit,
-        skip: offset,
-      });
-  }
 }

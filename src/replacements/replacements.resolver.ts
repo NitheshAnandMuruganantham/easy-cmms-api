@@ -55,6 +55,25 @@ export class ReplacementsResolver {
     );
   }
 
+  @Query(() => Int, { name: 'replacementsCount' })
+  count(
+    @Session()
+    session: SessionContainer,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('orderBy', { nullable: true })
+    orderBy: ReplacementsOrderByWithRelationInput,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number,
+    @Args('offset', { type: () => Int, nullable: true }) offset: number,
+  ) {
+    return this.replacementsService.count(
+      session,
+      where,
+      orderBy,
+      limit,
+      offset,
+    );
+  }
+
   @Query(() => Replacements, { name: 'replacement' })
   findOne(
     @Session()
@@ -93,12 +112,12 @@ export class ReplacementsResolver {
     return this.replacementsService.item(session, item_id);
   }
 
-  @ResolveField(() => Maintenance)
+  @ResolveField(() => Maintenance, { name: 'maintenance' })
   maintenance(
     @Session()
     session: SessionContainer,
-    @Parent() { maintanance_id }: Replacements,
+    @Parent() { maintenance }: Replacements,
   ) {
-    this.replacementsService.maintenance(session, maintanance_id);
+    return maintenance;
   }
 }

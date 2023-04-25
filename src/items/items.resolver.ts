@@ -49,6 +49,17 @@ export class ItemsResolver {
     return this.itemsService.findAll(session, where, orderBy, limit, offset);
   }
 
+  @Query(() => Int, { name: 'itemsCount' })
+  count(
+    @Session() session: SessionContainer,
+    @Args('where', { nullable: true }) where: ItemsWhereInput,
+    @Args('orderBy', { nullable: true }) orderBy: ItemsOrderByWithRelationInput,
+    @Args('limit', { type: () => Int, nullable: true }) limit: number,
+    @Args('offset', { type: () => Int, nullable: true }) offset: number,
+  ) {
+    return this.itemsService.count(session, where, orderBy, limit, offset);
+  }
+
   @Query(() => Items, { name: 'item' })
   findOne(
     @Session() session: SessionContainer,
