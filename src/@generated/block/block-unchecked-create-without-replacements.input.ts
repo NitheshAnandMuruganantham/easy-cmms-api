@@ -14,7 +14,6 @@ import { ReportsUncheckedCreateNestedManyWithoutBlockInput } from '../reports/re
 import { SectionsUncheckedCreateNestedManyWithoutBlockInput } from '../sections/sections-unchecked-create-nested-many-without-block.input';
 import { TicketUncheckedCreateNestedManyWithoutBlockInput } from '../ticket/ticket-unchecked-create-nested-many-without-block.input';
 import { routine_maintanancesUncheckedCreateNestedManyWithoutBlockInput } from '../routine-maintanances/routine-maintanances-unchecked-create-nested-many-without-block.input';
-import { machines_itemsUncheckedCreateNestedManyWithoutBlockInput } from '../machines-items/machines-items-unchecked-create-nested-many-without-block.input';
 
 @InputType()
 export class BlockUncheckedCreateWithoutReplacementsInput {
@@ -72,7 +71,4 @@ export class BlockUncheckedCreateWithoutReplacementsInput {
 
     @Field(() => routine_maintanancesUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedCreateNestedManyWithoutBlockInput;
-
-    @Field(() => machines_itemsUncheckedCreateNestedManyWithoutBlockInput, {nullable:true})
-    machines_items?: machines_itemsUncheckedCreateNestedManyWithoutBlockInput;
 }

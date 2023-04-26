@@ -60,7 +60,6 @@ type BlockCount {
   Sections: Int!
   Ticket: Int!
   routine_maintanances: Int!
-  machines_items: Int!
 }
 
 type Block_settingsAvgAggregate {
@@ -524,7 +523,6 @@ input MachinesWhereInput {
   Ticket: TicketListRelationFilter
   machine_catagory: Machine_catagoryRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
-  machines_items: Machines_itemsListRelationFilter
 }
 
 input IntFilter {
@@ -610,21 +608,48 @@ input routine_maintanancesWhereInput {
   meachine: MachinesRelationFilter
 }
 
-input Machines_itemsListRelationFilter {
-  every: machines_itemsWhereInput
-  some: machines_itemsWhereInput
-  none: machines_itemsWhereInput
+input Production_dataListRelationFilter {
+  every: production_dataWhereInput
+  some: production_dataWhereInput
+  none: production_dataWhereInput
 }
 
-input machines_itemsWhereInput {
-  AND: [machines_itemsWhereInput!]
-  OR: [machines_itemsWhereInput!]
-  NOT: [machines_itemsWhereInput!]
+input production_dataWhereInput {
+  AND: [production_dataWhereInput!]
+  OR: [production_dataWhereInput!]
+  NOT: [production_dataWhereInput!]
   id: BigIntFilter
-  machine_id: BigIntFilter
+  production: JsonFilter
+  shift: StringFilter
+  date: DateTimeFilter
+  updated_by: BigIntFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+  updatedBy: UsersRelationFilter
+}
+
+input ReplacementsListRelationFilter {
+  every: ReplacementsWhereInput
+  some: ReplacementsWhereInput
+  none: ReplacementsWhereInput
+}
+
+input ReplacementsWhereInput {
+  AND: [ReplacementsWhereInput!]
+  OR: [ReplacementsWhereInput!]
+  NOT: [ReplacementsWhereInput!]
+  id: BigIntFilter
+  name: StringFilter
+  description: StringFilter
+  quantity: IntFilter
+  metadata: JsonFilter
   item_id: BigIntFilter
-  machine: MachinesRelationFilter
+  maintanance_id: BigIntFilter
+  created_at: DateTimeFilter
+  approved: BoolFilter
+  updated_at: DateTimeFilter
   items: ItemsRelationFilter
+  maintenance: MaintenanceRelationFilter
 }
 
 input ItemsRelationFilter {
@@ -646,7 +671,6 @@ input ItemsWhereInput {
   updated_at: DateTimeFilter
   catagory: CatagoryRelationFilter
   replacements: ReplacementsListRelationFilter
-  machines_items: Machines_itemsListRelationFilter
 }
 
 input FloatFilter {
@@ -691,50 +715,6 @@ input ItemsListRelationFilter {
   every: ItemsWhereInput
   some: ItemsWhereInput
   none: ItemsWhereInput
-}
-
-input ReplacementsListRelationFilter {
-  every: ReplacementsWhereInput
-  some: ReplacementsWhereInput
-  none: ReplacementsWhereInput
-}
-
-input ReplacementsWhereInput {
-  AND: [ReplacementsWhereInput!]
-  OR: [ReplacementsWhereInput!]
-  NOT: [ReplacementsWhereInput!]
-  id: BigIntFilter
-  name: StringFilter
-  description: StringFilter
-  quantity: IntFilter
-  metadata: JsonFilter
-  item_id: BigIntFilter
-  maintanance_id: BigIntFilter
-  created_at: DateTimeFilter
-  approved: BoolFilter
-  updated_at: DateTimeFilter
-  items: ItemsRelationFilter
-  maintenance: MaintenanceRelationFilter
-}
-
-input Production_dataListRelationFilter {
-  every: production_dataWhereInput
-  some: production_dataWhereInput
-  none: production_dataWhereInput
-}
-
-input production_dataWhereInput {
-  AND: [production_dataWhereInput!]
-  OR: [production_dataWhereInput!]
-  NOT: [production_dataWhereInput!]
-  id: BigIntFilter
-  production: JsonFilter
-  shift: StringFilter
-  date: DateTimeFilter
-  updated_by: BigIntFilter
-  created_at: DateTimeFilter
-  updated_at: DateTimeFilter
-  updatedBy: UsersRelationFilter
 }
 
 input ReportsListRelationFilter {
@@ -886,19 +866,8 @@ type catagory {
   _count: CatagoryCount!
 }
 
-type machines_items {
-  id: BigInt!
-  machine_id: BigInt!
-  item_id: BigInt!
-  block_id: BigInt!
-  machine: Machines!
-  items: Items!
-  block: Block!
-}
-
 type ItemsCount {
   replacements: Int!
-  machines_items: Int!
 }
 
 type Items {
@@ -914,7 +883,6 @@ type Items {
   catagory: catagory!
   replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]
   block: Block!
-  machines_items: [machines_items!]
   _count: ItemsCount!
 }
 
@@ -1042,7 +1010,6 @@ type MachinesCount {
   maintenance: Int!
   Ticket: Int!
   routine_maintanances: Int!
-  machines_items: Int!
 }
 
 type Machines {
@@ -1062,7 +1029,6 @@ type Machines {
   Ticket: [Ticket!]
   machine_catagory: machine_catagory!
   routine_maintanances: [routine_maintanances!]
-  machines_items: [machines_items!]
   _count: MachinesCount!
 }
 
@@ -1096,7 +1062,6 @@ type Block {
   Sections: [Sections!]
   Ticket: [Ticket!]
   routine_maintanances: [routine_maintanances!]
-  machines_items: [machines_items!]
   _count: BlockCount!
 }
 
@@ -1295,8 +1260,7 @@ type ItemCatagory {
   items(where: ItemsWhereInput, orderBy: ItemsOrderByWithAggregationInput, limit: Int, offset: Int): [Items!]
   created_at: DateTime!
   updated_at: DateTime!
-  _count: ItemCatagoryCount!
-  countItems: CatagoryCount!
+  _count: CatagoryCount!
 }
 
 input ItemsOrderByWithAggregationInput {
@@ -1926,8 +1890,10 @@ type Query {
   blocksCount(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): Int!
   block(id: Int!): Block!
   itemCatagories(limit: Int, offset: Int, orderBy: ItemCatagoryOrderByWithAggregationInput, where: ItemCatagoryWhereInput): [ItemCatagory!]!
+  itemCatagoriesCount(limit: Int, offset: Int, orderBy: ItemCatagoryOrderByWithAggregationInput, where: ItemCatagoryWhereInput): Int!
   itemCatagory(id: Int!): ItemCatagory!
   items(where: ItemsWhereInput, orderBy: ItemsOrderByWithRelationInput, limit: Int, offset: Int): [Items!]!
+  itemsCount(where: ItemsWhereInput, orderBy: ItemsOrderByWithRelationInput, limit: Int, offset: Int): Int!
   item(id: Int!): Items!
   machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, limit: Int, offset: Int): [Machines!]!
   machinesCount(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, limit: Int, offset: Int): Int!
@@ -1936,6 +1902,7 @@ type Query {
   maintenanceCount(limit: Int, offset: Int, orderBy: MaintenanceOrderByWithRelationInput, where: MaintenanceWhereInput): Int!
   maintenance(id: Int!): Maintenance!
   replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]!
+  replacementsCount(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): Int!
   replacement(id: Int!): Replacements!
   machineCatagories(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): [machine_catagory!]!
   machineCatagoriesCount(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): Int!
@@ -1981,7 +1948,6 @@ input BlockWhereInput {
   Sections: SectionsListRelationFilter
   Ticket: TicketListRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
-  machines_items: Machines_itemsListRelationFilter
 }
 
 input StringNullableListFilter {
@@ -2299,7 +2265,6 @@ input BlockCreateInput {
   Sections: SectionsCreateNestedManyWithoutBlockInput
   Ticket: TicketCreateNestedManyWithoutBlockInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutBlockInput
-  machines_items: machines_itemsCreateNestedManyWithoutBlockInput
 }
 
 input BlockCreateMailingsInput {
@@ -2326,7 +2291,6 @@ input MachinesCreateWithoutBlockInput {
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input SectionsCreateNestedOneWithoutMachinesInput {
@@ -2464,7 +2428,6 @@ input MachinesCreateWithoutMaintenanceInput {
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input TicketCreateNestedManyWithoutMachinesInput {
@@ -2632,7 +2595,6 @@ input ItemsCreateWithoutReplacementsInput {
   created_at: DateTime
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
-  machines_items: machines_itemsCreateNestedManyWithoutItemsInput
 }
 
 input catagoryCreateNestedOneWithoutItemsInput {
@@ -2655,73 +2617,6 @@ input catagoryCreateOrConnectWithoutItemsInput {
 
 input catagoryWhereUniqueInput {
   id: BigInt
-}
-
-input machines_itemsCreateNestedManyWithoutItemsInput {
-  create: [machines_itemsCreateWithoutItemsInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutItemsInput!]
-  createMany: machines_itemsCreateManyItemsInputEnvelope
-  connect: [machines_itemsWhereUniqueInput!]
-}
-
-input machines_itemsCreateWithoutItemsInput {
-  id: BigInt
-  machine: MachinesCreateNestedOneWithoutMachines_itemsInput!
-}
-
-input MachinesCreateNestedOneWithoutMachines_itemsInput {
-  create: MachinesCreateWithoutMachines_itemsInput
-  connectOrCreate: MachinesCreateOrConnectWithoutMachines_itemsInput
-  connect: MachinesWhereUniqueInput
-}
-
-input MachinesCreateWithoutMachines_itemsInput {
-  id: BigInt
-  name: String!
-  label: String!
-  profile: JSON
-  priority: Int!
-  created_at: DateTime
-  updated_at: DateTime
-  section: SectionsCreateNestedOneWithoutMachinesInput!
-  maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
-  Ticket: TicketCreateNestedManyWithoutMachinesInput
-  machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
-  routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-}
-
-input MachinesCreateOrConnectWithoutMachines_itemsInput {
-  where: MachinesWhereUniqueInput!
-  create: MachinesCreateWithoutMachines_itemsInput!
-}
-
-input MachinesWhereUniqueInput {
-  id: BigInt
-}
-
-input machines_itemsCreateOrConnectWithoutItemsInput {
-  where: machines_itemsWhereUniqueInput!
-  create: machines_itemsCreateWithoutItemsInput!
-}
-
-input machines_itemsWhereUniqueInput {
-  id: BigInt
-  machine_id_item_id: machines_itemsMachine_idItem_idCompoundUniqueInput
-}
-
-input machines_itemsMachine_idItem_idCompoundUniqueInput {
-  machine_id: BigInt!
-  item_id: BigInt!
-}
-
-input machines_itemsCreateManyItemsInputEnvelope {
-  data: [machines_itemsCreateManyItemsInput!]!
-  skipDuplicates: Boolean
-}
-
-input machines_itemsCreateManyItemsInput {
-  id: BigInt
-  machine_id: BigInt!
 }
 
 input ItemsCreateOrConnectWithoutReplacementsInput {
@@ -2837,137 +2732,15 @@ input MachinesCreateWithoutTicketInput {
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
-}
-
-input machines_itemsCreateNestedManyWithoutMachineInput {
-  create: [machines_itemsCreateWithoutMachineInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutMachineInput!]
-  createMany: machines_itemsCreateManyMachineInputEnvelope
-  connect: [machines_itemsWhereUniqueInput!]
-}
-
-input machines_itemsCreateWithoutMachineInput {
-  id: BigInt
-  items: ItemsCreateNestedOneWithoutMachines_itemsInput!
-}
-
-input ItemsCreateNestedOneWithoutMachines_itemsInput {
-  create: ItemsCreateWithoutMachines_itemsInput
-  connectOrCreate: ItemsCreateOrConnectWithoutMachines_itemsInput
-  connect: ItemsWhereUniqueInput
-}
-
-input ItemsCreateWithoutMachines_itemsInput {
-  id: BigInt
-  name: String!
-  code: String!
-  quantity: Int!
-  unit_price: Float!
-  created_at: DateTime
-  updated_at: DateTime
-  catagory: catagoryCreateNestedOneWithoutItemsInput!
-  replacements: ReplacementsCreateNestedManyWithoutItemsInput
-}
-
-input ReplacementsCreateNestedManyWithoutItemsInput {
-  create: [ReplacementsCreateWithoutItemsInput!]
-  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
-  createMany: ReplacementsCreateManyItemsInputEnvelope
-  connect: [ReplacementsWhereUniqueInput!]
-}
-
-input ReplacementsCreateWithoutItemsInput {
-  id: BigInt
-  name: String!
-  description: String!
-  quantity: Int!
-  metadata: JSON
-  created_at: DateTime
-  approved: Boolean
-  updated_at: DateTime
-  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
-}
-
-input MaintenanceCreateNestedOneWithoutReplacementsInput {
-  create: MaintenanceCreateWithoutReplacementsInput
-  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
-  connect: MaintenanceWhereUniqueInput
-}
-
-input MaintenanceCreateWithoutReplacementsInput {
-  id: BigInt
-  name: String!
-  photo: String
-  description: String!
-  from: DateTime!
-  to: DateTime!
-  resolved: Boolean!
-  metadata: JSON
-  un_planned: Boolean!
-  elapsed: DateTime
-  created_at: DateTime
-  updated_at: DateTime
-  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
-  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
-  reports: ReportsCreateNestedManyWithoutMaintenanceInput
-  ticket: TicketCreateNestedOneWithoutMaintenanceInput
-}
-
-input MaintenanceCreateOrConnectWithoutReplacementsInput {
-  where: MaintenanceWhereUniqueInput!
-  create: MaintenanceCreateWithoutReplacementsInput!
-}
-
-input MaintenanceWhereUniqueInput {
-  id: BigInt
-}
-
-input ReplacementsCreateOrConnectWithoutItemsInput {
-  where: ReplacementsWhereUniqueInput!
-  create: ReplacementsCreateWithoutItemsInput!
-}
-
-input ReplacementsCreateManyItemsInputEnvelope {
-  data: [ReplacementsCreateManyItemsInput!]!
-  skipDuplicates: Boolean
-}
-
-input ReplacementsCreateManyItemsInput {
-  id: BigInt
-  name: String!
-  description: String!
-  quantity: Int!
-  metadata: JSON
-  maintanance_id: BigInt!
-  created_at: DateTime
-  approved: Boolean
-  updated_at: DateTime
-}
-
-input ItemsCreateOrConnectWithoutMachines_itemsInput {
-  where: ItemsWhereUniqueInput!
-  create: ItemsCreateWithoutMachines_itemsInput!
-}
-
-input machines_itemsCreateOrConnectWithoutMachineInput {
-  where: machines_itemsWhereUniqueInput!
-  create: machines_itemsCreateWithoutMachineInput!
-}
-
-input machines_itemsCreateManyMachineInputEnvelope {
-  data: [machines_itemsCreateManyMachineInput!]!
-  skipDuplicates: Boolean
-}
-
-input machines_itemsCreateManyMachineInput {
-  id: BigInt
-  item_id: BigInt!
 }
 
 input MachinesCreateOrConnectWithoutTicketInput {
   where: MachinesWhereUniqueInput!
   create: MachinesCreateWithoutTicketInput!
+}
+
+input MachinesWhereUniqueInput {
+  id: BigInt
 }
 
 input TicketCreateOrConnectWithoutMaintenanceInput {
@@ -2978,6 +2751,10 @@ input TicketCreateOrConnectWithoutMaintenanceInput {
 input MaintenanceCreateOrConnectWithoutAssigneeInput {
   where: MaintenanceWhereUniqueInput!
   create: MaintenanceCreateWithoutAssigneeInput!
+}
+
+input MaintenanceWhereUniqueInput {
+  id: BigInt
 }
 
 input MaintenanceCreateManyAssigneeInputEnvelope {
@@ -3143,7 +2920,6 @@ input MachinesCreateWithoutRoutine_maintanancesInput {
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input MachinesCreateOrConnectWithoutRoutine_maintanancesInput {
@@ -3407,7 +3183,77 @@ input ItemsCreateWithoutCatagoryInput {
   created_at: DateTime
   updated_at: DateTime
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
-  machines_items: machines_itemsCreateNestedManyWithoutItemsInput
+}
+
+input ReplacementsCreateNestedManyWithoutItemsInput {
+  create: [ReplacementsCreateWithoutItemsInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
+  createMany: ReplacementsCreateManyItemsInputEnvelope
+  connect: [ReplacementsWhereUniqueInput!]
+}
+
+input ReplacementsCreateWithoutItemsInput {
+  id: BigInt
+  name: String!
+  description: String!
+  quantity: Int!
+  metadata: JSON
+  created_at: DateTime
+  approved: Boolean
+  updated_at: DateTime
+  maintenance: MaintenanceCreateNestedOneWithoutReplacementsInput!
+}
+
+input MaintenanceCreateNestedOneWithoutReplacementsInput {
+  create: MaintenanceCreateWithoutReplacementsInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
+  connect: MaintenanceWhereUniqueInput
+}
+
+input MaintenanceCreateWithoutReplacementsInput {
+  id: BigInt
+  name: String!
+  photo: String
+  description: String!
+  from: DateTime!
+  to: DateTime!
+  resolved: Boolean!
+  metadata: JSON
+  un_planned: Boolean!
+  elapsed: DateTime
+  created_at: DateTime
+  updated_at: DateTime
+  assignee: UsersCreateNestedOneWithoutMaintenanceInput!
+  machines: MachinesCreateNestedOneWithoutMaintenanceInput!
+  reports: ReportsCreateNestedManyWithoutMaintenanceInput
+  ticket: TicketCreateNestedOneWithoutMaintenanceInput
+}
+
+input MaintenanceCreateOrConnectWithoutReplacementsInput {
+  where: MaintenanceWhereUniqueInput!
+  create: MaintenanceCreateWithoutReplacementsInput!
+}
+
+input ReplacementsCreateOrConnectWithoutItemsInput {
+  where: ReplacementsWhereUniqueInput!
+  create: ReplacementsCreateWithoutItemsInput!
+}
+
+input ReplacementsCreateManyItemsInputEnvelope {
+  data: [ReplacementsCreateManyItemsInput!]!
+  skipDuplicates: Boolean
+}
+
+input ReplacementsCreateManyItemsInput {
+  id: BigInt
+  name: String!
+  description: String!
+  quantity: Int!
+  metadata: JSON
+  maintanance_id: BigInt!
+  created_at: DateTime
+  approved: Boolean
+  updated_at: DateTime
 }
 
 input ItemsCreateOrConnectWithoutCatagoryInput {
@@ -3464,7 +3310,6 @@ input ItemsCreateWithoutBlockInput {
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
-  machines_items: machines_itemsCreateNestedManyWithoutItemsInput
 }
 
 input ItemsCreateOrConnectWithoutBlockInput {
@@ -3522,7 +3367,6 @@ input MachinesCreateWithoutMachine_catagoryInput {
   maintenance: MaintenanceCreateNestedManyWithoutMachinesInput
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input MachinesCreateOrConnectWithoutMachine_catagoryInput {
@@ -3765,7 +3609,6 @@ input MachinesCreateWithoutSectionInput {
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input MachinesCreateOrConnectWithoutSectionInput {
@@ -3888,35 +3731,6 @@ input routine_maintanancesCreateManyBlockInput {
   updated_at: DateTime
 }
 
-input machines_itemsCreateNestedManyWithoutBlockInput {
-  create: [machines_itemsCreateWithoutBlockInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutBlockInput!]
-  createMany: machines_itemsCreateManyBlockInputEnvelope
-  connect: [machines_itemsWhereUniqueInput!]
-}
-
-input machines_itemsCreateWithoutBlockInput {
-  id: BigInt
-  machine: MachinesCreateNestedOneWithoutMachines_itemsInput!
-  items: ItemsCreateNestedOneWithoutMachines_itemsInput!
-}
-
-input machines_itemsCreateOrConnectWithoutBlockInput {
-  where: machines_itemsWhereUniqueInput!
-  create: machines_itemsCreateWithoutBlockInput!
-}
-
-input machines_itemsCreateManyBlockInputEnvelope {
-  data: [machines_itemsCreateManyBlockInput!]!
-  skipDuplicates: Boolean
-}
-
-input machines_itemsCreateManyBlockInput {
-  id: BigInt
-  machine_id: BigInt!
-  item_id: BigInt!
-}
-
 input BlockUpdateInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -3937,7 +3751,6 @@ input BlockUpdateInput {
   Sections: SectionsUpdateManyWithoutBlockNestedInput
   Ticket: TicketUpdateManyWithoutBlockNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutBlockNestedInput
-  machines_items: machines_itemsUpdateManyWithoutBlockNestedInput
 }
 
 input BigIntFieldUpdateOperationsInput {
@@ -3994,7 +3807,6 @@ input MachinesUpdateWithoutBlockInput {
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input IntFieldUpdateOperationsInput {
@@ -4208,7 +4020,6 @@ input MachinesUpdateWithoutMaintenanceInput {
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input TicketUpdateManyWithoutMachinesNestedInput {
@@ -4449,7 +4260,6 @@ input ItemsUpdateWithoutReplacementsInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
-  machines_items: machines_itemsUpdateManyWithoutItemsNestedInput
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -4478,82 +4288,6 @@ input catagoryUpdateWithoutItemsInput {
   name: StringFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
-}
-
-input machines_itemsUpdateManyWithoutItemsNestedInput {
-  create: [machines_itemsCreateWithoutItemsInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutItemsInput!]
-  upsert: [machines_itemsUpsertWithWhereUniqueWithoutItemsInput!]
-  createMany: machines_itemsCreateManyItemsInputEnvelope
-  set: [machines_itemsWhereUniqueInput!]
-  disconnect: [machines_itemsWhereUniqueInput!]
-  delete: [machines_itemsWhereUniqueInput!]
-  connect: [machines_itemsWhereUniqueInput!]
-  update: [machines_itemsUpdateWithWhereUniqueWithoutItemsInput!]
-  updateMany: [machines_itemsUpdateManyWithWhereWithoutItemsInput!]
-  deleteMany: [machines_itemsScalarWhereInput!]
-}
-
-input machines_itemsUpsertWithWhereUniqueWithoutItemsInput {
-  where: machines_itemsWhereUniqueInput!
-  update: machines_itemsUpdateWithoutItemsInput!
-  create: machines_itemsCreateWithoutItemsInput!
-}
-
-input machines_itemsUpdateWithoutItemsInput {
-  id: BigIntFieldUpdateOperationsInput
-  machine: MachinesUpdateOneRequiredWithoutMachines_itemsNestedInput
-}
-
-input MachinesUpdateOneRequiredWithoutMachines_itemsNestedInput {
-  create: MachinesCreateWithoutMachines_itemsInput
-  connectOrCreate: MachinesCreateOrConnectWithoutMachines_itemsInput
-  upsert: MachinesUpsertWithoutMachines_itemsInput
-  connect: MachinesWhereUniqueInput
-  update: MachinesUpdateWithoutMachines_itemsInput
-}
-
-input MachinesUpsertWithoutMachines_itemsInput {
-  update: MachinesUpdateWithoutMachines_itemsInput!
-  create: MachinesCreateWithoutMachines_itemsInput!
-}
-
-input MachinesUpdateWithoutMachines_itemsInput {
-  id: BigIntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  label: StringFieldUpdateOperationsInput
-  profile: JSON
-  priority: IntFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  section: SectionsUpdateOneRequiredWithoutMachinesNestedInput
-  maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
-  Ticket: TicketUpdateManyWithoutMachinesNestedInput
-  machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
-  routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-}
-
-input machines_itemsUpdateWithWhereUniqueWithoutItemsInput {
-  where: machines_itemsWhereUniqueInput!
-  data: machines_itemsUpdateWithoutItemsInput!
-}
-
-input machines_itemsUpdateManyWithWhereWithoutItemsInput {
-  where: machines_itemsScalarWhereInput!
-  data: machines_itemsUpdateManyMutationInput!
-}
-
-input machines_itemsScalarWhereInput {
-  AND: [machines_itemsScalarWhereInput!]
-  OR: [machines_itemsScalarWhereInput!]
-  NOT: [machines_itemsScalarWhereInput!]
-  id: BigIntFilter
-  machine_id: BigIntFilter
-  item_id: BigIntFilter
-}
-
-input machines_itemsUpdateManyMutationInput {
-  id: BigIntFieldUpdateOperationsInput
 }
 
 input ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput {
@@ -4711,141 +4445,6 @@ input MachinesUpdateWithoutTicketInput {
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
-}
-
-input machines_itemsUpdateManyWithoutMachineNestedInput {
-  create: [machines_itemsCreateWithoutMachineInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutMachineInput!]
-  upsert: [machines_itemsUpsertWithWhereUniqueWithoutMachineInput!]
-  createMany: machines_itemsCreateManyMachineInputEnvelope
-  set: [machines_itemsWhereUniqueInput!]
-  disconnect: [machines_itemsWhereUniqueInput!]
-  delete: [machines_itemsWhereUniqueInput!]
-  connect: [machines_itemsWhereUniqueInput!]
-  update: [machines_itemsUpdateWithWhereUniqueWithoutMachineInput!]
-  updateMany: [machines_itemsUpdateManyWithWhereWithoutMachineInput!]
-  deleteMany: [machines_itemsScalarWhereInput!]
-}
-
-input machines_itemsUpsertWithWhereUniqueWithoutMachineInput {
-  where: machines_itemsWhereUniqueInput!
-  update: machines_itemsUpdateWithoutMachineInput!
-  create: machines_itemsCreateWithoutMachineInput!
-}
-
-input machines_itemsUpdateWithoutMachineInput {
-  id: BigIntFieldUpdateOperationsInput
-  items: ItemsUpdateOneRequiredWithoutMachines_itemsNestedInput
-}
-
-input ItemsUpdateOneRequiredWithoutMachines_itemsNestedInput {
-  create: ItemsCreateWithoutMachines_itemsInput
-  connectOrCreate: ItemsCreateOrConnectWithoutMachines_itemsInput
-  upsert: ItemsUpsertWithoutMachines_itemsInput
-  connect: ItemsWhereUniqueInput
-  update: ItemsUpdateWithoutMachines_itemsInput
-}
-
-input ItemsUpsertWithoutMachines_itemsInput {
-  update: ItemsUpdateWithoutMachines_itemsInput!
-  create: ItemsCreateWithoutMachines_itemsInput!
-}
-
-input ItemsUpdateWithoutMachines_itemsInput {
-  id: BigIntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
-  unit_price: FloatFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
-  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
-}
-
-input ReplacementsUpdateManyWithoutItemsNestedInput {
-  create: [ReplacementsCreateWithoutItemsInput!]
-  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
-  upsert: [ReplacementsUpsertWithWhereUniqueWithoutItemsInput!]
-  createMany: ReplacementsCreateManyItemsInputEnvelope
-  set: [ReplacementsWhereUniqueInput!]
-  disconnect: [ReplacementsWhereUniqueInput!]
-  delete: [ReplacementsWhereUniqueInput!]
-  connect: [ReplacementsWhereUniqueInput!]
-  update: [ReplacementsUpdateWithWhereUniqueWithoutItemsInput!]
-  updateMany: [ReplacementsUpdateManyWithWhereWithoutItemsInput!]
-  deleteMany: [ReplacementsScalarWhereInput!]
-}
-
-input ReplacementsUpsertWithWhereUniqueWithoutItemsInput {
-  where: ReplacementsWhereUniqueInput!
-  update: ReplacementsUpdateWithoutItemsInput!
-  create: ReplacementsCreateWithoutItemsInput!
-}
-
-input ReplacementsUpdateWithoutItemsInput {
-  id: BigIntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
-  metadata: JSON
-  created_at: DateTimeFieldUpdateOperationsInput
-  approved: BoolFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
-}
-
-input MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput {
-  create: MaintenanceCreateWithoutReplacementsInput
-  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
-  upsert: MaintenanceUpsertWithoutReplacementsInput
-  connect: MaintenanceWhereUniqueInput
-  update: MaintenanceUpdateWithoutReplacementsInput
-}
-
-input MaintenanceUpsertWithoutReplacementsInput {
-  update: MaintenanceUpdateWithoutReplacementsInput!
-  create: MaintenanceCreateWithoutReplacementsInput!
-}
-
-input MaintenanceUpdateWithoutReplacementsInput {
-  id: BigIntFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  photo: NullableStringFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  from: DateTimeFieldUpdateOperationsInput
-  to: DateTimeFieldUpdateOperationsInput
-  resolved: BoolFieldUpdateOperationsInput
-  metadata: JSON
-  un_planned: BoolFieldUpdateOperationsInput
-  elapsed: NullableDateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
-  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
-  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
-  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
-}
-
-input ReplacementsUpdateWithWhereUniqueWithoutItemsInput {
-  where: ReplacementsWhereUniqueInput!
-  data: ReplacementsUpdateWithoutItemsInput!
-}
-
-input ReplacementsUpdateManyWithWhereWithoutItemsInput {
-  where: ReplacementsScalarWhereInput!
-  data: ReplacementsUpdateManyMutationInput!
-}
-
-input machines_itemsUpdateWithWhereUniqueWithoutMachineInput {
-  where: machines_itemsWhereUniqueInput!
-  data: machines_itemsUpdateWithoutMachineInput!
-}
-
-input machines_itemsUpdateManyWithWhereWithoutMachineInput {
-  where: machines_itemsScalarWhereInput!
-  data: machines_itemsUpdateManyMutationInput!
 }
 
 input MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput {
@@ -5055,7 +4654,6 @@ input MachinesUpdateWithoutRoutine_maintanancesInput {
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput {
@@ -5369,7 +4967,80 @@ input ItemsUpdateWithoutCatagoryInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
-  machines_items: machines_itemsUpdateManyWithoutItemsNestedInput
+}
+
+input ReplacementsUpdateManyWithoutItemsNestedInput {
+  create: [ReplacementsCreateWithoutItemsInput!]
+  connectOrCreate: [ReplacementsCreateOrConnectWithoutItemsInput!]
+  upsert: [ReplacementsUpsertWithWhereUniqueWithoutItemsInput!]
+  createMany: ReplacementsCreateManyItemsInputEnvelope
+  set: [ReplacementsWhereUniqueInput!]
+  disconnect: [ReplacementsWhereUniqueInput!]
+  delete: [ReplacementsWhereUniqueInput!]
+  connect: [ReplacementsWhereUniqueInput!]
+  update: [ReplacementsUpdateWithWhereUniqueWithoutItemsInput!]
+  updateMany: [ReplacementsUpdateManyWithWhereWithoutItemsInput!]
+  deleteMany: [ReplacementsScalarWhereInput!]
+}
+
+input ReplacementsUpsertWithWhereUniqueWithoutItemsInput {
+  where: ReplacementsWhereUniqueInput!
+  update: ReplacementsUpdateWithoutItemsInput!
+  create: ReplacementsCreateWithoutItemsInput!
+}
+
+input ReplacementsUpdateWithoutItemsInput {
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  metadata: JSON
+  created_at: DateTimeFieldUpdateOperationsInput
+  approved: BoolFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
+}
+
+input MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput {
+  create: MaintenanceCreateWithoutReplacementsInput
+  connectOrCreate: MaintenanceCreateOrConnectWithoutReplacementsInput
+  upsert: MaintenanceUpsertWithoutReplacementsInput
+  connect: MaintenanceWhereUniqueInput
+  update: MaintenanceUpdateWithoutReplacementsInput
+}
+
+input MaintenanceUpsertWithoutReplacementsInput {
+  update: MaintenanceUpdateWithoutReplacementsInput!
+  create: MaintenanceCreateWithoutReplacementsInput!
+}
+
+input MaintenanceUpdateWithoutReplacementsInput {
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  photo: NullableStringFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  from: DateTimeFieldUpdateOperationsInput
+  to: DateTimeFieldUpdateOperationsInput
+  resolved: BoolFieldUpdateOperationsInput
+  metadata: JSON
+  un_planned: BoolFieldUpdateOperationsInput
+  elapsed: NullableDateTimeFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  assignee: UsersUpdateOneRequiredWithoutMaintenanceNestedInput
+  machines: MachinesUpdateOneRequiredWithoutMaintenanceNestedInput
+  reports: ReportsUpdateManyWithoutMaintenanceNestedInput
+  ticket: TicketUpdateOneWithoutMaintenanceNestedInput
+}
+
+input ReplacementsUpdateWithWhereUniqueWithoutItemsInput {
+  where: ReplacementsWhereUniqueInput!
+  data: ReplacementsUpdateWithoutItemsInput!
+}
+
+input ReplacementsUpdateManyWithWhereWithoutItemsInput {
+  where: ReplacementsScalarWhereInput!
+  data: ReplacementsUpdateManyMutationInput!
 }
 
 input ItemsUpdateWithWhereUniqueWithoutCatagoryInput {
@@ -5463,7 +5134,6 @@ input ItemsUpdateWithoutBlockInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
-  machines_items: machines_itemsUpdateManyWithoutItemsNestedInput
 }
 
 input ItemsUpdateWithWhereUniqueWithoutBlockInput {
@@ -5536,7 +5206,6 @@ input MachinesUpdateWithoutMachine_catagoryInput {
   maintenance: MaintenanceUpdateManyWithoutMachinesNestedInput
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput {
@@ -5803,7 +5472,6 @@ input MachinesUpdateWithoutSectionInput {
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input MachinesUpdateWithWhereUniqueWithoutSectionInput {
@@ -5927,42 +5595,6 @@ input routine_maintanancesUpdateManyWithWhereWithoutBlockInput {
   data: routine_maintanancesUpdateManyMutationInput!
 }
 
-input machines_itemsUpdateManyWithoutBlockNestedInput {
-  create: [machines_itemsCreateWithoutBlockInput!]
-  connectOrCreate: [machines_itemsCreateOrConnectWithoutBlockInput!]
-  upsert: [machines_itemsUpsertWithWhereUniqueWithoutBlockInput!]
-  createMany: machines_itemsCreateManyBlockInputEnvelope
-  set: [machines_itemsWhereUniqueInput!]
-  disconnect: [machines_itemsWhereUniqueInput!]
-  delete: [machines_itemsWhereUniqueInput!]
-  connect: [machines_itemsWhereUniqueInput!]
-  update: [machines_itemsUpdateWithWhereUniqueWithoutBlockInput!]
-  updateMany: [machines_itemsUpdateManyWithWhereWithoutBlockInput!]
-  deleteMany: [machines_itemsScalarWhereInput!]
-}
-
-input machines_itemsUpsertWithWhereUniqueWithoutBlockInput {
-  where: machines_itemsWhereUniqueInput!
-  update: machines_itemsUpdateWithoutBlockInput!
-  create: machines_itemsCreateWithoutBlockInput!
-}
-
-input machines_itemsUpdateWithoutBlockInput {
-  id: BigIntFieldUpdateOperationsInput
-  machine: MachinesUpdateOneRequiredWithoutMachines_itemsNestedInput
-  items: ItemsUpdateOneRequiredWithoutMachines_itemsNestedInput
-}
-
-input machines_itemsUpdateWithWhereUniqueWithoutBlockInput {
-  where: machines_itemsWhereUniqueInput!
-  data: machines_itemsUpdateWithoutBlockInput!
-}
-
-input machines_itemsUpdateManyWithWhereWithoutBlockInput {
-  where: machines_itemsScalarWhereInput!
-  data: machines_itemsUpdateManyMutationInput!
-}
-
 input ItemCatagoryCreateInput {
   id: String
   name: String!
@@ -6068,7 +5700,6 @@ input ItemsCreateInput {
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
-  machines_items: machines_itemsCreateNestedManyWithoutItemsInput
 }
 
 input ItemsUpdateInput {
@@ -6081,7 +5712,6 @@ input ItemsUpdateInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
-  machines_items: machines_itemsUpdateManyWithoutItemsNestedInput
 }
 
 input MachinesCreateInput {
@@ -6097,7 +5727,6 @@ input MachinesCreateInput {
   Ticket: TicketCreateNestedManyWithoutMachinesInput
   machine_catagory: machine_catagoryCreateNestedOneWithoutMachinesInput!
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutMeachineInput
-  machines_items: machines_itemsCreateNestedManyWithoutMachineInput
 }
 
 input MachinesUpdateInput {
@@ -6113,7 +5742,6 @@ input MachinesUpdateInput {
   Ticket: TicketUpdateManyWithoutMachinesNestedInput
   machine_catagory: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutMeachineNestedInput
-  machines_items: machines_itemsUpdateManyWithoutMachineNestedInput
 }
 
 input MaintenanceCreateInput {

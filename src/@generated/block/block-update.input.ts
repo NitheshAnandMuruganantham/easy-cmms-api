@@ -17,7 +17,6 @@ import { ReportsUpdateManyWithoutBlockNestedInput } from '../reports/reports-upd
 import { SectionsUpdateManyWithoutBlockNestedInput } from '../sections/sections-update-many-without-block-nested.input';
 import { TicketUpdateManyWithoutBlockNestedInput } from '../ticket/ticket-update-many-without-block-nested.input';
 import { routine_maintanancesUpdateManyWithoutBlockNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-block-nested.input';
-import { machines_itemsUpdateManyWithoutBlockNestedInput } from '../machines-items/machines-items-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUpdateInput {
@@ -78,7 +77,4 @@ export class BlockUpdateInput {
 
     @Field(() => routine_maintanancesUpdateManyWithoutBlockNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUpdateManyWithoutBlockNestedInput;
-
-    @Field(() => machines_itemsUpdateManyWithoutBlockNestedInput, {nullable:true})
-    machines_items?: machines_itemsUpdateManyWithoutBlockNestedInput;
 }

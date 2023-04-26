@@ -7,7 +7,6 @@ import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-op
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
 import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-update-many-without-items-nested.input';
-import { machines_itemsUpdateManyWithoutItemsNestedInput } from '../machines-items/machines-items-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUpdateWithoutBlockInput {
@@ -38,7 +37,4 @@ export class ItemsUpdateWithoutBlockInput {
 
     @Field(() => ReplacementsUpdateManyWithoutItemsNestedInput, {nullable:true})
     replacements?: ReplacementsUpdateManyWithoutItemsNestedInput;
-
-    @Field(() => machines_itemsUpdateManyWithoutItemsNestedInput, {nullable:true})
-    machines_items?: machines_itemsUpdateManyWithoutItemsNestedInput;
 }

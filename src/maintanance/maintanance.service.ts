@@ -233,6 +233,12 @@ export class MaintenanceService {
           },
         },
       });
+      await this.prisma.replacements.deleteMany({
+        where: {
+          approved: false,
+          maintanance_id: id,
+        },
+      });
     }
 
     const updated = await this.prisma.maintenance.update({

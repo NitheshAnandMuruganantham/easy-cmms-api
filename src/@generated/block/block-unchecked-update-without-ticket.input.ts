@@ -16,7 +16,6 @@ import { ReplacementsUncheckedUpdateManyWithoutBlockNestedInput } from '../repla
 import { ReportsUncheckedUpdateManyWithoutBlockNestedInput } from '../reports/reports-unchecked-update-many-without-block-nested.input';
 import { SectionsUncheckedUpdateManyWithoutBlockNestedInput } from '../sections/sections-unchecked-update-many-without-block-nested.input';
 import { routine_maintanancesUncheckedUpdateManyWithoutBlockNestedInput } from '../routine-maintanances/routine-maintanances-unchecked-update-many-without-block-nested.input';
-import { machines_itemsUncheckedUpdateManyWithoutBlockNestedInput } from '../machines-items/machines-items-unchecked-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUncheckedUpdateWithoutTicketInput {
@@ -74,7 +73,4 @@ export class BlockUncheckedUpdateWithoutTicketInput {
 
     @Field(() => routine_maintanancesUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedUpdateManyWithoutBlockNestedInput;
-
-    @Field(() => machines_itemsUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
-    machines_items?: machines_itemsUncheckedUpdateManyWithoutBlockNestedInput;
 }

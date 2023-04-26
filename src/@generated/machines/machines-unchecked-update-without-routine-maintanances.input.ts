@@ -8,7 +8,6 @@ import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operat
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { MaintenanceUncheckedUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-unchecked-update-many-without-machines-nested.input';
 import { TicketUncheckedUpdateManyWithoutMachinesNestedInput } from '../ticket/ticket-unchecked-update-many-without-machines-nested.input';
-import { machines_itemsUncheckedUpdateManyWithoutMachineNestedInput } from '../machines-items/machines-items-unchecked-update-many-without-machine-nested.input';
 
 @InputType()
 export class MachinesUncheckedUpdateWithoutRoutine_maintanancesInput {
@@ -48,7 +47,4 @@ export class MachinesUncheckedUpdateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketUncheckedUpdateManyWithoutMachinesNestedInput, {nullable:true})
     Ticket?: TicketUncheckedUpdateManyWithoutMachinesNestedInput;
-
-    @Field(() => machines_itemsUncheckedUpdateManyWithoutMachineNestedInput, {nullable:true})
-    machines_items?: machines_itemsUncheckedUpdateManyWithoutMachineNestedInput;
 }

@@ -11,7 +11,6 @@ import { SectionsUpdateOneRequiredWithoutMachinesNestedInput } from '../sections
 import { MaintenanceUpdateManyWithoutMachinesNestedInput } from '../maintenance/maintenance-update-many-without-machines-nested.input';
 import { TicketUpdateManyWithoutMachinesNestedInput } from '../ticket/ticket-update-many-without-machines-nested.input';
 import { machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput } from '../machine-catagory/machine-catagory-update-one-required-without-machines-nested.input';
-import { machines_itemsUpdateManyWithoutMachineNestedInput } from '../machines-items/machines-items-update-many-without-machine-nested.input';
 
 @InputType()
 export class MachinesUpdateWithoutRoutine_maintanancesInput {
@@ -51,7 +50,4 @@ export class MachinesUpdateWithoutRoutine_maintanancesInput {
 
     @Field(() => machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput, {nullable:true})
     machine_catagory?: machine_catagoryUpdateOneRequiredWithoutMachinesNestedInput;
-
-    @Field(() => machines_itemsUpdateManyWithoutMachineNestedInput, {nullable:true})
-    machines_items?: machines_itemsUpdateManyWithoutMachineNestedInput;
 }

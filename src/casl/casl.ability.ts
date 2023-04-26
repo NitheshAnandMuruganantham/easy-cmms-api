@@ -29,7 +29,7 @@ export type subject = Subjects<{
   Ticket: Ticket;
   Maintenance: Maintenance;
   Items: Items;
-  ItemCatagory: catagory;
+  catagory: catagory;
   Machines: Machines;
   machineCatagory: machine_catagory;
   Section: Sections;

@@ -12,7 +12,6 @@ import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-r
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
 import { Machine_catagoryRelationFilter } from '../prisma/machine-catagory-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
-import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class MachinesWhereInput {
@@ -73,7 +72,4 @@ export class MachinesWhereInput {
 
     @Field(() => Routine_maintanancesListRelationFilter, {nullable:true})
     routine_maintanances?: Routine_maintanancesListRelationFilter;
-
-    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
-    machines_items?: Machines_itemsListRelationFilter;
 }

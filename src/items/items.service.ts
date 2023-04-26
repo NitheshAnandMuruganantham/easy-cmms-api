@@ -34,7 +34,14 @@ export class ItemsService {
 
     return this.prisma.items.create({
       // @ts-ignore
-      data: createItemInput,
+      data: {
+        ...createItemInput,
+        block: {
+          connect: {
+            id: session.User.blockId,
+          },
+        },
+      },
     });
   }
 
@@ -47,9 +54,30 @@ export class ItemsService {
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
 
-    ForbiddenError.from(ability).throwUnlessCan('create', 'Items');
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Items');
 
     return this.prisma.items.findMany({
+      where: {
+        AND: [accessibleBy(ability).Items, where],
+      },
+      orderBy,
+      take: limit,
+      skip: offset,
+    });
+  }
+
+  async count(
+    session: SessionContainer,
+    where: ItemsWhereInput,
+    orderBy: ItemsOrderByWithRelationInput,
+    limit: number,
+    offset: number,
+  ) {
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
+
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Items');
+
+    return this.prisma.items.count({
       where: {
         AND: [accessibleBy(ability).Items, where],
       },
@@ -128,26 +156,5 @@ export class ItemsService {
       take: limit,
       skip: offset,
     });
-  }
-  async machines_items(
-    session: SessionContainer,
-    machine_id: bigint,
-    where: MachinesWhereInput,
-    orderBy: MachinesOrderByWithRelationInput,
-    limit: number,
-    offset: number,
-  ) {
-    this.prisma.items
-      .findUnique({
-        where: {
-          id: machine_id,
-        },
-      })
-      .machines_items({
-        where,
-        orderBy,
-        take: limit,
-        skip: offset,
-      });
   }
 }

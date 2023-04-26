@@ -43,7 +43,4 @@ export class BlockCount {
 
     @Field(() => Int, {nullable:false})
     routine_maintanances?: number;
-
-    @Field(() => Int, {nullable:false})
-    machines_items?: number;
 }

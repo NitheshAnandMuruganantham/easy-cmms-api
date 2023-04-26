@@ -17,7 +17,6 @@ import { ReportsListRelationFilter } from '../reports/reports-list-relation-filt
 import { SectionsListRelationFilter } from '../sections/sections-list-relation-filter.input';
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
-import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class BlockWhereInput {
@@ -87,7 +86,4 @@ export class BlockWhereInput {
 
     @Field(() => Routine_maintanancesListRelationFilter, {nullable:true})
     routine_maintanances?: Routine_maintanancesListRelationFilter;
-
-    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
-    machines_items?: Machines_itemsListRelationFilter;
 }

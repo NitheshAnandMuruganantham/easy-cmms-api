@@ -16,7 +16,6 @@ import { ReplacementsUpdateManyWithoutBlockNestedInput } from '../replacements/r
 import { ReportsUpdateManyWithoutBlockNestedInput } from '../reports/reports-update-many-without-block-nested.input';
 import { SectionsUpdateManyWithoutBlockNestedInput } from '../sections/sections-update-many-without-block-nested.input';
 import { TicketUpdateManyWithoutBlockNestedInput } from '../ticket/ticket-update-many-without-block-nested.input';
-import { machines_itemsUpdateManyWithoutBlockNestedInput } from '../machines-items/machines-items-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUpdateWithoutRoutine_maintanancesInput {
@@ -74,7 +73,4 @@ export class BlockUpdateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketUpdateManyWithoutBlockNestedInput, {nullable:true})
     Ticket?: TicketUpdateManyWithoutBlockNestedInput;
-
-    @Field(() => machines_itemsUpdateManyWithoutBlockNestedInput, {nullable:true})
-    machines_items?: machines_itemsUpdateManyWithoutBlockNestedInput;
 }

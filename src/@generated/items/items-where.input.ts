@@ -9,7 +9,6 @@ import { HideField } from '@nestjs/graphql';
 import { CatagoryRelationFilter } from '../prisma/catagory-relation-filter.input';
 import { ReplacementsListRelationFilter } from '../replacements/replacements-list-relation-filter.input';
 import { BlockRelationFilter } from '../block/block-relation-filter.input';
-import { Machines_itemsListRelationFilter } from '../prisma/machines-items-list-relation-filter.input';
 
 @InputType()
 export class ItemsWhereInput {
@@ -58,7 +57,4 @@ export class ItemsWhereInput {
 
     @HideField()
     block?: BlockRelationFilter;
-
-    @Field(() => Machines_itemsListRelationFilter, {nullable:true})
-    machines_items?: Machines_itemsListRelationFilter;
 }

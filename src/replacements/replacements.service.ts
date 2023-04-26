@@ -50,6 +50,31 @@ export class ReplacementsService {
       orderBy,
       take: limit,
       skip: offset,
+      include: {
+        maintenance: true,
+      },
+    });
+  }
+
+  async count(
+    session: SessionContainer,
+    where: ReplacementsWhereInput,
+    orderBy: ReplacementsOrderByWithRelationInput,
+    limit: number,
+    offset: number,
+  ) {
+    const ability = await this.caslFactory.getCurrentUserAbility(
+      session.Session,
+    );
+
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Replacements');
+    return this.prisma.replacements.count({
+      where: {
+        AND: [accessibleBy(ability).Replacements, where],
+      },
+      orderBy,
+      take: limit,
+      skip: offset,
     });
   }
 
@@ -57,7 +82,12 @@ export class ReplacementsService {
     const ability = await this.caslFactory.getCurrentUserAbility(
       session.Session,
     );
-    const canGet = await this.prisma.replacements.findUnique({ where: { id } });
+    const canGet = await this.prisma.replacements.findUnique({
+      where: { id },
+      include: {
+        maintenance: true,
+      },
+    });
 
     ForbiddenError.from(ability).throwUnlessCan(
       'read',
@@ -73,6 +103,10 @@ export class ReplacementsService {
   ) {
     const canUpdate = await this.prisma.replacements.findUnique({
       where: { id },
+      include: {
+        items: true,
+        maintenance: true,
+      },
     });
     const ability = await this.caslFactory.getCurrentUserAbility(
       session.Session,
@@ -82,16 +116,40 @@ export class ReplacementsService {
       subject('Replacements', canUpdate),
     );
 
+    if (canUpdate.approved) {
+      throw new Error('Replacement already approved');
+    }
+
+    if (canUpdate.items.quantity < canUpdate.quantity) {
+      throw new Error('Quantity is greater than the available');
+    }
+
+    if (updateReplacementInput?.approved?.set) {
+      this.prisma.items.update({
+        where: { id: canUpdate.items.id },
+        data: {
+          quantity: {
+            decrement: canUpdate.quantity,
+          },
+        },
+      });
+    }
     return this.prisma.replacements.update({
       where: { id },
       // @ts-ignore
       data: updateReplacementInput,
+      include: {
+        maintenance: true,
+      },
     });
   }
 
   async remove(session: SessionContainer, id: number) {
     const canRemove = await this.prisma.replacements.findUnique({
       where: { id },
+      include: {
+        maintenance: true,
+      },
     });
     const ability = await this.caslFactory.getCurrentUserAbility(
       session.Session,
