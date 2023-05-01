@@ -60,6 +60,8 @@ type BlockCount {
   Sections: Int!
   Ticket: Int!
   routine_maintanances: Int!
+  Invoices: Int!
+  invoice_items: Int!
 }
 
 type Block_settingsAvgAggregate {
@@ -671,6 +673,7 @@ input ItemsWhereInput {
   updated_at: DateTimeFilter
   catagory: CatagoryRelationFilter
   replacements: ReplacementsListRelationFilter
+  invoice_items: Invoice_itemsListRelationFilter
 }
 
 input FloatFilter {
@@ -715,6 +718,46 @@ input ItemsListRelationFilter {
   every: ItemsWhereInput
   some: ItemsWhereInput
   none: ItemsWhereInput
+}
+
+input Invoice_itemsListRelationFilter {
+  every: invoice_itemsWhereInput
+  some: invoice_itemsWhereInput
+  none: invoice_itemsWhereInput
+}
+
+input invoice_itemsWhereInput {
+  AND: [invoice_itemsWhereInput!]
+  OR: [invoice_itemsWhereInput!]
+  NOT: [invoice_itemsWhereInput!]
+  id: BigIntFilter
+  invoice_id: BigIntFilter
+  unit_price: FloatFilter
+  quantity: FloatFilter
+  amount: FloatFilter
+  item_id: BigIntFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+  invoice: InvoicesRelationFilter
+  item: ItemsRelationFilter
+}
+
+input InvoicesRelationFilter {
+  is: InvoicesWhereInput
+  isNot: InvoicesWhereInput
+}
+
+input InvoicesWhereInput {
+  AND: [InvoicesWhereInput!]
+  OR: [InvoicesWhereInput!]
+  NOT: [InvoicesWhereInput!]
+  id: BigIntFilter
+  total: FloatFilter
+  invoice_date: DateTimeFilter
+  number: StringFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+  invoice_items: Invoice_itemsListRelationFilter
 }
 
 input ReportsListRelationFilter {
@@ -866,8 +909,45 @@ type catagory {
   _count: CatagoryCount!
 }
 
+type InvoicesCount {
+  invoice_items: Int!
+}
+
+type Invoices {
+  id: BigInt!
+  total: Float!
+  invoice_date: DateTime!
+  number: String!
+  block_id: BigInt!
+  created_at: DateTime!
+  updated_at: DateTime!
+  block: Block!
+  invoice_items(where: invoice_itemsWhereInput, orderBy: invoice_itemsOrderByRelationAggregateInput, limit: Int, offset: Int): [invoice_items!]
+  _count: InvoicesCount!
+}
+
+input invoice_itemsOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+type invoice_items {
+  id: BigInt!
+  invoice_id: BigInt!
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  item_id: BigInt!
+  block_id: BigInt!
+  created_at: DateTime!
+  updated_at: DateTime!
+  invoice: Invoices!
+  item: Items!
+  block: Block!
+}
+
 type ItemsCount {
   replacements: Int!
+  invoice_items: Int!
 }
 
 type Items {
@@ -883,6 +963,7 @@ type Items {
   catagory: catagory!
   replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]
   block: Block!
+  invoice_items: [invoice_items!]
   _count: ItemsCount!
 }
 
@@ -1062,6 +1143,8 @@ type Block {
   Sections: [Sections!]
   Ticket: [Ticket!]
   routine_maintanances: [routine_maintanances!]
+  Invoices: [Invoices!]
+  invoice_items: [invoice_items!]
   _count: BlockCount!
 }
 
@@ -1421,6 +1504,63 @@ type CatagoryMaxAggregate {
   name: String
   created_at: DateTime
   block_id: BigInt
+  updated_at: DateTime
+}
+
+type Invoice_itemsCountAggregate {
+  id: Int!
+  invoice_id: Int!
+  unit_price: Int!
+  quantity: Int!
+  amount: Int!
+  item_id: Int!
+  block_id: Int!
+  created_at: Int!
+  updated_at: Int!
+  _all: Int!
+}
+
+type Invoice_itemsAvgAggregate {
+  id: Float
+  invoice_id: Float
+  unit_price: Float
+  quantity: Float
+  amount: Float
+  item_id: Float
+  block_id: Float
+}
+
+type Invoice_itemsSumAggregate {
+  id: BigInt
+  invoice_id: BigInt
+  unit_price: Float
+  quantity: Float
+  amount: Float
+  item_id: BigInt
+  block_id: BigInt
+}
+
+type Invoice_itemsMinAggregate {
+  id: BigInt
+  invoice_id: BigInt
+  unit_price: Float
+  quantity: Float
+  amount: Float
+  item_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type Invoice_itemsMaxAggregate {
+  id: BigInt
+  invoice_id: BigInt
+  unit_price: Float
+  quantity: Float
+  amount: Float
+  item_id: BigInt
+  block_id: BigInt
+  created_at: DateTime
   updated_at: DateTime
 }
 
@@ -1885,6 +2025,49 @@ type Section {
   _count: SectionCount!
 }
 
+type InvoicesCountAggregate {
+  id: Int!
+  total: Int!
+  invoice_date: Int!
+  number: Int!
+  block_id: Int!
+  created_at: Int!
+  updated_at: Int!
+  _all: Int!
+}
+
+type InvoicesAvgAggregate {
+  id: Float
+  total: Float
+  block_id: Float
+}
+
+type InvoicesSumAggregate {
+  id: BigInt
+  total: Float
+  block_id: BigInt
+}
+
+type InvoicesMinAggregate {
+  id: BigInt
+  total: Float
+  invoice_date: DateTime
+  number: String
+  block_id: BigInt
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+type InvoicesMaxAggregate {
+  id: BigInt
+  total: Float
+  invoice_date: DateTime
+  number: String
+  block_id: BigInt
+  created_at: DateTime
+  updated_at: DateTime
+}
+
 type Query {
   blocks(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): [Block!]!
   blocksCount(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): Int!
@@ -1904,6 +2087,9 @@ type Query {
   replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]!
   replacementsCount(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): Int!
   replacement(id: Int!): Replacements!
+  invoices(where: InvoicesWhereInput, orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, limit: Int, offset: Int): [Invoices!]!
+  invoiceCount(where: InvoicesWhereInput, orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, limit: Int, offset: Int): Int!
+  invoice(id: Int!): Invoices!
   machineCatagories(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): [machine_catagory!]!
   machineCatagoriesCount(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): Int!
   machineCategory(id: Int!): machine_catagory!
@@ -1948,6 +2134,8 @@ input BlockWhereInput {
   Sections: SectionsListRelationFilter
   Ticket: TicketListRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
+  Invoices: InvoicesListRelationFilter
+  invoice_items: Invoice_itemsListRelationFilter
 }
 
 input StringNullableListFilter {
@@ -2004,6 +2192,12 @@ input SectionsListRelationFilter {
   every: SectionsWhereInput
   some: SectionsWhereInput
   none: SectionsWhereInput
+}
+
+input InvoicesListRelationFilter {
+  every: InvoicesWhereInput
+  some: InvoicesWhereInput
+  none: InvoicesWhereInput
 }
 
 input BlockOrderByWithAggregationInput {
@@ -2103,6 +2297,27 @@ input ItemCatagoryWhereInput {
   items: ItemsListRelationFilter
   created_at: DateTimeFilter
   updated_at: DateTimeFilter
+}
+
+input InvoicesOrderByWithRelationAndSearchRelevanceInput {
+  id: SortOrder
+  total: SortOrder
+  invoice_date: SortOrder
+  number: SortOrder
+  created_at: SortOrder
+  updated_at: SortOrder
+  invoice_items: invoice_itemsOrderByRelationAggregateInput
+  _relevance: InvoicesOrderByRelevanceInput
+}
+
+input InvoicesOrderByRelevanceInput {
+  fields: [InvoicesOrderByRelevanceFieldEnum!]!
+  sort: SortOrder!
+  search: String!
+}
+
+enum InvoicesOrderByRelevanceFieldEnum {
+  number
 }
 
 input machine_catagoryOrderByWithRelationAndSearchRelevanceInput {
@@ -2222,6 +2437,9 @@ type Mutation {
   createReplacement(createReplacementInput: ReplacementsCreateInput!): Replacements!
   updateReplacement(id: Int!, updateReplacementInput: ReplacementsUpdateInput!): Replacements!
   removeReplacement(id: Int!): Replacements!
+  createInvoice(createInvoiceInput: InvoicesCreateInput!): Invoices!
+  updateInvoices(id: Int!, updateInvoiceInput: InvoicesUpdateInput!): Invoices!
+  removeInvoices(id: Int!): Invoices!
   createMachineCategory(createCategoryInput: machine_catagoryCreateWithoutMachinesInput!): machine_catagory!
   updateMachineCatagories(id: Int!, data: machine_catagoryUpdateOneWithoutMachinesNestedInput!): machine_catagory!
   removeMachineCatagories(id: Int!): machine_catagory!
@@ -2265,6 +2483,8 @@ input BlockCreateInput {
   Sections: SectionsCreateNestedManyWithoutBlockInput
   Ticket: TicketCreateNestedManyWithoutBlockInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutBlockInput
+  Invoices: InvoicesCreateNestedManyWithoutBlockInput
+  invoice_items: invoice_itemsCreateNestedManyWithoutBlockInput
 }
 
 input BlockCreateMailingsInput {
@@ -2595,6 +2815,7 @@ input ItemsCreateWithoutReplacementsInput {
   created_at: DateTime
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
 }
 
 input catagoryCreateNestedOneWithoutItemsInput {
@@ -2617,6 +2838,71 @@ input catagoryCreateOrConnectWithoutItemsInput {
 
 input catagoryWhereUniqueInput {
   id: BigInt
+}
+
+input invoice_itemsCreateNestedManyWithoutItemInput {
+  create: [invoice_itemsCreateWithoutItemInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutItemInput!]
+  createMany: invoice_itemsCreateManyItemInputEnvelope
+  connect: [invoice_itemsWhereUniqueInput!]
+}
+
+input invoice_itemsCreateWithoutItemInput {
+  id: BigInt
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  created_at: DateTime
+  updated_at: DateTime
+  invoice: InvoicesCreateNestedOneWithoutInvoice_itemsInput!
+}
+
+input InvoicesCreateNestedOneWithoutInvoice_itemsInput {
+  create: InvoicesCreateWithoutInvoice_itemsInput
+  connectOrCreate: InvoicesCreateOrConnectWithoutInvoice_itemsInput
+  connect: InvoicesWhereUniqueInput
+}
+
+input InvoicesCreateWithoutInvoice_itemsInput {
+  id: BigInt
+  total: Float!
+  invoice_date: DateTime!
+  number: String!
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+input InvoicesCreateOrConnectWithoutInvoice_itemsInput {
+  where: InvoicesWhereUniqueInput!
+  create: InvoicesCreateWithoutInvoice_itemsInput!
+}
+
+input InvoicesWhereUniqueInput {
+  id: BigInt
+}
+
+input invoice_itemsCreateOrConnectWithoutItemInput {
+  where: invoice_itemsWhereUniqueInput!
+  create: invoice_itemsCreateWithoutItemInput!
+}
+
+input invoice_itemsWhereUniqueInput {
+  id: BigInt
+}
+
+input invoice_itemsCreateManyItemInputEnvelope {
+  data: [invoice_itemsCreateManyItemInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateManyItemInput {
+  id: BigInt
+  invoice_id: BigInt!
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  created_at: DateTime
+  updated_at: DateTime
 }
 
 input ItemsCreateOrConnectWithoutReplacementsInput {
@@ -3183,6 +3469,7 @@ input ItemsCreateWithoutCatagoryInput {
   created_at: DateTime
   updated_at: DateTime
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
 }
 
 input ReplacementsCreateNestedManyWithoutItemsInput {
@@ -3310,6 +3597,7 @@ input ItemsCreateWithoutBlockInput {
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
 }
 
 input ItemsCreateOrConnectWithoutBlockInput {
@@ -3731,6 +4019,141 @@ input routine_maintanancesCreateManyBlockInput {
   updated_at: DateTime
 }
 
+input InvoicesCreateNestedManyWithoutBlockInput {
+  create: [InvoicesCreateWithoutBlockInput!]
+  connectOrCreate: [InvoicesCreateOrConnectWithoutBlockInput!]
+  createMany: InvoicesCreateManyBlockInputEnvelope
+  connect: [InvoicesWhereUniqueInput!]
+}
+
+input InvoicesCreateWithoutBlockInput {
+  id: BigInt
+  total: Float!
+  invoice_date: DateTime!
+  number: String!
+  created_at: DateTime
+  updated_at: DateTime
+  invoice_items: invoice_itemsCreateNestedManyWithoutInvoiceInput
+}
+
+input invoice_itemsCreateNestedManyWithoutInvoiceInput {
+  create: [invoice_itemsCreateWithoutInvoiceInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutInvoiceInput!]
+  createMany: invoice_itemsCreateManyInvoiceInputEnvelope
+  connect: [invoice_itemsWhereUniqueInput!]
+}
+
+input invoice_itemsCreateWithoutInvoiceInput {
+  id: BigInt
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  created_at: DateTime
+  updated_at: DateTime
+  item: ItemsCreateNestedOneWithoutInvoice_itemsInput!
+}
+
+input ItemsCreateNestedOneWithoutInvoice_itemsInput {
+  create: ItemsCreateWithoutInvoice_itemsInput
+  connectOrCreate: ItemsCreateOrConnectWithoutInvoice_itemsInput
+  connect: ItemsWhereUniqueInput
+}
+
+input ItemsCreateWithoutInvoice_itemsInput {
+  id: BigInt
+  name: String!
+  code: String!
+  quantity: Int!
+  unit_price: Float!
+  created_at: DateTime
+  updated_at: DateTime
+  catagory: catagoryCreateNestedOneWithoutItemsInput!
+  replacements: ReplacementsCreateNestedManyWithoutItemsInput
+}
+
+input ItemsCreateOrConnectWithoutInvoice_itemsInput {
+  where: ItemsWhereUniqueInput!
+  create: ItemsCreateWithoutInvoice_itemsInput!
+}
+
+input invoice_itemsCreateOrConnectWithoutInvoiceInput {
+  where: invoice_itemsWhereUniqueInput!
+  create: invoice_itemsCreateWithoutInvoiceInput!
+}
+
+input invoice_itemsCreateManyInvoiceInputEnvelope {
+  data: [invoice_itemsCreateManyInvoiceInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateManyInvoiceInput {
+  id: BigInt
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  item_id: BigInt!
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+input InvoicesCreateOrConnectWithoutBlockInput {
+  where: InvoicesWhereUniqueInput!
+  create: InvoicesCreateWithoutBlockInput!
+}
+
+input InvoicesCreateManyBlockInputEnvelope {
+  data: [InvoicesCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input InvoicesCreateManyBlockInput {
+  id: BigInt
+  total: Float!
+  invoice_date: DateTime!
+  number: String!
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+input invoice_itemsCreateNestedManyWithoutBlockInput {
+  create: [invoice_itemsCreateWithoutBlockInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutBlockInput!]
+  createMany: invoice_itemsCreateManyBlockInputEnvelope
+  connect: [invoice_itemsWhereUniqueInput!]
+}
+
+input invoice_itemsCreateWithoutBlockInput {
+  id: BigInt
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  created_at: DateTime
+  updated_at: DateTime
+  invoice: InvoicesCreateNestedOneWithoutInvoice_itemsInput!
+  item: ItemsCreateNestedOneWithoutInvoice_itemsInput!
+}
+
+input invoice_itemsCreateOrConnectWithoutBlockInput {
+  where: invoice_itemsWhereUniqueInput!
+  create: invoice_itemsCreateWithoutBlockInput!
+}
+
+input invoice_itemsCreateManyBlockInputEnvelope {
+  data: [invoice_itemsCreateManyBlockInput!]!
+  skipDuplicates: Boolean
+}
+
+input invoice_itemsCreateManyBlockInput {
+  id: BigInt
+  invoice_id: BigInt!
+  unit_price: Float!
+  quantity: Float!
+  amount: Float!
+  item_id: BigInt!
+  created_at: DateTime
+  updated_at: DateTime
+}
+
 input BlockUpdateInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -3751,6 +4174,8 @@ input BlockUpdateInput {
   Sections: SectionsUpdateManyWithoutBlockNestedInput
   Ticket: TicketUpdateManyWithoutBlockNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutBlockNestedInput
+  Invoices: InvoicesUpdateManyWithoutBlockNestedInput
+  invoice_items: invoice_itemsUpdateManyWithoutBlockNestedInput
 }
 
 input BigIntFieldUpdateOperationsInput {
@@ -4260,6 +4685,7 @@ input ItemsUpdateWithoutReplacementsInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
 }
 
 input FloatFieldUpdateOperationsInput {
@@ -4286,6 +4712,91 @@ input catagoryUpsertWithoutItemsInput {
 input catagoryUpdateWithoutItemsInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateManyWithoutItemNestedInput {
+  create: [invoice_itemsCreateWithoutItemInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutItemInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutItemInput!]
+  createMany: invoice_itemsCreateManyItemInputEnvelope
+  set: [invoice_itemsWhereUniqueInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  delete: [invoice_itemsWhereUniqueInput!]
+  connect: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutItemInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutItemInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutItemInput {
+  where: invoice_itemsWhereUniqueInput!
+  update: invoice_itemsUpdateWithoutItemInput!
+  create: invoice_itemsCreateWithoutItemInput!
+}
+
+input invoice_itemsUpdateWithoutItemInput {
+  id: BigIntFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  invoice: InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput
+}
+
+input InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput {
+  create: InvoicesCreateWithoutInvoice_itemsInput
+  connectOrCreate: InvoicesCreateOrConnectWithoutInvoice_itemsInput
+  upsert: InvoicesUpsertWithoutInvoice_itemsInput
+  connect: InvoicesWhereUniqueInput
+  update: InvoicesUpdateWithoutInvoice_itemsInput
+}
+
+input InvoicesUpsertWithoutInvoice_itemsInput {
+  update: InvoicesUpdateWithoutInvoice_itemsInput!
+  create: InvoicesCreateWithoutInvoice_itemsInput!
+}
+
+input InvoicesUpdateWithoutInvoice_itemsInput {
+  id: BigIntFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutItemInput {
+  where: invoice_itemsWhereUniqueInput!
+  data: invoice_itemsUpdateWithoutItemInput!
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutItemInput {
+  where: invoice_itemsScalarWhereInput!
+  data: invoice_itemsUpdateManyMutationInput!
+}
+
+input invoice_itemsScalarWhereInput {
+  AND: [invoice_itemsScalarWhereInput!]
+  OR: [invoice_itemsScalarWhereInput!]
+  NOT: [invoice_itemsScalarWhereInput!]
+  id: BigIntFilter
+  invoice_id: BigIntFilter
+  unit_price: FloatFilter
+  quantity: FloatFilter
+  amount: FloatFilter
+  item_id: BigIntFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+}
+
+input invoice_itemsUpdateManyMutationInput {
+  id: BigIntFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  amount: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
 }
@@ -4967,6 +5478,7 @@ input ItemsUpdateWithoutCatagoryInput {
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
 }
 
 input ReplacementsUpdateManyWithoutItemsNestedInput {
@@ -5134,6 +5646,7 @@ input ItemsUpdateWithoutBlockInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
 }
 
 input ItemsUpdateWithWhereUniqueWithoutBlockInput {
@@ -5595,6 +6108,173 @@ input routine_maintanancesUpdateManyWithWhereWithoutBlockInput {
   data: routine_maintanancesUpdateManyMutationInput!
 }
 
+input InvoicesUpdateManyWithoutBlockNestedInput {
+  create: [InvoicesCreateWithoutBlockInput!]
+  connectOrCreate: [InvoicesCreateOrConnectWithoutBlockInput!]
+  upsert: [InvoicesUpsertWithWhereUniqueWithoutBlockInput!]
+  createMany: InvoicesCreateManyBlockInputEnvelope
+  set: [InvoicesWhereUniqueInput!]
+  disconnect: [InvoicesWhereUniqueInput!]
+  delete: [InvoicesWhereUniqueInput!]
+  connect: [InvoicesWhereUniqueInput!]
+  update: [InvoicesUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [InvoicesUpdateManyWithWhereWithoutBlockInput!]
+  deleteMany: [InvoicesScalarWhereInput!]
+}
+
+input InvoicesUpsertWithWhereUniqueWithoutBlockInput {
+  where: InvoicesWhereUniqueInput!
+  update: InvoicesUpdateWithoutBlockInput!
+  create: InvoicesCreateWithoutBlockInput!
+}
+
+input InvoicesUpdateWithoutBlockInput {
+  id: BigIntFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutInvoiceNestedInput
+}
+
+input invoice_itemsUpdateManyWithoutInvoiceNestedInput {
+  create: [invoice_itemsCreateWithoutInvoiceInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutInvoiceInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutInvoiceInput!]
+  createMany: invoice_itemsCreateManyInvoiceInputEnvelope
+  set: [invoice_itemsWhereUniqueInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  delete: [invoice_itemsWhereUniqueInput!]
+  connect: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutInvoiceInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutInvoiceInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutInvoiceInput {
+  where: invoice_itemsWhereUniqueInput!
+  update: invoice_itemsUpdateWithoutInvoiceInput!
+  create: invoice_itemsCreateWithoutInvoiceInput!
+}
+
+input invoice_itemsUpdateWithoutInvoiceInput {
+  id: BigIntFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  item: ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput
+}
+
+input ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput {
+  create: ItemsCreateWithoutInvoice_itemsInput
+  connectOrCreate: ItemsCreateOrConnectWithoutInvoice_itemsInput
+  upsert: ItemsUpsertWithoutInvoice_itemsInput
+  connect: ItemsWhereUniqueInput
+  update: ItemsUpdateWithoutInvoice_itemsInput
+}
+
+input ItemsUpsertWithoutInvoice_itemsInput {
+  update: ItemsUpdateWithoutInvoice_itemsInput!
+  create: ItemsCreateWithoutInvoice_itemsInput!
+}
+
+input ItemsUpdateWithoutInvoice_itemsInput {
+  id: BigIntFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  code: StringFieldUpdateOperationsInput
+  quantity: IntFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
+  replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutInvoiceInput {
+  where: invoice_itemsWhereUniqueInput!
+  data: invoice_itemsUpdateWithoutInvoiceInput!
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutInvoiceInput {
+  where: invoice_itemsScalarWhereInput!
+  data: invoice_itemsUpdateManyMutationInput!
+}
+
+input InvoicesUpdateWithWhereUniqueWithoutBlockInput {
+  where: InvoicesWhereUniqueInput!
+  data: InvoicesUpdateWithoutBlockInput!
+}
+
+input InvoicesUpdateManyWithWhereWithoutBlockInput {
+  where: InvoicesScalarWhereInput!
+  data: InvoicesUpdateManyMutationInput!
+}
+
+input InvoicesScalarWhereInput {
+  AND: [InvoicesScalarWhereInput!]
+  OR: [InvoicesScalarWhereInput!]
+  NOT: [InvoicesScalarWhereInput!]
+  id: BigIntFilter
+  total: FloatFilter
+  invoice_date: DateTimeFilter
+  number: StringFilter
+  created_at: DateTimeFilter
+  updated_at: DateTimeFilter
+}
+
+input InvoicesUpdateManyMutationInput {
+  id: BigIntFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input invoice_itemsUpdateManyWithoutBlockNestedInput {
+  create: [invoice_itemsCreateWithoutBlockInput!]
+  connectOrCreate: [invoice_itemsCreateOrConnectWithoutBlockInput!]
+  upsert: [invoice_itemsUpsertWithWhereUniqueWithoutBlockInput!]
+  createMany: invoice_itemsCreateManyBlockInputEnvelope
+  set: [invoice_itemsWhereUniqueInput!]
+  disconnect: [invoice_itemsWhereUniqueInput!]
+  delete: [invoice_itemsWhereUniqueInput!]
+  connect: [invoice_itemsWhereUniqueInput!]
+  update: [invoice_itemsUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [invoice_itemsUpdateManyWithWhereWithoutBlockInput!]
+  deleteMany: [invoice_itemsScalarWhereInput!]
+}
+
+input invoice_itemsUpsertWithWhereUniqueWithoutBlockInput {
+  where: invoice_itemsWhereUniqueInput!
+  update: invoice_itemsUpdateWithoutBlockInput!
+  create: invoice_itemsCreateWithoutBlockInput!
+}
+
+input invoice_itemsUpdateWithoutBlockInput {
+  id: BigIntFieldUpdateOperationsInput
+  unit_price: FloatFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
+  amount: FloatFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  invoice: InvoicesUpdateOneRequiredWithoutInvoice_itemsNestedInput
+  item: ItemsUpdateOneRequiredWithoutInvoice_itemsNestedInput
+}
+
+input invoice_itemsUpdateWithWhereUniqueWithoutBlockInput {
+  where: invoice_itemsWhereUniqueInput!
+  data: invoice_itemsUpdateWithoutBlockInput!
+}
+
+input invoice_itemsUpdateManyWithWhereWithoutBlockInput {
+  where: invoice_itemsScalarWhereInput!
+  data: invoice_itemsUpdateManyMutationInput!
+}
+
 input ItemCatagoryCreateInput {
   id: String
   name: String!
@@ -5700,6 +6380,7 @@ input ItemsCreateInput {
   updated_at: DateTime
   catagory: catagoryCreateNestedOneWithoutItemsInput!
   replacements: ReplacementsCreateNestedManyWithoutItemsInput
+  invoice_items: invoice_itemsCreateNestedManyWithoutItemInput
 }
 
 input ItemsUpdateInput {
@@ -5712,6 +6393,7 @@ input ItemsUpdateInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   catagory: catagoryUpdateOneRequiredWithoutItemsNestedInput
   replacements: ReplacementsUpdateManyWithoutItemsNestedInput
+  invoice_items: invoice_itemsUpdateManyWithoutItemNestedInput
 }
 
 input MachinesCreateInput {
@@ -5808,6 +6490,26 @@ input ReplacementsUpdateInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   items: ItemsUpdateOneRequiredWithoutReplacementsNestedInput
   maintenance: MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput
+}
+
+input InvoicesCreateInput {
+  id: BigInt
+  total: Float!
+  invoice_date: DateTime!
+  number: String!
+  created_at: DateTime
+  updated_at: DateTime
+  invoice_items: invoice_itemsCreateNestedManyWithoutInvoiceInput
+}
+
+input InvoicesUpdateInput {
+  id: BigIntFieldUpdateOperationsInput
+  total: FloatFieldUpdateOperationsInput
+  invoice_date: DateTimeFieldUpdateOperationsInput
+  number: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+  invoice_items: invoice_itemsUpdateManyWithoutInvoiceNestedInput
 }
 
 input machine_catagoryUpdateOneWithoutMachinesNestedInput {

@@ -7,4 +7,7 @@ export class ItemsCount {
 
     @Field(() => Int, {nullable:false})
     replacements?: number;
+
+    @Field(() => Int, {nullable:false})
+    invoice_items?: number;
 }

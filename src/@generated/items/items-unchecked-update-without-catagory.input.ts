@@ -7,6 +7,7 @@ import { FloatFieldUpdateOperationsInput } from '../prisma/float-field-update-op
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-unchecked-update-many-without-items-nested.input';
+import { invoice_itemsUncheckedUpdateManyWithoutItemNestedInput } from '../invoice-items/invoice-items-unchecked-update-many-without-item-nested.input';
 
 @InputType()
 export class ItemsUncheckedUpdateWithoutCatagoryInput {
@@ -37,4 +38,7 @@ export class ItemsUncheckedUpdateWithoutCatagoryInput {
 
     @Field(() => ReplacementsUncheckedUpdateManyWithoutItemsNestedInput, {nullable:true})
     replacements?: ReplacementsUncheckedUpdateManyWithoutItemsNestedInput;
+
+    @Field(() => invoice_itemsUncheckedUpdateManyWithoutItemNestedInput, {nullable:true})
+    invoice_items?: invoice_itemsUncheckedUpdateManyWithoutItemNestedInput;
 }

@@ -14,6 +14,8 @@ import { ReplacementsCreateNestedManyWithoutBlockInput } from '../replacements/r
 import { ReportsCreateNestedManyWithoutBlockInput } from '../reports/reports-create-nested-many-without-block.input';
 import { SectionsCreateNestedManyWithoutBlockInput } from '../sections/sections-create-nested-many-without-block.input';
 import { TicketCreateNestedManyWithoutBlockInput } from '../ticket/ticket-create-nested-many-without-block.input';
+import { InvoicesCreateNestedManyWithoutBlockInput } from '../invoices/invoices-create-nested-many-without-block.input';
+import { invoice_itemsCreateNestedManyWithoutBlockInput } from '../invoice-items/invoice-items-create-nested-many-without-block.input';
 
 @InputType()
 export class BlockCreateWithoutRoutine_maintanancesInput {
@@ -71,4 +73,10 @@ export class BlockCreateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketCreateNestedManyWithoutBlockInput, {nullable:true})
     Ticket?: TicketCreateNestedManyWithoutBlockInput;
+
+    @Field(() => InvoicesCreateNestedManyWithoutBlockInput, {nullable:true})
+    Invoices?: InvoicesCreateNestedManyWithoutBlockInput;
+
+    @Field(() => invoice_itemsCreateNestedManyWithoutBlockInput, {nullable:true})
+    invoice_items?: invoice_itemsCreateNestedManyWithoutBlockInput;
 }

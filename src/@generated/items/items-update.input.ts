@@ -9,6 +9,7 @@ import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/ca
 import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../replacements/replacements-update-many-without-items-nested.input';
 import { BlockUpdateOneRequiredWithoutItemsNestedInput } from '../block/block-update-one-required-without-items-nested.input';
 import { HideField } from '@nestjs/graphql';
+import { invoice_itemsUpdateManyWithoutItemNestedInput } from '../invoice-items/invoice-items-update-many-without-item-nested.input';
 
 @InputType()
 export class ItemsUpdateInput {
@@ -42,4 +43,7 @@ export class ItemsUpdateInput {
 
     @HideField()
     block?: BlockUpdateOneRequiredWithoutItemsNestedInput;
+
+    @Field(() => invoice_itemsUpdateManyWithoutItemNestedInput, {nullable:true})
+    invoice_items?: invoice_itemsUpdateManyWithoutItemNestedInput;
 }

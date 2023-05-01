@@ -43,4 +43,10 @@ export class BlockCount {
 
     @Field(() => Int, {nullable:false})
     routine_maintanances?: number;
+
+    @Field(() => Int, {nullable:false})
+    Invoices?: number;
+
+    @Field(() => Int, {nullable:false})
+    invoice_items?: number;
 }

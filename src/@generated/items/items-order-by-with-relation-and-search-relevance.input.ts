@@ -5,6 +5,7 @@ import { HideField } from '@nestjs/graphql';
 import { catagoryOrderByWithRelationAndSearchRelevanceInput } from '../catagory/catagory-order-by-with-relation-and-search-relevance.input';
 import { ReplacementsOrderByRelationAggregateInput } from '../replacements/replacements-order-by-relation-aggregate.input';
 import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-order-by-with-relation-and-search-relevance.input';
+import { invoice_itemsOrderByRelationAggregateInput } from '../invoice-items/invoice-items-order-by-relation-aggregate.input';
 import { ItemsOrderByRelevanceInput } from './items-order-by-relevance.input';
 
 @InputType()
@@ -45,6 +46,9 @@ export class ItemsOrderByWithRelationAndSearchRelevanceInput {
 
     @HideField()
     block?: BlockOrderByWithRelationAndSearchRelevanceInput;
+
+    @Field(() => invoice_itemsOrderByRelationAggregateInput, {nullable:true})
+    invoice_items?: invoice_itemsOrderByRelationAggregateInput;
 
     @Field(() => ItemsOrderByRelevanceInput, {nullable:true})
     _relevance?: ItemsOrderByRelevanceInput;
