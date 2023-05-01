@@ -16,6 +16,8 @@ import { ReplacementsUncheckedUpdateManyWithoutBlockNestedInput } from '../repla
 import { ReportsUncheckedUpdateManyWithoutBlockNestedInput } from '../reports/reports-unchecked-update-many-without-block-nested.input';
 import { SectionsUncheckedUpdateManyWithoutBlockNestedInput } from '../sections/sections-unchecked-update-many-without-block-nested.input';
 import { TicketUncheckedUpdateManyWithoutBlockNestedInput } from '../ticket/ticket-unchecked-update-many-without-block-nested.input';
+import { InvoicesUncheckedUpdateManyWithoutBlockNestedInput } from '../invoices/invoices-unchecked-update-many-without-block-nested.input';
+import { invoice_itemsUncheckedUpdateManyWithoutBlockNestedInput } from '../invoice-items/invoice-items-unchecked-update-many-without-block-nested.input';
 
 @InputType()
 export class BlockUncheckedUpdateWithoutRoutine_maintanancesInput {
@@ -73,4 +75,10 @@ export class BlockUncheckedUpdateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
     Ticket?: TicketUncheckedUpdateManyWithoutBlockNestedInput;
+
+    @Field(() => InvoicesUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
+    Invoices?: InvoicesUncheckedUpdateManyWithoutBlockNestedInput;
+
+    @Field(() => invoice_itemsUncheckedUpdateManyWithoutBlockNestedInput, {nullable:true})
+    invoice_items?: invoice_itemsUncheckedUpdateManyWithoutBlockNestedInput;
 }

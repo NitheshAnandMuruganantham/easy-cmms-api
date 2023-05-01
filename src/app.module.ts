@@ -37,6 +37,7 @@ import { ProductionDataModule } from './production/production.module';
 import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
 import { join } from 'path';
+import { InvoicesModule } from './invoices/invoices.module';
 
 @Module({
   imports: [
@@ -135,6 +136,7 @@ import { join } from 'path';
     MachinesModule,
     MaintananceModule,
     ReplacementsModule,
+    InvoicesModule,
     MachineCatagoriesModule,
     ReportModule,
     SectionModule,

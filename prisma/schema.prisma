@@ -40,6 +40,8 @@ model Block {
   Sections             Sections[]
   Ticket               Ticket[]
   routine_maintanances routine_maintanances[]
+  Invoices             Invoices[]
+  invoice_items        invoice_items[]
 }
 
 model catagory {
@@ -57,20 +59,21 @@ model catagory {
 
 model Items {
   /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id           BigInt         @id @default(autoincrement())
-  name         String
-  code         String
-  quantity     Int
-  unit_price   Float
-  catagory_id  BigInt
-  catagory     catagory       @relation("item_catagory", fields: [catagory_id], references: [id])
-  replacements Replacements[]
-  created_at   DateTime       @default(now())
-  updated_at   DateTime       @updatedAt
+  id            BigInt          @id @default(autoincrement())
+  name          String
+  code          String
+  quantity      Int
+  unit_price    Float
+  catagory_id   BigInt
+  catagory      catagory        @relation("item_catagory", fields: [catagory_id], references: [id])
+  replacements  Replacements[]
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
   /// @HideField({ output: false, input: true })
-  block_id     BigInt
+  block_id      BigInt
   /// @HideField({ output: false, input: true })
-  block        Block          @relation(fields: [block_id], references: [id])
+  block         Block           @relation(fields: [block_id], references: [id])
+  invoice_items invoice_items[]
 }
 
 model Machines {
@@ -153,6 +156,39 @@ model Replacements {
   block_id       BigInt
   /// @HideField({ output: false, input: true })
   block          Block       @relation(fields: [block_id], references: [id])
+}
+
+model Invoices {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id            BigInt          @id @default(autoincrement())
+  total         Float
+  invoice_date  DateTime
+  number        String
+  /// @HideField({ output: false, input: true })
+  block_id      BigInt
+  /// @HideField({ output: false, input: true })
+  block         Block           @relation(fields: [block_id], references: [id])
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  invoice_items invoice_items[]
+}
+
+model invoice_items {
+  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
+  id         BigInt   @id @default(autoincrement())
+  invoice_id BigInt
+  unit_price Float
+  quantity   Float
+  amount     Float
+  invoice    Invoices @relation(fields: [invoice_id], references: [id])
+  item_id    BigInt
+  item       Items    @relation(fields: [item_id], references: [id])
+  /// @HideField({ output: false, input: true })
+  block_id   BigInt
+  /// @HideField({ output: false, input: true })
+  block      Block    @relation(fields: [block_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Reports {

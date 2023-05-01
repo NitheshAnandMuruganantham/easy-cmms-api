@@ -14,6 +14,8 @@ import { Reports } from '../reports/reports.model';
 import { Sections } from '../sections/sections.model';
 import { Ticket } from '../ticket/ticket.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
+import { Invoices } from '../invoices/invoices.model';
+import { invoice_items } from '../invoice-items/invoice-items.model';
 import { BlockCount } from './block-count.output';
 
 @ObjectType()
@@ -75,6 +77,12 @@ export class Block {
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;
+
+    @Field(() => [Invoices], {nullable:true})
+    Invoices?: Array<Invoices>;
+
+    @Field(() => [invoice_items], {nullable:true})
+    invoice_items?: Array<invoice_items>;
 
     @Field(() => BlockCount, {nullable:false})
     _count?: BlockCount;

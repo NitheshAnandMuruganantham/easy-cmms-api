@@ -12,6 +12,8 @@ import {
   Block,
   machine_catagory,
   production_data,
+  invoice_items,
+  Invoices,
 } from '@prisma/client';
 import { PureAbility, AbilityBuilder, subject } from '@casl/ability';
 import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
@@ -27,6 +29,8 @@ export type subject = Subjects<{
   Users: Users;
   Block: Block;
   Ticket: Ticket;
+  Invoices: Invoices;
+  invoice_items: invoice_items;
   Maintenance: Maintenance;
   Items: Items;
   catagory: catagory;

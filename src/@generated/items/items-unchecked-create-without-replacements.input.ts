@@ -4,6 +4,7 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
+import { invoice_itemsUncheckedCreateNestedManyWithoutItemInput } from '../invoice-items/invoice-items-unchecked-create-nested-many-without-item.input';
 
 @InputType()
 export class ItemsUncheckedCreateWithoutReplacementsInput {
@@ -34,4 +35,7 @@ export class ItemsUncheckedCreateWithoutReplacementsInput {
 
     @HideField()
     block_id!: bigint | number;
+
+    @Field(() => invoice_itemsUncheckedCreateNestedManyWithoutItemInput, {nullable:true})
+    invoice_items?: invoice_itemsUncheckedCreateNestedManyWithoutItemInput;
 }

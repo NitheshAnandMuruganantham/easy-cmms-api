@@ -7,6 +7,7 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { catagory } from '../catagory/catagory.model';
 import { Replacements } from '../replacements/replacements.model';
 import { Block } from '../block/block.model';
+import { invoice_items } from '../invoice-items/invoice-items.model';
 import { ItemsCount } from './items-count.output';
 
 @ObjectType()
@@ -47,6 +48,9 @@ export class Items {
 
     @Field(() => Block, {nullable:false})
     block?: Block;
+
+    @Field(() => [invoice_items], {nullable:true})
+    invoice_items?: Array<invoice_items>;
 
     @Field(() => ItemsCount, {nullable:false})
     _count?: ItemsCount;

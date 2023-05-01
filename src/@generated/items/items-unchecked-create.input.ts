@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedCreateNestedManyWithoutItemsInput } from '../replacements/replacements-unchecked-create-nested-many-without-items.input';
+import { invoice_itemsUncheckedCreateNestedManyWithoutItemInput } from '../invoice-items/invoice-items-unchecked-create-nested-many-without-item.input';
 
 @InputType()
 export class ItemsUncheckedCreateInput {
@@ -38,4 +39,7 @@ export class ItemsUncheckedCreateInput {
 
     @Field(() => ReplacementsUncheckedCreateNestedManyWithoutItemsInput, {nullable:true})
     replacements?: ReplacementsUncheckedCreateNestedManyWithoutItemsInput;
+
+    @Field(() => invoice_itemsUncheckedCreateNestedManyWithoutItemInput, {nullable:true})
+    invoice_items?: invoice_itemsUncheckedCreateNestedManyWithoutItemInput;
 }

@@ -14,6 +14,8 @@ import { ReportsOrderByRelationAggregateInput } from '../reports/reports-order-b
 import { SectionsOrderByRelationAggregateInput } from '../sections/sections-order-by-relation-aggregate.input';
 import { TicketOrderByRelationAggregateInput } from '../ticket/ticket-order-by-relation-aggregate.input';
 import { routine_maintanancesOrderByRelationAggregateInput } from '../routine-maintanances/routine-maintanances-order-by-relation-aggregate.input';
+import { InvoicesOrderByRelationAggregateInput } from '../invoices/invoices-order-by-relation-aggregate.input';
+import { invoice_itemsOrderByRelationAggregateInput } from '../invoice-items/invoice-items-order-by-relation-aggregate.input';
 import { BlockOrderByRelevanceInput } from './block-order-by-relevance.input';
 
 @InputType()
@@ -75,6 +77,12 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => routine_maintanancesOrderByRelationAggregateInput, {nullable:true})
     routine_maintanances?: routine_maintanancesOrderByRelationAggregateInput;
+
+    @Field(() => InvoicesOrderByRelationAggregateInput, {nullable:true})
+    Invoices?: InvoicesOrderByRelationAggregateInput;
+
+    @Field(() => invoice_itemsOrderByRelationAggregateInput, {nullable:true})
+    invoice_items?: invoice_itemsOrderByRelationAggregateInput;
 
     @Field(() => BlockOrderByRelevanceInput, {nullable:true})
     _relevance?: BlockOrderByRelevanceInput;

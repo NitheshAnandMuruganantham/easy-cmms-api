@@ -82,6 +82,18 @@ const getPermission = (user: any) => {
     can('update', 'ProductionData');
     can('delete', 'ProductionData');
 
+    // invoice permissions
+    can('create', 'Invoices');
+    can('read', 'Invoices');
+    can('update', 'Invoices');
+    can('delete', 'Invoices');
+
+    // invoice items permissions
+    can('create', 'invoice_items');
+    can('read', 'invoice_items');
+    can('update', 'invoice_items');
+    can('delete', 'invoice_items');
+
     // RoutineMaintanances permissions
     can('create', 'RoutineMaintanances');
     can('read', 'RoutineMaintanances');
