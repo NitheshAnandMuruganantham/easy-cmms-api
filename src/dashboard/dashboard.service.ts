@@ -172,6 +172,7 @@ export class DashboardService {
     let response = {};
     const production = await this.prisma.production_data.findMany({
       where: {
+        blockId: session.User.blockId,
         date: {
           gte: new Date(new Date(from).setHours(0, 0, 0, 0)),
         },
@@ -194,19 +195,24 @@ export class DashboardService {
     });
     const un_resolved_maintenance = await this.prisma.maintenance.count({
       where: {
+        block_id: session.User.blockId,
         resolved: false,
       },
     });
     const resolved_maintenance = await this.prisma.maintenance.count({
       where: {
-        resolved: false,
+        block_id: session.User.blockId,
+        resolved: true,
       },
     });
-    const total__tickets_raised_count = await this.prisma.ticket.count({
-      where: {},
+    const total_tickets_raised_count = await this.prisma.ticket.count({
+      where: {
+        block_id: session.User.blockId,
+      },
     });
     const total_work_orders = await this.prisma.maintenance.count({
       where: {
+        block_id: session.User.blockId,
         resolved: false,
       },
     });
@@ -224,7 +230,7 @@ export class DashboardService {
     response['un_resolved_maintenances'] = un_resolved_maintenance;
     response['resolved_maintenances'] = resolved_maintenance;
     response['total_work_orders'] = total_work_orders;
-    response['total_ticket_raised_count'] = total__tickets_raised_count;
+    response['total_ticket_raised_count'] = total_tickets_raised_count;
     return response;
   }
 }
