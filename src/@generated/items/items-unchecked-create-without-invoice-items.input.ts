@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
 import { ReplacementsUncheckedCreateNestedManyWithoutItemsInput } from '../replacements/replacements-unchecked-create-nested-many-without-items.input';
@@ -18,7 +17,7 @@ export class ItemsUncheckedCreateWithoutInvoice_itemsInput {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => Int, {nullable:false})
+    @Field(() => Float, {nullable:false})
     quantity!: number;
 
     @Field(() => Float, {nullable:false})

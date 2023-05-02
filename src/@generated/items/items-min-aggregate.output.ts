@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 
@@ -17,7 +16,7 @@ export class ItemsMinAggregate {
     @Field(() => String, {nullable:true})
     code?: string;
 
-    @Field(() => Int, {nullable:true})
+    @Field(() => Float, {nullable:true})
     quantity?: number;
 
     @Field(() => Float, {nullable:true})

@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { BigIntFilter } from '../prisma/big-int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { HideField } from '@nestjs/graphql';
@@ -32,8 +31,8 @@ export class ItemsWhereInput {
     @Field(() => StringFilter, {nullable:true})
     code?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    quantity?: IntFilter;
+    @Field(() => FloatFilter, {nullable:true})
+    quantity?: FloatFilter;
 
     @Field(() => FloatFilter, {nullable:true})
     unit_price?: FloatFilter;

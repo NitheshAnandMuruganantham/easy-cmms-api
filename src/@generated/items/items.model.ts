@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { catagory } from '../catagory/catagory.model';
@@ -22,7 +21,7 @@ export class Items {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => Int, {nullable:false})
+    @Field(() => Float, {nullable:false})
     quantity!: number;
 
     @Field(() => Float, {nullable:false})
