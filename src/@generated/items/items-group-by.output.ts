@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { ItemsCountAggregate } from './items-count-aggregate.output';
@@ -22,7 +21,7 @@ export class ItemsGroupBy {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => Int, {nullable:false})
+    @Field(() => Float, {nullable:false})
     quantity!: number;
 
     @Field(() => Float, {nullable:false})

@@ -666,7 +666,7 @@ input ItemsWhereInput {
   id: BigIntFilter
   name: StringFilter
   code: StringFilter
-  quantity: IntFilter
+  quantity: FloatFilter
   unit_price: FloatFilter
   catagory_id: BigIntFilter
   created_at: DateTimeFilter
@@ -954,7 +954,7 @@ type Items {
   id: BigInt!
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   catagory_id: BigInt!
   created_at: DateTime!
@@ -1432,7 +1432,7 @@ type ItemsAvgAggregate {
 
 type ItemsSumAggregate {
   id: BigInt
-  quantity: Int
+  quantity: Float
   unit_price: Float
   catagory_id: BigInt
   block_id: BigInt
@@ -1442,7 +1442,7 @@ type ItemsMinAggregate {
   id: BigInt
   name: String
   code: String
-  quantity: Int
+  quantity: Float
   unit_price: Float
   catagory_id: BigInt
   created_at: DateTime
@@ -1454,7 +1454,7 @@ type ItemsMaxAggregate {
   id: BigInt
   name: String
   code: String
-  quantity: Int
+  quantity: Float
   unit_price: Float
   catagory_id: BigInt
   created_at: DateTime
@@ -2810,7 +2810,7 @@ input ItemsCreateWithoutReplacementsInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -3464,7 +3464,7 @@ input ItemsCreateWithoutCatagoryInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -3557,7 +3557,7 @@ input ItemsCreateManyCatagoryInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -3591,7 +3591,7 @@ input ItemsCreateWithoutBlockInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -3614,7 +3614,7 @@ input ItemsCreateManyBlockInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   catagory_id: BigInt!
   created_at: DateTime
@@ -4063,7 +4063,7 @@ input ItemsCreateWithoutInvoice_itemsInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -4680,7 +4680,7 @@ input ItemsUpdateWithoutReplacementsInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -5473,7 +5473,7 @@ input ItemsUpdateWithoutCatagoryInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -5572,7 +5572,7 @@ input ItemsScalarWhereInput {
   id: BigIntFilter
   name: StringFilter
   code: StringFilter
-  quantity: IntFilter
+  quantity: FloatFilter
   unit_price: FloatFilter
   catagory_id: BigIntFilter
   created_at: DateTimeFilter
@@ -5583,7 +5583,7 @@ input ItemsUpdateManyMutationInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -5640,7 +5640,7 @@ input ItemsUpdateWithoutBlockInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -6185,7 +6185,7 @@ input ItemsUpdateWithoutInvoice_itemsInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
@@ -6374,7 +6374,7 @@ input ItemsCreateInput {
   id: BigInt
   name: String!
   code: String!
-  quantity: Int!
+  quantity: Float!
   unit_price: Float!
   created_at: DateTime
   updated_at: DateTime
@@ -6387,7 +6387,7 @@ input ItemsUpdateInput {
   id: BigIntFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   code: StringFieldUpdateOperationsInput
-  quantity: IntFieldUpdateOperationsInput
+  quantity: FloatFieldUpdateOperationsInput
   unit_price: FloatFieldUpdateOperationsInput
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput

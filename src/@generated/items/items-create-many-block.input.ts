@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
-import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 
 @InputType()
@@ -16,7 +15,7 @@ export class ItemsCreateManyBlockInput {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => Int, {nullable:false})
+    @Field(() => Float, {nullable:false})
     quantity!: number;
 
     @Field(() => Float, {nullable:false})

@@ -62,7 +62,7 @@ model Items {
   id            BigInt          @id @default(autoincrement())
   name          String
   code          String
-  quantity      Int
+  quantity      Float
   unit_price    Float
   catagory_id   BigInt
   catagory      catagory        @relation("item_catagory", fields: [catagory_id], references: [id])
