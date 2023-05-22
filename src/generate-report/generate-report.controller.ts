@@ -54,9 +54,12 @@ export class GenerateReportController {
       passthrough: true,
     })
     res: any,
+    @Session()
+    session: SessionContainer,
   ) {
     const filename = 'report.xlsx';
     const data = await this.generateReportService.getMachineMaintenancesReport(
+      session.User.blockId,
       parseInt(machineId),
     );
 

@@ -2,7 +2,7 @@ import { AbilityBuilder } from '@casl/ability';
 import { createPrismaAbility } from '@casl/prisma';
 
 const getPermission = (user: any) => {
-  const { can, build } = new AbilityBuilder<any>(createPrismaAbility);
+  const { can, build } = new AbilityBuilder(createPrismaAbility);
 
   can('read', 'Block', {
     id: {
@@ -44,12 +44,28 @@ const getPermission = (user: any) => {
     },
   });
 
-  can('create', 'machineCatagory');
-  can('delete', 'machineCatagory');
+  can('create', 'machineCatagory', {
+    block_id: {
+      equals: user.blockId,
+    },
+  });
+  can('delete', 'machineCatagory', {
+    block_id: {
+      equals: user.blockId,
+    },
+  });
 
   if (user.role === 'FITTER') {
-    can('update', 'Maintenance');
-    can('create', 'Maintenance');
+    can('update', 'Maintenance', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('create', 'Maintenance', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
   }
 
   if (user.role === 'MANAGER' || user.role === 'ADMIN') {
@@ -77,92 +93,200 @@ const getPermission = (user: any) => {
     });
 
     // production permissions
-    can('create', 'ProductionData');
-    can('read', 'ProductionData');
-    can('update', 'ProductionData');
-    can('delete', 'ProductionData');
+    can('create', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
 
     // invoice permissions
-    can('create', 'Invoices');
-    can('read', 'Invoices');
-    can('update', 'Invoices');
-    can('delete', 'Invoices');
+    can('create', 'Invoices', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'Invoices', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'Invoices', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'Invoices', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
 
     // invoice items permissions
-    can('create', 'invoice_items');
-    can('read', 'invoice_items');
-    can('update', 'invoice_items');
-    can('delete', 'invoice_items');
+    can('create', 'invoice_items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'invoice_items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'invoice_items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'invoice_items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
 
     // RoutineMaintanances permissions
-    can('create', 'RoutineMaintanances');
-    can('read', 'RoutineMaintanances');
-    can('update', 'RoutineMaintanances');
-    can('delete', 'RoutineMaintanances');
+    can('create', 'RoutineMaintanances', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'RoutineMaintanances', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'RoutineMaintanances', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'RoutineMaintanances', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
 
     // Tickets permissions
 
-    can('create', 'Ticket');
-    can('read', 'Ticket');
-    can('update', 'Ticket');
-    can('delete', 'Ticket');
+    can('create', 'Ticket', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'Ticket', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'Ticket', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'Ticket', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
 
     //  Section permissions
 
-    can('create', 'Section');
-    can('read', 'Section');
-    can('update', 'Section');
-    can('delete', 'Section');
+    can('create', 'Section', { block_id: { equals: user.blockId } });
+    can('read', 'Section', { block_id: { equals: user.blockId } });
+    can('update', 'Section', { block_id: { equals: user.blockId } });
+    can('delete', 'Section', { block_id: { equals: user.blockId } });
 
     //  Report permissions
 
-    can('create', 'Reports');
-    can('read', 'Reports');
-    can('update', 'Reports');
-    can('delete', 'Reports');
+    can('create', 'Reports', { block_id: { equals: user.blockId } });
+    can('read', 'Reports', { block_id: { equals: user.blockId } });
+    can('update', 'Reports', { block_id: { equals: user.blockId } });
+    can('delete', 'Reports', { block_id: { equals: user.blockId } });
 
     //  Report permissions
 
-    can('create', 'Maintenance');
-    can('read', 'Maintenance');
-    can('update', 'Maintenance');
-    can('delete', 'Maintenance');
+    can('create', 'Maintenance', { block_id: { equals: user.blockId } });
+    can('read', 'Maintenance', { block_id: { equals: user.blockId } });
+    can('update', 'Maintenance', { block_id: { equals: user.blockId } });
+    can('delete', 'Maintenance', { block_id: { equals: user.blockId } });
 
     //  Replacements permissions
 
-    can('read', 'Replacements');
-    can('create', 'Replacements');
-    can('update', 'Replacements');
-    can('delete', 'Replacements');
+    can('read', 'Replacements', { block_id: { equals: user.blockId } });
+    can('create', 'Replacements', { block_id: { equals: user.blockId } });
+    can('update', 'Replacements', { block_id: { equals: user.blockId } });
+    can('delete', 'Replacements', { block_id: { equals: user.blockId } });
 
-    can('create', 'Machines');
-    can('update', 'Machines');
-    can('delete', 'Machines');
+    can('create', 'Machines', { block_id: { equals: user.blockId } });
+    can('update', 'Machines', { block_id: { equals: user.blockId } });
+    can('delete', 'Machines', { block_id: { equals: user.blockId } });
 
-    can('create', 'Items');
-    can('update', 'Items');
-    can('delete', 'Items');
+    can('create', 'Items', { block_id: { equals: user.blockId } });
+    can('update', 'Items', { block_id: { equals: user.blockId } });
+    can('delete', 'Items', { block_id: { equals: user.blockId } });
 
     can('create', 'Block');
     can('update', 'Block');
     can('delete', 'Block');
 
-    can('create', 'catagory');
-    can('read', 'catagory');
-    can('update', 'catagory');
-    can('delete', 'catagory');
+    can('create', 'catagory', { block_id: { equals: user.blockId } });
+    can('read', 'catagory', { block_id: { equals: user.blockId } });
+    can('update', 'catagory', { block_id: { equals: user.blockId } });
+    can('delete', 'catagory', { block_id: { equals: user.blockId } });
 
-    can('create', 'Items');
-    can('read', 'Items');
-    can('update', 'Items');
-    can('delete', 'Items');
+    can('create', 'Items', { block_id: { equals: user.blockId } });
+    can('read', 'Items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'Items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'Items', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
   }
 
   if (user.extra_roles.includes('PRODUCTION_CONTROLLER')) {
-    can('create', 'ProductionData');
-    can('read', 'ProductionData');
-    can('update', 'ProductionData');
-    can('delete', 'ProductionData');
+    can('create', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('read', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('update', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
+    can('delete', 'ProductionData', {
+      block_id: {
+        equals: user.blockId,
+      },
+    });
   }
 
   return build();

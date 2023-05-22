@@ -9,8 +9,11 @@ import { Session } from '../auth/session.decorator';
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
   @Get('lastFiveDayTickets')
-  getLastFiveDayTickets() {
-    return this.dashboardService.getLastFiveDayTickets();
+  getLastFiveDayTickets(
+    @Session()
+    session: SessionContainer,
+  ) {
+    return this.dashboardService.getLastFiveDayTickets(session.User.blockId);
   }
   @Get('MobileDashboard')
   getMobileDashboard(

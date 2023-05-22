@@ -354,9 +354,10 @@ export class GenerateReportService {
     return sheet;
   }
 
-  async getMachineMaintenancesReport(machineId: number) {
+  async getMachineMaintenancesReport(block_id: bigint, machineId: number) {
     const MachineMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
+        block_id,
         machine_id: machineId,
       },
       include: {
@@ -373,6 +374,9 @@ export class GenerateReportService {
     ];
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
+        block_id: {
+          equals: block_id,
+        },
         machine_id: {
           equals: machineId,
         },

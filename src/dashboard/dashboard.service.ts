@@ -10,7 +10,7 @@ import { parseInt } from 'lodash';
 export class DashboardService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getLastFiveDayTickets() {
+  async getLastFiveDayTickets(block_id: bigint) {
     const tickets = await this.prisma.ticket.groupBy({
       _count: {
         id: true,
@@ -20,6 +20,9 @@ export class DashboardService {
       },
       by: ['created_at'],
       where: {
+        block_id: {
+          equals: block_id,
+        },
         created_at: {
           lte: new Date(),
         },
