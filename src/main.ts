@@ -26,7 +26,7 @@ async function bootstrap() {
     credentials: true,
   });
   app.use(json({ limit: '50mb' }));
-  await app.listen(8000);
+  await app.listen(process.env.PORT || 8000);
 }
 
 if (process.env.CUSTOMCONNSTR_APP_CONFIGURATION_URL) {
