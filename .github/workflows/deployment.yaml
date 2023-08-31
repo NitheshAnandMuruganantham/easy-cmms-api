@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: easycmms-backend
-  ECS_SERVICE: eeast-cmms-api-server
+  ECS_SERVICE: easy-cmms-api-server
   ECS_CLUSTER: server
   ECS_TASK_DEFINITION: .aws/task-definition.json
   CONTAINER_NAME: server
