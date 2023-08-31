@@ -8,7 +8,6 @@ import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
 import { BlockCreateNestedOneWithoutUsersInput } from '../block/block-create-nested-one-without-users.input';
 import { MaintenanceCreateNestedManyWithoutAssigneeInput } from '../maintenance/maintenance-create-nested-many-without-assignee.input';
 import { TicketCreateNestedManyWithoutUserInput } from '../ticket/ticket-create-nested-many-without-user.input';
-import { production_dataCreateNestedManyWithoutUpdatedByInput } from '../production-data/production-data-create-nested-many-without-updated-by.input';
 
 @InputType()
 export class UsersCreateWithoutRoutine_maintanancesInput {
@@ -51,7 +50,4 @@ export class UsersCreateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketCreateNestedManyWithoutUserInput, {nullable:true})
     ticket?: TicketCreateNestedManyWithoutUserInput;
-
-    @Field(() => production_dataCreateNestedManyWithoutUpdatedByInput, {nullable:true})
-    production_data?: production_dataCreateNestedManyWithoutUpdatedByInput;
 }

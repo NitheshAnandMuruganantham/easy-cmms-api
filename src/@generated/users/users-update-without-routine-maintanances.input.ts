@@ -11,7 +11,6 @@ import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
 import { BlockUpdateOneRequiredWithoutUsersNestedInput } from '../block/block-update-one-required-without-users-nested.input';
 import { MaintenanceUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-update-many-without-assignee-nested.input';
 import { TicketUpdateManyWithoutUserNestedInput } from '../ticket/ticket-update-many-without-user-nested.input';
-import { production_dataUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-update-many-without-updated-by-nested.input';
 
 @InputType()
 export class UsersUpdateWithoutRoutine_maintanancesInput {
@@ -54,7 +53,4 @@ export class UsersUpdateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketUpdateManyWithoutUserNestedInput, {nullable:true})
     ticket?: TicketUpdateManyWithoutUserNestedInput;
-
-    @Field(() => production_dataUpdateManyWithoutUpdatedByNestedInput, {nullable:true})
-    production_data?: production_dataUpdateManyWithoutUpdatedByNestedInput;
 }

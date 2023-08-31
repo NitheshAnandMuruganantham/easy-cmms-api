@@ -13,7 +13,4 @@ export class UsersCount {
 
     @Field(() => Int, {nullable:false})
     routine_maintanances?: number;
-
-    @Field(() => Int, {nullable:false})
-    production_data?: number;
 }

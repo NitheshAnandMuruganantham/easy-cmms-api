@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Items" ALTER COLUMN "quantity" SET DATA TYPE DOUBLE PRECISION;

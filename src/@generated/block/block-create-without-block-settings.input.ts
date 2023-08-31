@@ -4,7 +4,6 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { BlockCreateMailingsInput } from './block-create-mailings.input';
 import { MachinesCreateNestedManyWithoutBlockInput } from '../machines/machines-create-nested-many-without-block.input';
 import { UsersCreateNestedManyWithoutBlockInput } from '../users/users-create-nested-many-without-block.input';
-import { production_dataCreateNestedManyWithoutBlockInput } from '../production-data/production-data-create-nested-many-without-block.input';
 import { catagoryCreateNestedManyWithoutBlockInput } from '../catagory/catagory-create-nested-many-without-block.input';
 import { ItemsCreateNestedManyWithoutBlockInput } from '../items/items-create-nested-many-without-block.input';
 import { machine_catagoryCreateNestedManyWithoutBlockInput } from '../machine-catagory/machine-catagory-create-nested-many-without-block.input';
@@ -43,9 +42,6 @@ export class BlockCreateWithoutBlock_settingsInput {
 
     @Field(() => UsersCreateNestedManyWithoutBlockInput, {nullable:true})
     Users?: UsersCreateNestedManyWithoutBlockInput;
-
-    @Field(() => production_dataCreateNestedManyWithoutBlockInput, {nullable:true})
-    production_data?: production_dataCreateNestedManyWithoutBlockInput;
 
     @Field(() => catagoryCreateNestedManyWithoutBlockInput, {nullable:true})
     catagory?: catagoryCreateNestedManyWithoutBlockInput;

@@ -50,7 +50,6 @@ type BlockCount {
   machines: Int!
   Users: Int!
   block_settings: Int!
-  production_data: Int!
   catagory: Int!
   Items: Int!
   machine_catagory: Int!
@@ -147,29 +146,10 @@ type routine_maintanances {
   block: Block!
 }
 
-type production_data {
-  id: BigInt!
-  production: JSON!
-  shift: String!
-  date: DateTime!
-  updated_by: BigInt!
-  created_at: DateTime!
-  updated_at: DateTime!
-  blockId: BigInt!
-  updatedBy: Users!
-  Block: Block!
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
 type UsersCount {
   maintenance: Int!
   ticket: Int!
   routine_maintanances: Int!
-  production_data: Int!
 }
 
 type Users {
@@ -187,9 +167,13 @@ type Users {
   maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
   ticket(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, limit: Int, offset: Int): [Ticket!]
   routine_maintanances: [routine_maintanances!]
-  production_data: [production_data!]
   _count: UsersCount!
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
 
 enum Role {
   MANAGER
@@ -407,7 +391,6 @@ input UsersWhereInput {
   maintenance: MaintenanceListRelationFilter
   ticket: TicketListRelationFilter
   routine_maintanances: Routine_maintanancesListRelationFilter
-  production_data: Production_dataListRelationFilter
 }
 
 input EnumRoleFilter {
@@ -608,26 +591,6 @@ input routine_maintanancesWhereInput {
   updated_at: DateTimeFilter
   assignee: UsersRelationFilter
   meachine: MachinesRelationFilter
-}
-
-input Production_dataListRelationFilter {
-  every: production_dataWhereInput
-  some: production_dataWhereInput
-  none: production_dataWhereInput
-}
-
-input production_dataWhereInput {
-  AND: [production_dataWhereInput!]
-  OR: [production_dataWhereInput!]
-  NOT: [production_dataWhereInput!]
-  id: BigIntFilter
-  production: JsonFilter
-  shift: StringFilter
-  date: DateTimeFilter
-  updated_by: BigIntFilter
-  created_at: DateTimeFilter
-  updated_at: DateTimeFilter
-  updatedBy: UsersRelationFilter
 }
 
 input ReplacementsListRelationFilter {
@@ -1133,7 +1096,6 @@ type Block {
   machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithAggregationInput, limit: Int, offset: Int): [Machines!]
   Users: [Users!]
   block_settings: [block_settings!]
-  production_data: [production_data!]
   catagory: [catagory!]
   Items: [Items!]
   machine_catagory: [machine_catagory!]
@@ -2103,9 +2065,6 @@ type Query {
   ticketsCount(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, skip: Float, take: Float): Int!
   tickets(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, skip: Float, take: Float): [Ticket!]!
   ticket(id: Int!): Ticket!
-  productionData(limit: Int, offset: Int, where: production_dataWhereInput, orderBy: production_dataOrderByWithAggregationInput): [production_data!]!
-  productionDataCount(limit: Int, offset: Int, where: production_dataWhereInput, orderBy: production_dataOrderByWithAggregationInput): Int!
-  production(id: Int!): production_data!
   routineMaintanances(limit: Int, offset: Int, where: routine_maintanancesWhereInput, orderBy: routine_maintanancesSumOrderByAggregateInput): [routine_maintanances!]!
   routineMaintanancesCount(limit: Int, offset: Int, where: routine_maintanancesWhereInput, orderBy: routine_maintanancesSumOrderByAggregateInput): Int!
   routineMaintanance(id: Int!): routine_maintanances!
@@ -2124,7 +2083,6 @@ input BlockWhereInput {
   machines: MachinesListRelationFilter
   Users: UsersListRelationFilter
   block_settings: Block_settingsListRelationFilter
-  production_data: Production_dataListRelationFilter
   catagory: CatagoryListRelationFilter
   Items: ItemsListRelationFilter
   machine_catagory: Machine_catagoryListRelationFilter
@@ -2358,59 +2316,6 @@ input SectionOrderByWithRelationInput {
   updated_at: SortOrder
 }
 
-input production_dataOrderByWithAggregationInput {
-  id: SortOrder
-  production: SortOrder
-  shift: SortOrder
-  date: SortOrder
-  updated_by: SortOrder
-  created_at: SortOrder
-  updated_at: SortOrder
-  _count: production_dataCountOrderByAggregateInput
-  _avg: production_dataAvgOrderByAggregateInput
-  _max: production_dataMaxOrderByAggregateInput
-  _min: production_dataMinOrderByAggregateInput
-  _sum: production_dataSumOrderByAggregateInput
-}
-
-input production_dataCountOrderByAggregateInput {
-  id: SortOrder
-  production: SortOrder
-  shift: SortOrder
-  date: SortOrder
-  updated_by: SortOrder
-  created_at: SortOrder
-  updated_at: SortOrder
-}
-
-input production_dataAvgOrderByAggregateInput {
-  id: SortOrder
-  updated_by: SortOrder
-}
-
-input production_dataMaxOrderByAggregateInput {
-  id: SortOrder
-  shift: SortOrder
-  date: SortOrder
-  updated_by: SortOrder
-  created_at: SortOrder
-  updated_at: SortOrder
-}
-
-input production_dataMinOrderByAggregateInput {
-  id: SortOrder
-  shift: SortOrder
-  date: SortOrder
-  updated_by: SortOrder
-  created_at: SortOrder
-  updated_at: SortOrder
-}
-
-input production_dataSumOrderByAggregateInput {
-  id: SortOrder
-  updated_by: SortOrder
-}
-
 input routine_maintanancesSumOrderByAggregateInput {
   id: SortOrder
   duration: SortOrder
@@ -2455,9 +2360,6 @@ type Mutation {
   createTicket(createTicketInput: TicketCreateInput!): Ticket!
   updateTicket(id: Int!, updateTicketInput: TicketUpdateInput!): Ticket!
   removeTicket(id: Int!): Ticket!
-  createProduction(createProductionInput: production_dataCreateInput!): production_data!
-  updateProduction(id: Int!, updateProductionInput: production_dataUpdateInput!): production_data!
-  removeProductionData(id: Int!): production_data!
   createRoutineMaintanance(createRoutineMaintananceInput: routine_maintanancesCreateInput!): routine_maintanances!
   updateRoutineMaintanance(id: Int!, updateRoutineMaintananceInput: routine_maintanancesUpdateInput!): routine_maintanances!
   removeRoutineMaintanance(id: Int!): routine_maintanances!
@@ -2473,7 +2375,6 @@ input BlockCreateInput {
   machines: MachinesCreateNestedManyWithoutBlockInput
   Users: UsersCreateNestedManyWithoutBlockInput
   block_settings: block_settingsCreateNestedManyWithoutBlockInput
-  production_data: production_dataCreateNestedManyWithoutBlockInput
   catagory: catagoryCreateNestedManyWithoutBlockInput
   Items: ItemsCreateNestedManyWithoutBlockInput
   machine_catagory: machine_catagoryCreateNestedManyWithoutBlockInput
@@ -2579,7 +2480,6 @@ input UsersCreateWithoutMaintenanceInput {
   role_alias: String
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
-  production_data: production_dataCreateNestedManyWithoutUpdatedByInput
 }
 
 input UsersCreateextra_rolesInput {
@@ -2752,7 +2652,6 @@ input UsersCreateWithoutRoutine_maintanancesInput {
   role_alias: String
   maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
-  production_data: production_dataCreateNestedManyWithoutUpdatedByInput
 }
 
 input MaintenanceCreateNestedManyWithoutAssigneeInput {
@@ -3064,45 +2963,6 @@ input MaintenanceCreateManyAssigneeInput {
   updated_at: DateTime
 }
 
-input production_dataCreateNestedManyWithoutUpdatedByInput {
-  create: [production_dataCreateWithoutUpdatedByInput!]
-  connectOrCreate: [production_dataCreateOrConnectWithoutUpdatedByInput!]
-  createMany: production_dataCreateManyUpdatedByInputEnvelope
-  connect: [production_dataWhereUniqueInput!]
-}
-
-input production_dataCreateWithoutUpdatedByInput {
-  id: BigInt
-  production: JSON
-  shift: String!
-  date: DateTime!
-  created_at: DateTime
-  updated_at: DateTime
-}
-
-input production_dataCreateOrConnectWithoutUpdatedByInput {
-  where: production_dataWhereUniqueInput!
-  create: production_dataCreateWithoutUpdatedByInput!
-}
-
-input production_dataWhereUniqueInput {
-  id: BigInt
-}
-
-input production_dataCreateManyUpdatedByInputEnvelope {
-  data: [production_dataCreateManyUpdatedByInput!]!
-  skipDuplicates: Boolean
-}
-
-input production_dataCreateManyUpdatedByInput {
-  id: BigInt
-  production: JSON
-  shift: String!
-  date: DateTime!
-  created_at: DateTime
-  updated_at: DateTime
-}
-
 input UsersCreateOrConnectWithoutRoutine_maintanancesInput {
   where: UsersWhereUniqueInput!
   create: UsersCreateWithoutRoutine_maintanancesInput!
@@ -3307,7 +3167,6 @@ input UsersCreateWithoutBlockInput {
   maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
-  production_data: production_dataCreateNestedManyWithoutUpdatedByInput
 }
 
 input UsersCreateOrConnectWithoutBlockInput {
@@ -3371,69 +3230,6 @@ input block_settingsCreateManyBlockInput {
   id: BigInt
   name: String!
   value: JSON!
-  created_at: DateTime
-  updated_at: DateTime
-}
-
-input production_dataCreateNestedManyWithoutBlockInput {
-  create: [production_dataCreateWithoutBlockInput!]
-  connectOrCreate: [production_dataCreateOrConnectWithoutBlockInput!]
-  createMany: production_dataCreateManyBlockInputEnvelope
-  connect: [production_dataWhereUniqueInput!]
-}
-
-input production_dataCreateWithoutBlockInput {
-  id: BigInt
-  production: JSON
-  shift: String!
-  date: DateTime!
-  created_at: DateTime
-  updated_at: DateTime
-  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
-}
-
-input UsersCreateNestedOneWithoutProduction_dataInput {
-  create: UsersCreateWithoutProduction_dataInput
-  connectOrCreate: UsersCreateOrConnectWithoutProduction_dataInput
-  connect: UsersWhereUniqueInput
-}
-
-input UsersCreateWithoutProduction_dataInput {
-  id: BigInt
-  profile: JSON
-  phone: String!
-  name: String!
-  created_at: DateTime
-  updated_at: DateTime
-  role: Role!
-  extra_roles: UsersCreateextra_rolesInput
-  role_alias: String
-  maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
-  ticket: TicketCreateNestedManyWithoutUserInput
-  routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
-}
-
-input UsersCreateOrConnectWithoutProduction_dataInput {
-  where: UsersWhereUniqueInput!
-  create: UsersCreateWithoutProduction_dataInput!
-}
-
-input production_dataCreateOrConnectWithoutBlockInput {
-  where: production_dataWhereUniqueInput!
-  create: production_dataCreateWithoutBlockInput!
-}
-
-input production_dataCreateManyBlockInputEnvelope {
-  data: [production_dataCreateManyBlockInput!]!
-  skipDuplicates: Boolean
-}
-
-input production_dataCreateManyBlockInput {
-  id: BigInt
-  production: JSON
-  shift: String!
-  date: DateTime!
-  updated_by: BigInt!
   created_at: DateTime
   updated_at: DateTime
 }
@@ -4164,7 +3960,6 @@ input BlockUpdateInput {
   machines: MachinesUpdateManyWithoutBlockNestedInput
   Users: UsersUpdateManyWithoutBlockNestedInput
   block_settings: block_settingsUpdateManyWithoutBlockNestedInput
-  production_data: production_dataUpdateManyWithoutBlockNestedInput
   catagory: catagoryUpdateManyWithoutBlockNestedInput
   Items: ItemsUpdateManyWithoutBlockNestedInput
   machine_catagory: machine_catagoryUpdateManyWithoutBlockNestedInput
@@ -4338,7 +4133,6 @@ input UsersUpdateWithoutMaintenanceInput {
   role_alias: StringFieldUpdateOperationsInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
-  production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
 }
 
 input EnumRoleFieldUpdateOperationsInput {
@@ -4589,7 +4383,6 @@ input UsersUpdateWithoutRoutine_maintanancesInput {
   role_alias: StringFieldUpdateOperationsInput
   maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
-  production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
 }
 
 input MaintenanceUpdateManyWithoutAssigneeNestedInput {
@@ -5003,67 +4796,6 @@ input MaintenanceUpdateManyMutationInput {
   updated_at: DateTimeFieldUpdateOperationsInput
 }
 
-input production_dataUpdateManyWithoutUpdatedByNestedInput {
-  create: [production_dataCreateWithoutUpdatedByInput!]
-  connectOrCreate: [production_dataCreateOrConnectWithoutUpdatedByInput!]
-  upsert: [production_dataUpsertWithWhereUniqueWithoutUpdatedByInput!]
-  createMany: production_dataCreateManyUpdatedByInputEnvelope
-  set: [production_dataWhereUniqueInput!]
-  disconnect: [production_dataWhereUniqueInput!]
-  delete: [production_dataWhereUniqueInput!]
-  connect: [production_dataWhereUniqueInput!]
-  update: [production_dataUpdateWithWhereUniqueWithoutUpdatedByInput!]
-  updateMany: [production_dataUpdateManyWithWhereWithoutUpdatedByInput!]
-  deleteMany: [production_dataScalarWhereInput!]
-}
-
-input production_dataUpsertWithWhereUniqueWithoutUpdatedByInput {
-  where: production_dataWhereUniqueInput!
-  update: production_dataUpdateWithoutUpdatedByInput!
-  create: production_dataCreateWithoutUpdatedByInput!
-}
-
-input production_dataUpdateWithoutUpdatedByInput {
-  id: BigIntFieldUpdateOperationsInput
-  production: JSON
-  shift: StringFieldUpdateOperationsInput
-  date: DateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-}
-
-input production_dataUpdateWithWhereUniqueWithoutUpdatedByInput {
-  where: production_dataWhereUniqueInput!
-  data: production_dataUpdateWithoutUpdatedByInput!
-}
-
-input production_dataUpdateManyWithWhereWithoutUpdatedByInput {
-  where: production_dataScalarWhereInput!
-  data: production_dataUpdateManyMutationInput!
-}
-
-input production_dataScalarWhereInput {
-  AND: [production_dataScalarWhereInput!]
-  OR: [production_dataScalarWhereInput!]
-  NOT: [production_dataScalarWhereInput!]
-  id: BigIntFilter
-  production: JsonFilter
-  shift: StringFilter
-  date: DateTimeFilter
-  updated_by: BigIntFilter
-  created_at: DateTimeFilter
-  updated_at: DateTimeFilter
-}
-
-input production_dataUpdateManyMutationInput {
-  id: BigIntFieldUpdateOperationsInput
-  production: JSON
-  shift: StringFieldUpdateOperationsInput
-  date: DateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-}
-
 input routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput {
   where: routine_maintanancesWhereUniqueInput!
   data: routine_maintanancesUpdateWithoutMeachineInput!
@@ -5255,7 +4987,6 @@ input UsersUpdateWithoutBlockInput {
   maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
-  production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
 }
 
 input UsersUpdateWithWhereUniqueWithoutBlockInput {
@@ -5351,74 +5082,6 @@ input block_settingsUpdateManyMutationInput {
   value: JSON
   created_at: DateTimeFieldUpdateOperationsInput
   updated_at: DateTimeFieldUpdateOperationsInput
-}
-
-input production_dataUpdateManyWithoutBlockNestedInput {
-  create: [production_dataCreateWithoutBlockInput!]
-  connectOrCreate: [production_dataCreateOrConnectWithoutBlockInput!]
-  upsert: [production_dataUpsertWithWhereUniqueWithoutBlockInput!]
-  createMany: production_dataCreateManyBlockInputEnvelope
-  set: [production_dataWhereUniqueInput!]
-  disconnect: [production_dataWhereUniqueInput!]
-  delete: [production_dataWhereUniqueInput!]
-  connect: [production_dataWhereUniqueInput!]
-  update: [production_dataUpdateWithWhereUniqueWithoutBlockInput!]
-  updateMany: [production_dataUpdateManyWithWhereWithoutBlockInput!]
-  deleteMany: [production_dataScalarWhereInput!]
-}
-
-input production_dataUpsertWithWhereUniqueWithoutBlockInput {
-  where: production_dataWhereUniqueInput!
-  update: production_dataUpdateWithoutBlockInput!
-  create: production_dataCreateWithoutBlockInput!
-}
-
-input production_dataUpdateWithoutBlockInput {
-  id: BigIntFieldUpdateOperationsInput
-  production: JSON
-  shift: StringFieldUpdateOperationsInput
-  date: DateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
-}
-
-input UsersUpdateOneRequiredWithoutProduction_dataNestedInput {
-  create: UsersCreateWithoutProduction_dataInput
-  connectOrCreate: UsersCreateOrConnectWithoutProduction_dataInput
-  upsert: UsersUpsertWithoutProduction_dataInput
-  connect: UsersWhereUniqueInput
-  update: UsersUpdateWithoutProduction_dataInput
-}
-
-input UsersUpsertWithoutProduction_dataInput {
-  update: UsersUpdateWithoutProduction_dataInput!
-  create: UsersCreateWithoutProduction_dataInput!
-}
-
-input UsersUpdateWithoutProduction_dataInput {
-  id: BigIntFieldUpdateOperationsInput
-  profile: JSON
-  phone: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  role: EnumRoleFieldUpdateOperationsInput
-  extra_roles: UsersUpdateextra_rolesInput
-  role_alias: StringFieldUpdateOperationsInput
-  maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
-  ticket: TicketUpdateManyWithoutUserNestedInput
-  routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
-}
-
-input production_dataUpdateWithWhereUniqueWithoutBlockInput {
-  where: production_dataWhereUniqueInput!
-  data: production_dataUpdateWithoutBlockInput!
-}
-
-input production_dataUpdateManyWithWhereWithoutBlockInput {
-  where: production_dataScalarWhereInput!
-  data: production_dataUpdateManyMutationInput!
 }
 
 input catagoryUpdateManyWithoutBlockNestedInput {
@@ -6573,7 +6236,6 @@ input UsersCreateInput {
   maintenance: MaintenanceCreateNestedManyWithoutAssigneeInput
   ticket: TicketCreateNestedManyWithoutUserInput
   routine_maintanances: routine_maintanancesCreateNestedManyWithoutAssigneeInput
-  production_data: production_dataCreateNestedManyWithoutUpdatedByInput
 }
 
 input UsersUpdateInput {
@@ -6589,7 +6251,6 @@ input UsersUpdateInput {
   maintenance: MaintenanceUpdateManyWithoutAssigneeNestedInput
   ticket: TicketUpdateManyWithoutUserNestedInput
   routine_maintanances: routine_maintanancesUpdateManyWithoutAssigneeNestedInput
-  production_data: production_dataUpdateManyWithoutUpdatedByNestedInput
 }
 
 input TicketCreateInput {
@@ -6614,26 +6275,6 @@ input TicketUpdateInput {
   updated_at: DateTimeFieldUpdateOperationsInput
   maintenance: MaintenanceUpdateOneWithoutTicketNestedInput
   machines: MachinesUpdateOneRequiredWithoutTicketNestedInput
-}
-
-input production_dataCreateInput {
-  id: BigInt
-  production: JSON
-  shift: String!
-  date: DateTime!
-  created_at: DateTime
-  updated_at: DateTime
-  updatedBy: UsersCreateNestedOneWithoutProduction_dataInput!
-}
-
-input production_dataUpdateInput {
-  id: BigIntFieldUpdateOperationsInput
-  production: JSON
-  shift: StringFieldUpdateOperationsInput
-  date: DateTimeFieldUpdateOperationsInput
-  created_at: DateTimeFieldUpdateOperationsInput
-  updated_at: DateTimeFieldUpdateOperationsInput
-  updatedBy: UsersUpdateOneRequiredWithoutProduction_dataNestedInput
 }
 
 input routine_maintanancesCreateInput {

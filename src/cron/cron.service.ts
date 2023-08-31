@@ -33,7 +33,6 @@ export class CronService {
           [],
           [],
           [],
-          [],
         );
       if (element.Mailings == null) return;
       const mail = await this.mailService

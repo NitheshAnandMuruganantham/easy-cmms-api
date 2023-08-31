@@ -12,7 +12,6 @@ import { BlockUpdateOneRequiredWithoutUsersNestedInput } from '../block/block-up
 import { MaintenanceUpdateManyWithoutAssigneeNestedInput } from '../maintenance/maintenance-update-many-without-assignee-nested.input';
 import { TicketUpdateManyWithoutUserNestedInput } from '../ticket/ticket-update-many-without-user-nested.input';
 import { routine_maintanancesUpdateManyWithoutAssigneeNestedInput } from '../routine-maintanances/routine-maintanances-update-many-without-assignee-nested.input';
-import { production_dataUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-update-many-without-updated-by-nested.input';
 
 @InputType()
 export class UsersUpdateInput {
@@ -58,7 +57,4 @@ export class UsersUpdateInput {
 
     @Field(() => routine_maintanancesUpdateManyWithoutAssigneeNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUpdateManyWithoutAssigneeNestedInput;
-
-    @Field(() => production_dataUpdateManyWithoutUpdatedByNestedInput, {nullable:true})
-    production_data?: production_dataUpdateManyWithoutUpdatedByNestedInput;
 }

@@ -10,7 +10,6 @@ import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-up
 import { UsersUpdateextra_rolesInput } from './users-updateextra-roles.input';
 import { TicketUncheckedUpdateManyWithoutUserNestedInput } from '../ticket/ticket-unchecked-update-many-without-user-nested.input';
 import { routine_maintanancesUncheckedUpdateManyWithoutAssigneeNestedInput } from '../routine-maintanances/routine-maintanances-unchecked-update-many-without-assignee-nested.input';
-import { production_dataUncheckedUpdateManyWithoutUpdatedByNestedInput } from '../production-data/production-data-unchecked-update-many-without-updated-by-nested.input';
 
 @InputType()
 export class UsersUncheckedUpdateWithoutMaintenanceInput {
@@ -53,7 +52,4 @@ export class UsersUncheckedUpdateWithoutMaintenanceInput {
 
     @Field(() => routine_maintanancesUncheckedUpdateManyWithoutAssigneeNestedInput, {nullable:true})
     routine_maintanances?: routine_maintanancesUncheckedUpdateManyWithoutAssigneeNestedInput;
-
-    @Field(() => production_dataUncheckedUpdateManyWithoutUpdatedByNestedInput, {nullable:true})
-    production_data?: production_dataUncheckedUpdateManyWithoutUpdatedByNestedInput;
 }

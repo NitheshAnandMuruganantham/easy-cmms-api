@@ -392,7 +392,7 @@ export class AppService implements OnModuleInit {
         block_id: session.User.blockId,
       },
     });
-    let result = {};
+    const result = {};
     data.forEach((item) => {
       result[item.name] = item.value;
     });
@@ -430,27 +430,6 @@ export class AppService implements OnModuleInit {
         },
       },
     });
-  }
-
-  async punchProduction(session: SessionContainer, data: any) {
-    const prod = await this.prisma.production_data.create({
-      data: {
-        updatedBy: {
-          connect: {
-            id: session.User.id,
-          },
-        },
-        date: new Date(new Date(data.date).setHours(0, 0, 0, 0)).toISOString(),
-        shift: data.shift,
-        Block: {
-          connect: {
-            id: session.User.blockId,
-          },
-        },
-        production: data,
-      },
-    });
-    return 'ok';
   }
 
   async requestSpares(session: SessionContainer, data: any) {

@@ -9,7 +9,6 @@ import { BlockCreateNestedOneWithoutUsersInput } from '../block/block-create-nes
 import { MaintenanceCreateNestedManyWithoutAssigneeInput } from '../maintenance/maintenance-create-nested-many-without-assignee.input';
 import { TicketCreateNestedManyWithoutUserInput } from '../ticket/ticket-create-nested-many-without-user.input';
 import { routine_maintanancesCreateNestedManyWithoutAssigneeInput } from '../routine-maintanances/routine-maintanances-create-nested-many-without-assignee.input';
-import { production_dataCreateNestedManyWithoutUpdatedByInput } from '../production-data/production-data-create-nested-many-without-updated-by.input';
 
 @InputType()
 export class UsersCreateInput {
@@ -55,7 +54,4 @@ export class UsersCreateInput {
 
     @Field(() => routine_maintanancesCreateNestedManyWithoutAssigneeInput, {nullable:true})
     routine_maintanances?: routine_maintanancesCreateNestedManyWithoutAssigneeInput;
-
-    @Field(() => production_dataCreateNestedManyWithoutUpdatedByInput, {nullable:true})
-    production_data?: production_dataCreateNestedManyWithoutUpdatedByInput;
 }

@@ -11,7 +11,6 @@ import {
   Items,
   Block,
   machine_catagory,
-  production_data,
   invoice_items,
   Invoices,
 } from '@prisma/client';
@@ -40,7 +39,6 @@ export type subject = Subjects<{
   Reports: Reports;
   Replacements: Replacements;
   RoutineMaintanances: routine_maintanances;
-  ProductionData: production_data;
 }>;
 
 export type action = 'create' | 'read' | 'update' | 'delete';

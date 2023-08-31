@@ -4,7 +4,6 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { MachinesOrderByRelationAggregateInput } from '../machines/machines-order-by-relation-aggregate.input';
 import { UsersOrderByRelationAggregateInput } from '../users/users-order-by-relation-aggregate.input';
 import { block_settingsOrderByRelationAggregateInput } from '../block-settings/block-settings-order-by-relation-aggregate.input';
-import { production_dataOrderByRelationAggregateInput } from '../production-data/production-data-order-by-relation-aggregate.input';
 import { catagoryOrderByRelationAggregateInput } from '../catagory/catagory-order-by-relation-aggregate.input';
 import { ItemsOrderByRelationAggregateInput } from '../items/items-order-by-relation-aggregate.input';
 import { machine_catagoryOrderByRelationAggregateInput } from '../machine-catagory/machine-catagory-order-by-relation-aggregate.input';
@@ -47,9 +46,6 @@ export class BlockOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => block_settingsOrderByRelationAggregateInput, {nullable:true})
     block_settings?: block_settingsOrderByRelationAggregateInput;
-
-    @Field(() => production_dataOrderByRelationAggregateInput, {nullable:true})
-    production_data?: production_dataOrderByRelationAggregateInput;
 
     @Field(() => catagoryOrderByRelationAggregateInput, {nullable:true})
     catagory?: catagoryOrderByRelationAggregateInput;

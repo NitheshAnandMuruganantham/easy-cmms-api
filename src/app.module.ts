@@ -33,7 +33,6 @@ import { authMiddleware } from './middleware/auth';
 import { Redis } from 'ioredis';
 import { SentryModule } from '@ntegral/nestjs-sentry';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
-import { ProductionDataModule } from './production/production.module';
 import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
 import { join } from 'path';
@@ -143,7 +142,6 @@ import { InvoicesModule } from './invoices/invoices.module';
     UsersModule,
     TicketModule,
     AuthModule,
-    ProductionDataModule,
     DashboardModule,
     RoutineMaintanancesModule,
     GenerateReportModule,

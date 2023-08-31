@@ -12,7 +12,6 @@ import { BlockRelationFilter } from '../block/block-relation-filter.input';
 import { MaintenanceListRelationFilter } from '../maintenance/maintenance-list-relation-filter.input';
 import { TicketListRelationFilter } from '../ticket/ticket-list-relation-filter.input';
 import { Routine_maintanancesListRelationFilter } from '../prisma/routine-maintanances-list-relation-filter.input';
-import { Production_dataListRelationFilter } from '../prisma/production-data-list-relation-filter.input';
 
 @InputType()
 export class UsersWhereInput {
@@ -70,7 +69,4 @@ export class UsersWhereInput {
 
     @Field(() => Routine_maintanancesListRelationFilter, {nullable:true})
     routine_maintanances?: Routine_maintanancesListRelationFilter;
-
-    @Field(() => Production_dataListRelationFilter, {nullable:true})
-    production_data?: Production_dataListRelationFilter;
 }

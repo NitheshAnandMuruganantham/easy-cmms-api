@@ -30,7 +30,6 @@ model Block {
   updated_at           DateTime               @updatedAt
   Users                Users[]
   block_settings       block_settings[]
-  production_data      production_data[]
   catagory             catagory[]
   Items                Items[]
   machine_catagory     machine_catagory[]
@@ -244,7 +243,6 @@ model Users {
   ticket               Ticket[]
   routine_maintanances routine_maintanances[]
   /// @HideField({ output: false, input: false })
-  production_data      production_data[]
 }
 
 model Ticket {
@@ -318,20 +316,4 @@ model block_settings {
   updated_at DateTime @updatedAt
 
   @@unique([block_id, name])
-}
-
-model production_data {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
-  id         BigInt   @id @default(autoincrement())
-  production Json     @default("{}")
-  shift      String
-  date       DateTime
-  updated_by BigInt
-  updatedBy  Users    @relation(fields: [updated_by], references: [id])
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  /// @HideField({ output: false, input: true })
-  Block      Block    @relation(fields: [blockId], references: [id])
-  /// @HideField({ output: false, input: true })
-  blockId    BigInt
 }

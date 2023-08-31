@@ -6,7 +6,6 @@ import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../block/block-
 import { MaintenanceOrderByRelationAggregateInput } from '../maintenance/maintenance-order-by-relation-aggregate.input';
 import { TicketOrderByRelationAggregateInput } from '../ticket/ticket-order-by-relation-aggregate.input';
 import { routine_maintanancesOrderByRelationAggregateInput } from '../routine-maintanances/routine-maintanances-order-by-relation-aggregate.input';
-import { production_dataOrderByRelationAggregateInput } from '../production-data/production-data-order-by-relation-aggregate.input';
 import { UsersOrderByRelevanceInput } from './users-order-by-relevance.input';
 
 @InputType()
@@ -56,9 +55,6 @@ export class UsersOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => routine_maintanancesOrderByRelationAggregateInput, {nullable:true})
     routine_maintanances?: routine_maintanancesOrderByRelationAggregateInput;
-
-    @Field(() => production_dataOrderByRelationAggregateInput, {nullable:true})
-    production_data?: production_dataOrderByRelationAggregateInput;
 
     @Field(() => UsersOrderByRelevanceInput, {nullable:true})
     _relevance?: UsersOrderByRelevanceInput;

@@ -7,7 +7,6 @@ import { Role } from '../prisma/role.enum';
 import { UsersCreateextra_rolesInput } from './users-createextra-roles.input';
 import { MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput } from '../maintenance/maintenance-unchecked-create-nested-many-without-assignee.input';
 import { TicketUncheckedCreateNestedManyWithoutUserInput } from '../ticket/ticket-unchecked-create-nested-many-without-user.input';
-import { production_dataUncheckedCreateNestedManyWithoutUpdatedByInput } from '../production-data/production-data-unchecked-create-nested-many-without-updated-by.input';
 
 @InputType()
 export class UsersUncheckedCreateWithoutRoutine_maintanancesInput {
@@ -50,7 +49,4 @@ export class UsersUncheckedCreateWithoutRoutine_maintanancesInput {
 
     @Field(() => TicketUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
     ticket?: TicketUncheckedCreateNestedManyWithoutUserInput;
-
-    @Field(() => production_dataUncheckedCreateNestedManyWithoutUpdatedByInput, {nullable:true})
-    production_data?: production_dataUncheckedCreateNestedManyWithoutUpdatedByInput;
 }

@@ -15,9 +15,6 @@ export class BlockCount {
     block_settings?: number;
 
     @Field(() => Int, {nullable:false})
-    production_data?: number;
-
-    @Field(() => Int, {nullable:false})
     catagory?: number;
 
     @Field(() => Int, {nullable:false})

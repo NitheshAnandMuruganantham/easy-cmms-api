@@ -208,15 +208,6 @@ export class AppController {
     return this.appService.inputPastMaintenance(session, data);
   }
 
-  @Post('punchProduction')
-  @UseGuards(new AuthGuard())
-  async punchProduction(
-    @Session() session: SessionContainer,
-    @Body() data: any,
-  ) {
-    return this.appService.punchProduction(session, data);
-  }
-
   @Post('requestSpare')
   @UseGuards(new AuthGuard())
   async requestSpare(@Session() session: SessionContainer, @Body() data: any) {

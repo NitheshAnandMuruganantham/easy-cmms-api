@@ -9,7 +9,6 @@ import { Block } from '../block/block.model';
 import { Maintenance } from '../maintenance/maintenance.model';
 import { Ticket } from '../ticket/ticket.model';
 import { routine_maintanances } from '../routine-maintanances/routine-maintanances.model';
-import { production_data } from '../production-data/production-data.model';
 import { UsersCount } from './users-count.output';
 
 @ObjectType()
@@ -59,9 +58,6 @@ export class Users {
 
     @Field(() => [routine_maintanances], {nullable:true})
     routine_maintanances?: Array<routine_maintanances>;
-
-    @Field(() => [production_data], {nullable:true})
-    production_data?: Array<production_data>;
 
     @Field(() => UsersCount, {nullable:false})
     _count?: UsersCount;

@@ -37,7 +37,6 @@ export class GenerateReportController {
         maintenanceFilter || [],
         ticketFilter || [],
         routineMaintenancesFilter || [],
-        productionFilter || [],
       );
     res.set({
       'Content-Type':
