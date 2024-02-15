@@ -1,4 +1,3 @@
-import { UseGuards } from '@nestjs/common/decorators';
 import {
   Resolver,
   Query,
