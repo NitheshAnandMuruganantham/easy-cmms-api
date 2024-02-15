@@ -12,7 +12,7 @@ import {
   Machines,
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 import {
   Section,
   SectionCount,
@@ -22,7 +22,7 @@ import {
   SectionUpdateInput,
   SectionUpdateWithoutMachinesInput,
   SectionWhereInput,
-} from 'src/@generated/section';
+} from 'src/section/section';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

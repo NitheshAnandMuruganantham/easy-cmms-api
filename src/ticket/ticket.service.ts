@@ -4,7 +4,7 @@ import {
   TicketOrderByWithRelationInput,
   TicketUpdateInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
+} from 'src/ticket/ticket';
 import { nanoid } from 'nanoid';
 import { PrismaService } from 'nestjs-prisma';
 import SessionContainer from '../types/session';

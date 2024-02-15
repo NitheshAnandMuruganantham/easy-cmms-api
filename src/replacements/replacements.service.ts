@@ -4,7 +4,7 @@ import {
   ReplacementsOrderByWithRelationInput,
   ReplacementsUpdateInput,
   ReplacementsWhereInput,
-} from 'src/@generated/replacements';
+} from 'src/replacements/replacements';
 import { PrismaService } from 'nestjs-prisma';
 import SessionContainer from '../types/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';

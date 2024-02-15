@@ -14,12 +14,12 @@ import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceUpdateInput,
   MaintenanceWhereInput,
-} from 'src/@generated/maintenance';
-import { Users } from 'src/@generated/users';
-import { Machines } from 'src/@generated/machines';
-import { Replacements } from 'src/@generated/replacements';
-import { Reports } from 'src/@generated/reports';
-import { Ticket } from 'src/@generated/ticket';
+} from 'src/maintanance/maintenance';
+import { Users } from 'src/users/users';
+import { Machines } from 'src/machines/machines';
+import { Replacements } from 'src/replacements/replacements';
+import { Reports } from 'src/report/reports';
+import { Ticket } from 'src/ticket/ticket';
 import { UseGuards } from '@nestjs/common/decorators';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';

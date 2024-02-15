@@ -12,14 +12,14 @@ import {
   Machines,
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 import {
   Section,
   SectionCreateInput,
   SectionOrderByWithRelationInput,
   SectionUpdateInput,
   SectionWhereInput,
-} from 'src/@generated/section';
+} from 'src/section/section';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
@@ -30,8 +30,8 @@ import {
   machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
   machine_catagoryUpdateOneWithoutMachinesNestedInput,
   machine_catagoryWhereInput,
-} from 'src/@generated/machine-catagory';
-import { Machine_catagoryCount } from 'src/@generated/prisma';
+} from 'src/machine_catagory/machine-catagory';
+import { Machine_catagoryCount } from 'src/common-dto/prisma';
 
 @Resolver(() => machine_catagory)
 export class MachineCatagoriesResolver {

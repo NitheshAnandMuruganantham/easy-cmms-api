@@ -15,12 +15,12 @@ import {
   Block,
   BlockWhereInput,
   BlockCount,
-} from 'src/@generated/block';
+} from 'src/block/block';
 import {
   Machines,
   MachinesOrderByWithAggregationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

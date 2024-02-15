@@ -8,19 +8,19 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { catagory } from 'src/@generated/catagory';
+import { catagory } from 'src/common-dto/catagory';
 import {
   Items,
   ItemsCreateInput,
   ItemsOrderByWithRelationInput,
   ItemsUpdateInput,
   ItemsWhereInput,
-} from 'src/@generated/items';
+} from 'src/items/items';
 import {
   Replacements,
   ReplacementsOrderByWithRelationInput,
   ReplacementsWhereInput,
-} from 'src/@generated/replacements';
+} from 'src/replacements/replacements';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

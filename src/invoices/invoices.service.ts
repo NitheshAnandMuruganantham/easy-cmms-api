@@ -7,7 +7,7 @@ import {
   invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
-} from 'src/@generated/invoice-items';
+} from 'src/invoices/invoice-items';
 
 import {
   Invoices,
@@ -15,7 +15,7 @@ import {
   InvoicesOrderByWithRelationAndSearchRelevanceInput,
   InvoicesUpdateInput,
   InvoicesWhereInput,
-} from 'src/@generated/invoices';
+} from 'src/invoices/invoices';
 
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';

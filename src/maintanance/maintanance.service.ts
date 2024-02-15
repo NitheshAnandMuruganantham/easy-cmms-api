@@ -6,7 +6,7 @@ import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceUpdateInput,
   MaintenanceWhereInput,
-} from 'src/@generated/maintenance';
+} from 'src/maintanance/maintenance';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { accessibleBy } from '@casl/prisma';

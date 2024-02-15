@@ -8,7 +8,7 @@ import {
   ReportsOrderByWithRelationInput,
   ReportsUpdateInput,
   ReportsWhereInput,
-} from 'src/@generated/reports';
+} from 'src/report/reports';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { SessionContainer } from 'supertokens-node/recipe/session';
 

@@ -5,7 +5,7 @@ import { PrismaService } from 'nestjs-prisma';
 import {
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 
 import {
   machine_catagory,
@@ -15,7 +15,7 @@ import {
   machine_catagoryUpdateInput,
   machine_catagoryUpdateOneWithoutMachinesNestedInput,
   machine_catagoryWhereInput,
-} from 'src/@generated/machine-catagory';
+} from 'src/machine_catagory/machine-catagory';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 

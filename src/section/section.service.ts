@@ -5,14 +5,14 @@ import { PrismaService } from 'nestjs-prisma';
 import {
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 
 import {
   SectionCreateWithoutMachinesInput,
   SectionOrderByWithRelationInput,
   SectionUpdateWithoutMachinesInput,
   SectionWhereInput,
-} from 'src/@generated/section';
+} from 'src/section/section';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 

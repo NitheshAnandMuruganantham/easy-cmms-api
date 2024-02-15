@@ -14,7 +14,7 @@ import {
   InvoicesOrderByWithRelationAndSearchRelevanceInput,
   InvoicesUpdateInput,
   InvoicesWhereInput,
-} from 'src/@generated/invoices';
+} from 'src/invoices/invoices';
 
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
@@ -24,7 +24,7 @@ import {
   invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
-} from 'src/@generated/invoice-items';
+} from 'src/invoices/invoice-items';
 
 @Resolver(() => Invoices)
 export class InvoicesResolver {

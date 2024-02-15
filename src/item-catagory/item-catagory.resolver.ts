@@ -15,14 +15,14 @@ import {
   ItemCatagoryOrderByWithAggregationInput,
   ItemCatagoryUpdateInput,
   ItemCatagoryWhereInput,
-} from 'src/@generated/item-catagory';
+} from 'src/item-catagory/item-catagory';
 
 import {
   Items,
   ItemsOrderByWithAggregationInput,
   ItemsWhereInput,
-} from 'src/@generated/items';
-import { CatagoryCount } from 'src/@generated/prisma';
+} from 'src/items/items';
+import { CatagoryCount } from 'src/common-dto/prisma';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

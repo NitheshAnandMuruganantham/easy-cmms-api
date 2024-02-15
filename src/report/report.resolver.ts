@@ -8,14 +8,14 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Maintenance } from 'src/@generated/maintenance';
+import { Maintenance } from 'src/maintanance/maintenance';
 import {
   Reports,
   ReportsCreateInput,
   ReportsOrderByWithRelationInput,
   ReportsUpdateInput,
   ReportsWhereInput,
-} from 'src/@generated/reports';
+} from 'src/report/reports';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';

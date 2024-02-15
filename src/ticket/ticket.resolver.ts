@@ -14,10 +14,10 @@ import {
   TicketOrderByWithRelationInput,
   TicketUpdateInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
-import { Users } from 'src/@generated/users';
-import { Maintenance } from 'src/@generated/maintenance';
-import { Machines } from 'src/@generated/machines';
+} from 'src/ticket/ticket';
+import { Users } from 'src/users/users';
+import { Maintenance } from 'src/maintanance/maintenance';
+import { Machines } from 'src/machines/machines';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { AuthGuard } from 'src/auth/auth.guard';

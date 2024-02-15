@@ -7,15 +7,15 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Items } from 'src/@generated/items';
+import { Items } from 'src/items/items';
 import {
   Replacements,
   ReplacementsCreateInput,
   ReplacementsOrderByWithRelationInput,
   ReplacementsUpdateInput,
   ReplacementsWhereInput,
-} from 'src/@generated/replacements';
-import { Maintenance } from 'src/@generated/maintenance';
+} from 'src/replacements/replacements';
+import { Maintenance } from 'src/maintanance/maintenance';
 import { ReplacementsService } from './replacements.service';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

@@ -11,19 +11,19 @@ import {
   Maintenance,
   MaintenanceOrderByWithRelationInput,
   MaintenanceWhereInput,
-} from 'src/@generated/maintenance';
+} from 'src/maintanance/maintenance';
 import {
   Ticket,
   TicketOrderByWithRelationInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
+} from 'src/ticket/ticket';
 import {
   Users,
   UsersCreateInput,
   UsersOrderByWithRelationInput,
   UsersUpdateInput,
   UsersWhereInput,
-} from 'src/@generated/users';
+} from 'src/users/users';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { UsersService } from './users.service';

@@ -8,17 +8,17 @@ import {
   ItemsOrderByWithRelationInput,
   ItemsUpdateInput,
   ItemsWhereInput,
-} from 'src/@generated/items';
+} from 'src/items/items';
 import {
   ReplacementsOrderByWithRelationInput,
   ReplacementsWhereInput,
-} from 'src/@generated/replacements';
+} from 'src/replacements/replacements';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import {
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/machines';
 
 @Injectable()
 export class ItemsService {
