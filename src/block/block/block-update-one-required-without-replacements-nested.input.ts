@@ -9,24 +9,23 @@ import { BlockUpdateWithoutReplacementsInput } from './block-update-without-repl
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutReplacementsNestedInput {
+  @Field(() => BlockCreateWithoutReplacementsInput, { nullable: true })
+  @Type(() => BlockCreateWithoutReplacementsInput)
+  create?: BlockCreateWithoutReplacementsInput;
 
-    @Field(() => BlockCreateWithoutReplacementsInput, {nullable:true})
-    @Type(() => BlockCreateWithoutReplacementsInput)
-    create?: BlockCreateWithoutReplacementsInput;
+  @Field(() => BlockCreateOrConnectWithoutReplacementsInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutReplacementsInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutReplacementsInput;
 
-    @Field(() => BlockCreateOrConnectWithoutReplacementsInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutReplacementsInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutReplacementsInput;
+  @Field(() => BlockUpsertWithoutReplacementsInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutReplacementsInput)
+  upsert?: BlockUpsertWithoutReplacementsInput;
 
-    @Field(() => BlockUpsertWithoutReplacementsInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutReplacementsInput)
-    upsert?: BlockUpsertWithoutReplacementsInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutReplacementsInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutReplacementsInput)
-    update?: BlockUpdateWithoutReplacementsInput;
+  @Field(() => BlockUpdateWithoutReplacementsInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutReplacementsInput)
+  update?: BlockUpdateWithoutReplacementsInput;
 }

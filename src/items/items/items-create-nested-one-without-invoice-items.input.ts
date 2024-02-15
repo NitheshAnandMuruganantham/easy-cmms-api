@@ -7,16 +7,17 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @InputType()
 export class ItemsCreateNestedOneWithoutInvoice_itemsInput {
+  @Field(() => ItemsCreateWithoutInvoice_itemsInput, { nullable: true })
+  @Type(() => ItemsCreateWithoutInvoice_itemsInput)
+  create?: ItemsCreateWithoutInvoice_itemsInput;
 
-    @Field(() => ItemsCreateWithoutInvoice_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutInvoice_itemsInput)
-    create?: ItemsCreateWithoutInvoice_itemsInput;
+  @Field(() => ItemsCreateOrConnectWithoutInvoice_itemsInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutInvoice_itemsInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutInvoice_itemsInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutInvoice_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutInvoice_itemsInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutInvoice_itemsInput;
-
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 }

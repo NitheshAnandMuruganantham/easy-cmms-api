@@ -6,12 +6,11 @@ import { ItemsCreateWithoutMachinesInput } from './items-create-without-machines
 
 @InputType()
 export class ItemsCreateOrConnectWithoutMachinesInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutMachinesInput)
-    create!: ItemsCreateWithoutMachinesInput;
+  @Field(() => ItemsCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => ItemsCreateWithoutMachinesInput)
+  create!: ItemsCreateWithoutMachinesInput;
 }

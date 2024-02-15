@@ -6,12 +6,11 @@ import { BlockCreateWithoutProduction_dataInput } from './block-create-without-p
 
 @InputType()
 export class BlockCreateOrConnectWithoutProduction_dataInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => BlockCreateWithoutProduction_dataInput)
-    create!: BlockCreateWithoutProduction_dataInput;
+  @Field(() => BlockCreateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => BlockCreateWithoutProduction_dataInput)
+  create!: BlockCreateWithoutProduction_dataInput;
 }

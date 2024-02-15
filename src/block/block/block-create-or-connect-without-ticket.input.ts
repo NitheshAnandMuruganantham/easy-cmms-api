@@ -6,12 +6,11 @@ import { BlockCreateWithoutTicketInput } from './block-create-without-ticket.inp
 
 @InputType()
 export class BlockCreateOrConnectWithoutTicketInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutTicketInput, {nullable:false})
-    @Type(() => BlockCreateWithoutTicketInput)
-    create!: BlockCreateWithoutTicketInput;
+  @Field(() => BlockCreateWithoutTicketInput, { nullable: false })
+  @Type(() => BlockCreateWithoutTicketInput)
+  create!: BlockCreateWithoutTicketInput;
 }

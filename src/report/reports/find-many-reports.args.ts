@@ -9,23 +9,24 @@ import { ReportsScalarFieldEnum } from './reports-scalar-field.enum';
 
 @ArgsType()
 export class FindManyReportsArgs {
+  @Field(() => ReportsWhereInput, { nullable: true })
+  @Type(() => ReportsWhereInput)
+  where?: ReportsWhereInput;
 
-    @Field(() => ReportsWhereInput, {nullable:true})
-    @Type(() => ReportsWhereInput)
-    where?: ReportsWhereInput;
+  @Field(() => [ReportsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ReportsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [ReportsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<ReportsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => ReportsWhereUniqueInput, { nullable: true })
+  cursor?: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:true})
-    cursor?: ReportsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ReportsScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ReportsScalarFieldEnum>;
+  @Field(() => [ReportsScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ReportsScalarFieldEnum>;
 }

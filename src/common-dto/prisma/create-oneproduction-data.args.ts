@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneproductionDataArgs {
-
-    @Field(() => production_dataCreateInput, {nullable:false})
-    @Type(() => production_dataCreateInput)
-    data!: production_dataCreateInput;
+  @Field(() => production_dataCreateInput, { nullable: false })
+  @Type(() => production_dataCreateInput)
+  data!: production_dataCreateInput;
 }

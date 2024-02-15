@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManySectionArgs {
-
-    @Field(() => SectionWhereInput, {nullable:true})
-    @Type(() => SectionWhereInput)
-    where?: SectionWhereInput;
+  @Field(() => SectionWhereInput, { nullable: true })
+  @Type(() => SectionWhereInput)
+  where?: SectionWhereInput;
 }

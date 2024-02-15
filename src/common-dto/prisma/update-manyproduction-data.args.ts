@@ -6,12 +6,11 @@ import { production_dataWhereInput } from '../production-data/production-data-wh
 
 @ArgsType()
 export class UpdateManyproductionDataArgs {
+  @Field(() => production_dataUpdateManyMutationInput, { nullable: false })
+  @Type(() => production_dataUpdateManyMutationInput)
+  data!: production_dataUpdateManyMutationInput;
 
-    @Field(() => production_dataUpdateManyMutationInput, {nullable:false})
-    @Type(() => production_dataUpdateManyMutationInput)
-    data!: production_dataUpdateManyMutationInput;
-
-    @Field(() => production_dataWhereInput, {nullable:true})
-    @Type(() => production_dataWhereInput)
-    where?: production_dataWhereInput;
+  @Field(() => production_dataWhereInput, { nullable: true })
+  @Type(() => production_dataWhereInput)
+  where?: production_dataWhereInput;
 }

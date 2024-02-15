@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneReplacementsArgs {
-
-    @Field(() => ReplacementsCreateInput, {nullable:false})
-    @Type(() => ReplacementsCreateInput)
-    data!: ReplacementsCreateInput;
+  @Field(() => ReplacementsCreateInput, { nullable: false })
+  @Type(() => ReplacementsCreateInput)
+  data!: ReplacementsCreateInput;
 }

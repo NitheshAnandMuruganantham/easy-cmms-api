@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyTicketArgs {
-
-    @Field(() => TicketWhereInput, {nullable:true})
-    @Type(() => TicketWhereInput)
-    where?: TicketWhereInput;
+  @Field(() => TicketWhereInput, { nullable: true })
+  @Type(() => TicketWhereInput)
+  where?: TicketWhereInput;
 }

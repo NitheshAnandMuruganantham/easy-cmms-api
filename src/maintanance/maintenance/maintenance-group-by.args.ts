@@ -14,38 +14,37 @@ import { MaintenanceMaxAggregateInput } from './maintenance-max-aggregate.input'
 
 @ArgsType()
 export class MaintenanceGroupByArgs {
+  @Field(() => MaintenanceWhereInput, { nullable: true })
+  @Type(() => MaintenanceWhereInput)
+  where?: MaintenanceWhereInput;
 
-    @Field(() => MaintenanceWhereInput, {nullable:true})
-    @Type(() => MaintenanceWhereInput)
-    where?: MaintenanceWhereInput;
+  @Field(() => [MaintenanceOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<MaintenanceOrderByWithAggregationInput>;
 
-    @Field(() => [MaintenanceOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<MaintenanceOrderByWithAggregationInput>;
+  @Field(() => [MaintenanceScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof MaintenanceScalarFieldEnum>;
 
-    @Field(() => [MaintenanceScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof MaintenanceScalarFieldEnum>;
+  @Field(() => MaintenanceScalarWhereWithAggregatesInput, { nullable: true })
+  having?: MaintenanceScalarWhereWithAggregatesInput;
 
-    @Field(() => MaintenanceScalarWhereWithAggregatesInput, {nullable:true})
-    having?: MaintenanceScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => MaintenanceCountAggregateInput, { nullable: true })
+  _count?: MaintenanceCountAggregateInput;
 
-    @Field(() => MaintenanceCountAggregateInput, {nullable:true})
-    _count?: MaintenanceCountAggregateInput;
+  @Field(() => MaintenanceAvgAggregateInput, { nullable: true })
+  _avg?: MaintenanceAvgAggregateInput;
 
-    @Field(() => MaintenanceAvgAggregateInput, {nullable:true})
-    _avg?: MaintenanceAvgAggregateInput;
+  @Field(() => MaintenanceSumAggregateInput, { nullable: true })
+  _sum?: MaintenanceSumAggregateInput;
 
-    @Field(() => MaintenanceSumAggregateInput, {nullable:true})
-    _sum?: MaintenanceSumAggregateInput;
+  @Field(() => MaintenanceMinAggregateInput, { nullable: true })
+  _min?: MaintenanceMinAggregateInput;
 
-    @Field(() => MaintenanceMinAggregateInput, {nullable:true})
-    _min?: MaintenanceMinAggregateInput;
-
-    @Field(() => MaintenanceMaxAggregateInput, {nullable:true})
-    _max?: MaintenanceMaxAggregateInput;
+  @Field(() => MaintenanceMaxAggregateInput, { nullable: true })
+  _max?: MaintenanceMaxAggregateInput;
 }

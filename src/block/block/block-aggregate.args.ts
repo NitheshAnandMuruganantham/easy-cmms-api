@@ -13,35 +13,36 @@ import { BlockMaxAggregateInput } from './block-max-aggregate.input';
 
 @ArgsType()
 export class BlockAggregateArgs {
+  @Field(() => BlockWhereInput, { nullable: true })
+  @Type(() => BlockWhereInput)
+  where?: BlockWhereInput;
 
-    @Field(() => BlockWhereInput, {nullable:true})
-    @Type(() => BlockWhereInput)
-    where?: BlockWhereInput;
+  @Field(() => [BlockOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<BlockOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [BlockOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<BlockOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  cursor?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    cursor?: BlockWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => BlockCountAggregateInput, { nullable: true })
+  _count?: BlockCountAggregateInput;
 
-    @Field(() => BlockCountAggregateInput, {nullable:true})
-    _count?: BlockCountAggregateInput;
+  @Field(() => BlockAvgAggregateInput, { nullable: true })
+  _avg?: BlockAvgAggregateInput;
 
-    @Field(() => BlockAvgAggregateInput, {nullable:true})
-    _avg?: BlockAvgAggregateInput;
+  @Field(() => BlockSumAggregateInput, { nullable: true })
+  _sum?: BlockSumAggregateInput;
 
-    @Field(() => BlockSumAggregateInput, {nullable:true})
-    _sum?: BlockSumAggregateInput;
+  @Field(() => BlockMinAggregateInput, { nullable: true })
+  _min?: BlockMinAggregateInput;
 
-    @Field(() => BlockMinAggregateInput, {nullable:true})
-    _min?: BlockMinAggregateInput;
-
-    @Field(() => BlockMaxAggregateInput, {nullable:true})
-    _max?: BlockMaxAggregateInput;
+  @Field(() => BlockMaxAggregateInput, { nullable: true })
+  _max?: BlockMaxAggregateInput;
 }

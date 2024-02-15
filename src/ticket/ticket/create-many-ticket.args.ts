@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyTicketArgs {
+  @Field(() => [TicketCreateManyInput], { nullable: false })
+  @Type(() => TicketCreateManyInput)
+  data!: Array<TicketCreateManyInput>;
 
-    @Field(() => [TicketCreateManyInput], {nullable:false})
-    @Type(() => TicketCreateManyInput)
-    data!: Array<TicketCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

@@ -9,24 +9,23 @@ import { BlockUpdateWithoutTicketInput } from './block-update-without-ticket.inp
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutTicketNestedInput {
+  @Field(() => BlockCreateWithoutTicketInput, { nullable: true })
+  @Type(() => BlockCreateWithoutTicketInput)
+  create?: BlockCreateWithoutTicketInput;
 
-    @Field(() => BlockCreateWithoutTicketInput, {nullable:true})
-    @Type(() => BlockCreateWithoutTicketInput)
-    create?: BlockCreateWithoutTicketInput;
+  @Field(() => BlockCreateOrConnectWithoutTicketInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutTicketInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutTicketInput;
 
-    @Field(() => BlockCreateOrConnectWithoutTicketInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutTicketInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutTicketInput;
+  @Field(() => BlockUpsertWithoutTicketInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutTicketInput)
+  upsert?: BlockUpsertWithoutTicketInput;
 
-    @Field(() => BlockUpsertWithoutTicketInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutTicketInput)
-    upsert?: BlockUpsertWithoutTicketInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutTicketInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutTicketInput)
-    update?: BlockUpdateWithoutTicketInput;
+  @Field(() => BlockUpdateWithoutTicketInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutTicketInput)
+  update?: BlockUpdateWithoutTicketInput;
 }

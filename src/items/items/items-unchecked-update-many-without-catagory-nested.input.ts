@@ -12,48 +12,53 @@ import { ItemsScalarWhereInput } from './items-scalar-where.input';
 
 @InputType()
 export class ItemsUncheckedUpdateManyWithoutCatagoryNestedInput {
+  @Field(() => [ItemsCreateWithoutCatagoryInput], { nullable: true })
+  @Type(() => ItemsCreateWithoutCatagoryInput)
+  create?: Array<ItemsCreateWithoutCatagoryInput>;
 
-    @Field(() => [ItemsCreateWithoutCatagoryInput], {nullable:true})
-    @Type(() => ItemsCreateWithoutCatagoryInput)
-    create?: Array<ItemsCreateWithoutCatagoryInput>;
+  @Field(() => [ItemsCreateOrConnectWithoutCatagoryInput], { nullable: true })
+  @Type(() => ItemsCreateOrConnectWithoutCatagoryInput)
+  connectOrCreate?: Array<ItemsCreateOrConnectWithoutCatagoryInput>;
 
-    @Field(() => [ItemsCreateOrConnectWithoutCatagoryInput], {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutCatagoryInput)
-    connectOrCreate?: Array<ItemsCreateOrConnectWithoutCatagoryInput>;
+  @Field(() => [ItemsUpsertWithWhereUniqueWithoutCatagoryInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsUpsertWithWhereUniqueWithoutCatagoryInput)
+  upsert?: Array<ItemsUpsertWithWhereUniqueWithoutCatagoryInput>;
 
-    @Field(() => [ItemsUpsertWithWhereUniqueWithoutCatagoryInput], {nullable:true})
-    @Type(() => ItemsUpsertWithWhereUniqueWithoutCatagoryInput)
-    upsert?: Array<ItemsUpsertWithWhereUniqueWithoutCatagoryInput>;
+  @Field(() => ItemsCreateManyCatagoryInputEnvelope, { nullable: true })
+  @Type(() => ItemsCreateManyCatagoryInputEnvelope)
+  createMany?: ItemsCreateManyCatagoryInputEnvelope;
 
-    @Field(() => ItemsCreateManyCatagoryInputEnvelope, {nullable:true})
-    @Type(() => ItemsCreateManyCatagoryInputEnvelope)
-    createMany?: ItemsCreateManyCatagoryInputEnvelope;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  set?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    set?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  disconnect?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    disconnect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  delete?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    delete?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsUpdateWithWhereUniqueWithoutCatagoryInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsUpdateWithWhereUniqueWithoutCatagoryInput)
+  update?: Array<ItemsUpdateWithWhereUniqueWithoutCatagoryInput>;
 
-    @Field(() => [ItemsUpdateWithWhereUniqueWithoutCatagoryInput], {nullable:true})
-    @Type(() => ItemsUpdateWithWhereUniqueWithoutCatagoryInput)
-    update?: Array<ItemsUpdateWithWhereUniqueWithoutCatagoryInput>;
+  @Field(() => [ItemsUpdateManyWithWhereWithoutCatagoryInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsUpdateManyWithWhereWithoutCatagoryInput)
+  updateMany?: Array<ItemsUpdateManyWithWhereWithoutCatagoryInput>;
 
-    @Field(() => [ItemsUpdateManyWithWhereWithoutCatagoryInput], {nullable:true})
-    @Type(() => ItemsUpdateManyWithWhereWithoutCatagoryInput)
-    updateMany?: Array<ItemsUpdateManyWithWhereWithoutCatagoryInput>;
-
-    @Field(() => [ItemsScalarWhereInput], {nullable:true})
-    @Type(() => ItemsScalarWhereInput)
-    deleteMany?: Array<ItemsScalarWhereInput>;
+  @Field(() => [ItemsScalarWhereInput], { nullable: true })
+  @Type(() => ItemsScalarWhereInput)
+  deleteMany?: Array<ItemsScalarWhereInput>;
 }

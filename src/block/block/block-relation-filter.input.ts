@@ -4,10 +4,9 @@ import { BlockWhereInput } from './block-where.input';
 
 @InputType()
 export class BlockRelationFilter {
+  @Field(() => BlockWhereInput, { nullable: true })
+  is?: BlockWhereInput;
 
-    @Field(() => BlockWhereInput, {nullable:true})
-    is?: BlockWhereInput;
-
-    @Field(() => BlockWhereInput, {nullable:true})
-    isNot?: BlockWhereInput;
+  @Field(() => BlockWhereInput, { nullable: true })
+  isNot?: BlockWhereInput;
 }

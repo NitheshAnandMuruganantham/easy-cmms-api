@@ -6,12 +6,11 @@ import { MaintenanceUpdateWithoutBlockInput } from './maintenance-update-without
 
 @InputType()
 export class MaintenanceUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutBlockInput)
-    data!: MaintenanceUpdateWithoutBlockInput;
+  @Field(() => MaintenanceUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutBlockInput)
+  data!: MaintenanceUpdateWithoutBlockInput;
 }

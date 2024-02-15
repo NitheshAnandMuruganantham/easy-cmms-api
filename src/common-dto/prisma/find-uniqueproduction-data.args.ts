@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueproductionDataArgs {
-
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 }

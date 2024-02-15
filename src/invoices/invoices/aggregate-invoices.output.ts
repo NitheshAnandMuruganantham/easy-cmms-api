@@ -8,19 +8,18 @@ import { InvoicesMaxAggregate } from './invoices-max-aggregate.output';
 
 @ObjectType()
 export class AggregateInvoices {
+  @Field(() => InvoicesCountAggregate, { nullable: true })
+  _count?: InvoicesCountAggregate;
 
-    @Field(() => InvoicesCountAggregate, {nullable:true})
-    _count?: InvoicesCountAggregate;
+  @Field(() => InvoicesAvgAggregate, { nullable: true })
+  _avg?: InvoicesAvgAggregate;
 
-    @Field(() => InvoicesAvgAggregate, {nullable:true})
-    _avg?: InvoicesAvgAggregate;
+  @Field(() => InvoicesSumAggregate, { nullable: true })
+  _sum?: InvoicesSumAggregate;
 
-    @Field(() => InvoicesSumAggregate, {nullable:true})
-    _sum?: InvoicesSumAggregate;
+  @Field(() => InvoicesMinAggregate, { nullable: true })
+  _min?: InvoicesMinAggregate;
 
-    @Field(() => InvoicesMinAggregate, {nullable:true})
-    _min?: InvoicesMinAggregate;
-
-    @Field(() => InvoicesMaxAggregate, {nullable:true})
-    _max?: InvoicesMaxAggregate;
+  @Field(() => InvoicesMaxAggregate, { nullable: true })
+  _max?: InvoicesMaxAggregate;
 }

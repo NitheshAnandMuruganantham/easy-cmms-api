@@ -9,24 +9,23 @@ import { BlockUpdateWithoutCatagoryInput } from './block-update-without-catagory
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutCatagoryNestedInput {
+  @Field(() => BlockCreateWithoutCatagoryInput, { nullable: true })
+  @Type(() => BlockCreateWithoutCatagoryInput)
+  create?: BlockCreateWithoutCatagoryInput;
 
-    @Field(() => BlockCreateWithoutCatagoryInput, {nullable:true})
-    @Type(() => BlockCreateWithoutCatagoryInput)
-    create?: BlockCreateWithoutCatagoryInput;
+  @Field(() => BlockCreateOrConnectWithoutCatagoryInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutCatagoryInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutCatagoryInput;
 
-    @Field(() => BlockCreateOrConnectWithoutCatagoryInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutCatagoryInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutCatagoryInput;
+  @Field(() => BlockUpsertWithoutCatagoryInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutCatagoryInput)
+  upsert?: BlockUpsertWithoutCatagoryInput;
 
-    @Field(() => BlockUpsertWithoutCatagoryInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutCatagoryInput)
-    upsert?: BlockUpsertWithoutCatagoryInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutCatagoryInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutCatagoryInput)
-    update?: BlockUpdateWithoutCatagoryInput;
+  @Field(() => BlockUpdateWithoutCatagoryInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutCatagoryInput)
+  update?: BlockUpdateWithoutCatagoryInput;
 }

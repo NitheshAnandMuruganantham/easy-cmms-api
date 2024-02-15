@@ -4,19 +4,18 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class TicketSumAggregateInput {
+  @Field(() => Boolean, { nullable: true })
+  id?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
+  @HideField()
+  user_id?: true;
 
-    @HideField()
-    user_id?: true;
+  @Field(() => Boolean, { nullable: true })
+  maintenance_id?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    maintenance_id?: true;
+  @Field(() => Boolean, { nullable: true })
+  machine_id?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    machine_id?: true;
-
-    @HideField()
-    block_id?: true;
+  @HideField()
+  block_id?: true;
 }

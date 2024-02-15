@@ -8,20 +8,21 @@ import { ReplacementsWhereUniqueInput } from './replacements-where-unique.input'
 
 @InputType()
 export class ReplacementsUncheckedCreateNestedManyWithoutItemsInput {
+  @Field(() => [ReplacementsCreateWithoutItemsInput], { nullable: true })
+  @Type(() => ReplacementsCreateWithoutItemsInput)
+  create?: Array<ReplacementsCreateWithoutItemsInput>;
 
-    @Field(() => [ReplacementsCreateWithoutItemsInput], {nullable:true})
-    @Type(() => ReplacementsCreateWithoutItemsInput)
-    create?: Array<ReplacementsCreateWithoutItemsInput>;
+  @Field(() => [ReplacementsCreateOrConnectWithoutItemsInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateOrConnectWithoutItemsInput)
+  connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutItemsInput>;
 
-    @Field(() => [ReplacementsCreateOrConnectWithoutItemsInput], {nullable:true})
-    @Type(() => ReplacementsCreateOrConnectWithoutItemsInput)
-    connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutItemsInput>;
+  @Field(() => ReplacementsCreateManyItemsInputEnvelope, { nullable: true })
+  @Type(() => ReplacementsCreateManyItemsInputEnvelope)
+  createMany?: ReplacementsCreateManyItemsInputEnvelope;
 
-    @Field(() => ReplacementsCreateManyItemsInputEnvelope, {nullable:true})
-    @Type(() => ReplacementsCreateManyItemsInputEnvelope)
-    createMany?: ReplacementsCreateManyItemsInputEnvelope;
-
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    connect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  connect?: Array<ReplacementsWhereUniqueInput>;
 }

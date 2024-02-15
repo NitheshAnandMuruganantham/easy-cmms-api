@@ -9,24 +9,23 @@ import { UsersUpdateWithoutTicketInput } from './users-update-without-ticket.inp
 
 @InputType()
 export class UsersUpdateOneRequiredWithoutTicketNestedInput {
+  @Field(() => UsersCreateWithoutTicketInput, { nullable: true })
+  @Type(() => UsersCreateWithoutTicketInput)
+  create?: UsersCreateWithoutTicketInput;
 
-    @Field(() => UsersCreateWithoutTicketInput, {nullable:true})
-    @Type(() => UsersCreateWithoutTicketInput)
-    create?: UsersCreateWithoutTicketInput;
+  @Field(() => UsersCreateOrConnectWithoutTicketInput, { nullable: true })
+  @Type(() => UsersCreateOrConnectWithoutTicketInput)
+  connectOrCreate?: UsersCreateOrConnectWithoutTicketInput;
 
-    @Field(() => UsersCreateOrConnectWithoutTicketInput, {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutTicketInput)
-    connectOrCreate?: UsersCreateOrConnectWithoutTicketInput;
+  @Field(() => UsersUpsertWithoutTicketInput, { nullable: true })
+  @Type(() => UsersUpsertWithoutTicketInput)
+  upsert?: UsersUpsertWithoutTicketInput;
 
-    @Field(() => UsersUpsertWithoutTicketInput, {nullable:true})
-    @Type(() => UsersUpsertWithoutTicketInput)
-    upsert?: UsersUpsertWithoutTicketInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: UsersWhereUniqueInput;
-
-    @Field(() => UsersUpdateWithoutTicketInput, {nullable:true})
-    @Type(() => UsersUpdateWithoutTicketInput)
-    update?: UsersUpdateWithoutTicketInput;
+  @Field(() => UsersUpdateWithoutTicketInput, { nullable: true })
+  @Type(() => UsersUpdateWithoutTicketInput)
+  update?: UsersUpdateWithoutTicketInput;
 }

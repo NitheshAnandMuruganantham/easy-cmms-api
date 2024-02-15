@@ -12,48 +12,59 @@ import { routine_maintanancesScalarWhereInput } from './routine-maintanances-sca
 
 @InputType()
 export class routine_maintanancesUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [routine_maintanancesCreateWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateWithoutBlockInput)
+  create?: Array<routine_maintanancesCreateWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesCreateWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateWithoutBlockInput)
-    create?: Array<routine_maintanancesCreateWithoutBlockInput>;
+  @Field(() => [routine_maintanancesCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutBlockInput>;
+  @Field(() => [routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => routine_maintanancesCreateManyBlockInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateManyBlockInputEnvelope)
+  createMany?: routine_maintanancesCreateManyBlockInputEnvelope;
 
-    @Field(() => routine_maintanancesCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => routine_maintanancesCreateManyBlockInputEnvelope)
-    createMany?: routine_maintanancesCreateManyBlockInputEnvelope;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  set?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    set?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  disconnect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    disconnect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  delete?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    delete?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  connect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    connect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [routine_maintanancesScalarWhereInput], {nullable:true})
-    @Type(() => routine_maintanancesScalarWhereInput)
-    deleteMany?: Array<routine_maintanancesScalarWhereInput>;
+  @Field(() => [routine_maintanancesScalarWhereInput], { nullable: true })
+  @Type(() => routine_maintanancesScalarWhereInput)
+  deleteMany?: Array<routine_maintanancesScalarWhereInput>;
 }

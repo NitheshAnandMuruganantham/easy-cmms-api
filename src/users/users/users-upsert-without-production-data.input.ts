@@ -6,12 +6,11 @@ import { UsersCreateWithoutProduction_dataInput } from './users-create-without-p
 
 @InputType()
 export class UsersUpsertWithoutProduction_dataInput {
+  @Field(() => UsersUpdateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutProduction_dataInput)
+  update!: UsersUpdateWithoutProduction_dataInput;
 
-    @Field(() => UsersUpdateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutProduction_dataInput)
-    update!: UsersUpdateWithoutProduction_dataInput;
-
-    @Field(() => UsersCreateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => UsersCreateWithoutProduction_dataInput)
-    create!: UsersCreateWithoutProduction_dataInput;
+  @Field(() => UsersCreateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => UsersCreateWithoutProduction_dataInput)
+  create!: UsersCreateWithoutProduction_dataInput;
 }

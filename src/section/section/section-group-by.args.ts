@@ -14,38 +14,37 @@ import { SectionMaxAggregateInput } from './section-max-aggregate.input';
 
 @ArgsType()
 export class SectionGroupByArgs {
+  @Field(() => SectionWhereInput, { nullable: true })
+  @Type(() => SectionWhereInput)
+  where?: SectionWhereInput;
 
-    @Field(() => SectionWhereInput, {nullable:true})
-    @Type(() => SectionWhereInput)
-    where?: SectionWhereInput;
+  @Field(() => [SectionOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<SectionOrderByWithAggregationInput>;
 
-    @Field(() => [SectionOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<SectionOrderByWithAggregationInput>;
+  @Field(() => [SectionScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof SectionScalarFieldEnum>;
 
-    @Field(() => [SectionScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof SectionScalarFieldEnum>;
+  @Field(() => SectionScalarWhereWithAggregatesInput, { nullable: true })
+  having?: SectionScalarWhereWithAggregatesInput;
 
-    @Field(() => SectionScalarWhereWithAggregatesInput, {nullable:true})
-    having?: SectionScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => SectionCountAggregateInput, { nullable: true })
+  _count?: SectionCountAggregateInput;
 
-    @Field(() => SectionCountAggregateInput, {nullable:true})
-    _count?: SectionCountAggregateInput;
+  @Field(() => SectionAvgAggregateInput, { nullable: true })
+  _avg?: SectionAvgAggregateInput;
 
-    @Field(() => SectionAvgAggregateInput, {nullable:true})
-    _avg?: SectionAvgAggregateInput;
+  @Field(() => SectionSumAggregateInput, { nullable: true })
+  _sum?: SectionSumAggregateInput;
 
-    @Field(() => SectionSumAggregateInput, {nullable:true})
-    _sum?: SectionSumAggregateInput;
+  @Field(() => SectionMinAggregateInput, { nullable: true })
+  _min?: SectionMinAggregateInput;
 
-    @Field(() => SectionMinAggregateInput, {nullable:true})
-    _min?: SectionMinAggregateInput;
-
-    @Field(() => SectionMaxAggregateInput, {nullable:true})
-    _max?: SectionMaxAggregateInput;
+  @Field(() => SectionMaxAggregateInput, { nullable: true })
+  _max?: SectionMaxAggregateInput;
 }

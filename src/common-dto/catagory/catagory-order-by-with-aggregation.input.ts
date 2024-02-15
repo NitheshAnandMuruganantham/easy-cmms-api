@@ -10,34 +10,33 @@ import { catagorySumOrderByAggregateInput } from './catagory-sum-order-by-aggreg
 
 @InputType()
 export class catagoryOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  name?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  created_at?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    created_at?: keyof typeof SortOrder;
+  @HideField()
+  block_id?: keyof typeof SortOrder;
 
-    @HideField()
-    block_id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updated_at?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updated_at?: keyof typeof SortOrder;
+  @Field(() => catagoryCountOrderByAggregateInput, { nullable: true })
+  _count?: catagoryCountOrderByAggregateInput;
 
-    @Field(() => catagoryCountOrderByAggregateInput, {nullable:true})
-    _count?: catagoryCountOrderByAggregateInput;
+  @Field(() => catagoryAvgOrderByAggregateInput, { nullable: true })
+  _avg?: catagoryAvgOrderByAggregateInput;
 
-    @Field(() => catagoryAvgOrderByAggregateInput, {nullable:true})
-    _avg?: catagoryAvgOrderByAggregateInput;
+  @Field(() => catagoryMaxOrderByAggregateInput, { nullable: true })
+  _max?: catagoryMaxOrderByAggregateInput;
 
-    @Field(() => catagoryMaxOrderByAggregateInput, {nullable:true})
-    _max?: catagoryMaxOrderByAggregateInput;
+  @Field(() => catagoryMinOrderByAggregateInput, { nullable: true })
+  _min?: catagoryMinOrderByAggregateInput;
 
-    @Field(() => catagoryMinOrderByAggregateInput, {nullable:true})
-    _min?: catagoryMinOrderByAggregateInput;
-
-    @Field(() => catagorySumOrderByAggregateInput, {nullable:true})
-    _sum?: catagorySumOrderByAggregateInput;
+  @Field(() => catagorySumOrderByAggregateInput, { nullable: true })
+  _sum?: catagorySumOrderByAggregateInput;
 }

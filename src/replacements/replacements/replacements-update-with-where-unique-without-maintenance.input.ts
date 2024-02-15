@@ -6,12 +6,11 @@ import { ReplacementsUpdateWithoutMaintenanceInput } from './replacements-update
 
 @InputType()
 export class ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
-
-    @Field(() => ReplacementsUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutMaintenanceInput)
-    data!: ReplacementsUpdateWithoutMaintenanceInput;
+  @Field(() => ReplacementsUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutMaintenanceInput)
+  data!: ReplacementsUpdateWithoutMaintenanceInput;
 }

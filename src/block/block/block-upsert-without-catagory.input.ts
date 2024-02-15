@@ -6,12 +6,11 @@ import { BlockCreateWithoutCatagoryInput } from './block-create-without-catagory
 
 @InputType()
 export class BlockUpsertWithoutCatagoryInput {
+  @Field(() => BlockUpdateWithoutCatagoryInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutCatagoryInput)
+  update!: BlockUpdateWithoutCatagoryInput;
 
-    @Field(() => BlockUpdateWithoutCatagoryInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutCatagoryInput)
-    update!: BlockUpdateWithoutCatagoryInput;
-
-    @Field(() => BlockCreateWithoutCatagoryInput, {nullable:false})
-    @Type(() => BlockCreateWithoutCatagoryInput)
-    create!: BlockCreateWithoutCatagoryInput;
+  @Field(() => BlockCreateWithoutCatagoryInput, { nullable: false })
+  @Type(() => BlockCreateWithoutCatagoryInput)
+  create!: BlockCreateWithoutCatagoryInput;
 }

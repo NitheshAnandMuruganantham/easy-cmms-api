@@ -6,13 +6,12 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class InvoicesSumAggregate {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => Float, { nullable: true })
+  total?: number;
 
-    @Field(() => Float, {nullable:true})
-    total?: number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    block_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  block_id?: bigint | number;
 }

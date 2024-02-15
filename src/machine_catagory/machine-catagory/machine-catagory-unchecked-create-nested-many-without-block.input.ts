@@ -8,20 +8,21 @@ import { machine_catagoryWhereUniqueInput } from './machine-catagory-where-uniqu
 
 @InputType()
 export class machine_catagoryUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [machine_catagoryCreateWithoutBlockInput], { nullable: true })
+  @Type(() => machine_catagoryCreateWithoutBlockInput)
+  create?: Array<machine_catagoryCreateWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryCreateWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryCreateWithoutBlockInput)
-    create?: Array<machine_catagoryCreateWithoutBlockInput>;
+  @Field(() => [machine_catagoryCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<machine_catagoryCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<machine_catagoryCreateOrConnectWithoutBlockInput>;
+  @Field(() => machine_catagoryCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => machine_catagoryCreateManyBlockInputEnvelope)
+  createMany?: machine_catagoryCreateManyBlockInputEnvelope;
 
-    @Field(() => machine_catagoryCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => machine_catagoryCreateManyBlockInputEnvelope)
-    createMany?: machine_catagoryCreateManyBlockInputEnvelope;
-
-    @Field(() => [machine_catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    connect?: Array<machine_catagoryWhereUniqueInput>;
+  @Field(() => [machine_catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  connect?: Array<machine_catagoryWhereUniqueInput>;
 }

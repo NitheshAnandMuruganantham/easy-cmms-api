@@ -6,12 +6,11 @@ import { invoice_itemsUpdateWithoutItemInput } from './invoice-items-update-with
 
 @InputType()
 export class invoice_itemsUpdateWithWhereUniqueWithoutItemInput {
+  @Field(() => invoice_itemsWhereUniqueInput, { nullable: false })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  where!: invoice_itemsWhereUniqueInput;
 
-    @Field(() => invoice_itemsWhereUniqueInput, {nullable:false})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    where!: invoice_itemsWhereUniqueInput;
-
-    @Field(() => invoice_itemsUpdateWithoutItemInput, {nullable:false})
-    @Type(() => invoice_itemsUpdateWithoutItemInput)
-    data!: invoice_itemsUpdateWithoutItemInput;
+  @Field(() => invoice_itemsUpdateWithoutItemInput, { nullable: false })
+  @Type(() => invoice_itemsUpdateWithoutItemInput)
+  data!: invoice_itemsUpdateWithoutItemInput;
 }

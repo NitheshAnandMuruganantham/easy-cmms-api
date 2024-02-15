@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneTicketArgs {
-
-    @Field(() => TicketCreateInput, {nullable:false})
-    @Type(() => TicketCreateInput)
-    data!: TicketCreateInput;
+  @Field(() => TicketCreateInput, { nullable: false })
+  @Type(() => TicketCreateInput)
+  data!: TicketCreateInput;
 }

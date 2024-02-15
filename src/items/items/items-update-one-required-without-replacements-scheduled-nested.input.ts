@@ -9,24 +9,31 @@ import { ItemsUpdateWithoutReplacements_scheduledInput } from './items-update-wi
 
 @InputType()
 export class ItemsUpdateOneRequiredWithoutReplacements_scheduledNestedInput {
+  @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
+  create?: ItemsCreateWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
-    create?: ItemsCreateWithoutReplacements_scheduledInput;
+  @Field(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutReplacements_scheduledInput;
+  @Field(() => ItemsUpsertWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsUpsertWithoutReplacements_scheduledInput)
+  upsert?: ItemsUpsertWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsUpsertWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsUpsertWithoutReplacements_scheduledInput)
-    upsert?: ItemsUpsertWithoutReplacements_scheduledInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsUpdateWithoutReplacements_scheduledInput)
-    update?: ItemsUpdateWithoutReplacements_scheduledInput;
+  @Field(() => ItemsUpdateWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsUpdateWithoutReplacements_scheduledInput)
+  update?: ItemsUpdateWithoutReplacements_scheduledInput;
 }

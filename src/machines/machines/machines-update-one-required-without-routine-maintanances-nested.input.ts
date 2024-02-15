@@ -9,24 +9,31 @@ import { MachinesUpdateWithoutRoutine_maintanancesInput } from './machines-updat
 
 @InputType()
 export class MachinesUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
+  @Field(() => MachinesCreateWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateWithoutRoutine_maintanancesInput)
+  create?: MachinesCreateWithoutRoutine_maintanancesInput;
 
-    @Field(() => MachinesCreateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => MachinesCreateWithoutRoutine_maintanancesInput)
-    create?: MachinesCreateWithoutRoutine_maintanancesInput;
+  @Field(() => MachinesCreateOrConnectWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateOrConnectWithoutRoutine_maintanancesInput)
+  connectOrCreate?: MachinesCreateOrConnectWithoutRoutine_maintanancesInput;
 
-    @Field(() => MachinesCreateOrConnectWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutRoutine_maintanancesInput)
-    connectOrCreate?: MachinesCreateOrConnectWithoutRoutine_maintanancesInput;
+  @Field(() => MachinesUpsertWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesUpsertWithoutRoutine_maintanancesInput)
+  upsert?: MachinesUpsertWithoutRoutine_maintanancesInput;
 
-    @Field(() => MachinesUpsertWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => MachinesUpsertWithoutRoutine_maintanancesInput)
-    upsert?: MachinesUpsertWithoutRoutine_maintanancesInput;
+  @Field(() => MachinesWhereUniqueInput, { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesUpdateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => MachinesUpdateWithoutRoutine_maintanancesInput)
-    update?: MachinesUpdateWithoutRoutine_maintanancesInput;
+  @Field(() => MachinesUpdateWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesUpdateWithoutRoutine_maintanancesInput)
+  update?: MachinesUpdateWithoutRoutine_maintanancesInput;
 }

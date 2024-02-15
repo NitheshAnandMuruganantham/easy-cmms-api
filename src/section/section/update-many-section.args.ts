@@ -6,12 +6,11 @@ import { SectionWhereInput } from './section-where.input';
 
 @ArgsType()
 export class UpdateManySectionArgs {
+  @Field(() => SectionUpdateManyMutationInput, { nullable: false })
+  @Type(() => SectionUpdateManyMutationInput)
+  data!: SectionUpdateManyMutationInput;
 
-    @Field(() => SectionUpdateManyMutationInput, {nullable:false})
-    @Type(() => SectionUpdateManyMutationInput)
-    data!: SectionUpdateManyMutationInput;
-
-    @Field(() => SectionWhereInput, {nullable:true})
-    @Type(() => SectionWhereInput)
-    where?: SectionWhereInput;
+  @Field(() => SectionWhereInput, { nullable: true })
+  @Type(() => SectionWhereInput)
+  where?: SectionWhereInput;
 }

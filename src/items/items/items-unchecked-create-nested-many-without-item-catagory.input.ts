@@ -8,20 +8,21 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @InputType()
 export class ItemsUncheckedCreateNestedManyWithoutItemCatagoryInput {
+  @Field(() => [ItemsCreateWithoutItemCatagoryInput], { nullable: true })
+  @Type(() => ItemsCreateWithoutItemCatagoryInput)
+  create?: Array<ItemsCreateWithoutItemCatagoryInput>;
 
-    @Field(() => [ItemsCreateWithoutItemCatagoryInput], {nullable:true})
-    @Type(() => ItemsCreateWithoutItemCatagoryInput)
-    create?: Array<ItemsCreateWithoutItemCatagoryInput>;
+  @Field(() => [ItemsCreateOrConnectWithoutItemCatagoryInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutItemCatagoryInput)
+  connectOrCreate?: Array<ItemsCreateOrConnectWithoutItemCatagoryInput>;
 
-    @Field(() => [ItemsCreateOrConnectWithoutItemCatagoryInput], {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutItemCatagoryInput)
-    connectOrCreate?: Array<ItemsCreateOrConnectWithoutItemCatagoryInput>;
+  @Field(() => ItemsCreateManyItemCatagoryInputEnvelope, { nullable: true })
+  @Type(() => ItemsCreateManyItemCatagoryInputEnvelope)
+  createMany?: ItemsCreateManyItemCatagoryInputEnvelope;
 
-    @Field(() => ItemsCreateManyItemCatagoryInputEnvelope, {nullable:true})
-    @Type(() => ItemsCreateManyItemCatagoryInputEnvelope)
-    createMany?: ItemsCreateManyItemCatagoryInputEnvelope;
-
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: Array<ItemsWhereUniqueInput>;
 }

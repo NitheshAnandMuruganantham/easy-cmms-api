@@ -6,12 +6,11 @@ import { ReportsUpdateWithoutMaintenanceInput } from './reports-update-without-m
 
 @InputType()
 export class ReportsUpdateWithWhereUniqueWithoutMaintenanceInput {
+  @Field(() => ReportsWhereUniqueInput, { nullable: false })
+  @Type(() => ReportsWhereUniqueInput)
+  where!: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:false})
-    @Type(() => ReportsWhereUniqueInput)
-    where!: ReportsWhereUniqueInput;
-
-    @Field(() => ReportsUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReportsUpdateWithoutMaintenanceInput)
-    data!: ReportsUpdateWithoutMaintenanceInput;
+  @Field(() => ReportsUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReportsUpdateWithoutMaintenanceInput)
+  data!: ReportsUpdateWithoutMaintenanceInput;
 }

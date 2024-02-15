@@ -6,12 +6,11 @@ import { MachinesWhereUniqueInput } from './machines-where-unique.input';
 
 @ArgsType()
 export class UpdateOneMachinesArgs {
+  @Field(() => MachinesUpdateInput, { nullable: false })
+  @Type(() => MachinesUpdateInput)
+  data!: MachinesUpdateInput;
 
-    @Field(() => MachinesUpdateInput, {nullable:false})
-    @Type(() => MachinesUpdateInput)
-    data!: MachinesUpdateInput;
-
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 }

@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutMachinesInput } from './maintenance-create-with
 
 @InputType()
 export class MaintenanceCreateOrConnectWithoutMachinesInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutMachinesInput)
-    create!: MaintenanceCreateWithoutMachinesInput;
+  @Field(() => MaintenanceCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutMachinesInput)
+  create!: MaintenanceCreateWithoutMachinesInput;
 }

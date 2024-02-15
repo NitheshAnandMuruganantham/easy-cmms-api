@@ -6,12 +6,11 @@ import { BlockCreateWithoutSectionsInput } from './block-create-without-sections
 
 @InputType()
 export class BlockUpsertWithoutSectionsInput {
+  @Field(() => BlockUpdateWithoutSectionsInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutSectionsInput)
+  update!: BlockUpdateWithoutSectionsInput;
 
-    @Field(() => BlockUpdateWithoutSectionsInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutSectionsInput)
-    update!: BlockUpdateWithoutSectionsInput;
-
-    @Field(() => BlockCreateWithoutSectionsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutSectionsInput)
-    create!: BlockCreateWithoutSectionsInput;
+  @Field(() => BlockCreateWithoutSectionsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutSectionsInput)
+  create!: BlockCreateWithoutSectionsInput;
 }

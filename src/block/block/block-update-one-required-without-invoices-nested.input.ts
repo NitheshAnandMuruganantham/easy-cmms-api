@@ -9,24 +9,23 @@ import { BlockUpdateWithoutInvoicesInput } from './block-update-without-invoices
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutInvoicesNestedInput {
+  @Field(() => BlockCreateWithoutInvoicesInput, { nullable: true })
+  @Type(() => BlockCreateWithoutInvoicesInput)
+  create?: BlockCreateWithoutInvoicesInput;
 
-    @Field(() => BlockCreateWithoutInvoicesInput, {nullable:true})
-    @Type(() => BlockCreateWithoutInvoicesInput)
-    create?: BlockCreateWithoutInvoicesInput;
+  @Field(() => BlockCreateOrConnectWithoutInvoicesInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutInvoicesInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutInvoicesInput;
 
-    @Field(() => BlockCreateOrConnectWithoutInvoicesInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutInvoicesInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutInvoicesInput;
+  @Field(() => BlockUpsertWithoutInvoicesInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutInvoicesInput)
+  upsert?: BlockUpsertWithoutInvoicesInput;
 
-    @Field(() => BlockUpsertWithoutInvoicesInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutInvoicesInput)
-    upsert?: BlockUpsertWithoutInvoicesInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutInvoicesInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutInvoicesInput)
-    update?: BlockUpdateWithoutInvoicesInput;
+  @Field(() => BlockUpdateWithoutInvoicesInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutInvoicesInput)
+  update?: BlockUpdateWithoutInvoicesInput;
 }

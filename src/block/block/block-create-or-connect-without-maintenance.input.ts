@@ -6,12 +6,11 @@ import { BlockCreateWithoutMaintenanceInput } from './block-create-without-maint
 
 @InputType()
 export class BlockCreateOrConnectWithoutMaintenanceInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => BlockCreateWithoutMaintenanceInput)
-    create!: BlockCreateWithoutMaintenanceInput;
+  @Field(() => BlockCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => BlockCreateWithoutMaintenanceInput)
+  create!: BlockCreateWithoutMaintenanceInput;
 }

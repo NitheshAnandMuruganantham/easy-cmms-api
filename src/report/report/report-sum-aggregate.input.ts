@@ -3,16 +3,15 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class ReportSumAggregateInput {
+  @Field(() => Boolean, { nullable: true })
+  id?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
+  @Field(() => Boolean, { nullable: true })
+  validated?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    validated?: true;
+  @Field(() => Boolean, { nullable: true })
+  validated_sign?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    validated_sign?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    maintance_id?: true;
+  @Field(() => Boolean, { nullable: true })
+  maintance_id?: true;
 }

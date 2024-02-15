@@ -11,49 +11,48 @@ import { ReportsMaxAggregate } from './reports-max-aggregate.output';
 
 @ObjectType()
 export class ReportsGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  report!: string;
 
-    @Field(() => String, {nullable:false})
-    report!: string;
+  @Field(() => String, { nullable: false })
+  sign!: string;
 
-    @Field(() => String, {nullable:false})
-    sign!: string;
+  @Field(() => GraphQLJSON, { nullable: false })
+  tag!: any;
 
-    @Field(() => GraphQLJSON, {nullable:false})
-    tag!: any;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  validated!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    validated!: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  validated_sign!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    validated_sign!: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  maintance_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    maintance_id!: bigint | number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => ReportsCountAggregate, { nullable: true })
+  _count?: ReportsCountAggregate;
 
-    @Field(() => ReportsCountAggregate, {nullable:true})
-    _count?: ReportsCountAggregate;
+  @Field(() => ReportsAvgAggregate, { nullable: true })
+  _avg?: ReportsAvgAggregate;
 
-    @Field(() => ReportsAvgAggregate, {nullable:true})
-    _avg?: ReportsAvgAggregate;
+  @Field(() => ReportsSumAggregate, { nullable: true })
+  _sum?: ReportsSumAggregate;
 
-    @Field(() => ReportsSumAggregate, {nullable:true})
-    _sum?: ReportsSumAggregate;
+  @Field(() => ReportsMinAggregate, { nullable: true })
+  _min?: ReportsMinAggregate;
 
-    @Field(() => ReportsMinAggregate, {nullable:true})
-    _min?: ReportsMinAggregate;
-
-    @Field(() => ReportsMaxAggregate, {nullable:true})
-    _max?: ReportsMaxAggregate;
+  @Field(() => ReportsMaxAggregate, { nullable: true })
+  _max?: ReportsMaxAggregate;
 }

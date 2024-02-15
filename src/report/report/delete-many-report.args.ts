@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyReportArgs {
-
-    @Field(() => ReportWhereInput, {nullable:true})
-    @Type(() => ReportWhereInput)
-    where?: ReportWhereInput;
+  @Field(() => ReportWhereInput, { nullable: true })
+  @Type(() => ReportWhereInput)
+  where?: ReportWhereInput;
 }

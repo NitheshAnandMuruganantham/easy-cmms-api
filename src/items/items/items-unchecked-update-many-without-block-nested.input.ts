@@ -12,48 +12,51 @@ import { ItemsScalarWhereInput } from './items-scalar-where.input';
 
 @InputType()
 export class ItemsUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [ItemsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ItemsCreateWithoutBlockInput)
+  create?: Array<ItemsCreateWithoutBlockInput>;
 
-    @Field(() => [ItemsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsCreateWithoutBlockInput)
-    create?: Array<ItemsCreateWithoutBlockInput>;
+  @Field(() => [ItemsCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => ItemsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ItemsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ItemsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ItemsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [ItemsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<ItemsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ItemsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<ItemsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => ItemsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ItemsCreateManyBlockInputEnvelope)
+  createMany?: ItemsCreateManyBlockInputEnvelope;
 
-    @Field(() => ItemsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ItemsCreateManyBlockInputEnvelope)
-    createMany?: ItemsCreateManyBlockInputEnvelope;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  set?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    set?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  disconnect?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    disconnect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  delete?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    delete?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: Array<ItemsWhereUniqueInput>;
 
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ItemsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<ItemsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ItemsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<ItemsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [ItemsUpdateManyWithWhereWithoutBlockInput], { nullable: true })
+  @Type(() => ItemsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<ItemsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [ItemsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<ItemsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [ItemsScalarWhereInput], {nullable:true})
-    @Type(() => ItemsScalarWhereInput)
-    deleteMany?: Array<ItemsScalarWhereInput>;
+  @Field(() => [ItemsScalarWhereInput], { nullable: true })
+  @Type(() => ItemsScalarWhereInput)
+  deleteMany?: Array<ItemsScalarWhereInput>;
 }

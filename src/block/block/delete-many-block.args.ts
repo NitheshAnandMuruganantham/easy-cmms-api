@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyBlockArgs {
-
-    @Field(() => BlockWhereInput, {nullable:true})
-    @Type(() => BlockWhereInput)
-    where?: BlockWhereInput;
+  @Field(() => BlockWhereInput, { nullable: true })
+  @Type(() => BlockWhereInput)
+  where?: BlockWhereInput;
 }

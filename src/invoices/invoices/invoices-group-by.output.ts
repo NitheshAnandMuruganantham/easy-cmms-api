@@ -11,40 +11,39 @@ import { InvoicesMaxAggregate } from './invoices-max-aggregate.output';
 
 @ObjectType()
 export class InvoicesGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => Float, { nullable: false })
+  total!: number;
 
-    @Field(() => Float, {nullable:false})
-    total!: number;
+  @Field(() => Date, { nullable: false })
+  invoice_date!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    invoice_date!: Date | string;
+  @Field(() => String, { nullable: false })
+  number!: string;
 
-    @Field(() => String, {nullable:false})
-    number!: string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => InvoicesCountAggregate, { nullable: true })
+  _count?: InvoicesCountAggregate;
 
-    @Field(() => InvoicesCountAggregate, {nullable:true})
-    _count?: InvoicesCountAggregate;
+  @Field(() => InvoicesAvgAggregate, { nullable: true })
+  _avg?: InvoicesAvgAggregate;
 
-    @Field(() => InvoicesAvgAggregate, {nullable:true})
-    _avg?: InvoicesAvgAggregate;
+  @Field(() => InvoicesSumAggregate, { nullable: true })
+  _sum?: InvoicesSumAggregate;
 
-    @Field(() => InvoicesSumAggregate, {nullable:true})
-    _sum?: InvoicesSumAggregate;
+  @Field(() => InvoicesMinAggregate, { nullable: true })
+  _min?: InvoicesMinAggregate;
 
-    @Field(() => InvoicesMinAggregate, {nullable:true})
-    _min?: InvoicesMinAggregate;
-
-    @Field(() => InvoicesMaxAggregate, {nullable:true})
-    _max?: InvoicesMaxAggregate;
+  @Field(() => InvoicesMaxAggregate, { nullable: true })
+  _max?: InvoicesMaxAggregate;
 }

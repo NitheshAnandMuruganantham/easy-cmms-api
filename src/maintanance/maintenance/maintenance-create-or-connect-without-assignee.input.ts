@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutAssigneeInput } from './maintenance-create-with
 
 @InputType()
 export class MaintenanceCreateOrConnectWithoutAssigneeInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceCreateWithoutAssigneeInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutAssigneeInput)
-    create!: MaintenanceCreateWithoutAssigneeInput;
+  @Field(() => MaintenanceCreateWithoutAssigneeInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutAssigneeInput)
+  create!: MaintenanceCreateWithoutAssigneeInput;
 }

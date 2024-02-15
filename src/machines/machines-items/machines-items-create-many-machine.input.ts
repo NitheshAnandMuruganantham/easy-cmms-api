@@ -5,13 +5,12 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class machines_itemsCreateManyMachineInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  item_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    item_id!: bigint | number;
-
-    @HideField()
-    block_id!: bigint | number;
+  @HideField()
+  block_id!: bigint | number;
 }

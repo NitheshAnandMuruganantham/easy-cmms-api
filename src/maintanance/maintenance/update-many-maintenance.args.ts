@@ -6,12 +6,11 @@ import { MaintenanceWhereInput } from './maintenance-where.input';
 
 @ArgsType()
 export class UpdateManyMaintenanceArgs {
+  @Field(() => MaintenanceUpdateManyMutationInput, { nullable: false })
+  @Type(() => MaintenanceUpdateManyMutationInput)
+  data!: MaintenanceUpdateManyMutationInput;
 
-    @Field(() => MaintenanceUpdateManyMutationInput, {nullable:false})
-    @Type(() => MaintenanceUpdateManyMutationInput)
-    data!: MaintenanceUpdateManyMutationInput;
-
-    @Field(() => MaintenanceWhereInput, {nullable:true})
-    @Type(() => MaintenanceWhereInput)
-    where?: MaintenanceWhereInput;
+  @Field(() => MaintenanceWhereInput, { nullable: true })
+  @Type(() => MaintenanceWhereInput)
+  where?: MaintenanceWhereInput;
 }

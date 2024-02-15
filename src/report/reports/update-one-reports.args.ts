@@ -6,12 +6,11 @@ import { ReportsWhereUniqueInput } from './reports-where-unique.input';
 
 @ArgsType()
 export class UpdateOneReportsArgs {
+  @Field(() => ReportsUpdateInput, { nullable: false })
+  @Type(() => ReportsUpdateInput)
+  data!: ReportsUpdateInput;
 
-    @Field(() => ReportsUpdateInput, {nullable:false})
-    @Type(() => ReportsUpdateInput)
-    data!: ReportsUpdateInput;
-
-    @Field(() => ReportsWhereUniqueInput, {nullable:false})
-    @Type(() => ReportsWhereUniqueInput)
-    where!: ReportsWhereUniqueInput;
+  @Field(() => ReportsWhereUniqueInput, { nullable: false })
+  @Type(() => ReportsWhereUniqueInput)
+  where!: ReportsWhereUniqueInput;
 }

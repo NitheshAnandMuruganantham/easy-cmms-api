@@ -9,30 +9,29 @@ import { TicketUpdateWithoutMaintenanceInput } from './ticket-update-without-mai
 
 @InputType()
 export class TicketUncheckedUpdateOneWithoutMaintenanceNestedInput {
+  @Field(() => TicketCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketCreateWithoutMaintenanceInput)
+  create?: TicketCreateWithoutMaintenanceInput;
 
-    @Field(() => TicketCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketCreateWithoutMaintenanceInput)
-    create?: TicketCreateWithoutMaintenanceInput;
+  @Field(() => TicketCreateOrConnectWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: TicketCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => TicketCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: TicketCreateOrConnectWithoutMaintenanceInput;
+  @Field(() => TicketUpsertWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketUpsertWithoutMaintenanceInput)
+  upsert?: TicketUpsertWithoutMaintenanceInput;
 
-    @Field(() => TicketUpsertWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketUpsertWithoutMaintenanceInput)
-    upsert?: TicketUpsertWithoutMaintenanceInput;
+  @Field(() => Boolean, { nullable: true })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  delete?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
+  @Field(() => TicketWhereUniqueInput, { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  connect?: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    connect?: TicketWhereUniqueInput;
-
-    @Field(() => TicketUpdateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketUpdateWithoutMaintenanceInput)
-    update?: TicketUpdateWithoutMaintenanceInput;
+  @Field(() => TicketUpdateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketUpdateWithoutMaintenanceInput)
+  update?: TicketUpdateWithoutMaintenanceInput;
 }

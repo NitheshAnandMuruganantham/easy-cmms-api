@@ -9,23 +9,22 @@ import { ItemCatagoryScalarFieldEnum } from './item-catagory-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstItemCatagoryArgs {
+  @Field(() => ItemCatagoryWhereInput, { nullable: true })
+  @Type(() => ItemCatagoryWhereInput)
+  where?: ItemCatagoryWhereInput;
 
-    @Field(() => ItemCatagoryWhereInput, {nullable:true})
-    @Type(() => ItemCatagoryWhereInput)
-    where?: ItemCatagoryWhereInput;
+  @Field(() => [ItemCatagoryOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<ItemCatagoryOrderByWithRelationInput>;
 
-    @Field(() => [ItemCatagoryOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<ItemCatagoryOrderByWithRelationInput>;
+  @Field(() => ItemCatagoryWhereUniqueInput, { nullable: true })
+  cursor?: ItemCatagoryWhereUniqueInput;
 
-    @Field(() => ItemCatagoryWhereUniqueInput, {nullable:true})
-    cursor?: ItemCatagoryWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ItemCatagoryScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ItemCatagoryScalarFieldEnum>;
+  @Field(() => [ItemCatagoryScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ItemCatagoryScalarFieldEnum>;
 }

@@ -9,23 +9,24 @@ import { TicketScalarFieldEnum } from './ticket-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstTicketArgs {
+  @Field(() => TicketWhereInput, { nullable: true })
+  @Type(() => TicketWhereInput)
+  where?: TicketWhereInput;
 
-    @Field(() => TicketWhereInput, {nullable:true})
-    @Type(() => TicketWhereInput)
-    where?: TicketWhereInput;
+  @Field(() => [TicketOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<TicketOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [TicketOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<TicketOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => TicketWhereUniqueInput, { nullable: true })
+  cursor?: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:true})
-    cursor?: TicketWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [TicketScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof TicketScalarFieldEnum>;
+  @Field(() => [TicketScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof TicketScalarFieldEnum>;
 }

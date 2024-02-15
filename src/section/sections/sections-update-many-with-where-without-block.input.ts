@@ -6,12 +6,11 @@ import { SectionsUpdateManyMutationInput } from './sections-update-many-mutation
 
 @InputType()
 export class SectionsUpdateManyWithWhereWithoutBlockInput {
+  @Field(() => SectionsScalarWhereInput, { nullable: false })
+  @Type(() => SectionsScalarWhereInput)
+  where!: SectionsScalarWhereInput;
 
-    @Field(() => SectionsScalarWhereInput, {nullable:false})
-    @Type(() => SectionsScalarWhereInput)
-    where!: SectionsScalarWhereInput;
-
-    @Field(() => SectionsUpdateManyMutationInput, {nullable:false})
-    @Type(() => SectionsUpdateManyMutationInput)
-    data!: SectionsUpdateManyMutationInput;
+  @Field(() => SectionsUpdateManyMutationInput, { nullable: false })
+  @Type(() => SectionsUpdateManyMutationInput)
+  data!: SectionsUpdateManyMutationInput;
 }

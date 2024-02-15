@@ -6,12 +6,11 @@ import { MachinesWhereInput } from './machines-where.input';
 
 @ArgsType()
 export class UpdateManyMachinesArgs {
+  @Field(() => MachinesUpdateManyMutationInput, { nullable: false })
+  @Type(() => MachinesUpdateManyMutationInput)
+  data!: MachinesUpdateManyMutationInput;
 
-    @Field(() => MachinesUpdateManyMutationInput, {nullable:false})
-    @Type(() => MachinesUpdateManyMutationInput)
-    data!: MachinesUpdateManyMutationInput;
-
-    @Field(() => MachinesWhereInput, {nullable:true})
-    @Type(() => MachinesWhereInput)
-    where?: MachinesWhereInput;
+  @Field(() => MachinesWhereInput, { nullable: true })
+  @Type(() => MachinesWhereInput)
+  where?: MachinesWhereInput;
 }

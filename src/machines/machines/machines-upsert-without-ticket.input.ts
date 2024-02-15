@@ -6,12 +6,11 @@ import { MachinesCreateWithoutTicketInput } from './machines-create-without-tick
 
 @InputType()
 export class MachinesUpsertWithoutTicketInput {
+  @Field(() => MachinesUpdateWithoutTicketInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutTicketInput)
+  update!: MachinesUpdateWithoutTicketInput;
 
-    @Field(() => MachinesUpdateWithoutTicketInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutTicketInput)
-    update!: MachinesUpdateWithoutTicketInput;
-
-    @Field(() => MachinesCreateWithoutTicketInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutTicketInput)
-    create!: MachinesCreateWithoutTicketInput;
+  @Field(() => MachinesCreateWithoutTicketInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutTicketInput)
+  create!: MachinesCreateWithoutTicketInput;
 }

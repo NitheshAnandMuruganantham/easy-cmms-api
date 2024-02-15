@@ -7,16 +7,15 @@ import { ReportUpdateInput } from './report-update.input';
 
 @ArgsType()
 export class UpsertOneReportArgs {
+  @Field(() => ReportWhereUniqueInput, { nullable: false })
+  @Type(() => ReportWhereUniqueInput)
+  where!: ReportWhereUniqueInput;
 
-    @Field(() => ReportWhereUniqueInput, {nullable:false})
-    @Type(() => ReportWhereUniqueInput)
-    where!: ReportWhereUniqueInput;
+  @Field(() => ReportCreateInput, { nullable: false })
+  @Type(() => ReportCreateInput)
+  create!: ReportCreateInput;
 
-    @Field(() => ReportCreateInput, {nullable:false})
-    @Type(() => ReportCreateInput)
-    create!: ReportCreateInput;
-
-    @Field(() => ReportUpdateInput, {nullable:false})
-    @Type(() => ReportUpdateInput)
-    update!: ReportUpdateInput;
+  @Field(() => ReportUpdateInput, { nullable: false })
+  @Type(() => ReportUpdateInput)
+  update!: ReportUpdateInput;
 }

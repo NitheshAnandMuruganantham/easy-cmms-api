@@ -7,16 +7,15 @@ import { ReplacementsCreateWithoutMaintenanceInput } from './replacements-create
 
 @InputType()
 export class ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
+  @Field(() => ReplacementsUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutMaintenanceInput)
+  update!: ReplacementsUpdateWithoutMaintenanceInput;
 
-    @Field(() => ReplacementsUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutMaintenanceInput)
-    update!: ReplacementsUpdateWithoutMaintenanceInput;
-
-    @Field(() => ReplacementsCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReplacementsCreateWithoutMaintenanceInput)
-    create!: ReplacementsCreateWithoutMaintenanceInput;
+  @Field(() => ReplacementsCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReplacementsCreateWithoutMaintenanceInput)
+  create!: ReplacementsCreateWithoutMaintenanceInput;
 }

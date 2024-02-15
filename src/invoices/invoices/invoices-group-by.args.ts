@@ -14,38 +14,37 @@ import { InvoicesMaxAggregateInput } from './invoices-max-aggregate.input';
 
 @ArgsType()
 export class InvoicesGroupByArgs {
+  @Field(() => InvoicesWhereInput, { nullable: true })
+  @Type(() => InvoicesWhereInput)
+  where?: InvoicesWhereInput;
 
-    @Field(() => InvoicesWhereInput, {nullable:true})
-    @Type(() => InvoicesWhereInput)
-    where?: InvoicesWhereInput;
+  @Field(() => [InvoicesOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<InvoicesOrderByWithAggregationInput>;
 
-    @Field(() => [InvoicesOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<InvoicesOrderByWithAggregationInput>;
+  @Field(() => [InvoicesScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof InvoicesScalarFieldEnum>;
 
-    @Field(() => [InvoicesScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof InvoicesScalarFieldEnum>;
+  @Field(() => InvoicesScalarWhereWithAggregatesInput, { nullable: true })
+  having?: InvoicesScalarWhereWithAggregatesInput;
 
-    @Field(() => InvoicesScalarWhereWithAggregatesInput, {nullable:true})
-    having?: InvoicesScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => InvoicesCountAggregateInput, { nullable: true })
+  _count?: InvoicesCountAggregateInput;
 
-    @Field(() => InvoicesCountAggregateInput, {nullable:true})
-    _count?: InvoicesCountAggregateInput;
+  @Field(() => InvoicesAvgAggregateInput, { nullable: true })
+  _avg?: InvoicesAvgAggregateInput;
 
-    @Field(() => InvoicesAvgAggregateInput, {nullable:true})
-    _avg?: InvoicesAvgAggregateInput;
+  @Field(() => InvoicesSumAggregateInput, { nullable: true })
+  _sum?: InvoicesSumAggregateInput;
 
-    @Field(() => InvoicesSumAggregateInput, {nullable:true})
-    _sum?: InvoicesSumAggregateInput;
+  @Field(() => InvoicesMinAggregateInput, { nullable: true })
+  _min?: InvoicesMinAggregateInput;
 
-    @Field(() => InvoicesMinAggregateInput, {nullable:true})
-    _min?: InvoicesMinAggregateInput;
-
-    @Field(() => InvoicesMaxAggregateInput, {nullable:true})
-    _max?: InvoicesMaxAggregateInput;
+  @Field(() => InvoicesMaxAggregateInput, { nullable: true })
+  _max?: InvoicesMaxAggregateInput;
 }

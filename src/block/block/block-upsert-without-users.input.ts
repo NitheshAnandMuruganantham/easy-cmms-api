@@ -6,12 +6,11 @@ import { BlockCreateWithoutUsersInput } from './block-create-without-users.input
 
 @InputType()
 export class BlockUpsertWithoutUsersInput {
+  @Field(() => BlockUpdateWithoutUsersInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutUsersInput)
+  update!: BlockUpdateWithoutUsersInput;
 
-    @Field(() => BlockUpdateWithoutUsersInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutUsersInput)
-    update!: BlockUpdateWithoutUsersInput;
-
-    @Field(() => BlockCreateWithoutUsersInput, {nullable:false})
-    @Type(() => BlockCreateWithoutUsersInput)
-    create!: BlockCreateWithoutUsersInput;
+  @Field(() => BlockCreateWithoutUsersInput, { nullable: false })
+  @Type(() => BlockCreateWithoutUsersInput)
+  create!: BlockCreateWithoutUsersInput;
 }

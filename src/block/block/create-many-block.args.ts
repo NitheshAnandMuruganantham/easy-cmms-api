@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyBlockArgs {
+  @Field(() => [BlockCreateManyInput], { nullable: false })
+  @Type(() => BlockCreateManyInput)
+  data!: Array<BlockCreateManyInput>;
 
-    @Field(() => [BlockCreateManyInput], {nullable:false})
-    @Type(() => BlockCreateManyInput)
-    data!: Array<BlockCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

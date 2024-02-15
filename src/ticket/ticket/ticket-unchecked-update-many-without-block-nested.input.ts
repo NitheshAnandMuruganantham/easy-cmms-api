@@ -12,48 +12,51 @@ import { TicketScalarWhereInput } from './ticket-scalar-where.input';
 
 @InputType()
 export class TicketUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [TicketCreateWithoutBlockInput], { nullable: true })
+  @Type(() => TicketCreateWithoutBlockInput)
+  create?: Array<TicketCreateWithoutBlockInput>;
 
-    @Field(() => [TicketCreateWithoutBlockInput], {nullable:true})
-    @Type(() => TicketCreateWithoutBlockInput)
-    create?: Array<TicketCreateWithoutBlockInput>;
+  @Field(() => [TicketCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => TicketCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<TicketCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [TicketCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => TicketCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<TicketCreateOrConnectWithoutBlockInput>;
+  @Field(() => [TicketUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => TicketUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<TicketUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [TicketUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => TicketUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<TicketUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => TicketCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => TicketCreateManyBlockInputEnvelope)
+  createMany?: TicketCreateManyBlockInputEnvelope;
 
-    @Field(() => TicketCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => TicketCreateManyBlockInputEnvelope)
-    createMany?: TicketCreateManyBlockInputEnvelope;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  set?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    set?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  disconnect?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    disconnect?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  delete?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    delete?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  connect?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    connect?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => TicketUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<TicketUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [TicketUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => TicketUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<TicketUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [TicketUpdateManyWithWhereWithoutBlockInput], { nullable: true })
+  @Type(() => TicketUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<TicketUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [TicketUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => TicketUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<TicketUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [TicketScalarWhereInput], {nullable:true})
-    @Type(() => TicketScalarWhereInput)
-    deleteMany?: Array<TicketScalarWhereInput>;
+  @Field(() => [TicketScalarWhereInput], { nullable: true })
+  @Type(() => TicketScalarWhereInput)
+  deleteMany?: Array<TicketScalarWhereInput>;
 }

@@ -6,12 +6,13 @@ import { routine_maintanancesUpdateWithoutMeachineInput } from './routine-mainta
 
 @InputType()
 export class routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput {
+  @Field(() => routine_maintanancesWhereUniqueInput, { nullable: false })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  where!: routine_maintanancesWhereUniqueInput;
 
-    @Field(() => routine_maintanancesWhereUniqueInput, {nullable:false})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    where!: routine_maintanancesWhereUniqueInput;
-
-    @Field(() => routine_maintanancesUpdateWithoutMeachineInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateWithoutMeachineInput)
-    data!: routine_maintanancesUpdateWithoutMeachineInput;
+  @Field(() => routine_maintanancesUpdateWithoutMeachineInput, {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesUpdateWithoutMeachineInput)
+  data!: routine_maintanancesUpdateWithoutMeachineInput;
 }

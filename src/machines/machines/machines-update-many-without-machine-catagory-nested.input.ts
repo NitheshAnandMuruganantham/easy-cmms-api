@@ -12,48 +12,57 @@ import { MachinesScalarWhereInput } from './machines-scalar-where.input';
 
 @InputType()
 export class MachinesUpdateManyWithoutMachine_catagoryNestedInput {
+  @Field(() => [MachinesCreateWithoutMachine_catagoryInput], { nullable: true })
+  @Type(() => MachinesCreateWithoutMachine_catagoryInput)
+  create?: Array<MachinesCreateWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesCreateWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesCreateWithoutMachine_catagoryInput)
-    create?: Array<MachinesCreateWithoutMachine_catagoryInput>;
+  @Field(() => [MachinesCreateOrConnectWithoutMachine_catagoryInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateOrConnectWithoutMachine_catagoryInput)
+  connectOrCreate?: Array<MachinesCreateOrConnectWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesCreateOrConnectWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutMachine_catagoryInput)
-    connectOrCreate?: Array<MachinesCreateOrConnectWithoutMachine_catagoryInput>;
+  @Field(() => [MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput)
+  upsert?: Array<MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput)
-    upsert?: Array<MachinesUpsertWithWhereUniqueWithoutMachine_catagoryInput>;
+  @Field(() => MachinesCreateManyMachine_catagoryInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateManyMachine_catagoryInputEnvelope)
+  createMany?: MachinesCreateManyMachine_catagoryInputEnvelope;
 
-    @Field(() => MachinesCreateManyMachine_catagoryInputEnvelope, {nullable:true})
-    @Type(() => MachinesCreateManyMachine_catagoryInputEnvelope)
-    createMany?: MachinesCreateManyMachine_catagoryInputEnvelope;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  set?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    set?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  disconnect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    disconnect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  delete?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    delete?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput)
+  update?: Array<MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput)
-    update?: Array<MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput>;
+  @Field(() => [MachinesUpdateManyWithWhereWithoutMachine_catagoryInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpdateManyWithWhereWithoutMachine_catagoryInput)
+  updateMany?: Array<MachinesUpdateManyWithWhereWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesUpdateManyWithWhereWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesUpdateManyWithWhereWithoutMachine_catagoryInput)
-    updateMany?: Array<MachinesUpdateManyWithWhereWithoutMachine_catagoryInput>;
-
-    @Field(() => [MachinesScalarWhereInput], {nullable:true})
-    @Type(() => MachinesScalarWhereInput)
-    deleteMany?: Array<MachinesScalarWhereInput>;
+  @Field(() => [MachinesScalarWhereInput], { nullable: true })
+  @Type(() => MachinesScalarWhereInput)
+  deleteMany?: Array<MachinesScalarWhereInput>;
 }

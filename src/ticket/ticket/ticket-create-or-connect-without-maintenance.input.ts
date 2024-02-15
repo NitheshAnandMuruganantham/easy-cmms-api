@@ -6,12 +6,11 @@ import { TicketCreateWithoutMaintenanceInput } from './ticket-create-without-mai
 
 @InputType()
 export class TicketCreateOrConnectWithoutMaintenanceInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
-
-    @Field(() => TicketCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => TicketCreateWithoutMaintenanceInput)
-    create!: TicketCreateWithoutMaintenanceInput;
+  @Field(() => TicketCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => TicketCreateWithoutMaintenanceInput)
+  create!: TicketCreateWithoutMaintenanceInput;
 }

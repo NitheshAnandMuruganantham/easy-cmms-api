@@ -4,19 +4,18 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @InputType()
 export class NullableBigIntFieldUpdateOperationsInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  set?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    set?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  increment?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    increment?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  decrement?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    decrement?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  multiply?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    multiply?: bigint | number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    divide?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  divide?: bigint | number;
 }

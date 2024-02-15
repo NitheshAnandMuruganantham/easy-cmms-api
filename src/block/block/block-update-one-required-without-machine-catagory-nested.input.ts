@@ -9,24 +9,25 @@ import { BlockUpdateWithoutMachine_catagoryInput } from './block-update-without-
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutMachine_catagoryNestedInput {
+  @Field(() => BlockCreateWithoutMachine_catagoryInput, { nullable: true })
+  @Type(() => BlockCreateWithoutMachine_catagoryInput)
+  create?: BlockCreateWithoutMachine_catagoryInput;
 
-    @Field(() => BlockCreateWithoutMachine_catagoryInput, {nullable:true})
-    @Type(() => BlockCreateWithoutMachine_catagoryInput)
-    create?: BlockCreateWithoutMachine_catagoryInput;
+  @Field(() => BlockCreateOrConnectWithoutMachine_catagoryInput, {
+    nullable: true,
+  })
+  @Type(() => BlockCreateOrConnectWithoutMachine_catagoryInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutMachine_catagoryInput;
 
-    @Field(() => BlockCreateOrConnectWithoutMachine_catagoryInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutMachine_catagoryInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutMachine_catagoryInput;
+  @Field(() => BlockUpsertWithoutMachine_catagoryInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutMachine_catagoryInput)
+  upsert?: BlockUpsertWithoutMachine_catagoryInput;
 
-    @Field(() => BlockUpsertWithoutMachine_catagoryInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutMachine_catagoryInput)
-    upsert?: BlockUpsertWithoutMachine_catagoryInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutMachine_catagoryInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutMachine_catagoryInput)
-    update?: BlockUpdateWithoutMachine_catagoryInput;
+  @Field(() => BlockUpdateWithoutMachine_catagoryInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutMachine_catagoryInput)
+  update?: BlockUpdateWithoutMachine_catagoryInput;
 }

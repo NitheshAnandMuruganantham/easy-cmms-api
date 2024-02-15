@@ -7,16 +7,15 @@ import { MaintenanceCreateWithoutBlockInput } from './maintenance-create-without
 
 @InputType()
 export class MaintenanceUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutBlockInput)
+  update!: MaintenanceUpdateWithoutBlockInput;
 
-    @Field(() => MaintenanceUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutBlockInput)
-    update!: MaintenanceUpdateWithoutBlockInput;
-
-    @Field(() => MaintenanceCreateWithoutBlockInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutBlockInput)
-    create!: MaintenanceCreateWithoutBlockInput;
+  @Field(() => MaintenanceCreateWithoutBlockInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutBlockInput)
+  create!: MaintenanceCreateWithoutBlockInput;
 }

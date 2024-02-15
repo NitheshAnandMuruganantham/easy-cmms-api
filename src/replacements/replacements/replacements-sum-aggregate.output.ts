@@ -6,19 +6,18 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class ReplacementsSumAggregate {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => Int, { nullable: true })
+  quantity?: number;
 
-    @Field(() => Int, {nullable:true})
-    quantity?: number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  item_id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    item_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  maintanance_id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    maintanance_id?: bigint | number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    block_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  block_id?: bigint | number;
 }

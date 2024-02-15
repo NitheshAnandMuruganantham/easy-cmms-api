@@ -13,35 +13,36 @@ import { ReportsMaxAggregateInput } from './reports-max-aggregate.input';
 
 @ArgsType()
 export class ReportsAggregateArgs {
+  @Field(() => ReportsWhereInput, { nullable: true })
+  @Type(() => ReportsWhereInput)
+  where?: ReportsWhereInput;
 
-    @Field(() => ReportsWhereInput, {nullable:true})
-    @Type(() => ReportsWhereInput)
-    where?: ReportsWhereInput;
+  @Field(() => [ReportsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ReportsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [ReportsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<ReportsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => ReportsWhereUniqueInput, { nullable: true })
+  cursor?: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:true})
-    cursor?: ReportsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ReportsCountAggregateInput, { nullable: true })
+  _count?: ReportsCountAggregateInput;
 
-    @Field(() => ReportsCountAggregateInput, {nullable:true})
-    _count?: ReportsCountAggregateInput;
+  @Field(() => ReportsAvgAggregateInput, { nullable: true })
+  _avg?: ReportsAvgAggregateInput;
 
-    @Field(() => ReportsAvgAggregateInput, {nullable:true})
-    _avg?: ReportsAvgAggregateInput;
+  @Field(() => ReportsSumAggregateInput, { nullable: true })
+  _sum?: ReportsSumAggregateInput;
 
-    @Field(() => ReportsSumAggregateInput, {nullable:true})
-    _sum?: ReportsSumAggregateInput;
+  @Field(() => ReportsMinAggregateInput, { nullable: true })
+  _min?: ReportsMinAggregateInput;
 
-    @Field(() => ReportsMinAggregateInput, {nullable:true})
-    _min?: ReportsMinAggregateInput;
-
-    @Field(() => ReportsMaxAggregateInput, {nullable:true})
-    _max?: ReportsMaxAggregateInput;
+  @Field(() => ReportsMaxAggregateInput, { nullable: true })
+  _max?: ReportsMaxAggregateInput;
 }

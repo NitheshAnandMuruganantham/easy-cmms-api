@@ -6,12 +6,11 @@ import { BlockCreateWithoutReportsInput } from './block-create-without-reports.i
 
 @InputType()
 export class BlockUpsertWithoutReportsInput {
+  @Field(() => BlockUpdateWithoutReportsInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutReportsInput)
+  update!: BlockUpdateWithoutReportsInput;
 
-    @Field(() => BlockUpdateWithoutReportsInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutReportsInput)
-    update!: BlockUpdateWithoutReportsInput;
-
-    @Field(() => BlockCreateWithoutReportsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutReportsInput)
-    create!: BlockCreateWithoutReportsInput;
+  @Field(() => BlockCreateWithoutReportsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutReportsInput)
+  create!: BlockCreateWithoutReportsInput;
 }

@@ -6,12 +6,11 @@ import { ItemsUpdateWithoutBlockInput } from './items-update-without-block.input
 
 @InputType()
 export class ItemsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutBlockInput)
-    data!: ItemsUpdateWithoutBlockInput;
+  @Field(() => ItemsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ItemsUpdateWithoutBlockInput)
+  data!: ItemsUpdateWithoutBlockInput;
 }

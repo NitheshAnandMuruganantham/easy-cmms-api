@@ -7,16 +7,15 @@ import { TicketWhereUniqueInput } from './ticket-where-unique.input';
 
 @InputType()
 export class TicketCreateNestedOneWithoutMaintenanceInput {
+  @Field(() => TicketCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketCreateWithoutMaintenanceInput)
+  create?: TicketCreateWithoutMaintenanceInput;
 
-    @Field(() => TicketCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketCreateWithoutMaintenanceInput)
-    create?: TicketCreateWithoutMaintenanceInput;
+  @Field(() => TicketCreateOrConnectWithoutMaintenanceInput, { nullable: true })
+  @Type(() => TicketCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: TicketCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => TicketCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => TicketCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: TicketCreateOrConnectWithoutMaintenanceInput;
-
-    @Field(() => TicketWhereUniqueInput, {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    connect?: TicketWhereUniqueInput;
+  @Field(() => TicketWhereUniqueInput, { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  connect?: TicketWhereUniqueInput;
 }

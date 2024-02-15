@@ -7,16 +7,15 @@ import { ReplacementsCreateWithoutItemsInput } from './replacements-create-witho
 
 @InputType()
 export class ReplacementsUpsertWithWhereUniqueWithoutItemsInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
+  @Field(() => ReplacementsUpdateWithoutItemsInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutItemsInput)
+  update!: ReplacementsUpdateWithoutItemsInput;
 
-    @Field(() => ReplacementsUpdateWithoutItemsInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutItemsInput)
-    update!: ReplacementsUpdateWithoutItemsInput;
-
-    @Field(() => ReplacementsCreateWithoutItemsInput, {nullable:false})
-    @Type(() => ReplacementsCreateWithoutItemsInput)
-    create!: ReplacementsCreateWithoutItemsInput;
+  @Field(() => ReplacementsCreateWithoutItemsInput, { nullable: false })
+  @Type(() => ReplacementsCreateWithoutItemsInput)
+  create!: ReplacementsCreateWithoutItemsInput;
 }

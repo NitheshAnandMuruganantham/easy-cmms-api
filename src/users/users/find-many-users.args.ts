@@ -9,23 +9,24 @@ import { UsersScalarFieldEnum } from './users-scalar-field.enum';
 
 @ArgsType()
 export class FindManyUsersArgs {
+  @Field(() => UsersWhereInput, { nullable: true })
+  @Type(() => UsersWhereInput)
+  where?: UsersWhereInput;
 
-    @Field(() => UsersWhereInput, {nullable:true})
-    @Type(() => UsersWhereInput)
-    where?: UsersWhereInput;
+  @Field(() => [UsersOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<UsersOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [UsersOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<UsersOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  cursor?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    cursor?: UsersWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [UsersScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof UsersScalarFieldEnum>;
+  @Field(() => [UsersScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof UsersScalarFieldEnum>;
 }

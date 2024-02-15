@@ -4,7 +4,6 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @InputType()
 export class routine_maintanancesWhereUniqueInput {
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 }

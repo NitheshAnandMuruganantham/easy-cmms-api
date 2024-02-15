@@ -8,20 +8,23 @@ import { MachinesWhereUniqueInput } from './machines-where-unique.input';
 
 @InputType()
 export class MachinesCreateNestedManyWithoutMachine_catagoryInput {
+  @Field(() => [MachinesCreateWithoutMachine_catagoryInput], { nullable: true })
+  @Type(() => MachinesCreateWithoutMachine_catagoryInput)
+  create?: Array<MachinesCreateWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesCreateWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesCreateWithoutMachine_catagoryInput)
-    create?: Array<MachinesCreateWithoutMachine_catagoryInput>;
+  @Field(() => [MachinesCreateOrConnectWithoutMachine_catagoryInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateOrConnectWithoutMachine_catagoryInput)
+  connectOrCreate?: Array<MachinesCreateOrConnectWithoutMachine_catagoryInput>;
 
-    @Field(() => [MachinesCreateOrConnectWithoutMachine_catagoryInput], {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutMachine_catagoryInput)
-    connectOrCreate?: Array<MachinesCreateOrConnectWithoutMachine_catagoryInput>;
+  @Field(() => MachinesCreateManyMachine_catagoryInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateManyMachine_catagoryInputEnvelope)
+  createMany?: MachinesCreateManyMachine_catagoryInputEnvelope;
 
-    @Field(() => MachinesCreateManyMachine_catagoryInputEnvelope, {nullable:true})
-    @Type(() => MachinesCreateManyMachine_catagoryInputEnvelope)
-    createMany?: MachinesCreateManyMachine_catagoryInputEnvelope;
-
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: Array<MachinesWhereUniqueInput>;
 }

@@ -6,12 +6,11 @@ import { SectionsCreateWithoutBlockInput } from './sections-create-without-block
 
 @InputType()
 export class SectionsCreateOrConnectWithoutBlockInput {
+  @Field(() => SectionsWhereUniqueInput, { nullable: false })
+  @Type(() => SectionsWhereUniqueInput)
+  where!: SectionsWhereUniqueInput;
 
-    @Field(() => SectionsWhereUniqueInput, {nullable:false})
-    @Type(() => SectionsWhereUniqueInput)
-    where!: SectionsWhereUniqueInput;
-
-    @Field(() => SectionsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => SectionsCreateWithoutBlockInput)
-    create!: SectionsCreateWithoutBlockInput;
+  @Field(() => SectionsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => SectionsCreateWithoutBlockInput)
+  create!: SectionsCreateWithoutBlockInput;
 }

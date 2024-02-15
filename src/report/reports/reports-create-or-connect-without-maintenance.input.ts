@@ -6,12 +6,11 @@ import { ReportsCreateWithoutMaintenanceInput } from './reports-create-without-m
 
 @InputType()
 export class ReportsCreateOrConnectWithoutMaintenanceInput {
+  @Field(() => ReportsWhereUniqueInput, { nullable: false })
+  @Type(() => ReportsWhereUniqueInput)
+  where!: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:false})
-    @Type(() => ReportsWhereUniqueInput)
-    where!: ReportsWhereUniqueInput;
-
-    @Field(() => ReportsCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReportsCreateWithoutMaintenanceInput)
-    create!: ReportsCreateWithoutMaintenanceInput;
+  @Field(() => ReportsCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReportsCreateWithoutMaintenanceInput)
+  create!: ReportsCreateWithoutMaintenanceInput;
 }

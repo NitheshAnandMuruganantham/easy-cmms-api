@@ -5,13 +5,12 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class UsersWhereUniqueInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: true })
+  phone?: string;
 
-    @Field(() => String, {nullable:true})
-    phone?: string;
-
-    @HideField()
-    user_auth_id?: string;
+  @HideField()
+  user_auth_id?: string;
 }

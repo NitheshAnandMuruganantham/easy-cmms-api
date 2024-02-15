@@ -8,20 +8,21 @@ import { block_settingsWhereUniqueInput } from './block-settings-where-unique.in
 
 @InputType()
 export class block_settingsUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [block_settingsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => block_settingsCreateWithoutBlockInput)
+  create?: Array<block_settingsCreateWithoutBlockInput>;
 
-    @Field(() => [block_settingsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsCreateWithoutBlockInput)
-    create?: Array<block_settingsCreateWithoutBlockInput>;
+  @Field(() => [block_settingsCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => block_settingsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<block_settingsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [block_settingsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<block_settingsCreateOrConnectWithoutBlockInput>;
+  @Field(() => block_settingsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => block_settingsCreateManyBlockInputEnvelope)
+  createMany?: block_settingsCreateManyBlockInputEnvelope;
 
-    @Field(() => block_settingsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => block_settingsCreateManyBlockInputEnvelope)
-    createMany?: block_settingsCreateManyBlockInputEnvelope;
-
-    @Field(() => [block_settingsWhereUniqueInput], {nullable:true})
-    @Type(() => block_settingsWhereUniqueInput)
-    connect?: Array<block_settingsWhereUniqueInput>;
+  @Field(() => [block_settingsWhereUniqueInput], { nullable: true })
+  @Type(() => block_settingsWhereUniqueInput)
+  connect?: Array<block_settingsWhereUniqueInput>;
 }

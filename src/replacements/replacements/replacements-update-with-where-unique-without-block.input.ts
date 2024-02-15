@@ -6,12 +6,11 @@ import { ReplacementsUpdateWithoutBlockInput } from './replacements-update-witho
 
 @InputType()
 export class ReplacementsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
-
-    @Field(() => ReplacementsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutBlockInput)
-    data!: ReplacementsUpdateWithoutBlockInput;
+  @Field(() => ReplacementsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutBlockInput)
+  data!: ReplacementsUpdateWithoutBlockInput;
 }

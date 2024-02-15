@@ -6,12 +6,11 @@ import { BlockWhereInput } from './block-where.input';
 
 @ArgsType()
 export class UpdateManyBlockArgs {
+  @Field(() => BlockUpdateManyMutationInput, { nullable: false })
+  @Type(() => BlockUpdateManyMutationInput)
+  data!: BlockUpdateManyMutationInput;
 
-    @Field(() => BlockUpdateManyMutationInput, {nullable:false})
-    @Type(() => BlockUpdateManyMutationInput)
-    data!: BlockUpdateManyMutationInput;
-
-    @Field(() => BlockWhereInput, {nullable:true})
-    @Type(() => BlockWhereInput)
-    where?: BlockWhereInput;
+  @Field(() => BlockWhereInput, { nullable: true })
+  @Type(() => BlockWhereInput)
+  where?: BlockWhereInput;
 }

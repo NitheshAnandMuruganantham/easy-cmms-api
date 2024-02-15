@@ -6,12 +6,11 @@ import { catagoryUpdateManyMutationInput } from './catagory-update-many-mutation
 
 @InputType()
 export class catagoryUpdateManyWithWhereWithoutBlockInput {
+  @Field(() => catagoryScalarWhereInput, { nullable: false })
+  @Type(() => catagoryScalarWhereInput)
+  where!: catagoryScalarWhereInput;
 
-    @Field(() => catagoryScalarWhereInput, {nullable:false})
-    @Type(() => catagoryScalarWhereInput)
-    where!: catagoryScalarWhereInput;
-
-    @Field(() => catagoryUpdateManyMutationInput, {nullable:false})
-    @Type(() => catagoryUpdateManyMutationInput)
-    data!: catagoryUpdateManyMutationInput;
+  @Field(() => catagoryUpdateManyMutationInput, { nullable: false })
+  @Type(() => catagoryUpdateManyMutationInput)
+  data!: catagoryUpdateManyMutationInput;
 }

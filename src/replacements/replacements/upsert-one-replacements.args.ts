@@ -7,16 +7,15 @@ import { ReplacementsUpdateInput } from './replacements-update.input';
 
 @ArgsType()
 export class UpsertOneReplacementsArgs {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
+  @Field(() => ReplacementsCreateInput, { nullable: false })
+  @Type(() => ReplacementsCreateInput)
+  create!: ReplacementsCreateInput;
 
-    @Field(() => ReplacementsCreateInput, {nullable:false})
-    @Type(() => ReplacementsCreateInput)
-    create!: ReplacementsCreateInput;
-
-    @Field(() => ReplacementsUpdateInput, {nullable:false})
-    @Type(() => ReplacementsUpdateInput)
-    update!: ReplacementsUpdateInput;
+  @Field(() => ReplacementsUpdateInput, { nullable: false })
+  @Type(() => ReplacementsUpdateInput)
+  update!: ReplacementsUpdateInput;
 }

@@ -6,12 +6,11 @@ import { TicketUpdateWithoutMachinesInput } from './ticket-update-without-machin
 
 @InputType()
 export class TicketUpdateWithWhereUniqueWithoutMachinesInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
-
-    @Field(() => TicketUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutMachinesInput)
-    data!: TicketUpdateWithoutMachinesInput;
+  @Field(() => TicketUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutMachinesInput)
+  data!: TicketUpdateWithoutMachinesInput;
 }

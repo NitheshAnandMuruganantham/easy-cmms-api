@@ -7,19 +7,18 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class catagoryUncheckedUpdateWithoutItemsInput {
+  @Field(() => BigIntFieldUpdateOperationsInput, { nullable: true })
+  id?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
-    id?: BigIntFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  created_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    created_at?: DateTimeFieldUpdateOperationsInput;
+  @HideField()
+  block_id?: BigIntFieldUpdateOperationsInput;
 
-    @HideField()
-    block_id?: BigIntFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updated_at?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updated_at?: DateTimeFieldUpdateOperationsInput;
 }

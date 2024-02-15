@@ -7,16 +7,15 @@ import { SectionsCreateWithoutBlockInput } from './sections-create-without-block
 
 @InputType()
 export class SectionsUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => SectionsWhereUniqueInput, { nullable: false })
+  @Type(() => SectionsWhereUniqueInput)
+  where!: SectionsWhereUniqueInput;
 
-    @Field(() => SectionsWhereUniqueInput, {nullable:false})
-    @Type(() => SectionsWhereUniqueInput)
-    where!: SectionsWhereUniqueInput;
+  @Field(() => SectionsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => SectionsUpdateWithoutBlockInput)
+  update!: SectionsUpdateWithoutBlockInput;
 
-    @Field(() => SectionsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => SectionsUpdateWithoutBlockInput)
-    update!: SectionsUpdateWithoutBlockInput;
-
-    @Field(() => SectionsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => SectionsCreateWithoutBlockInput)
-    create!: SectionsCreateWithoutBlockInput;
+  @Field(() => SectionsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => SectionsCreateWithoutBlockInput)
+  create!: SectionsCreateWithoutBlockInput;
 }

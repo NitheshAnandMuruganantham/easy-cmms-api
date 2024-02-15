@@ -6,12 +6,11 @@ import { UsersCreateWithoutBlockInput } from './users-create-without-block.input
 
 @InputType()
 export class UsersCreateOrConnectWithoutBlockInput {
+  @Field(() => UsersWhereUniqueInput, { nullable: false })
+  @Type(() => UsersWhereUniqueInput)
+  where!: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:false})
-    @Type(() => UsersWhereUniqueInput)
-    where!: UsersWhereUniqueInput;
-
-    @Field(() => UsersCreateWithoutBlockInput, {nullable:false})
-    @Type(() => UsersCreateWithoutBlockInput)
-    create!: UsersCreateWithoutBlockInput;
+  @Field(() => UsersCreateWithoutBlockInput, { nullable: false })
+  @Type(() => UsersCreateWithoutBlockInput)
+  create!: UsersCreateWithoutBlockInput;
 }

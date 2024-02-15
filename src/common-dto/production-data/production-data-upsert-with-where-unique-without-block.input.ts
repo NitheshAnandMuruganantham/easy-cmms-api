@@ -7,16 +7,15 @@ import { production_dataCreateWithoutBlockInput } from './production-data-create
 
 @InputType()
 export class production_dataUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
+  @Field(() => production_dataUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => production_dataUpdateWithoutBlockInput)
+  update!: production_dataUpdateWithoutBlockInput;
 
-    @Field(() => production_dataUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => production_dataUpdateWithoutBlockInput)
-    update!: production_dataUpdateWithoutBlockInput;
-
-    @Field(() => production_dataCreateWithoutBlockInput, {nullable:false})
-    @Type(() => production_dataCreateWithoutBlockInput)
-    create!: production_dataCreateWithoutBlockInput;
+  @Field(() => production_dataCreateWithoutBlockInput, { nullable: false })
+  @Type(() => production_dataCreateWithoutBlockInput)
+  create!: production_dataCreateWithoutBlockInput;
 }

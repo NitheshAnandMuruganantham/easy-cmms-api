@@ -9,24 +9,23 @@ import { ItemCatagoryUpdateWithoutItemsInput } from './item-catagory-update-with
 
 @InputType()
 export class ItemCatagoryUpdateOneRequiredWithoutItemsNestedInput {
+  @Field(() => ItemCatagoryCreateWithoutItemsInput, { nullable: true })
+  @Type(() => ItemCatagoryCreateWithoutItemsInput)
+  create?: ItemCatagoryCreateWithoutItemsInput;
 
-    @Field(() => ItemCatagoryCreateWithoutItemsInput, {nullable:true})
-    @Type(() => ItemCatagoryCreateWithoutItemsInput)
-    create?: ItemCatagoryCreateWithoutItemsInput;
+  @Field(() => ItemCatagoryCreateOrConnectWithoutItemsInput, { nullable: true })
+  @Type(() => ItemCatagoryCreateOrConnectWithoutItemsInput)
+  connectOrCreate?: ItemCatagoryCreateOrConnectWithoutItemsInput;
 
-    @Field(() => ItemCatagoryCreateOrConnectWithoutItemsInput, {nullable:true})
-    @Type(() => ItemCatagoryCreateOrConnectWithoutItemsInput)
-    connectOrCreate?: ItemCatagoryCreateOrConnectWithoutItemsInput;
+  @Field(() => ItemCatagoryUpsertWithoutItemsInput, { nullable: true })
+  @Type(() => ItemCatagoryUpsertWithoutItemsInput)
+  upsert?: ItemCatagoryUpsertWithoutItemsInput;
 
-    @Field(() => ItemCatagoryUpsertWithoutItemsInput, {nullable:true})
-    @Type(() => ItemCatagoryUpsertWithoutItemsInput)
-    upsert?: ItemCatagoryUpsertWithoutItemsInput;
+  @Field(() => ItemCatagoryWhereUniqueInput, { nullable: true })
+  @Type(() => ItemCatagoryWhereUniqueInput)
+  connect?: ItemCatagoryWhereUniqueInput;
 
-    @Field(() => ItemCatagoryWhereUniqueInput, {nullable:true})
-    @Type(() => ItemCatagoryWhereUniqueInput)
-    connect?: ItemCatagoryWhereUniqueInput;
-
-    @Field(() => ItemCatagoryUpdateWithoutItemsInput, {nullable:true})
-    @Type(() => ItemCatagoryUpdateWithoutItemsInput)
-    update?: ItemCatagoryUpdateWithoutItemsInput;
+  @Field(() => ItemCatagoryUpdateWithoutItemsInput, { nullable: true })
+  @Type(() => ItemCatagoryUpdateWithoutItemsInput)
+  update?: ItemCatagoryUpdateWithoutItemsInput;
 }

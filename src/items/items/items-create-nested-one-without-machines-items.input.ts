@@ -7,16 +7,17 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @InputType()
 export class ItemsCreateNestedOneWithoutMachines_itemsInput {
+  @Field(() => ItemsCreateWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => ItemsCreateWithoutMachines_itemsInput)
+  create?: ItemsCreateWithoutMachines_itemsInput;
 
-    @Field(() => ItemsCreateWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutMachines_itemsInput)
-    create?: ItemsCreateWithoutMachines_itemsInput;
+  @Field(() => ItemsCreateOrConnectWithoutMachines_itemsInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutMachines_itemsInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutMachines_itemsInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutMachines_itemsInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutMachines_itemsInput;
-
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 }

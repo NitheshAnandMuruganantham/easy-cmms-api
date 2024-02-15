@@ -6,12 +6,11 @@ import { MachinesUpdateWithoutSectionInput } from './machines-update-without-sec
 
 @InputType()
 export class MachinesUpdateWithWhereUniqueWithoutSectionInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesUpdateWithoutSectionInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutSectionInput)
-    data!: MachinesUpdateWithoutSectionInput;
+  @Field(() => MachinesUpdateWithoutSectionInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutSectionInput)
+  data!: MachinesUpdateWithoutSectionInput;
 }

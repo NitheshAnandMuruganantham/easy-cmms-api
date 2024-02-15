@@ -9,24 +9,25 @@ import { BlockUpdateWithoutMachines_itemsInput } from './block-update-without-ma
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutMachines_itemsNestedInput {
+  @Field(() => BlockCreateWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => BlockCreateWithoutMachines_itemsInput)
+  create?: BlockCreateWithoutMachines_itemsInput;
 
-    @Field(() => BlockCreateWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => BlockCreateWithoutMachines_itemsInput)
-    create?: BlockCreateWithoutMachines_itemsInput;
+  @Field(() => BlockCreateOrConnectWithoutMachines_itemsInput, {
+    nullable: true,
+  })
+  @Type(() => BlockCreateOrConnectWithoutMachines_itemsInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutMachines_itemsInput;
 
-    @Field(() => BlockCreateOrConnectWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutMachines_itemsInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutMachines_itemsInput;
+  @Field(() => BlockUpsertWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutMachines_itemsInput)
+  upsert?: BlockUpsertWithoutMachines_itemsInput;
 
-    @Field(() => BlockUpsertWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutMachines_itemsInput)
-    upsert?: BlockUpsertWithoutMachines_itemsInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutMachines_itemsInput)
-    update?: BlockUpdateWithoutMachines_itemsInput;
+  @Field(() => BlockUpdateWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutMachines_itemsInput)
+  update?: BlockUpdateWithoutMachines_itemsInput;
 }

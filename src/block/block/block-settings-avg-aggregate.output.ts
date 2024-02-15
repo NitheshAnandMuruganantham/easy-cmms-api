@@ -4,10 +4,9 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class Block_settingsAvgAggregate {
+  @Field(() => Float, { nullable: true })
+  id?: number;
 
-    @Field(() => Float, {nullable:true})
-    id?: number;
-
-    @Field(() => Float, {nullable:true})
-    block_id?: number;
+  @Field(() => Float, { nullable: true })
+  block_id?: number;
 }

@@ -6,34 +6,33 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class ReplacementsMinAggregate {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: true })
+  name?: string;
 
-    @Field(() => String, {nullable:true})
-    name?: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => Int, { nullable: true })
+  quantity?: number;
 
-    @Field(() => Int, {nullable:true})
-    quantity?: number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  item_id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    item_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  maintanance_id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    maintanance_id?: bigint | number;
+  @Field(() => Date, { nullable: true })
+  created_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
+  @Field(() => Boolean, { nullable: true })
+  approved?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    approved?: boolean;
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    block_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  block_id?: bigint | number;
 }

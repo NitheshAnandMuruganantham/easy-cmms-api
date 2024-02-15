@@ -6,12 +6,11 @@ import { catagoryCreateWithoutItemsInput } from './catagory-create-without-items
 
 @InputType()
 export class catagoryUpsertWithoutItemsInput {
+  @Field(() => catagoryUpdateWithoutItemsInput, { nullable: false })
+  @Type(() => catagoryUpdateWithoutItemsInput)
+  update!: catagoryUpdateWithoutItemsInput;
 
-    @Field(() => catagoryUpdateWithoutItemsInput, {nullable:false})
-    @Type(() => catagoryUpdateWithoutItemsInput)
-    update!: catagoryUpdateWithoutItemsInput;
-
-    @Field(() => catagoryCreateWithoutItemsInput, {nullable:false})
-    @Type(() => catagoryCreateWithoutItemsInput)
-    create!: catagoryCreateWithoutItemsInput;
+  @Field(() => catagoryCreateWithoutItemsInput, { nullable: false })
+  @Type(() => catagoryCreateWithoutItemsInput)
+  create!: catagoryCreateWithoutItemsInput;
 }

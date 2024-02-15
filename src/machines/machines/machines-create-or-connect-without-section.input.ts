@@ -6,12 +6,11 @@ import { MachinesCreateWithoutSectionInput } from './machines-create-without-sec
 
 @InputType()
 export class MachinesCreateOrConnectWithoutSectionInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesCreateWithoutSectionInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutSectionInput)
-    create!: MachinesCreateWithoutSectionInput;
+  @Field(() => MachinesCreateWithoutSectionInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutSectionInput)
+  create!: MachinesCreateWithoutSectionInput;
 }

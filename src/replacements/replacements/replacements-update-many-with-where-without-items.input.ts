@@ -6,12 +6,11 @@ import { ReplacementsUpdateManyMutationInput } from './replacements-update-many-
 
 @InputType()
 export class ReplacementsUpdateManyWithWhereWithoutItemsInput {
+  @Field(() => ReplacementsScalarWhereInput, { nullable: false })
+  @Type(() => ReplacementsScalarWhereInput)
+  where!: ReplacementsScalarWhereInput;
 
-    @Field(() => ReplacementsScalarWhereInput, {nullable:false})
-    @Type(() => ReplacementsScalarWhereInput)
-    where!: ReplacementsScalarWhereInput;
-
-    @Field(() => ReplacementsUpdateManyMutationInput, {nullable:false})
-    @Type(() => ReplacementsUpdateManyMutationInput)
-    data!: ReplacementsUpdateManyMutationInput;
+  @Field(() => ReplacementsUpdateManyMutationInput, { nullable: false })
+  @Type(() => ReplacementsUpdateManyMutationInput)
+  data!: ReplacementsUpdateManyMutationInput;
 }

@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneSectionArgs {
-
-    @Field(() => SectionCreateInput, {nullable:false})
-    @Type(() => SectionCreateInput)
-    data!: SectionCreateInput;
+  @Field(() => SectionCreateInput, { nullable: false })
+  @Type(() => SectionCreateInput)
+  data!: SectionCreateInput;
 }

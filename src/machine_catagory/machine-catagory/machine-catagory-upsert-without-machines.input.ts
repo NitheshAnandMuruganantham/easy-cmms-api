@@ -6,12 +6,11 @@ import { machine_catagoryCreateWithoutMachinesInput } from './machine-catagory-c
 
 @InputType()
 export class machine_catagoryUpsertWithoutMachinesInput {
+  @Field(() => machine_catagoryUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => machine_catagoryUpdateWithoutMachinesInput)
+  update!: machine_catagoryUpdateWithoutMachinesInput;
 
-    @Field(() => machine_catagoryUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => machine_catagoryUpdateWithoutMachinesInput)
-    update!: machine_catagoryUpdateWithoutMachinesInput;
-
-    @Field(() => machine_catagoryCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => machine_catagoryCreateWithoutMachinesInput)
-    create!: machine_catagoryCreateWithoutMachinesInput;
+  @Field(() => machine_catagoryCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => machine_catagoryCreateWithoutMachinesInput)
+  create!: machine_catagoryCreateWithoutMachinesInput;
 }

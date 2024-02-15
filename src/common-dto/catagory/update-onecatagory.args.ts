@@ -6,12 +6,11 @@ import { catagoryWhereUniqueInput } from './catagory-where-unique.input';
 
 @ArgsType()
 export class UpdateOnecatagoryArgs {
+  @Field(() => catagoryUpdateInput, { nullable: false })
+  @Type(() => catagoryUpdateInput)
+  data!: catagoryUpdateInput;
 
-    @Field(() => catagoryUpdateInput, {nullable:false})
-    @Type(() => catagoryUpdateInput)
-    data!: catagoryUpdateInput;
-
-    @Field(() => catagoryWhereUniqueInput, {nullable:false})
-    @Type(() => catagoryWhereUniqueInput)
-    where!: catagoryWhereUniqueInput;
+  @Field(() => catagoryWhereUniqueInput, { nullable: false })
+  @Type(() => catagoryWhereUniqueInput)
+  where!: catagoryWhereUniqueInput;
 }

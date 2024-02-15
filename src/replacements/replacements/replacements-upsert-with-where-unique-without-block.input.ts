@@ -7,16 +7,15 @@ import { ReplacementsCreateWithoutBlockInput } from './replacements-create-witho
 
 @InputType()
 export class ReplacementsUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
+  @Field(() => ReplacementsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutBlockInput)
+  update!: ReplacementsUpdateWithoutBlockInput;
 
-    @Field(() => ReplacementsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutBlockInput)
-    update!: ReplacementsUpdateWithoutBlockInput;
-
-    @Field(() => ReplacementsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => ReplacementsCreateWithoutBlockInput)
-    create!: ReplacementsCreateWithoutBlockInput;
+  @Field(() => ReplacementsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => ReplacementsCreateWithoutBlockInput)
+  create!: ReplacementsCreateWithoutBlockInput;
 }

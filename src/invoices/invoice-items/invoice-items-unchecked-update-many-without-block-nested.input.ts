@@ -12,48 +12,55 @@ import { invoice_itemsScalarWhereInput } from './invoice-items-scalar-where.inpu
 
 @InputType()
 export class invoice_itemsUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [invoice_itemsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => invoice_itemsCreateWithoutBlockInput)
+  create?: Array<invoice_itemsCreateWithoutBlockInput>;
 
-    @Field(() => [invoice_itemsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => invoice_itemsCreateWithoutBlockInput)
-    create?: Array<invoice_itemsCreateWithoutBlockInput>;
+  @Field(() => [invoice_itemsCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => invoice_itemsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<invoice_itemsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [invoice_itemsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => invoice_itemsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<invoice_itemsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [invoice_itemsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => invoice_itemsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<invoice_itemsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [invoice_itemsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => invoice_itemsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<invoice_itemsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => invoice_itemsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => invoice_itemsCreateManyBlockInputEnvelope)
+  createMany?: invoice_itemsCreateManyBlockInputEnvelope;
 
-    @Field(() => invoice_itemsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => invoice_itemsCreateManyBlockInputEnvelope)
-    createMany?: invoice_itemsCreateManyBlockInputEnvelope;
+  @Field(() => [invoice_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  set?: Array<invoice_itemsWhereUniqueInput>;
 
-    @Field(() => [invoice_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    set?: Array<invoice_itemsWhereUniqueInput>;
+  @Field(() => [invoice_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  disconnect?: Array<invoice_itemsWhereUniqueInput>;
 
-    @Field(() => [invoice_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    disconnect?: Array<invoice_itemsWhereUniqueInput>;
+  @Field(() => [invoice_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  delete?: Array<invoice_itemsWhereUniqueInput>;
 
-    @Field(() => [invoice_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    delete?: Array<invoice_itemsWhereUniqueInput>;
+  @Field(() => [invoice_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  connect?: Array<invoice_itemsWhereUniqueInput>;
 
-    @Field(() => [invoice_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    connect?: Array<invoice_itemsWhereUniqueInput>;
+  @Field(() => [invoice_itemsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => invoice_itemsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<invoice_itemsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [invoice_itemsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => invoice_itemsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<invoice_itemsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [invoice_itemsUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => invoice_itemsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<invoice_itemsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [invoice_itemsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => invoice_itemsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<invoice_itemsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [invoice_itemsScalarWhereInput], {nullable:true})
-    @Type(() => invoice_itemsScalarWhereInput)
-    deleteMany?: Array<invoice_itemsScalarWhereInput>;
+  @Field(() => [invoice_itemsScalarWhereInput], { nullable: true })
+  @Type(() => invoice_itemsScalarWhereInput)
+  deleteMany?: Array<invoice_itemsScalarWhereInput>;
 }

@@ -6,12 +6,11 @@ import { UsersCreateWithoutProduction_dataInput } from './users-create-without-p
 
 @InputType()
 export class UsersCreateOrConnectWithoutProduction_dataInput {
+  @Field(() => UsersWhereUniqueInput, { nullable: false })
+  @Type(() => UsersWhereUniqueInput)
+  where!: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:false})
-    @Type(() => UsersWhereUniqueInput)
-    where!: UsersWhereUniqueInput;
-
-    @Field(() => UsersCreateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => UsersCreateWithoutProduction_dataInput)
-    create!: UsersCreateWithoutProduction_dataInput;
+  @Field(() => UsersCreateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => UsersCreateWithoutProduction_dataInput)
+  create!: UsersCreateWithoutProduction_dataInput;
 }

@@ -8,37 +8,36 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataScalarWhereInput {
+  @Field(() => [production_dataScalarWhereInput], { nullable: true })
+  AND?: Array<production_dataScalarWhereInput>;
 
-    @Field(() => [production_dataScalarWhereInput], {nullable:true})
-    AND?: Array<production_dataScalarWhereInput>;
+  @Field(() => [production_dataScalarWhereInput], { nullable: true })
+  OR?: Array<production_dataScalarWhereInput>;
 
-    @Field(() => [production_dataScalarWhereInput], {nullable:true})
-    OR?: Array<production_dataScalarWhereInput>;
+  @Field(() => [production_dataScalarWhereInput], { nullable: true })
+  NOT?: Array<production_dataScalarWhereInput>;
 
-    @Field(() => [production_dataScalarWhereInput], {nullable:true})
-    NOT?: Array<production_dataScalarWhereInput>;
+  @Field(() => BigIntFilter, { nullable: true })
+  id?: BigIntFilter;
 
-    @Field(() => BigIntFilter, {nullable:true})
-    id?: BigIntFilter;
+  @Field(() => JsonFilter, { nullable: true })
+  production?: JsonFilter;
 
-    @Field(() => JsonFilter, {nullable:true})
-    production?: JsonFilter;
+  @Field(() => StringFilter, { nullable: true })
+  shift?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    shift?: StringFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  date?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    date?: DateTimeFilter;
+  @Field(() => BigIntFilter, { nullable: true })
+  updated_by?: BigIntFilter;
 
-    @Field(() => BigIntFilter, {nullable:true})
-    updated_by?: BigIntFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  created_at?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    created_at?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updated_at?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updated_at?: DateTimeFilter;
-
-    @HideField()
-    blockId?: BigIntFilter;
+  @HideField()
+  blockId?: BigIntFilter;
 }

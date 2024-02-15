@@ -6,12 +6,11 @@ import { invoice_itemsUpdateManyMutationInput } from './invoice-items-update-man
 
 @InputType()
 export class invoice_itemsUpdateManyWithWhereWithoutItemInput {
+  @Field(() => invoice_itemsScalarWhereInput, { nullable: false })
+  @Type(() => invoice_itemsScalarWhereInput)
+  where!: invoice_itemsScalarWhereInput;
 
-    @Field(() => invoice_itemsScalarWhereInput, {nullable:false})
-    @Type(() => invoice_itemsScalarWhereInput)
-    where!: invoice_itemsScalarWhereInput;
-
-    @Field(() => invoice_itemsUpdateManyMutationInput, {nullable:false})
-    @Type(() => invoice_itemsUpdateManyMutationInput)
-    data!: invoice_itemsUpdateManyMutationInput;
+  @Field(() => invoice_itemsUpdateManyMutationInput, { nullable: false })
+  @Type(() => invoice_itemsUpdateManyMutationInput)
+  data!: invoice_itemsUpdateManyMutationInput;
 }

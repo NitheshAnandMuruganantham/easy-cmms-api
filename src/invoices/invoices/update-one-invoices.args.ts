@@ -6,12 +6,11 @@ import { InvoicesWhereUniqueInput } from './invoices-where-unique.input';
 
 @ArgsType()
 export class UpdateOneInvoicesArgs {
+  @Field(() => InvoicesUpdateInput, { nullable: false })
+  @Type(() => InvoicesUpdateInput)
+  data!: InvoicesUpdateInput;
 
-    @Field(() => InvoicesUpdateInput, {nullable:false})
-    @Type(() => InvoicesUpdateInput)
-    data!: InvoicesUpdateInput;
-
-    @Field(() => InvoicesWhereUniqueInput, {nullable:false})
-    @Type(() => InvoicesWhereUniqueInput)
-    where!: InvoicesWhereUniqueInput;
+  @Field(() => InvoicesWhereUniqueInput, { nullable: false })
+  @Type(() => InvoicesWhereUniqueInput)
+  where!: InvoicesWhereUniqueInput;
 }

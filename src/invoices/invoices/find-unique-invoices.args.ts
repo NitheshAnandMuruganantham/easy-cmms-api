@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueInvoicesArgs {
-
-    @Field(() => InvoicesWhereUniqueInput, {nullable:false})
-    @Type(() => InvoicesWhereUniqueInput)
-    where!: InvoicesWhereUniqueInput;
+  @Field(() => InvoicesWhereUniqueInput, { nullable: false })
+  @Type(() => InvoicesWhereUniqueInput)
+  where!: InvoicesWhereUniqueInput;
 }

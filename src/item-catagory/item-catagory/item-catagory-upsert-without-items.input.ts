@@ -6,12 +6,11 @@ import { ItemCatagoryCreateWithoutItemsInput } from './item-catagory-create-with
 
 @InputType()
 export class ItemCatagoryUpsertWithoutItemsInput {
+  @Field(() => ItemCatagoryUpdateWithoutItemsInput, { nullable: false })
+  @Type(() => ItemCatagoryUpdateWithoutItemsInput)
+  update!: ItemCatagoryUpdateWithoutItemsInput;
 
-    @Field(() => ItemCatagoryUpdateWithoutItemsInput, {nullable:false})
-    @Type(() => ItemCatagoryUpdateWithoutItemsInput)
-    update!: ItemCatagoryUpdateWithoutItemsInput;
-
-    @Field(() => ItemCatagoryCreateWithoutItemsInput, {nullable:false})
-    @Type(() => ItemCatagoryCreateWithoutItemsInput)
-    create!: ItemCatagoryCreateWithoutItemsInput;
+  @Field(() => ItemCatagoryCreateWithoutItemsInput, { nullable: false })
+  @Type(() => ItemCatagoryCreateWithoutItemsInput)
+  create!: ItemCatagoryCreateWithoutItemsInput;
 }

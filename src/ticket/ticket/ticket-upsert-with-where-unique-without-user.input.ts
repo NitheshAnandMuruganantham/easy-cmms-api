@@ -7,16 +7,15 @@ import { TicketCreateWithoutUserInput } from './ticket-create-without-user.input
 
 @InputType()
 export class TicketUpsertWithWhereUniqueWithoutUserInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketUpdateWithoutUserInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutUserInput)
+  update!: TicketUpdateWithoutUserInput;
 
-    @Field(() => TicketUpdateWithoutUserInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutUserInput)
-    update!: TicketUpdateWithoutUserInput;
-
-    @Field(() => TicketCreateWithoutUserInput, {nullable:false})
-    @Type(() => TicketCreateWithoutUserInput)
-    create!: TicketCreateWithoutUserInput;
+  @Field(() => TicketCreateWithoutUserInput, { nullable: false })
+  @Type(() => TicketCreateWithoutUserInput)
+  create!: TicketCreateWithoutUserInput;
 }

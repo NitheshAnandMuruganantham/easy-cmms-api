@@ -7,16 +7,15 @@ import { MachinesUpdateInput } from './machines-update.input';
 
 @ArgsType()
 export class UpsertOneMachinesArgs {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
+  @Field(() => MachinesCreateInput, { nullable: false })
+  @Type(() => MachinesCreateInput)
+  create!: MachinesCreateInput;
 
-    @Field(() => MachinesCreateInput, {nullable:false})
-    @Type(() => MachinesCreateInput)
-    create!: MachinesCreateInput;
-
-    @Field(() => MachinesUpdateInput, {nullable:false})
-    @Type(() => MachinesUpdateInput)
-    update!: MachinesUpdateInput;
+  @Field(() => MachinesUpdateInput, { nullable: false })
+  @Type(() => MachinesUpdateInput)
+  update!: MachinesUpdateInput;
 }

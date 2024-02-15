@@ -9,24 +9,23 @@ import { ItemsUpdateWithoutReplacementsInput } from './items-update-without-repl
 
 @InputType()
 export class ItemsUpdateOneRequiredWithoutReplacementsNestedInput {
+  @Field(() => ItemsCreateWithoutReplacementsInput, { nullable: true })
+  @Type(() => ItemsCreateWithoutReplacementsInput)
+  create?: ItemsCreateWithoutReplacementsInput;
 
-    @Field(() => ItemsCreateWithoutReplacementsInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutReplacementsInput)
-    create?: ItemsCreateWithoutReplacementsInput;
+  @Field(() => ItemsCreateOrConnectWithoutReplacementsInput, { nullable: true })
+  @Type(() => ItemsCreateOrConnectWithoutReplacementsInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutReplacementsInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutReplacementsInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutReplacementsInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutReplacementsInput;
+  @Field(() => ItemsUpsertWithoutReplacementsInput, { nullable: true })
+  @Type(() => ItemsUpsertWithoutReplacementsInput)
+  upsert?: ItemsUpsertWithoutReplacementsInput;
 
-    @Field(() => ItemsUpsertWithoutReplacementsInput, {nullable:true})
-    @Type(() => ItemsUpsertWithoutReplacementsInput)
-    upsert?: ItemsUpsertWithoutReplacementsInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutReplacementsInput, {nullable:true})
-    @Type(() => ItemsUpdateWithoutReplacementsInput)
-    update?: ItemsUpdateWithoutReplacementsInput;
+  @Field(() => ItemsUpdateWithoutReplacementsInput, { nullable: true })
+  @Type(() => ItemsUpdateWithoutReplacementsInput)
+  update?: ItemsUpdateWithoutReplacementsInput;
 }

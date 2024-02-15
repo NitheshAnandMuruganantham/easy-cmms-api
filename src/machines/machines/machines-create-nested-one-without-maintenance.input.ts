@@ -7,16 +7,17 @@ import { MachinesWhereUniqueInput } from './machines-where-unique.input';
 
 @InputType()
 export class MachinesCreateNestedOneWithoutMaintenanceInput {
+  @Field(() => MachinesCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => MachinesCreateWithoutMaintenanceInput)
+  create?: MachinesCreateWithoutMaintenanceInput;
 
-    @Field(() => MachinesCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesCreateWithoutMaintenanceInput)
-    create?: MachinesCreateWithoutMaintenanceInput;
+  @Field(() => MachinesCreateOrConnectWithoutMaintenanceInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: MachinesCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => MachinesCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: MachinesCreateOrConnectWithoutMaintenanceInput;
-
-    @Field(() => MachinesWhereUniqueInput, {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: MachinesWhereUniqueInput;
+  @Field(() => MachinesWhereUniqueInput, { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: MachinesWhereUniqueInput;
 }

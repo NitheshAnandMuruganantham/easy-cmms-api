@@ -8,20 +8,19 @@ import { TicketWhereUniqueInput } from './ticket-where-unique.input';
 
 @InputType()
 export class TicketCreateNestedManyWithoutBlockInput {
+  @Field(() => [TicketCreateWithoutBlockInput], { nullable: true })
+  @Type(() => TicketCreateWithoutBlockInput)
+  create?: Array<TicketCreateWithoutBlockInput>;
 
-    @Field(() => [TicketCreateWithoutBlockInput], {nullable:true})
-    @Type(() => TicketCreateWithoutBlockInput)
-    create?: Array<TicketCreateWithoutBlockInput>;
+  @Field(() => [TicketCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => TicketCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<TicketCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [TicketCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => TicketCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<TicketCreateOrConnectWithoutBlockInput>;
+  @Field(() => TicketCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => TicketCreateManyBlockInputEnvelope)
+  createMany?: TicketCreateManyBlockInputEnvelope;
 
-    @Field(() => TicketCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => TicketCreateManyBlockInputEnvelope)
-    createMany?: TicketCreateManyBlockInputEnvelope;
-
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    connect?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  connect?: Array<TicketWhereUniqueInput>;
 }

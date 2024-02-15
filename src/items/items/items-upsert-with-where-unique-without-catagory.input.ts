@@ -7,16 +7,15 @@ import { ItemsCreateWithoutCatagoryInput } from './items-create-without-catagory
 
 @InputType()
 export class ItemsUpsertWithWhereUniqueWithoutCatagoryInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
+  @Field(() => ItemsUpdateWithoutCatagoryInput, { nullable: false })
+  @Type(() => ItemsUpdateWithoutCatagoryInput)
+  update!: ItemsUpdateWithoutCatagoryInput;
 
-    @Field(() => ItemsUpdateWithoutCatagoryInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutCatagoryInput)
-    update!: ItemsUpdateWithoutCatagoryInput;
-
-    @Field(() => ItemsCreateWithoutCatagoryInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutCatagoryInput)
-    create!: ItemsCreateWithoutCatagoryInput;
+  @Field(() => ItemsCreateWithoutCatagoryInput, { nullable: false })
+  @Type(() => ItemsCreateWithoutCatagoryInput)
+  create!: ItemsCreateWithoutCatagoryInput;
 }

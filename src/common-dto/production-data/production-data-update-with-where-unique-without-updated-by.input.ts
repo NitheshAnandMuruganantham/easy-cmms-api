@@ -6,12 +6,11 @@ import { production_dataUpdateWithoutUpdatedByInput } from './production-data-up
 
 @InputType()
 export class production_dataUpdateWithWhereUniqueWithoutUpdatedByInput {
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
-
-    @Field(() => production_dataUpdateWithoutUpdatedByInput, {nullable:false})
-    @Type(() => production_dataUpdateWithoutUpdatedByInput)
-    data!: production_dataUpdateWithoutUpdatedByInput;
+  @Field(() => production_dataUpdateWithoutUpdatedByInput, { nullable: false })
+  @Type(() => production_dataUpdateWithoutUpdatedByInput)
+  data!: production_dataUpdateWithoutUpdatedByInput;
 }

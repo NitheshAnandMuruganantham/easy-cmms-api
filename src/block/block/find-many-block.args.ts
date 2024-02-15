@@ -9,23 +9,24 @@ import { BlockScalarFieldEnum } from './block-scalar-field.enum';
 
 @ArgsType()
 export class FindManyBlockArgs {
+  @Field(() => BlockWhereInput, { nullable: true })
+  @Type(() => BlockWhereInput)
+  where?: BlockWhereInput;
 
-    @Field(() => BlockWhereInput, {nullable:true})
-    @Type(() => BlockWhereInput)
-    where?: BlockWhereInput;
+  @Field(() => [BlockOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<BlockOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [BlockOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<BlockOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  cursor?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    cursor?: BlockWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [BlockScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof BlockScalarFieldEnum>;
+  @Field(() => [BlockScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof BlockScalarFieldEnum>;
 }

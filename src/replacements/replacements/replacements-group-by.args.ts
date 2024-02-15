@@ -14,38 +14,37 @@ import { ReplacementsMaxAggregateInput } from './replacements-max-aggregate.inpu
 
 @ArgsType()
 export class ReplacementsGroupByArgs {
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  @Type(() => ReplacementsWhereInput)
+  where?: ReplacementsWhereInput;
 
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    @Type(() => ReplacementsWhereInput)
-    where?: ReplacementsWhereInput;
+  @Field(() => [ReplacementsOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<ReplacementsOrderByWithAggregationInput>;
 
-    @Field(() => [ReplacementsOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<ReplacementsOrderByWithAggregationInput>;
+  @Field(() => [ReplacementsScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof ReplacementsScalarFieldEnum>;
 
-    @Field(() => [ReplacementsScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof ReplacementsScalarFieldEnum>;
+  @Field(() => ReplacementsScalarWhereWithAggregatesInput, { nullable: true })
+  having?: ReplacementsScalarWhereWithAggregatesInput;
 
-    @Field(() => ReplacementsScalarWhereWithAggregatesInput, {nullable:true})
-    having?: ReplacementsScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ReplacementsCountAggregateInput, { nullable: true })
+  _count?: ReplacementsCountAggregateInput;
 
-    @Field(() => ReplacementsCountAggregateInput, {nullable:true})
-    _count?: ReplacementsCountAggregateInput;
+  @Field(() => ReplacementsAvgAggregateInput, { nullable: true })
+  _avg?: ReplacementsAvgAggregateInput;
 
-    @Field(() => ReplacementsAvgAggregateInput, {nullable:true})
-    _avg?: ReplacementsAvgAggregateInput;
+  @Field(() => ReplacementsSumAggregateInput, { nullable: true })
+  _sum?: ReplacementsSumAggregateInput;
 
-    @Field(() => ReplacementsSumAggregateInput, {nullable:true})
-    _sum?: ReplacementsSumAggregateInput;
+  @Field(() => ReplacementsMinAggregateInput, { nullable: true })
+  _min?: ReplacementsMinAggregateInput;
 
-    @Field(() => ReplacementsMinAggregateInput, {nullable:true})
-    _min?: ReplacementsMinAggregateInput;
-
-    @Field(() => ReplacementsMaxAggregateInput, {nullable:true})
-    _max?: ReplacementsMaxAggregateInput;
+  @Field(() => ReplacementsMaxAggregateInput, { nullable: true })
+  _max?: ReplacementsMaxAggregateInput;
 }

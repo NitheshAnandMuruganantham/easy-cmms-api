@@ -7,16 +7,15 @@ import { invoice_itemsCreateWithoutItemInput } from './invoice-items-create-with
 
 @InputType()
 export class invoice_itemsUpsertWithWhereUniqueWithoutItemInput {
+  @Field(() => invoice_itemsWhereUniqueInput, { nullable: false })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  where!: invoice_itemsWhereUniqueInput;
 
-    @Field(() => invoice_itemsWhereUniqueInput, {nullable:false})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    where!: invoice_itemsWhereUniqueInput;
+  @Field(() => invoice_itemsUpdateWithoutItemInput, { nullable: false })
+  @Type(() => invoice_itemsUpdateWithoutItemInput)
+  update!: invoice_itemsUpdateWithoutItemInput;
 
-    @Field(() => invoice_itemsUpdateWithoutItemInput, {nullable:false})
-    @Type(() => invoice_itemsUpdateWithoutItemInput)
-    update!: invoice_itemsUpdateWithoutItemInput;
-
-    @Field(() => invoice_itemsCreateWithoutItemInput, {nullable:false})
-    @Type(() => invoice_itemsCreateWithoutItemInput)
-    create!: invoice_itemsCreateWithoutItemInput;
+  @Field(() => invoice_itemsCreateWithoutItemInput, { nullable: false })
+  @Type(() => invoice_itemsCreateWithoutItemInput)
+  create!: invoice_itemsCreateWithoutItemInput;
 }

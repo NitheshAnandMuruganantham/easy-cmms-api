@@ -14,38 +14,37 @@ import { TicketMaxAggregateInput } from './ticket-max-aggregate.input';
 
 @ArgsType()
 export class TicketGroupByArgs {
+  @Field(() => TicketWhereInput, { nullable: true })
+  @Type(() => TicketWhereInput)
+  where?: TicketWhereInput;
 
-    @Field(() => TicketWhereInput, {nullable:true})
-    @Type(() => TicketWhereInput)
-    where?: TicketWhereInput;
+  @Field(() => [TicketOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<TicketOrderByWithAggregationInput>;
 
-    @Field(() => [TicketOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<TicketOrderByWithAggregationInput>;
+  @Field(() => [TicketScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof TicketScalarFieldEnum>;
 
-    @Field(() => [TicketScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof TicketScalarFieldEnum>;
+  @Field(() => TicketScalarWhereWithAggregatesInput, { nullable: true })
+  having?: TicketScalarWhereWithAggregatesInput;
 
-    @Field(() => TicketScalarWhereWithAggregatesInput, {nullable:true})
-    having?: TicketScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => TicketCountAggregateInput, { nullable: true })
+  _count?: TicketCountAggregateInput;
 
-    @Field(() => TicketCountAggregateInput, {nullable:true})
-    _count?: TicketCountAggregateInput;
+  @Field(() => TicketAvgAggregateInput, { nullable: true })
+  _avg?: TicketAvgAggregateInput;
 
-    @Field(() => TicketAvgAggregateInput, {nullable:true})
-    _avg?: TicketAvgAggregateInput;
+  @Field(() => TicketSumAggregateInput, { nullable: true })
+  _sum?: TicketSumAggregateInput;
 
-    @Field(() => TicketSumAggregateInput, {nullable:true})
-    _sum?: TicketSumAggregateInput;
+  @Field(() => TicketMinAggregateInput, { nullable: true })
+  _min?: TicketMinAggregateInput;
 
-    @Field(() => TicketMinAggregateInput, {nullable:true})
-    _min?: TicketMinAggregateInput;
-
-    @Field(() => TicketMaxAggregateInput, {nullable:true})
-    _max?: TicketMaxAggregateInput;
+  @Field(() => TicketMaxAggregateInput, { nullable: true })
+  _max?: TicketMaxAggregateInput;
 }

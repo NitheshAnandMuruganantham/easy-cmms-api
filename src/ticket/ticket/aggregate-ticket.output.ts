@@ -8,19 +8,18 @@ import { TicketMaxAggregate } from './ticket-max-aggregate.output';
 
 @ObjectType()
 export class AggregateTicket {
+  @Field(() => TicketCountAggregate, { nullable: true })
+  _count?: TicketCountAggregate;
 
-    @Field(() => TicketCountAggregate, {nullable:true})
-    _count?: TicketCountAggregate;
+  @Field(() => TicketAvgAggregate, { nullable: true })
+  _avg?: TicketAvgAggregate;
 
-    @Field(() => TicketAvgAggregate, {nullable:true})
-    _avg?: TicketAvgAggregate;
+  @Field(() => TicketSumAggregate, { nullable: true })
+  _sum?: TicketSumAggregate;
 
-    @Field(() => TicketSumAggregate, {nullable:true})
-    _sum?: TicketSumAggregate;
+  @Field(() => TicketMinAggregate, { nullable: true })
+  _min?: TicketMinAggregate;
 
-    @Field(() => TicketMinAggregate, {nullable:true})
-    _min?: TicketMinAggregate;
-
-    @Field(() => TicketMaxAggregate, {nullable:true})
-    _max?: TicketMaxAggregate;
+  @Field(() => TicketMaxAggregate, { nullable: true })
+  _max?: TicketMaxAggregate;
 }

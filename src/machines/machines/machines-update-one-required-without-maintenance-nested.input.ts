@@ -9,24 +9,25 @@ import { MachinesUpdateWithoutMaintenanceInput } from './machines-update-without
 
 @InputType()
 export class MachinesUpdateOneRequiredWithoutMaintenanceNestedInput {
+  @Field(() => MachinesCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => MachinesCreateWithoutMaintenanceInput)
+  create?: MachinesCreateWithoutMaintenanceInput;
 
-    @Field(() => MachinesCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesCreateWithoutMaintenanceInput)
-    create?: MachinesCreateWithoutMaintenanceInput;
+  @Field(() => MachinesCreateOrConnectWithoutMaintenanceInput, {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: MachinesCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => MachinesCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: MachinesCreateOrConnectWithoutMaintenanceInput;
+  @Field(() => MachinesUpsertWithoutMaintenanceInput, { nullable: true })
+  @Type(() => MachinesUpsertWithoutMaintenanceInput)
+  upsert?: MachinesUpsertWithoutMaintenanceInput;
 
-    @Field(() => MachinesUpsertWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesUpsertWithoutMaintenanceInput)
-    upsert?: MachinesUpsertWithoutMaintenanceInput;
+  @Field(() => MachinesWhereUniqueInput, { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesUpdateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => MachinesUpdateWithoutMaintenanceInput)
-    update?: MachinesUpdateWithoutMaintenanceInput;
+  @Field(() => MachinesUpdateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => MachinesUpdateWithoutMaintenanceInput)
+  update?: MachinesUpdateWithoutMaintenanceInput;
 }

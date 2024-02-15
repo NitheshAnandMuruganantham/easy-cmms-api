@@ -6,12 +6,11 @@ import { BlockCreateWithoutItemsInput } from './block-create-without-items.input
 
 @InputType()
 export class BlockCreateOrConnectWithoutItemsInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutItemsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutItemsInput)
-    create!: BlockCreateWithoutItemsInput;
+  @Field(() => BlockCreateWithoutItemsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutItemsInput)
+  create!: BlockCreateWithoutItemsInput;
 }

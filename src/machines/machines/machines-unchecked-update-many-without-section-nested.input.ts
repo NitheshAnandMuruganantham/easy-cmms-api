@@ -12,48 +12,53 @@ import { MachinesScalarWhereInput } from './machines-scalar-where.input';
 
 @InputType()
 export class MachinesUncheckedUpdateManyWithoutSectionNestedInput {
+  @Field(() => [MachinesCreateWithoutSectionInput], { nullable: true })
+  @Type(() => MachinesCreateWithoutSectionInput)
+  create?: Array<MachinesCreateWithoutSectionInput>;
 
-    @Field(() => [MachinesCreateWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesCreateWithoutSectionInput)
-    create?: Array<MachinesCreateWithoutSectionInput>;
+  @Field(() => [MachinesCreateOrConnectWithoutSectionInput], { nullable: true })
+  @Type(() => MachinesCreateOrConnectWithoutSectionInput)
+  connectOrCreate?: Array<MachinesCreateOrConnectWithoutSectionInput>;
 
-    @Field(() => [MachinesCreateOrConnectWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutSectionInput)
-    connectOrCreate?: Array<MachinesCreateOrConnectWithoutSectionInput>;
+  @Field(() => [MachinesUpsertWithWhereUniqueWithoutSectionInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpsertWithWhereUniqueWithoutSectionInput)
+  upsert?: Array<MachinesUpsertWithWhereUniqueWithoutSectionInput>;
 
-    @Field(() => [MachinesUpsertWithWhereUniqueWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesUpsertWithWhereUniqueWithoutSectionInput)
-    upsert?: Array<MachinesUpsertWithWhereUniqueWithoutSectionInput>;
+  @Field(() => MachinesCreateManySectionInputEnvelope, { nullable: true })
+  @Type(() => MachinesCreateManySectionInputEnvelope)
+  createMany?: MachinesCreateManySectionInputEnvelope;
 
-    @Field(() => MachinesCreateManySectionInputEnvelope, {nullable:true})
-    @Type(() => MachinesCreateManySectionInputEnvelope)
-    createMany?: MachinesCreateManySectionInputEnvelope;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  set?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    set?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  disconnect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    disconnect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  delete?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    delete?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesUpdateWithWhereUniqueWithoutSectionInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpdateWithWhereUniqueWithoutSectionInput)
+  update?: Array<MachinesUpdateWithWhereUniqueWithoutSectionInput>;
 
-    @Field(() => [MachinesUpdateWithWhereUniqueWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesUpdateWithWhereUniqueWithoutSectionInput)
-    update?: Array<MachinesUpdateWithWhereUniqueWithoutSectionInput>;
+  @Field(() => [MachinesUpdateManyWithWhereWithoutSectionInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesUpdateManyWithWhereWithoutSectionInput)
+  updateMany?: Array<MachinesUpdateManyWithWhereWithoutSectionInput>;
 
-    @Field(() => [MachinesUpdateManyWithWhereWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesUpdateManyWithWhereWithoutSectionInput)
-    updateMany?: Array<MachinesUpdateManyWithWhereWithoutSectionInput>;
-
-    @Field(() => [MachinesScalarWhereInput], {nullable:true})
-    @Type(() => MachinesScalarWhereInput)
-    deleteMany?: Array<MachinesScalarWhereInput>;
+  @Field(() => [MachinesScalarWhereInput], { nullable: true })
+  @Type(() => MachinesScalarWhereInput)
+  deleteMany?: Array<MachinesScalarWhereInput>;
 }

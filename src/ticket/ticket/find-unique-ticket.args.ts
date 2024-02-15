@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueTicketArgs {
-
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 }

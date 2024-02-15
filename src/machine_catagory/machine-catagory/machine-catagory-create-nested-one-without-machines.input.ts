@@ -7,16 +7,17 @@ import { machine_catagoryWhereUniqueInput } from './machine-catagory-where-uniqu
 
 @InputType()
 export class machine_catagoryCreateNestedOneWithoutMachinesInput {
+  @Field(() => machine_catagoryCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => machine_catagoryCreateWithoutMachinesInput)
+  create?: machine_catagoryCreateWithoutMachinesInput;
 
-    @Field(() => machine_catagoryCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryCreateWithoutMachinesInput)
-    create?: machine_catagoryCreateWithoutMachinesInput;
+  @Field(() => machine_catagoryCreateOrConnectWithoutMachinesInput, {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: machine_catagoryCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => machine_catagoryCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: machine_catagoryCreateOrConnectWithoutMachinesInput;
-
-    @Field(() => machine_catagoryWhereUniqueInput, {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    connect?: machine_catagoryWhereUniqueInput;
+  @Field(() => machine_catagoryWhereUniqueInput, { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  connect?: machine_catagoryWhereUniqueInput;
 }

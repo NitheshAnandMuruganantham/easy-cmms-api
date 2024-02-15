@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneMachinesArgs {
-
-    @Field(() => MachinesCreateInput, {nullable:false})
-    @Type(() => MachinesCreateInput)
-    data!: MachinesCreateInput;
+  @Field(() => MachinesCreateInput, { nullable: false })
+  @Type(() => MachinesCreateInput)
+  data!: MachinesCreateInput;
 }

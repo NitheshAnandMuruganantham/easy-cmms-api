@@ -5,19 +5,18 @@ import { GraphQLJSON } from 'graphql-type-json';
 
 @InputType()
 export class block_settingsCreateManyBlockInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => GraphQLJSON, { nullable: false })
+  value!: any;
 
-    @Field(() => GraphQLJSON, {nullable:false})
-    value!: any;
+  @Field(() => Date, { nullable: true })
+  created_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
 }

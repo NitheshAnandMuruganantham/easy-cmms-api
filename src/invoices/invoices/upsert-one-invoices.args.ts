@@ -7,16 +7,15 @@ import { InvoicesUpdateInput } from './invoices-update.input';
 
 @ArgsType()
 export class UpsertOneInvoicesArgs {
+  @Field(() => InvoicesWhereUniqueInput, { nullable: false })
+  @Type(() => InvoicesWhereUniqueInput)
+  where!: InvoicesWhereUniqueInput;
 
-    @Field(() => InvoicesWhereUniqueInput, {nullable:false})
-    @Type(() => InvoicesWhereUniqueInput)
-    where!: InvoicesWhereUniqueInput;
+  @Field(() => InvoicesCreateInput, { nullable: false })
+  @Type(() => InvoicesCreateInput)
+  create!: InvoicesCreateInput;
 
-    @Field(() => InvoicesCreateInput, {nullable:false})
-    @Type(() => InvoicesCreateInput)
-    create!: InvoicesCreateInput;
-
-    @Field(() => InvoicesUpdateInput, {nullable:false})
-    @Type(() => InvoicesUpdateInput)
-    update!: InvoicesUpdateInput;
+  @Field(() => InvoicesUpdateInput, { nullable: false })
+  @Type(() => InvoicesUpdateInput)
+  update!: InvoicesUpdateInput;
 }

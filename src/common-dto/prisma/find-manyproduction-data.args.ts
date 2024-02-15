@@ -9,23 +9,24 @@ import { Production_dataScalarFieldEnum } from './production-data-scalar-field.e
 
 @ArgsType()
 export class FindManyproductionDataArgs {
+  @Field(() => production_dataWhereInput, { nullable: true })
+  @Type(() => production_dataWhereInput)
+  where?: production_dataWhereInput;
 
-    @Field(() => production_dataWhereInput, {nullable:true})
-    @Type(() => production_dataWhereInput)
-    where?: production_dataWhereInput;
+  @Field(() => [production_dataOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<production_dataOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [production_dataOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<production_dataOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => production_dataWhereUniqueInput, { nullable: true })
+  cursor?: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:true})
-    cursor?: production_dataWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [Production_dataScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof Production_dataScalarFieldEnum>;
+  @Field(() => [Production_dataScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof Production_dataScalarFieldEnum>;
 }

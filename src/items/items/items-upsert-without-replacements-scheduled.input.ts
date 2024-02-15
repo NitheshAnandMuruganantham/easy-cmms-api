@@ -6,12 +6,15 @@ import { ItemsCreateWithoutReplacements_scheduledInput } from './items-create-wi
 
 @InputType()
 export class ItemsUpsertWithoutReplacements_scheduledInput {
+  @Field(() => ItemsUpdateWithoutReplacements_scheduledInput, {
+    nullable: false,
+  })
+  @Type(() => ItemsUpdateWithoutReplacements_scheduledInput)
+  update!: ItemsUpdateWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsUpdateWithoutReplacements_scheduledInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutReplacements_scheduledInput)
-    update!: ItemsUpdateWithoutReplacements_scheduledInput;
-
-    @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
-    create!: ItemsCreateWithoutReplacements_scheduledInput;
+  @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {
+    nullable: false,
+  })
+  @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
+  create!: ItemsCreateWithoutReplacements_scheduledInput;
 }

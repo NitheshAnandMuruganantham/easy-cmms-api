@@ -4,13 +4,12 @@ import { ReplacementsWhereInput } from './replacements-where.input';
 
 @InputType()
 export class ReplacementsListRelationFilter {
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  every?: ReplacementsWhereInput;
 
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    every?: ReplacementsWhereInput;
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  some?: ReplacementsWhereInput;
 
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    some?: ReplacementsWhereInput;
-
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    none?: ReplacementsWhereInput;
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  none?: ReplacementsWhereInput;
 }

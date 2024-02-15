@@ -7,16 +7,15 @@ import { TicketCreateWithoutBlockInput } from './ticket-create-without-block.inp
 
 @InputType()
 export class TicketUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutBlockInput)
+  update!: TicketUpdateWithoutBlockInput;
 
-    @Field(() => TicketUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutBlockInput)
-    update!: TicketUpdateWithoutBlockInput;
-
-    @Field(() => TicketCreateWithoutBlockInput, {nullable:false})
-    @Type(() => TicketCreateWithoutBlockInput)
-    create!: TicketCreateWithoutBlockInput;
+  @Field(() => TicketCreateWithoutBlockInput, { nullable: false })
+  @Type(() => TicketCreateWithoutBlockInput)
+  create!: TicketCreateWithoutBlockInput;
 }

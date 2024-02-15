@@ -12,48 +12,53 @@ import { SectionsScalarWhereInput } from './sections-scalar-where.input';
 
 @InputType()
 export class SectionsUpdateManyWithoutBlockNestedInput {
+  @Field(() => [SectionsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => SectionsCreateWithoutBlockInput)
+  create?: Array<SectionsCreateWithoutBlockInput>;
 
-    @Field(() => [SectionsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => SectionsCreateWithoutBlockInput)
-    create?: Array<SectionsCreateWithoutBlockInput>;
+  @Field(() => [SectionsCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => SectionsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<SectionsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [SectionsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => SectionsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<SectionsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [SectionsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => SectionsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<SectionsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [SectionsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => SectionsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<SectionsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => SectionsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => SectionsCreateManyBlockInputEnvelope)
+  createMany?: SectionsCreateManyBlockInputEnvelope;
 
-    @Field(() => SectionsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => SectionsCreateManyBlockInputEnvelope)
-    createMany?: SectionsCreateManyBlockInputEnvelope;
+  @Field(() => [SectionsWhereUniqueInput], { nullable: true })
+  @Type(() => SectionsWhereUniqueInput)
+  set?: Array<SectionsWhereUniqueInput>;
 
-    @Field(() => [SectionsWhereUniqueInput], {nullable:true})
-    @Type(() => SectionsWhereUniqueInput)
-    set?: Array<SectionsWhereUniqueInput>;
+  @Field(() => [SectionsWhereUniqueInput], { nullable: true })
+  @Type(() => SectionsWhereUniqueInput)
+  disconnect?: Array<SectionsWhereUniqueInput>;
 
-    @Field(() => [SectionsWhereUniqueInput], {nullable:true})
-    @Type(() => SectionsWhereUniqueInput)
-    disconnect?: Array<SectionsWhereUniqueInput>;
+  @Field(() => [SectionsWhereUniqueInput], { nullable: true })
+  @Type(() => SectionsWhereUniqueInput)
+  delete?: Array<SectionsWhereUniqueInput>;
 
-    @Field(() => [SectionsWhereUniqueInput], {nullable:true})
-    @Type(() => SectionsWhereUniqueInput)
-    delete?: Array<SectionsWhereUniqueInput>;
+  @Field(() => [SectionsWhereUniqueInput], { nullable: true })
+  @Type(() => SectionsWhereUniqueInput)
+  connect?: Array<SectionsWhereUniqueInput>;
 
-    @Field(() => [SectionsWhereUniqueInput], {nullable:true})
-    @Type(() => SectionsWhereUniqueInput)
-    connect?: Array<SectionsWhereUniqueInput>;
+  @Field(() => [SectionsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => SectionsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<SectionsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [SectionsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => SectionsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<SectionsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [SectionsUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => SectionsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<SectionsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [SectionsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => SectionsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<SectionsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [SectionsScalarWhereInput], {nullable:true})
-    @Type(() => SectionsScalarWhereInput)
-    deleteMany?: Array<SectionsScalarWhereInput>;
+  @Field(() => [SectionsScalarWhereInput], { nullable: true })
+  @Type(() => SectionsScalarWhereInput)
+  deleteMany?: Array<SectionsScalarWhereInput>;
 }

@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyMaintenanceArgs {
-
-    @Field(() => MaintenanceWhereInput, {nullable:true})
-    @Type(() => MaintenanceWhereInput)
-    where?: MaintenanceWhereInput;
+  @Field(() => MaintenanceWhereInput, { nullable: true })
+  @Type(() => MaintenanceWhereInput)
+  where?: MaintenanceWhereInput;
 }

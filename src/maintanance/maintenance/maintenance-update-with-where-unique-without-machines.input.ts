@@ -6,12 +6,11 @@ import { MaintenanceUpdateWithoutMachinesInput } from './maintenance-update-with
 
 @InputType()
 export class MaintenanceUpdateWithWhereUniqueWithoutMachinesInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutMachinesInput)
-    data!: MaintenanceUpdateWithoutMachinesInput;
+  @Field(() => MaintenanceUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutMachinesInput)
+  data!: MaintenanceUpdateWithoutMachinesInput;
 }

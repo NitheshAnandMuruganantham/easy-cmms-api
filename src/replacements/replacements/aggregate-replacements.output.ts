@@ -8,19 +8,18 @@ import { ReplacementsMaxAggregate } from './replacements-max-aggregate.output';
 
 @ObjectType()
 export class AggregateReplacements {
+  @Field(() => ReplacementsCountAggregate, { nullable: true })
+  _count?: ReplacementsCountAggregate;
 
-    @Field(() => ReplacementsCountAggregate, {nullable:true})
-    _count?: ReplacementsCountAggregate;
+  @Field(() => ReplacementsAvgAggregate, { nullable: true })
+  _avg?: ReplacementsAvgAggregate;
 
-    @Field(() => ReplacementsAvgAggregate, {nullable:true})
-    _avg?: ReplacementsAvgAggregate;
+  @Field(() => ReplacementsSumAggregate, { nullable: true })
+  _sum?: ReplacementsSumAggregate;
 
-    @Field(() => ReplacementsSumAggregate, {nullable:true})
-    _sum?: ReplacementsSumAggregate;
+  @Field(() => ReplacementsMinAggregate, { nullable: true })
+  _min?: ReplacementsMinAggregate;
 
-    @Field(() => ReplacementsMinAggregate, {nullable:true})
-    _min?: ReplacementsMinAggregate;
-
-    @Field(() => ReplacementsMaxAggregate, {nullable:true})
-    _max?: ReplacementsMaxAggregate;
+  @Field(() => ReplacementsMaxAggregate, { nullable: true })
+  _max?: ReplacementsMaxAggregate;
 }

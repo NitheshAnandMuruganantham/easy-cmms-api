@@ -4,7 +4,6 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @InputType()
 export class ItemsCreatemachines_idInput {
-
-    @Field(() => [GraphQLBigInt], {nullable:false})
-    set!: Array<bigint> | Array<number>;
+  @Field(() => [GraphQLBigInt], { nullable: false })
+  set!: Array<bigint> | Array<number>;
 }

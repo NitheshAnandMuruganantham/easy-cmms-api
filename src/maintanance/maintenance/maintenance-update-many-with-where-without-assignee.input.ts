@@ -6,12 +6,11 @@ import { MaintenanceUpdateManyMutationInput } from './maintenance-update-many-mu
 
 @InputType()
 export class MaintenanceUpdateManyWithWhereWithoutAssigneeInput {
+  @Field(() => MaintenanceScalarWhereInput, { nullable: false })
+  @Type(() => MaintenanceScalarWhereInput)
+  where!: MaintenanceScalarWhereInput;
 
-    @Field(() => MaintenanceScalarWhereInput, {nullable:false})
-    @Type(() => MaintenanceScalarWhereInput)
-    where!: MaintenanceScalarWhereInput;
-
-    @Field(() => MaintenanceUpdateManyMutationInput, {nullable:false})
-    @Type(() => MaintenanceUpdateManyMutationInput)
-    data!: MaintenanceUpdateManyMutationInput;
+  @Field(() => MaintenanceUpdateManyMutationInput, { nullable: false })
+  @Type(() => MaintenanceUpdateManyMutationInput)
+  data!: MaintenanceUpdateManyMutationInput;
 }

@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class BlockCreateMailingsInput {
-
-    @Field(() => [String], {nullable:false})
-    set!: Array<string>;
+  @Field(() => [String], { nullable: false })
+  set!: Array<string>;
 }

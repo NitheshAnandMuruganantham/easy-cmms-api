@@ -9,24 +9,25 @@ import { UsersUpdateWithoutProduction_dataInput } from './users-update-without-p
 
 @InputType()
 export class UsersUpdateOneRequiredWithoutProduction_dataNestedInput {
+  @Field(() => UsersCreateWithoutProduction_dataInput, { nullable: true })
+  @Type(() => UsersCreateWithoutProduction_dataInput)
+  create?: UsersCreateWithoutProduction_dataInput;
 
-    @Field(() => UsersCreateWithoutProduction_dataInput, {nullable:true})
-    @Type(() => UsersCreateWithoutProduction_dataInput)
-    create?: UsersCreateWithoutProduction_dataInput;
+  @Field(() => UsersCreateOrConnectWithoutProduction_dataInput, {
+    nullable: true,
+  })
+  @Type(() => UsersCreateOrConnectWithoutProduction_dataInput)
+  connectOrCreate?: UsersCreateOrConnectWithoutProduction_dataInput;
 
-    @Field(() => UsersCreateOrConnectWithoutProduction_dataInput, {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutProduction_dataInput)
-    connectOrCreate?: UsersCreateOrConnectWithoutProduction_dataInput;
+  @Field(() => UsersUpsertWithoutProduction_dataInput, { nullable: true })
+  @Type(() => UsersUpsertWithoutProduction_dataInput)
+  upsert?: UsersUpsertWithoutProduction_dataInput;
 
-    @Field(() => UsersUpsertWithoutProduction_dataInput, {nullable:true})
-    @Type(() => UsersUpsertWithoutProduction_dataInput)
-    upsert?: UsersUpsertWithoutProduction_dataInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: UsersWhereUniqueInput;
-
-    @Field(() => UsersUpdateWithoutProduction_dataInput, {nullable:true})
-    @Type(() => UsersUpdateWithoutProduction_dataInput)
-    update?: UsersUpdateWithoutProduction_dataInput;
+  @Field(() => UsersUpdateWithoutProduction_dataInput, { nullable: true })
+  @Type(() => UsersUpdateWithoutProduction_dataInput)
+  update?: UsersUpdateWithoutProduction_dataInput;
 }

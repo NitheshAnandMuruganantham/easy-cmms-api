@@ -9,23 +9,22 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class catagoryGroupByArgs {
+  @Field(() => catagoryWhereInput, { nullable: true })
+  @Type(() => catagoryWhereInput)
+  where?: catagoryWhereInput;
 
-    @Field(() => catagoryWhereInput, {nullable:true})
-    @Type(() => catagoryWhereInput)
-    where?: catagoryWhereInput;
+  @Field(() => [catagoryOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<catagoryOrderByWithAggregationInput>;
 
-    @Field(() => [catagoryOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<catagoryOrderByWithAggregationInput>;
+  @Field(() => [CatagoryScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof CatagoryScalarFieldEnum>;
 
-    @Field(() => [CatagoryScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof CatagoryScalarFieldEnum>;
+  @Field(() => catagoryScalarWhereWithAggregatesInput, { nullable: true })
+  having?: catagoryScalarWhereWithAggregatesInput;
 
-    @Field(() => catagoryScalarWhereWithAggregatesInput, {nullable:true})
-    having?: catagoryScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
-
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }

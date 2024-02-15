@@ -6,12 +6,11 @@ import { catagoryUpdateWithoutBlockInput } from './catagory-update-without-block
 
 @InputType()
 export class catagoryUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => catagoryWhereUniqueInput, { nullable: false })
+  @Type(() => catagoryWhereUniqueInput)
+  where!: catagoryWhereUniqueInput;
 
-    @Field(() => catagoryWhereUniqueInput, {nullable:false})
-    @Type(() => catagoryWhereUniqueInput)
-    where!: catagoryWhereUniqueInput;
-
-    @Field(() => catagoryUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => catagoryUpdateWithoutBlockInput)
-    data!: catagoryUpdateWithoutBlockInput;
+  @Field(() => catagoryUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => catagoryUpdateWithoutBlockInput)
+  data!: catagoryUpdateWithoutBlockInput;
 }

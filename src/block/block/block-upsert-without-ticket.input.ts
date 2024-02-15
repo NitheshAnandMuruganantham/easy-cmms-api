@@ -6,12 +6,11 @@ import { BlockCreateWithoutTicketInput } from './block-create-without-ticket.inp
 
 @InputType()
 export class BlockUpsertWithoutTicketInput {
+  @Field(() => BlockUpdateWithoutTicketInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutTicketInput)
+  update!: BlockUpdateWithoutTicketInput;
 
-    @Field(() => BlockUpdateWithoutTicketInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutTicketInput)
-    update!: BlockUpdateWithoutTicketInput;
-
-    @Field(() => BlockCreateWithoutTicketInput, {nullable:false})
-    @Type(() => BlockCreateWithoutTicketInput)
-    create!: BlockCreateWithoutTicketInput;
+  @Field(() => BlockCreateWithoutTicketInput, { nullable: false })
+  @Type(() => BlockCreateWithoutTicketInput)
+  create!: BlockCreateWithoutTicketInput;
 }

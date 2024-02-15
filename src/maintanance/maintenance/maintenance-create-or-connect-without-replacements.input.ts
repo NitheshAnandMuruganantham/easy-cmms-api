@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutReplacementsInput } from './maintenance-create-
 
 @InputType()
 export class MaintenanceCreateOrConnectWithoutReplacementsInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceCreateWithoutReplacementsInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutReplacementsInput)
-    create!: MaintenanceCreateWithoutReplacementsInput;
+  @Field(() => MaintenanceCreateWithoutReplacementsInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutReplacementsInput)
+  create!: MaintenanceCreateWithoutReplacementsInput;
 }

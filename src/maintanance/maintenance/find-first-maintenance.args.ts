@@ -9,23 +9,24 @@ import { MaintenanceScalarFieldEnum } from './maintenance-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstMaintenanceArgs {
+  @Field(() => MaintenanceWhereInput, { nullable: true })
+  @Type(() => MaintenanceWhereInput)
+  where?: MaintenanceWhereInput;
 
-    @Field(() => MaintenanceWhereInput, {nullable:true})
-    @Type(() => MaintenanceWhereInput)
-    where?: MaintenanceWhereInput;
+  @Field(() => [MaintenanceOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<MaintenanceOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [MaintenanceOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<MaintenanceOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: true })
+  cursor?: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:true})
-    cursor?: MaintenanceWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [MaintenanceScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof MaintenanceScalarFieldEnum>;
+  @Field(() => [MaintenanceScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof MaintenanceScalarFieldEnum>;
 }

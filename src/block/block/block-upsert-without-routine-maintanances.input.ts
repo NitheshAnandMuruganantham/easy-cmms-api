@@ -6,12 +6,11 @@ import { BlockCreateWithoutRoutine_maintanancesInput } from './block-create-with
 
 @InputType()
 export class BlockUpsertWithoutRoutine_maintanancesInput {
+  @Field(() => BlockUpdateWithoutRoutine_maintanancesInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutRoutine_maintanancesInput)
+  update!: BlockUpdateWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockUpdateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutRoutine_maintanancesInput)
-    update!: BlockUpdateWithoutRoutine_maintanancesInput;
-
-    @Field(() => BlockCreateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
-    create!: BlockCreateWithoutRoutine_maintanancesInput;
+  @Field(() => BlockCreateWithoutRoutine_maintanancesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
+  create!: BlockCreateWithoutRoutine_maintanancesInput;
 }

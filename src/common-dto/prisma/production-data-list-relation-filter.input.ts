@@ -4,13 +4,12 @@ import { production_dataWhereInput } from '../production-data/production-data-wh
 
 @InputType()
 export class Production_dataListRelationFilter {
+  @Field(() => production_dataWhereInput, { nullable: true })
+  every?: production_dataWhereInput;
 
-    @Field(() => production_dataWhereInput, {nullable:true})
-    every?: production_dataWhereInput;
+  @Field(() => production_dataWhereInput, { nullable: true })
+  some?: production_dataWhereInput;
 
-    @Field(() => production_dataWhereInput, {nullable:true})
-    some?: production_dataWhereInput;
-
-    @Field(() => production_dataWhereInput, {nullable:true})
-    none?: production_dataWhereInput;
+  @Field(() => production_dataWhereInput, { nullable: true })
+  none?: production_dataWhereInput;
 }

@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class TicketCreateManyMachinesInputEnvelope {
+  @Field(() => [TicketCreateManyMachinesInput], { nullable: false })
+  @Type(() => TicketCreateManyMachinesInput)
+  data!: Array<TicketCreateManyMachinesInput>;
 
-    @Field(() => [TicketCreateManyMachinesInput], {nullable:false})
-    @Type(() => TicketCreateManyMachinesInput)
-    data!: Array<TicketCreateManyMachinesInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

@@ -12,48 +12,61 @@ import { routine_maintanancesScalarWhereInput } from './routine-maintanances-sca
 
 @InputType()
 export class routine_maintanancesUpdateManyWithoutAssigneeNestedInput {
+  @Field(() => [routine_maintanancesCreateWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
+  create?: Array<routine_maintanancesCreateWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesCreateWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
-    create?: Array<routine_maintanancesCreateWithoutAssigneeInput>;
+  @Field(() => [routine_maintanancesCreateOrConnectWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateOrConnectWithoutAssigneeInput)
+  connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesCreateOrConnectWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateOrConnectWithoutAssigneeInput)
-    connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutAssigneeInput>;
+  @Field(
+    () => [routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput],
+    { nullable: true },
+  )
+  @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput)
+  upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput)
-    upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput>;
+  @Field(() => routine_maintanancesCreateManyAssigneeInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateManyAssigneeInputEnvelope)
+  createMany?: routine_maintanancesCreateManyAssigneeInputEnvelope;
 
-    @Field(() => routine_maintanancesCreateManyAssigneeInputEnvelope, {nullable:true})
-    @Type(() => routine_maintanancesCreateManyAssigneeInputEnvelope)
-    createMany?: routine_maintanancesCreateManyAssigneeInputEnvelope;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  set?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    set?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  disconnect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    disconnect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  delete?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    delete?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  connect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    connect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(
+    () => [routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput],
+    { nullable: true },
+  )
+  @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput)
+  update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput)
-    update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutAssigneeInput>;
+  @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput)
+  updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput)
-    updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput>;
-
-    @Field(() => [routine_maintanancesScalarWhereInput], {nullable:true})
-    @Type(() => routine_maintanancesScalarWhereInput)
-    deleteMany?: Array<routine_maintanancesScalarWhereInput>;
+  @Field(() => [routine_maintanancesScalarWhereInput], { nullable: true })
+  @Type(() => routine_maintanancesScalarWhereInput)
+  deleteMany?: Array<routine_maintanancesScalarWhereInput>;
 }

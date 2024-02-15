@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutTicketInput } from './maintenance-create-withou
 
 @InputType()
 export class MaintenanceCreateOrConnectWithoutTicketInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceCreateWithoutTicketInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutTicketInput)
-    create!: MaintenanceCreateWithoutTicketInput;
+  @Field(() => MaintenanceCreateWithoutTicketInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutTicketInput)
+  create!: MaintenanceCreateWithoutTicketInput;
 }

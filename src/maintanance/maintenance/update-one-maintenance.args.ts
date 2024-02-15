@@ -6,12 +6,11 @@ import { MaintenanceWhereUniqueInput } from './maintenance-where-unique.input';
 
 @ArgsType()
 export class UpdateOneMaintenanceArgs {
+  @Field(() => MaintenanceUpdateInput, { nullable: false })
+  @Type(() => MaintenanceUpdateInput)
+  data!: MaintenanceUpdateInput;
 
-    @Field(() => MaintenanceUpdateInput, {nullable:false})
-    @Type(() => MaintenanceUpdateInput)
-    data!: MaintenanceUpdateInput;
-
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 }

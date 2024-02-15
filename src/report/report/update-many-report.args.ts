@@ -6,12 +6,11 @@ import { ReportWhereInput } from './report-where.input';
 
 @ArgsType()
 export class UpdateManyReportArgs {
+  @Field(() => ReportUpdateManyMutationInput, { nullable: false })
+  @Type(() => ReportUpdateManyMutationInput)
+  data!: ReportUpdateManyMutationInput;
 
-    @Field(() => ReportUpdateManyMutationInput, {nullable:false})
-    @Type(() => ReportUpdateManyMutationInput)
-    data!: ReportUpdateManyMutationInput;
-
-    @Field(() => ReportWhereInput, {nullable:true})
-    @Type(() => ReportWhereInput)
-    where?: ReportWhereInput;
+  @Field(() => ReportWhereInput, { nullable: true })
+  @Type(() => ReportWhereInput)
+  where?: ReportWhereInput;
 }

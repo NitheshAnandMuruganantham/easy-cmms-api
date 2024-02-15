@@ -6,12 +6,11 @@ import { TicketCreateWithoutMaintenanceInput } from './ticket-create-without-mai
 
 @InputType()
 export class TicketUpsertWithoutMaintenanceInput {
+  @Field(() => TicketUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutMaintenanceInput)
+  update!: TicketUpdateWithoutMaintenanceInput;
 
-    @Field(() => TicketUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutMaintenanceInput)
-    update!: TicketUpdateWithoutMaintenanceInput;
-
-    @Field(() => TicketCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => TicketCreateWithoutMaintenanceInput)
-    create!: TicketCreateWithoutMaintenanceInput;
+  @Field(() => TicketCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => TicketCreateWithoutMaintenanceInput)
+  create!: TicketCreateWithoutMaintenanceInput;
 }

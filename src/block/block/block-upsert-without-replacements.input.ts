@@ -6,12 +6,11 @@ import { BlockCreateWithoutReplacementsInput } from './block-create-without-repl
 
 @InputType()
 export class BlockUpsertWithoutReplacementsInput {
+  @Field(() => BlockUpdateWithoutReplacementsInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutReplacementsInput)
+  update!: BlockUpdateWithoutReplacementsInput;
 
-    @Field(() => BlockUpdateWithoutReplacementsInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutReplacementsInput)
-    update!: BlockUpdateWithoutReplacementsInput;
-
-    @Field(() => BlockCreateWithoutReplacementsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutReplacementsInput)
-    create!: BlockCreateWithoutReplacementsInput;
+  @Field(() => BlockCreateWithoutReplacementsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutReplacementsInput)
+  create!: BlockCreateWithoutReplacementsInput;
 }

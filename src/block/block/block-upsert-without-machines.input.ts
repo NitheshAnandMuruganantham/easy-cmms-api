@@ -6,12 +6,11 @@ import { BlockCreateWithoutMachinesInput } from './block-create-without-machines
 
 @InputType()
 export class BlockUpsertWithoutMachinesInput {
+  @Field(() => BlockUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutMachinesInput)
+  update!: BlockUpdateWithoutMachinesInput;
 
-    @Field(() => BlockUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutMachinesInput)
-    update!: BlockUpdateWithoutMachinesInput;
-
-    @Field(() => BlockCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutMachinesInput)
-    create!: BlockCreateWithoutMachinesInput;
+  @Field(() => BlockCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutMachinesInput)
+  create!: BlockCreateWithoutMachinesInput;
 }

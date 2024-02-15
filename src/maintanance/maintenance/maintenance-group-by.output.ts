@@ -11,64 +11,63 @@ import { MaintenanceMaxAggregate } from './maintenance-max-aggregate.output';
 
 @ObjectType()
 export class MaintenanceGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  photo?: string;
 
-    @Field(() => String, {nullable:true})
-    photo?: string;
+  @Field(() => String, { nullable: false })
+  description!: string;
 
-    @Field(() => String, {nullable:false})
-    description!: string;
+  @Field(() => Date, { nullable: false })
+  from!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    from!: Date | string;
+  @Field(() => Date, { nullable: false })
+  to!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    to!: Date | string;
+  @Field(() => Boolean, { nullable: false })
+  resolved!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    resolved!: boolean;
+  @Field(() => GraphQLJSON, { nullable: false })
+  metadata!: any;
 
-    @Field(() => GraphQLJSON, {nullable:false})
-    metadata!: any;
+  @Field(() => Boolean, { nullable: false })
+  un_planned!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    un_planned!: boolean;
+  @Field(() => Date, { nullable: true })
+  elapsed?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    elapsed?: Date | string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  assignee_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    assignee_id!: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  machine_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    machine_id!: bigint | number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => MaintenanceCountAggregate, { nullable: true })
+  _count?: MaintenanceCountAggregate;
 
-    @Field(() => MaintenanceCountAggregate, {nullable:true})
-    _count?: MaintenanceCountAggregate;
+  @Field(() => MaintenanceAvgAggregate, { nullable: true })
+  _avg?: MaintenanceAvgAggregate;
 
-    @Field(() => MaintenanceAvgAggregate, {nullable:true})
-    _avg?: MaintenanceAvgAggregate;
+  @Field(() => MaintenanceSumAggregate, { nullable: true })
+  _sum?: MaintenanceSumAggregate;
 
-    @Field(() => MaintenanceSumAggregate, {nullable:true})
-    _sum?: MaintenanceSumAggregate;
+  @Field(() => MaintenanceMinAggregate, { nullable: true })
+  _min?: MaintenanceMinAggregate;
 
-    @Field(() => MaintenanceMinAggregate, {nullable:true})
-    _min?: MaintenanceMinAggregate;
-
-    @Field(() => MaintenanceMaxAggregate, {nullable:true})
-    _max?: MaintenanceMaxAggregate;
+  @Field(() => MaintenanceMaxAggregate, { nullable: true })
+  _max?: MaintenanceMaxAggregate;
 }

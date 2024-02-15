@@ -7,16 +7,15 @@ import { SectionUpdateInput } from './section-update.input';
 
 @ArgsType()
 export class UpsertOneSectionArgs {
+  @Field(() => SectionWhereUniqueInput, { nullable: false })
+  @Type(() => SectionWhereUniqueInput)
+  where!: SectionWhereUniqueInput;
 
-    @Field(() => SectionWhereUniqueInput, {nullable:false})
-    @Type(() => SectionWhereUniqueInput)
-    where!: SectionWhereUniqueInput;
+  @Field(() => SectionCreateInput, { nullable: false })
+  @Type(() => SectionCreateInput)
+  create!: SectionCreateInput;
 
-    @Field(() => SectionCreateInput, {nullable:false})
-    @Type(() => SectionCreateInput)
-    create!: SectionCreateInput;
-
-    @Field(() => SectionUpdateInput, {nullable:false})
-    @Type(() => SectionUpdateInput)
-    update!: SectionUpdateInput;
+  @Field(() => SectionUpdateInput, { nullable: false })
+  @Type(() => SectionUpdateInput)
+  update!: SectionUpdateInput;
 }

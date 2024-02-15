@@ -7,16 +7,15 @@ import { SectionsWhereUniqueInput } from './sections-where-unique.input';
 
 @InputType()
 export class SectionsCreateNestedOneWithoutMachinesInput {
+  @Field(() => SectionsCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionsCreateWithoutMachinesInput)
+  create?: SectionsCreateWithoutMachinesInput;
 
-    @Field(() => SectionsCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionsCreateWithoutMachinesInput)
-    create?: SectionsCreateWithoutMachinesInput;
+  @Field(() => SectionsCreateOrConnectWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionsCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: SectionsCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => SectionsCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionsCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: SectionsCreateOrConnectWithoutMachinesInput;
-
-    @Field(() => SectionsWhereUniqueInput, {nullable:true})
-    @Type(() => SectionsWhereUniqueInput)
-    connect?: SectionsWhereUniqueInput;
+  @Field(() => SectionsWhereUniqueInput, { nullable: true })
+  @Type(() => SectionsWhereUniqueInput)
+  connect?: SectionsWhereUniqueInput;
 }

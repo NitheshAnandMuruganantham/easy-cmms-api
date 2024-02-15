@@ -8,20 +8,25 @@ import { routine_maintanancesWhereUniqueInput } from './routine-maintanances-whe
 
 @InputType()
 export class routine_maintanancesUncheckedCreateNestedManyWithoutAssigneeInput {
+  @Field(() => [routine_maintanancesCreateWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
+  create?: Array<routine_maintanancesCreateWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesCreateWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
-    create?: Array<routine_maintanancesCreateWithoutAssigneeInput>;
+  @Field(() => [routine_maintanancesCreateOrConnectWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateOrConnectWithoutAssigneeInput)
+  connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutAssigneeInput>;
 
-    @Field(() => [routine_maintanancesCreateOrConnectWithoutAssigneeInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateOrConnectWithoutAssigneeInput)
-    connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutAssigneeInput>;
+  @Field(() => routine_maintanancesCreateManyAssigneeInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateManyAssigneeInputEnvelope)
+  createMany?: routine_maintanancesCreateManyAssigneeInputEnvelope;
 
-    @Field(() => routine_maintanancesCreateManyAssigneeInputEnvelope, {nullable:true})
-    @Type(() => routine_maintanancesCreateManyAssigneeInputEnvelope)
-    createMany?: routine_maintanancesCreateManyAssigneeInputEnvelope;
-
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    connect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  connect?: Array<routine_maintanancesWhereUniqueInput>;
 }

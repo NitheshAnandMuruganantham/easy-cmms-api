@@ -1,8 +1,10 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum SectionsOrderByRelevanceFieldEnum {
-    name = "name"
+  name = 'name',
 }
 
-
-registerEnumType(SectionsOrderByRelevanceFieldEnum, { name: 'SectionsOrderByRelevanceFieldEnum', description: undefined })
+registerEnumType(SectionsOrderByRelevanceFieldEnum, {
+  name: 'SectionsOrderByRelevanceFieldEnum',
+  description: undefined,
+});

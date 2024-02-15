@@ -6,12 +6,11 @@ import { TicketUpdateManyMutationInput } from './ticket-update-many-mutation.inp
 
 @InputType()
 export class TicketUpdateManyWithWhereWithoutMachinesInput {
+  @Field(() => TicketScalarWhereInput, { nullable: false })
+  @Type(() => TicketScalarWhereInput)
+  where!: TicketScalarWhereInput;
 
-    @Field(() => TicketScalarWhereInput, {nullable:false})
-    @Type(() => TicketScalarWhereInput)
-    where!: TicketScalarWhereInput;
-
-    @Field(() => TicketUpdateManyMutationInput, {nullable:false})
-    @Type(() => TicketUpdateManyMutationInput)
-    data!: TicketUpdateManyMutationInput;
+  @Field(() => TicketUpdateManyMutationInput, { nullable: false })
+  @Type(() => TicketUpdateManyMutationInput)
+  data!: TicketUpdateManyMutationInput;
 }

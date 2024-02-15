@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueReportArgs {
-
-    @Field(() => ReportWhereUniqueInput, {nullable:false})
-    @Type(() => ReportWhereUniqueInput)
-    where!: ReportWhereUniqueInput;
+  @Field(() => ReportWhereUniqueInput, { nullable: false })
+  @Type(() => ReportWhereUniqueInput)
+  where!: ReportWhereUniqueInput;
 }

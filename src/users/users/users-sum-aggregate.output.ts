@@ -5,10 +5,9 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class UsersSumAggregate {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    blockId?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  blockId?: bigint | number;
 }

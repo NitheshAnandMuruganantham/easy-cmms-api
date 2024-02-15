@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyMachinesArgs {
-
-    @Field(() => MachinesWhereInput, {nullable:true})
-    @Type(() => MachinesWhereInput)
-    where?: MachinesWhereInput;
+  @Field(() => MachinesWhereInput, { nullable: true })
+  @Type(() => MachinesWhereInput)
+  where?: MachinesWhereInput;
 }

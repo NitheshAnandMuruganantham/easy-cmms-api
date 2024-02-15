@@ -11,46 +11,45 @@ import { ItemsMaxAggregate } from './items-max-aggregate.output';
 
 @ObjectType()
 export class ItemsGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: false })
+  code!: string;
 
-    @Field(() => String, {nullable:false})
-    code!: string;
+  @Field(() => Float, { nullable: false })
+  quantity!: number;
 
-    @Field(() => Float, {nullable:false})
-    quantity!: number;
+  @Field(() => Float, { nullable: false })
+  unit_price!: number;
 
-    @Field(() => Float, {nullable:false})
-    unit_price!: number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  catagory_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    catagory_id!: bigint | number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => ItemsCountAggregate, { nullable: true })
+  _count?: ItemsCountAggregate;
 
-    @Field(() => ItemsCountAggregate, {nullable:true})
-    _count?: ItemsCountAggregate;
+  @Field(() => ItemsAvgAggregate, { nullable: true })
+  _avg?: ItemsAvgAggregate;
 
-    @Field(() => ItemsAvgAggregate, {nullable:true})
-    _avg?: ItemsAvgAggregate;
+  @Field(() => ItemsSumAggregate, { nullable: true })
+  _sum?: ItemsSumAggregate;
 
-    @Field(() => ItemsSumAggregate, {nullable:true})
-    _sum?: ItemsSumAggregate;
+  @Field(() => ItemsMinAggregate, { nullable: true })
+  _min?: ItemsMinAggregate;
 
-    @Field(() => ItemsMinAggregate, {nullable:true})
-    _min?: ItemsMinAggregate;
-
-    @Field(() => ItemsMaxAggregate, {nullable:true})
-    _max?: ItemsMaxAggregate;
+  @Field(() => ItemsMaxAggregate, { nullable: true })
+  _max?: ItemsMaxAggregate;
 }

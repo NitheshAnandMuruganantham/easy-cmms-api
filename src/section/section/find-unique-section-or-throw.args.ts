@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueSectionOrThrowArgs {
-
-    @Field(() => SectionWhereUniqueInput, {nullable:false})
-    @Type(() => SectionWhereUniqueInput)
-    where!: SectionWhereUniqueInput;
+  @Field(() => SectionWhereUniqueInput, { nullable: false })
+  @Type(() => SectionWhereUniqueInput)
+  where!: SectionWhereUniqueInput;
 }

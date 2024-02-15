@@ -9,23 +9,24 @@ import { ItemsScalarFieldEnum } from './items-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstItemsArgs {
+  @Field(() => ItemsWhereInput, { nullable: true })
+  @Type(() => ItemsWhereInput)
+  where?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    @Type(() => ItemsWhereInput)
-    where?: ItemsWhereInput;
+  @Field(() => [ItemsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ItemsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [ItemsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<ItemsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  cursor?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    cursor?: ItemsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ItemsScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ItemsScalarFieldEnum>;
+  @Field(() => [ItemsScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ItemsScalarFieldEnum>;
 }

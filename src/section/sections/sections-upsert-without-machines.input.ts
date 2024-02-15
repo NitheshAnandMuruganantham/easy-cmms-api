@@ -6,12 +6,11 @@ import { SectionsCreateWithoutMachinesInput } from './sections-create-without-ma
 
 @InputType()
 export class SectionsUpsertWithoutMachinesInput {
+  @Field(() => SectionsUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => SectionsUpdateWithoutMachinesInput)
+  update!: SectionsUpdateWithoutMachinesInput;
 
-    @Field(() => SectionsUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => SectionsUpdateWithoutMachinesInput)
-    update!: SectionsUpdateWithoutMachinesInput;
-
-    @Field(() => SectionsCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => SectionsCreateWithoutMachinesInput)
-    create!: SectionsCreateWithoutMachinesInput;
+  @Field(() => SectionsCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => SectionsCreateWithoutMachinesInput)
+  create!: SectionsCreateWithoutMachinesInput;
 }

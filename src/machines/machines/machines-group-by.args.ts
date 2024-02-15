@@ -14,38 +14,37 @@ import { MachinesMaxAggregateInput } from './machines-max-aggregate.input';
 
 @ArgsType()
 export class MachinesGroupByArgs {
+  @Field(() => MachinesWhereInput, { nullable: true })
+  @Type(() => MachinesWhereInput)
+  where?: MachinesWhereInput;
 
-    @Field(() => MachinesWhereInput, {nullable:true})
-    @Type(() => MachinesWhereInput)
-    where?: MachinesWhereInput;
+  @Field(() => [MachinesOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<MachinesOrderByWithAggregationInput>;
 
-    @Field(() => [MachinesOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<MachinesOrderByWithAggregationInput>;
+  @Field(() => [MachinesScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof MachinesScalarFieldEnum>;
 
-    @Field(() => [MachinesScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof MachinesScalarFieldEnum>;
+  @Field(() => MachinesScalarWhereWithAggregatesInput, { nullable: true })
+  having?: MachinesScalarWhereWithAggregatesInput;
 
-    @Field(() => MachinesScalarWhereWithAggregatesInput, {nullable:true})
-    having?: MachinesScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => MachinesCountAggregateInput, { nullable: true })
+  _count?: MachinesCountAggregateInput;
 
-    @Field(() => MachinesCountAggregateInput, {nullable:true})
-    _count?: MachinesCountAggregateInput;
+  @Field(() => MachinesAvgAggregateInput, { nullable: true })
+  _avg?: MachinesAvgAggregateInput;
 
-    @Field(() => MachinesAvgAggregateInput, {nullable:true})
-    _avg?: MachinesAvgAggregateInput;
+  @Field(() => MachinesSumAggregateInput, { nullable: true })
+  _sum?: MachinesSumAggregateInput;
 
-    @Field(() => MachinesSumAggregateInput, {nullable:true})
-    _sum?: MachinesSumAggregateInput;
+  @Field(() => MachinesMinAggregateInput, { nullable: true })
+  _min?: MachinesMinAggregateInput;
 
-    @Field(() => MachinesMinAggregateInput, {nullable:true})
-    _min?: MachinesMinAggregateInput;
-
-    @Field(() => MachinesMaxAggregateInput, {nullable:true})
-    _max?: MachinesMaxAggregateInput;
+  @Field(() => MachinesMaxAggregateInput, { nullable: true })
+  _max?: MachinesMaxAggregateInput;
 }

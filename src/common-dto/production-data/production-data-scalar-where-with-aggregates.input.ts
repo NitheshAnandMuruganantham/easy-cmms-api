@@ -8,37 +8,42 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataScalarWhereWithAggregatesInput {
+  @Field(() => [production_dataScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  AND?: Array<production_dataScalarWhereWithAggregatesInput>;
 
-    @Field(() => [production_dataScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<production_dataScalarWhereWithAggregatesInput>;
+  @Field(() => [production_dataScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  OR?: Array<production_dataScalarWhereWithAggregatesInput>;
 
-    @Field(() => [production_dataScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<production_dataScalarWhereWithAggregatesInput>;
+  @Field(() => [production_dataScalarWhereWithAggregatesInput], {
+    nullable: true,
+  })
+  NOT?: Array<production_dataScalarWhereWithAggregatesInput>;
 
-    @Field(() => [production_dataScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<production_dataScalarWhereWithAggregatesInput>;
+  @Field(() => BigIntWithAggregatesFilter, { nullable: true })
+  id?: BigIntWithAggregatesFilter;
 
-    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
-    id?: BigIntWithAggregatesFilter;
+  @Field(() => JsonWithAggregatesFilter, { nullable: true })
+  production?: JsonWithAggregatesFilter;
 
-    @Field(() => JsonWithAggregatesFilter, {nullable:true})
-    production?: JsonWithAggregatesFilter;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  shift?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    shift?: StringWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  date?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    date?: DateTimeWithAggregatesFilter;
+  @Field(() => BigIntWithAggregatesFilter, { nullable: true })
+  updated_by?: BigIntWithAggregatesFilter;
 
-    @Field(() => BigIntWithAggregatesFilter, {nullable:true})
-    updated_by?: BigIntWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  created_at?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    created_at?: DateTimeWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  updated_at?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    updated_at?: DateTimeWithAggregatesFilter;
-
-    @HideField()
-    blockId?: BigIntWithAggregatesFilter;
+  @HideField()
+  blockId?: BigIntWithAggregatesFilter;
 }

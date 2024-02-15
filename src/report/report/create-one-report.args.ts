@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneReportArgs {
-
-    @Field(() => ReportCreateInput, {nullable:false})
-    @Type(() => ReportCreateInput)
-    data!: ReportCreateInput;
+  @Field(() => ReportCreateInput, { nullable: false })
+  @Type(() => ReportCreateInput)
+  data!: ReportCreateInput;
 }

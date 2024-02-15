@@ -6,12 +6,11 @@ import { ItemsCreateWithoutMachines_itemsInput } from './items-create-without-ma
 
 @InputType()
 export class ItemsUpsertWithoutMachines_itemsInput {
+  @Field(() => ItemsUpdateWithoutMachines_itemsInput, { nullable: false })
+  @Type(() => ItemsUpdateWithoutMachines_itemsInput)
+  update!: ItemsUpdateWithoutMachines_itemsInput;
 
-    @Field(() => ItemsUpdateWithoutMachines_itemsInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutMachines_itemsInput)
-    update!: ItemsUpdateWithoutMachines_itemsInput;
-
-    @Field(() => ItemsCreateWithoutMachines_itemsInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutMachines_itemsInput)
-    create!: ItemsCreateWithoutMachines_itemsInput;
+  @Field(() => ItemsCreateWithoutMachines_itemsInput, { nullable: false })
+  @Type(() => ItemsCreateWithoutMachines_itemsInput)
+  create!: ItemsCreateWithoutMachines_itemsInput;
 }

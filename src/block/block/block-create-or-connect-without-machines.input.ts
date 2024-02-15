@@ -6,12 +6,11 @@ import { BlockCreateWithoutMachinesInput } from './block-create-without-machines
 
 @InputType()
 export class BlockCreateOrConnectWithoutMachinesInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutMachinesInput)
-    create!: BlockCreateWithoutMachinesInput;
+  @Field(() => BlockCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutMachinesInput)
+  create!: BlockCreateWithoutMachinesInput;
 }

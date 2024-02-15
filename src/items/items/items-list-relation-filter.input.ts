@@ -4,13 +4,12 @@ import { ItemsWhereInput } from './items-where.input';
 
 @InputType()
 export class ItemsListRelationFilter {
+  @Field(() => ItemsWhereInput, { nullable: true })
+  every?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    every?: ItemsWhereInput;
+  @Field(() => ItemsWhereInput, { nullable: true })
+  some?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    some?: ItemsWhereInput;
-
-    @Field(() => ItemsWhereInput, {nullable:true})
-    none?: ItemsWhereInput;
+  @Field(() => ItemsWhereInput, { nullable: true })
+  none?: ItemsWhereInput;
 }

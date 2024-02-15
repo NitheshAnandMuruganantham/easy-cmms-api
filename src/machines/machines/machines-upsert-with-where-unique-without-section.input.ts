@@ -7,16 +7,15 @@ import { MachinesCreateWithoutSectionInput } from './machines-create-without-sec
 
 @InputType()
 export class MachinesUpsertWithWhereUniqueWithoutSectionInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
+  @Field(() => MachinesUpdateWithoutSectionInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutSectionInput)
+  update!: MachinesUpdateWithoutSectionInput;
 
-    @Field(() => MachinesUpdateWithoutSectionInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutSectionInput)
-    update!: MachinesUpdateWithoutSectionInput;
-
-    @Field(() => MachinesCreateWithoutSectionInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutSectionInput)
-    create!: MachinesCreateWithoutSectionInput;
+  @Field(() => MachinesCreateWithoutSectionInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutSectionInput)
+  create!: MachinesCreateWithoutSectionInput;
 }

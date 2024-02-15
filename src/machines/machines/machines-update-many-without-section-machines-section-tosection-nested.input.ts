@@ -12,48 +12,83 @@ import { MachinesScalarWhereInput } from './machines-scalar-where.input';
 
 @InputType()
 export class MachinesUpdateManyWithoutSection_machines_sectionTosectionNestedInput {
+  @Field(() => [MachinesCreateWithoutSection_machines_sectionTosectionInput], {
+    nullable: true,
+  })
+  @Type(() => MachinesCreateWithoutSection_machines_sectionTosectionInput)
+  create?: Array<MachinesCreateWithoutSection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesCreateWithoutSection_machines_sectionTosectionInput], {nullable:true})
-    @Type(() => MachinesCreateWithoutSection_machines_sectionTosectionInput)
-    create?: Array<MachinesCreateWithoutSection_machines_sectionTosectionInput>;
+  @Field(
+    () => [
+      MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput,
+    ],
+    { nullable: true },
+  )
+  @Type(
+    () => MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput,
+  )
+  connectOrCreate?: Array<MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput], {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput)
-    connectOrCreate?: Array<MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput>;
+  @Field(
+    () => [
+      MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput,
+    ],
+    { nullable: true },
+  )
+  @Type(
+    () =>
+      MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput,
+  )
+  upsert?: Array<MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput], {nullable:true})
-    @Type(() => MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput)
-    upsert?: Array<MachinesUpsertWithWhereUniqueWithoutSection_machines_sectionTosectionInput>;
+  @Field(
+    () => MachinesCreateManySection_machines_sectionTosectionInputEnvelope,
+    { nullable: true },
+  )
+  @Type(() => MachinesCreateManySection_machines_sectionTosectionInputEnvelope)
+  createMany?: MachinesCreateManySection_machines_sectionTosectionInputEnvelope;
 
-    @Field(() => MachinesCreateManySection_machines_sectionTosectionInputEnvelope, {nullable:true})
-    @Type(() => MachinesCreateManySection_machines_sectionTosectionInputEnvelope)
-    createMany?: MachinesCreateManySection_machines_sectionTosectionInputEnvelope;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  set?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    set?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  disconnect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    disconnect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  delete?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    delete?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: Array<MachinesWhereUniqueInput>;
 
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: Array<MachinesWhereUniqueInput>;
+  @Field(
+    () => [
+      MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput,
+    ],
+    { nullable: true },
+  )
+  @Type(
+    () =>
+      MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput,
+  )
+  update?: Array<MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput], {nullable:true})
-    @Type(() => MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput)
-    update?: Array<MachinesUpdateWithWhereUniqueWithoutSection_machines_sectionTosectionInput>;
+  @Field(
+    () => [
+      MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput,
+    ],
+    { nullable: true },
+  )
+  @Type(
+    () =>
+      MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput,
+  )
+  updateMany?: Array<MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput], {nullable:true})
-    @Type(() => MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput)
-    updateMany?: Array<MachinesUpdateManyWithWhereWithoutSection_machines_sectionTosectionInput>;
-
-    @Field(() => [MachinesScalarWhereInput], {nullable:true})
-    @Type(() => MachinesScalarWhereInput)
-    deleteMany?: Array<MachinesScalarWhereInput>;
+  @Field(() => [MachinesScalarWhereInput], { nullable: true })
+  @Type(() => MachinesScalarWhereInput)
+  deleteMany?: Array<MachinesScalarWhereInput>;
 }

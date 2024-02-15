@@ -5,11 +5,12 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class MachinesCreateManySection_machines_sectionTosectionInputEnvelope {
+  @Field(() => [MachinesCreateManySection_machines_sectionTosectionInput], {
+    nullable: false,
+  })
+  @Type(() => MachinesCreateManySection_machines_sectionTosectionInput)
+  data!: Array<MachinesCreateManySection_machines_sectionTosectionInput>;
 
-    @Field(() => [MachinesCreateManySection_machines_sectionTosectionInput], {nullable:false})
-    @Type(() => MachinesCreateManySection_machines_sectionTosectionInput)
-    data!: Array<MachinesCreateManySection_machines_sectionTosectionInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

@@ -8,20 +8,21 @@ import { MaintenanceWhereUniqueInput } from './maintenance-where-unique.input';
 
 @InputType()
 export class MaintenanceUncheckedCreateNestedManyWithoutAssigneeInput {
+  @Field(() => [MaintenanceCreateWithoutAssigneeInput], { nullable: true })
+  @Type(() => MaintenanceCreateWithoutAssigneeInput)
+  create?: Array<MaintenanceCreateWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceCreateWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceCreateWithoutAssigneeInput)
-    create?: Array<MaintenanceCreateWithoutAssigneeInput>;
+  @Field(() => [MaintenanceCreateOrConnectWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceCreateOrConnectWithoutAssigneeInput)
+  connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceCreateOrConnectWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutAssigneeInput)
-    connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutAssigneeInput>;
+  @Field(() => MaintenanceCreateManyAssigneeInputEnvelope, { nullable: true })
+  @Type(() => MaintenanceCreateManyAssigneeInputEnvelope)
+  createMany?: MaintenanceCreateManyAssigneeInputEnvelope;
 
-    @Field(() => MaintenanceCreateManyAssigneeInputEnvelope, {nullable:true})
-    @Type(() => MaintenanceCreateManyAssigneeInputEnvelope)
-    createMany?: MaintenanceCreateManyAssigneeInputEnvelope;
-
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: Array<MaintenanceWhereUniqueInput>;
 }

@@ -5,10 +5,11 @@ import { machines_itemsMachine_idItem_idCompoundUniqueInput } from './machines-i
 
 @InputType()
 export class machines_itemsWhereUniqueInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
-
-    @Field(() => machines_itemsMachine_idItem_idCompoundUniqueInput, {nullable:true})
-    machine_id_item_id?: machines_itemsMachine_idItem_idCompoundUniqueInput;
+  @Field(() => machines_itemsMachine_idItem_idCompoundUniqueInput, {
+    nullable: true,
+  })
+  machine_id_item_id?: machines_itemsMachine_idItem_idCompoundUniqueInput;
 }

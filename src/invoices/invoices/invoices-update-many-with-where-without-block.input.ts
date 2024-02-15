@@ -6,12 +6,11 @@ import { InvoicesUpdateManyMutationInput } from './invoices-update-many-mutation
 
 @InputType()
 export class InvoicesUpdateManyWithWhereWithoutBlockInput {
+  @Field(() => InvoicesScalarWhereInput, { nullable: false })
+  @Type(() => InvoicesScalarWhereInput)
+  where!: InvoicesScalarWhereInput;
 
-    @Field(() => InvoicesScalarWhereInput, {nullable:false})
-    @Type(() => InvoicesScalarWhereInput)
-    where!: InvoicesScalarWhereInput;
-
-    @Field(() => InvoicesUpdateManyMutationInput, {nullable:false})
-    @Type(() => InvoicesUpdateManyMutationInput)
-    data!: InvoicesUpdateManyMutationInput;
+  @Field(() => InvoicesUpdateManyMutationInput, { nullable: false })
+  @Type(() => InvoicesUpdateManyMutationInput)
+  data!: InvoicesUpdateManyMutationInput;
 }

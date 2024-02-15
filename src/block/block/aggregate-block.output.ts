@@ -8,19 +8,18 @@ import { BlockMaxAggregate } from './block-max-aggregate.output';
 
 @ObjectType()
 export class AggregateBlock {
+  @Field(() => BlockCountAggregate, { nullable: true })
+  _count?: BlockCountAggregate;
 
-    @Field(() => BlockCountAggregate, {nullable:true})
-    _count?: BlockCountAggregate;
+  @Field(() => BlockAvgAggregate, { nullable: true })
+  _avg?: BlockAvgAggregate;
 
-    @Field(() => BlockAvgAggregate, {nullable:true})
-    _avg?: BlockAvgAggregate;
+  @Field(() => BlockSumAggregate, { nullable: true })
+  _sum?: BlockSumAggregate;
 
-    @Field(() => BlockSumAggregate, {nullable:true})
-    _sum?: BlockSumAggregate;
+  @Field(() => BlockMinAggregate, { nullable: true })
+  _min?: BlockMinAggregate;
 
-    @Field(() => BlockMinAggregate, {nullable:true})
-    _min?: BlockMinAggregate;
-
-    @Field(() => BlockMaxAggregate, {nullable:true})
-    _max?: BlockMaxAggregate;
+  @Field(() => BlockMaxAggregate, { nullable: true })
+  _max?: BlockMaxAggregate;
 }

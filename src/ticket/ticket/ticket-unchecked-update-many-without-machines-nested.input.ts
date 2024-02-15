@@ -12,48 +12,53 @@ import { TicketScalarWhereInput } from './ticket-scalar-where.input';
 
 @InputType()
 export class TicketUncheckedUpdateManyWithoutMachinesNestedInput {
+  @Field(() => [TicketCreateWithoutMachinesInput], { nullable: true })
+  @Type(() => TicketCreateWithoutMachinesInput)
+  create?: Array<TicketCreateWithoutMachinesInput>;
 
-    @Field(() => [TicketCreateWithoutMachinesInput], {nullable:true})
-    @Type(() => TicketCreateWithoutMachinesInput)
-    create?: Array<TicketCreateWithoutMachinesInput>;
+  @Field(() => [TicketCreateOrConnectWithoutMachinesInput], { nullable: true })
+  @Type(() => TicketCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: Array<TicketCreateOrConnectWithoutMachinesInput>;
 
-    @Field(() => [TicketCreateOrConnectWithoutMachinesInput], {nullable:true})
-    @Type(() => TicketCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: Array<TicketCreateOrConnectWithoutMachinesInput>;
+  @Field(() => [TicketUpsertWithWhereUniqueWithoutMachinesInput], {
+    nullable: true,
+  })
+  @Type(() => TicketUpsertWithWhereUniqueWithoutMachinesInput)
+  upsert?: Array<TicketUpsertWithWhereUniqueWithoutMachinesInput>;
 
-    @Field(() => [TicketUpsertWithWhereUniqueWithoutMachinesInput], {nullable:true})
-    @Type(() => TicketUpsertWithWhereUniqueWithoutMachinesInput)
-    upsert?: Array<TicketUpsertWithWhereUniqueWithoutMachinesInput>;
+  @Field(() => TicketCreateManyMachinesInputEnvelope, { nullable: true })
+  @Type(() => TicketCreateManyMachinesInputEnvelope)
+  createMany?: TicketCreateManyMachinesInputEnvelope;
 
-    @Field(() => TicketCreateManyMachinesInputEnvelope, {nullable:true})
-    @Type(() => TicketCreateManyMachinesInputEnvelope)
-    createMany?: TicketCreateManyMachinesInputEnvelope;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  set?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    set?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  disconnect?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    disconnect?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  delete?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    delete?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketWhereUniqueInput], { nullable: true })
+  @Type(() => TicketWhereUniqueInput)
+  connect?: Array<TicketWhereUniqueInput>;
 
-    @Field(() => [TicketWhereUniqueInput], {nullable:true})
-    @Type(() => TicketWhereUniqueInput)
-    connect?: Array<TicketWhereUniqueInput>;
+  @Field(() => [TicketUpdateWithWhereUniqueWithoutMachinesInput], {
+    nullable: true,
+  })
+  @Type(() => TicketUpdateWithWhereUniqueWithoutMachinesInput)
+  update?: Array<TicketUpdateWithWhereUniqueWithoutMachinesInput>;
 
-    @Field(() => [TicketUpdateWithWhereUniqueWithoutMachinesInput], {nullable:true})
-    @Type(() => TicketUpdateWithWhereUniqueWithoutMachinesInput)
-    update?: Array<TicketUpdateWithWhereUniqueWithoutMachinesInput>;
+  @Field(() => [TicketUpdateManyWithWhereWithoutMachinesInput], {
+    nullable: true,
+  })
+  @Type(() => TicketUpdateManyWithWhereWithoutMachinesInput)
+  updateMany?: Array<TicketUpdateManyWithWhereWithoutMachinesInput>;
 
-    @Field(() => [TicketUpdateManyWithWhereWithoutMachinesInput], {nullable:true})
-    @Type(() => TicketUpdateManyWithWhereWithoutMachinesInput)
-    updateMany?: Array<TicketUpdateManyWithWhereWithoutMachinesInput>;
-
-    @Field(() => [TicketScalarWhereInput], {nullable:true})
-    @Type(() => TicketScalarWhereInput)
-    deleteMany?: Array<TicketScalarWhereInput>;
+  @Field(() => [TicketScalarWhereInput], { nullable: true })
+  @Type(() => TicketScalarWhereInput)
+  deleteMany?: Array<TicketScalarWhereInput>;
 }

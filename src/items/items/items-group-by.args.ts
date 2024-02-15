@@ -14,38 +14,37 @@ import { ItemsMaxAggregateInput } from './items-max-aggregate.input';
 
 @ArgsType()
 export class ItemsGroupByArgs {
+  @Field(() => ItemsWhereInput, { nullable: true })
+  @Type(() => ItemsWhereInput)
+  where?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    @Type(() => ItemsWhereInput)
-    where?: ItemsWhereInput;
+  @Field(() => [ItemsOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<ItemsOrderByWithAggregationInput>;
 
-    @Field(() => [ItemsOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<ItemsOrderByWithAggregationInput>;
+  @Field(() => [ItemsScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof ItemsScalarFieldEnum>;
 
-    @Field(() => [ItemsScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof ItemsScalarFieldEnum>;
+  @Field(() => ItemsScalarWhereWithAggregatesInput, { nullable: true })
+  having?: ItemsScalarWhereWithAggregatesInput;
 
-    @Field(() => ItemsScalarWhereWithAggregatesInput, {nullable:true})
-    having?: ItemsScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ItemsCountAggregateInput, { nullable: true })
+  _count?: ItemsCountAggregateInput;
 
-    @Field(() => ItemsCountAggregateInput, {nullable:true})
-    _count?: ItemsCountAggregateInput;
+  @Field(() => ItemsAvgAggregateInput, { nullable: true })
+  _avg?: ItemsAvgAggregateInput;
 
-    @Field(() => ItemsAvgAggregateInput, {nullable:true})
-    _avg?: ItemsAvgAggregateInput;
+  @Field(() => ItemsSumAggregateInput, { nullable: true })
+  _sum?: ItemsSumAggregateInput;
 
-    @Field(() => ItemsSumAggregateInput, {nullable:true})
-    _sum?: ItemsSumAggregateInput;
+  @Field(() => ItemsMinAggregateInput, { nullable: true })
+  _min?: ItemsMinAggregateInput;
 
-    @Field(() => ItemsMinAggregateInput, {nullable:true})
-    _min?: ItemsMinAggregateInput;
-
-    @Field(() => ItemsMaxAggregateInput, {nullable:true})
-    _max?: ItemsMaxAggregateInput;
+  @Field(() => ItemsMaxAggregateInput, { nullable: true })
+  _max?: ItemsMaxAggregateInput;
 }

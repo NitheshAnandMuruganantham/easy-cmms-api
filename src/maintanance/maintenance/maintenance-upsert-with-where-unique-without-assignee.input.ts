@@ -7,16 +7,15 @@ import { MaintenanceCreateWithoutAssigneeInput } from './maintenance-create-with
 
 @InputType()
 export class MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceUpdateWithoutAssigneeInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutAssigneeInput)
+  update!: MaintenanceUpdateWithoutAssigneeInput;
 
-    @Field(() => MaintenanceUpdateWithoutAssigneeInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutAssigneeInput)
-    update!: MaintenanceUpdateWithoutAssigneeInput;
-
-    @Field(() => MaintenanceCreateWithoutAssigneeInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutAssigneeInput)
-    create!: MaintenanceCreateWithoutAssigneeInput;
+  @Field(() => MaintenanceCreateWithoutAssigneeInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutAssigneeInput)
+  create!: MaintenanceCreateWithoutAssigneeInput;
 }

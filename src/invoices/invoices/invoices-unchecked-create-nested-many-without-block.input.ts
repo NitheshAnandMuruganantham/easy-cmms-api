@@ -8,20 +8,19 @@ import { InvoicesWhereUniqueInput } from './invoices-where-unique.input';
 
 @InputType()
 export class InvoicesUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [InvoicesCreateWithoutBlockInput], { nullable: true })
+  @Type(() => InvoicesCreateWithoutBlockInput)
+  create?: Array<InvoicesCreateWithoutBlockInput>;
 
-    @Field(() => [InvoicesCreateWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesCreateWithoutBlockInput)
-    create?: Array<InvoicesCreateWithoutBlockInput>;
+  @Field(() => [InvoicesCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => InvoicesCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<InvoicesCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [InvoicesCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<InvoicesCreateOrConnectWithoutBlockInput>;
+  @Field(() => InvoicesCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => InvoicesCreateManyBlockInputEnvelope)
+  createMany?: InvoicesCreateManyBlockInputEnvelope;
 
-    @Field(() => InvoicesCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => InvoicesCreateManyBlockInputEnvelope)
-    createMany?: InvoicesCreateManyBlockInputEnvelope;
-
-    @Field(() => [InvoicesWhereUniqueInput], {nullable:true})
-    @Type(() => InvoicesWhereUniqueInput)
-    connect?: Array<InvoicesWhereUniqueInput>;
+  @Field(() => [InvoicesWhereUniqueInput], { nullable: true })
+  @Type(() => InvoicesWhereUniqueInput)
+  connect?: Array<InvoicesWhereUniqueInput>;
 }

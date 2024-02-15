@@ -6,12 +6,11 @@ import { UsersCreateWithoutRoutine_maintanancesInput } from './users-create-with
 
 @InputType()
 export class UsersUpsertWithoutRoutine_maintanancesInput {
+  @Field(() => UsersUpdateWithoutRoutine_maintanancesInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutRoutine_maintanancesInput)
+  update!: UsersUpdateWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersUpdateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutRoutine_maintanancesInput)
-    update!: UsersUpdateWithoutRoutine_maintanancesInput;
-
-    @Field(() => UsersCreateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
-    create!: UsersCreateWithoutRoutine_maintanancesInput;
+  @Field(() => UsersCreateWithoutRoutine_maintanancesInput, { nullable: false })
+  @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
+  create!: UsersCreateWithoutRoutine_maintanancesInput;
 }

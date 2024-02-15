@@ -8,19 +8,18 @@ import { ItemCatagoryMaxAggregate } from './item-catagory-max-aggregate.output';
 
 @ObjectType()
 export class AggregateItemCatagory {
+  @Field(() => ItemCatagoryCountAggregate, { nullable: true })
+  _count?: ItemCatagoryCountAggregate;
 
-    @Field(() => ItemCatagoryCountAggregate, {nullable:true})
-    _count?: ItemCatagoryCountAggregate;
+  @Field(() => ItemCatagoryAvgAggregate, { nullable: true })
+  _avg?: ItemCatagoryAvgAggregate;
 
-    @Field(() => ItemCatagoryAvgAggregate, {nullable:true})
-    _avg?: ItemCatagoryAvgAggregate;
+  @Field(() => ItemCatagorySumAggregate, { nullable: true })
+  _sum?: ItemCatagorySumAggregate;
 
-    @Field(() => ItemCatagorySumAggregate, {nullable:true})
-    _sum?: ItemCatagorySumAggregate;
+  @Field(() => ItemCatagoryMinAggregate, { nullable: true })
+  _min?: ItemCatagoryMinAggregate;
 
-    @Field(() => ItemCatagoryMinAggregate, {nullable:true})
-    _min?: ItemCatagoryMinAggregate;
-
-    @Field(() => ItemCatagoryMaxAggregate, {nullable:true})
-    _max?: ItemCatagoryMaxAggregate;
+  @Field(() => ItemCatagoryMaxAggregate, { nullable: true })
+  _max?: ItemCatagoryMaxAggregate;
 }

@@ -9,24 +9,23 @@ import { BlockUpdateWithoutMaintenanceInput } from './block-update-without-maint
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutMaintenanceNestedInput {
+  @Field(() => BlockCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => BlockCreateWithoutMaintenanceInput)
+  create?: BlockCreateWithoutMaintenanceInput;
 
-    @Field(() => BlockCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => BlockCreateWithoutMaintenanceInput)
-    create?: BlockCreateWithoutMaintenanceInput;
+  @Field(() => BlockCreateOrConnectWithoutMaintenanceInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => BlockCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutMaintenanceInput;
+  @Field(() => BlockUpsertWithoutMaintenanceInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutMaintenanceInput)
+  upsert?: BlockUpsertWithoutMaintenanceInput;
 
-    @Field(() => BlockUpsertWithoutMaintenanceInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutMaintenanceInput)
-    upsert?: BlockUpsertWithoutMaintenanceInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutMaintenanceInput)
-    update?: BlockUpdateWithoutMaintenanceInput;
+  @Field(() => BlockUpdateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutMaintenanceInput)
+  update?: BlockUpdateWithoutMaintenanceInput;
 }

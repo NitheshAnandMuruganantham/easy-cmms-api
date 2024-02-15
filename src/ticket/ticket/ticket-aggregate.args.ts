@@ -13,35 +13,36 @@ import { TicketMaxAggregateInput } from './ticket-max-aggregate.input';
 
 @ArgsType()
 export class TicketAggregateArgs {
+  @Field(() => TicketWhereInput, { nullable: true })
+  @Type(() => TicketWhereInput)
+  where?: TicketWhereInput;
 
-    @Field(() => TicketWhereInput, {nullable:true})
-    @Type(() => TicketWhereInput)
-    where?: TicketWhereInput;
+  @Field(() => [TicketOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<TicketOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [TicketOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<TicketOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => TicketWhereUniqueInput, { nullable: true })
+  cursor?: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:true})
-    cursor?: TicketWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => TicketCountAggregateInput, { nullable: true })
+  _count?: TicketCountAggregateInput;
 
-    @Field(() => TicketCountAggregateInput, {nullable:true})
-    _count?: TicketCountAggregateInput;
+  @Field(() => TicketAvgAggregateInput, { nullable: true })
+  _avg?: TicketAvgAggregateInput;
 
-    @Field(() => TicketAvgAggregateInput, {nullable:true})
-    _avg?: TicketAvgAggregateInput;
+  @Field(() => TicketSumAggregateInput, { nullable: true })
+  _sum?: TicketSumAggregateInput;
 
-    @Field(() => TicketSumAggregateInput, {nullable:true})
-    _sum?: TicketSumAggregateInput;
+  @Field(() => TicketMinAggregateInput, { nullable: true })
+  _min?: TicketMinAggregateInput;
 
-    @Field(() => TicketMinAggregateInput, {nullable:true})
-    _min?: TicketMinAggregateInput;
-
-    @Field(() => TicketMaxAggregateInput, {nullable:true})
-    _max?: TicketMaxAggregateInput;
+  @Field(() => TicketMaxAggregateInput, { nullable: true })
+  _max?: TicketMaxAggregateInput;
 }

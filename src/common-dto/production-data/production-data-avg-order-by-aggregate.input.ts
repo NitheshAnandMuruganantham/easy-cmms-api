@@ -5,13 +5,12 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataAvgOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updated_by?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updated_by?: keyof typeof SortOrder;
-
-    @HideField()
-    blockId?: keyof typeof SortOrder;
+  @HideField()
+  blockId?: keyof typeof SortOrder;
 }

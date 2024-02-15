@@ -7,16 +7,15 @@ import { UsersCreateWithoutBlockInput } from './users-create-without-block.input
 
 @InputType()
 export class UsersUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => UsersWhereUniqueInput, { nullable: false })
+  @Type(() => UsersWhereUniqueInput)
+  where!: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:false})
-    @Type(() => UsersWhereUniqueInput)
-    where!: UsersWhereUniqueInput;
+  @Field(() => UsersUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutBlockInput)
+  update!: UsersUpdateWithoutBlockInput;
 
-    @Field(() => UsersUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutBlockInput)
-    update!: UsersUpdateWithoutBlockInput;
-
-    @Field(() => UsersCreateWithoutBlockInput, {nullable:false})
-    @Type(() => UsersCreateWithoutBlockInput)
-    create!: UsersCreateWithoutBlockInput;
+  @Field(() => UsersCreateWithoutBlockInput, { nullable: false })
+  @Type(() => UsersCreateWithoutBlockInput)
+  create!: UsersCreateWithoutBlockInput;
 }

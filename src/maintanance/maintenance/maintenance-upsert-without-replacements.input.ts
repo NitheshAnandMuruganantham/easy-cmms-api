@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutReplacementsInput } from './maintenance-create-
 
 @InputType()
 export class MaintenanceUpsertWithoutReplacementsInput {
+  @Field(() => MaintenanceUpdateWithoutReplacementsInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutReplacementsInput)
+  update!: MaintenanceUpdateWithoutReplacementsInput;
 
-    @Field(() => MaintenanceUpdateWithoutReplacementsInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutReplacementsInput)
-    update!: MaintenanceUpdateWithoutReplacementsInput;
-
-    @Field(() => MaintenanceCreateWithoutReplacementsInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutReplacementsInput)
-    create!: MaintenanceCreateWithoutReplacementsInput;
+  @Field(() => MaintenanceCreateWithoutReplacementsInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutReplacementsInput)
+  create!: MaintenanceCreateWithoutReplacementsInput;
 }

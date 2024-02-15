@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class ItemsCreateManyItemCatagoryInputEnvelope {
+  @Field(() => [ItemsCreateManyItemCatagoryInput], { nullable: false })
+  @Type(() => ItemsCreateManyItemCatagoryInput)
+  data!: Array<ItemsCreateManyItemCatagoryInput>;
 
-    @Field(() => [ItemsCreateManyItemCatagoryInput], {nullable:false})
-    @Type(() => ItemsCreateManyItemCatagoryInput)
-    data!: Array<ItemsCreateManyItemCatagoryInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

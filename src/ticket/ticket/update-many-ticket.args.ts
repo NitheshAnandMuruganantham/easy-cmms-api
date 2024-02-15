@@ -6,12 +6,11 @@ import { TicketWhereInput } from './ticket-where.input';
 
 @ArgsType()
 export class UpdateManyTicketArgs {
+  @Field(() => TicketUpdateManyMutationInput, { nullable: false })
+  @Type(() => TicketUpdateManyMutationInput)
+  data!: TicketUpdateManyMutationInput;
 
-    @Field(() => TicketUpdateManyMutationInput, {nullable:false})
-    @Type(() => TicketUpdateManyMutationInput)
-    data!: TicketUpdateManyMutationInput;
-
-    @Field(() => TicketWhereInput, {nullable:true})
-    @Type(() => TicketWhereInput)
-    where?: TicketWhereInput;
+  @Field(() => TicketWhereInput, { nullable: true })
+  @Type(() => TicketWhereInput)
+  where?: TicketWhereInput;
 }

@@ -9,24 +9,23 @@ import { MachinesUpdateWithoutTicketInput } from './machines-update-without-tick
 
 @InputType()
 export class MachinesUpdateOneRequiredWithoutTicketNestedInput {
+  @Field(() => MachinesCreateWithoutTicketInput, { nullable: true })
+  @Type(() => MachinesCreateWithoutTicketInput)
+  create?: MachinesCreateWithoutTicketInput;
 
-    @Field(() => MachinesCreateWithoutTicketInput, {nullable:true})
-    @Type(() => MachinesCreateWithoutTicketInput)
-    create?: MachinesCreateWithoutTicketInput;
+  @Field(() => MachinesCreateOrConnectWithoutTicketInput, { nullable: true })
+  @Type(() => MachinesCreateOrConnectWithoutTicketInput)
+  connectOrCreate?: MachinesCreateOrConnectWithoutTicketInput;
 
-    @Field(() => MachinesCreateOrConnectWithoutTicketInput, {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutTicketInput)
-    connectOrCreate?: MachinesCreateOrConnectWithoutTicketInput;
+  @Field(() => MachinesUpsertWithoutTicketInput, { nullable: true })
+  @Type(() => MachinesUpsertWithoutTicketInput)
+  upsert?: MachinesUpsertWithoutTicketInput;
 
-    @Field(() => MachinesUpsertWithoutTicketInput, {nullable:true})
-    @Type(() => MachinesUpsertWithoutTicketInput)
-    upsert?: MachinesUpsertWithoutTicketInput;
+  @Field(() => MachinesWhereUniqueInput, { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesUpdateWithoutTicketInput, {nullable:true})
-    @Type(() => MachinesUpdateWithoutTicketInput)
-    update?: MachinesUpdateWithoutTicketInput;
+  @Field(() => MachinesUpdateWithoutTicketInput, { nullable: true })
+  @Type(() => MachinesUpdateWithoutTicketInput)
+  update?: MachinesUpdateWithoutTicketInput;
 }

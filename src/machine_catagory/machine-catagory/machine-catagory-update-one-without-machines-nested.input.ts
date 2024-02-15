@@ -9,30 +9,31 @@ import { machine_catagoryUpdateWithoutMachinesInput } from './machine-catagory-u
 
 @InputType()
 export class machine_catagoryUpdateOneWithoutMachinesNestedInput {
+  @Field(() => machine_catagoryCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => machine_catagoryCreateWithoutMachinesInput)
+  create?: machine_catagoryCreateWithoutMachinesInput;
 
-    @Field(() => machine_catagoryCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryCreateWithoutMachinesInput)
-    create?: machine_catagoryCreateWithoutMachinesInput;
+  @Field(() => machine_catagoryCreateOrConnectWithoutMachinesInput, {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: machine_catagoryCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => machine_catagoryCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: machine_catagoryCreateOrConnectWithoutMachinesInput;
+  @Field(() => machine_catagoryUpsertWithoutMachinesInput, { nullable: true })
+  @Type(() => machine_catagoryUpsertWithoutMachinesInput)
+  upsert?: machine_catagoryUpsertWithoutMachinesInput;
 
-    @Field(() => machine_catagoryUpsertWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryUpsertWithoutMachinesInput)
-    upsert?: machine_catagoryUpsertWithoutMachinesInput;
+  @Field(() => Boolean, { nullable: true })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  delete?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
+  @Field(() => machine_catagoryWhereUniqueInput, { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  connect?: machine_catagoryWhereUniqueInput;
 
-    @Field(() => machine_catagoryWhereUniqueInput, {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    connect?: machine_catagoryWhereUniqueInput;
-
-    @Field(() => machine_catagoryUpdateWithoutMachinesInput, {nullable:true})
-    @Type(() => machine_catagoryUpdateWithoutMachinesInput)
-    update?: machine_catagoryUpdateWithoutMachinesInput;
+  @Field(() => machine_catagoryUpdateWithoutMachinesInput, { nullable: true })
+  @Type(() => machine_catagoryUpdateWithoutMachinesInput)
+  update?: machine_catagoryUpdateWithoutMachinesInput;
 }

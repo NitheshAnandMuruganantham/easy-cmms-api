@@ -6,12 +6,11 @@ import { BlockCreateWithoutMaintenanceInput } from './block-create-without-maint
 
 @InputType()
 export class BlockUpsertWithoutMaintenanceInput {
+  @Field(() => BlockUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutMaintenanceInput)
+  update!: BlockUpdateWithoutMaintenanceInput;
 
-    @Field(() => BlockUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutMaintenanceInput)
-    update!: BlockUpdateWithoutMaintenanceInput;
-
-    @Field(() => BlockCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => BlockCreateWithoutMaintenanceInput)
-    create!: BlockCreateWithoutMaintenanceInput;
+  @Field(() => BlockCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => BlockCreateWithoutMaintenanceInput)
+  create!: BlockCreateWithoutMaintenanceInput;
 }

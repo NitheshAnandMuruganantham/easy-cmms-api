@@ -10,43 +10,42 @@ import { production_dataSumOrderByAggregateInput } from './production-data-sum-o
 
 @InputType()
 export class production_dataOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  production?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    production?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  shift?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    shift?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  date?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    date?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updated_by?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updated_by?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  created_at?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    created_at?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  updated_at?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    updated_at?: keyof typeof SortOrder;
+  @HideField()
+  blockId?: keyof typeof SortOrder;
 
-    @HideField()
-    blockId?: keyof typeof SortOrder;
+  @Field(() => production_dataCountOrderByAggregateInput, { nullable: true })
+  _count?: production_dataCountOrderByAggregateInput;
 
-    @Field(() => production_dataCountOrderByAggregateInput, {nullable:true})
-    _count?: production_dataCountOrderByAggregateInput;
+  @Field(() => production_dataAvgOrderByAggregateInput, { nullable: true })
+  _avg?: production_dataAvgOrderByAggregateInput;
 
-    @Field(() => production_dataAvgOrderByAggregateInput, {nullable:true})
-    _avg?: production_dataAvgOrderByAggregateInput;
+  @Field(() => production_dataMaxOrderByAggregateInput, { nullable: true })
+  _max?: production_dataMaxOrderByAggregateInput;
 
-    @Field(() => production_dataMaxOrderByAggregateInput, {nullable:true})
-    _max?: production_dataMaxOrderByAggregateInput;
+  @Field(() => production_dataMinOrderByAggregateInput, { nullable: true })
+  _min?: production_dataMinOrderByAggregateInput;
 
-    @Field(() => production_dataMinOrderByAggregateInput, {nullable:true})
-    _min?: production_dataMinOrderByAggregateInput;
-
-    @Field(() => production_dataSumOrderByAggregateInput, {nullable:true})
-    _sum?: production_dataSumOrderByAggregateInput;
+  @Field(() => production_dataSumOrderByAggregateInput, { nullable: true })
+  _sum?: production_dataSumOrderByAggregateInput;
 }

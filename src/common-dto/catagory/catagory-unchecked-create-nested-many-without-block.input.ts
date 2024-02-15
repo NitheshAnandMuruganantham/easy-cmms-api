@@ -8,20 +8,19 @@ import { catagoryWhereUniqueInput } from './catagory-where-unique.input';
 
 @InputType()
 export class catagoryUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [catagoryCreateWithoutBlockInput], { nullable: true })
+  @Type(() => catagoryCreateWithoutBlockInput)
+  create?: Array<catagoryCreateWithoutBlockInput>;
 
-    @Field(() => [catagoryCreateWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryCreateWithoutBlockInput)
-    create?: Array<catagoryCreateWithoutBlockInput>;
+  @Field(() => [catagoryCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => catagoryCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<catagoryCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [catagoryCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<catagoryCreateOrConnectWithoutBlockInput>;
+  @Field(() => catagoryCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => catagoryCreateManyBlockInputEnvelope)
+  createMany?: catagoryCreateManyBlockInputEnvelope;
 
-    @Field(() => catagoryCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => catagoryCreateManyBlockInputEnvelope)
-    createMany?: catagoryCreateManyBlockInputEnvelope;
-
-    @Field(() => [catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    connect?: Array<catagoryWhereUniqueInput>;
+  @Field(() => [catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  connect?: Array<catagoryWhereUniqueInput>;
 }

@@ -6,12 +6,11 @@ import { ReplacementsWhereInput } from './replacements-where.input';
 
 @ArgsType()
 export class UpdateManyReplacementsArgs {
+  @Field(() => ReplacementsUpdateManyMutationInput, { nullable: false })
+  @Type(() => ReplacementsUpdateManyMutationInput)
+  data!: ReplacementsUpdateManyMutationInput;
 
-    @Field(() => ReplacementsUpdateManyMutationInput, {nullable:false})
-    @Type(() => ReplacementsUpdateManyMutationInput)
-    data!: ReplacementsUpdateManyMutationInput;
-
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    @Type(() => ReplacementsWhereInput)
-    where?: ReplacementsWhereInput;
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  @Type(() => ReplacementsWhereInput)
+  where?: ReplacementsWhereInput;
 }

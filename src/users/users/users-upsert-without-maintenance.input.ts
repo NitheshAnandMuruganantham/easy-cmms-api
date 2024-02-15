@@ -6,12 +6,11 @@ import { UsersCreateWithoutMaintenanceInput } from './users-create-without-maint
 
 @InputType()
 export class UsersUpsertWithoutMaintenanceInput {
+  @Field(() => UsersUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutMaintenanceInput)
+  update!: UsersUpdateWithoutMaintenanceInput;
 
-    @Field(() => UsersUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutMaintenanceInput)
-    update!: UsersUpdateWithoutMaintenanceInput;
-
-    @Field(() => UsersCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => UsersCreateWithoutMaintenanceInput)
-    create!: UsersCreateWithoutMaintenanceInput;
+  @Field(() => UsersCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => UsersCreateWithoutMaintenanceInput)
+  create!: UsersCreateWithoutMaintenanceInput;
 }

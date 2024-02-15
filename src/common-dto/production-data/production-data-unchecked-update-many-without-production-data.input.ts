@@ -7,25 +7,24 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 
 @InputType()
 export class production_dataUncheckedUpdateManyWithoutProduction_dataInput {
+  @Field(() => BigIntFieldUpdateOperationsInput, { nullable: true })
+  id?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
-    id?: BigIntFieldUpdateOperationsInput;
+  @Field(() => GraphQLJSON, { nullable: true })
+  production?: any;
 
-    @Field(() => GraphQLJSON, {nullable:true})
-    production?: any;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  shift?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    shift?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  date?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    date?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => BigIntFieldUpdateOperationsInput, { nullable: true })
+  updated_by?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
-    updated_by?: BigIntFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  created_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    created_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updated_at?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updated_at?: DateTimeFieldUpdateOperationsInput;
 }

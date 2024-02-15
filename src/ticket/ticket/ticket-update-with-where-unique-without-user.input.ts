@@ -6,12 +6,11 @@ import { TicketUpdateWithoutUserInput } from './ticket-update-without-user.input
 
 @InputType()
 export class TicketUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
-
-    @Field(() => TicketUpdateWithoutUserInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutUserInput)
-    data!: TicketUpdateWithoutUserInput;
+  @Field(() => TicketUpdateWithoutUserInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutUserInput)
+  data!: TicketUpdateWithoutUserInput;
 }

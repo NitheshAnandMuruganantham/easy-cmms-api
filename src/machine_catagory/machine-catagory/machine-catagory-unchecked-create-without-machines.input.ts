@@ -5,19 +5,18 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class machine_catagoryUncheckedCreateWithoutMachinesInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @HideField()
+  block_id!: bigint | number;
 
-    @HideField()
-    block_id!: bigint | number;
+  @Field(() => Date, { nullable: true })
+  created_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
 }

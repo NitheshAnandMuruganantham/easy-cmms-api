@@ -6,12 +6,11 @@ import { SectionsCreateWithoutMachinesInput } from './sections-create-without-ma
 
 @InputType()
 export class SectionsCreateOrConnectWithoutMachinesInput {
+  @Field(() => SectionsWhereUniqueInput, { nullable: false })
+  @Type(() => SectionsWhereUniqueInput)
+  where!: SectionsWhereUniqueInput;
 
-    @Field(() => SectionsWhereUniqueInput, {nullable:false})
-    @Type(() => SectionsWhereUniqueInput)
-    where!: SectionsWhereUniqueInput;
-
-    @Field(() => SectionsCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => SectionsCreateWithoutMachinesInput)
-    create!: SectionsCreateWithoutMachinesInput;
+  @Field(() => SectionsCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => SectionsCreateWithoutMachinesInput)
+  create!: SectionsCreateWithoutMachinesInput;
 }

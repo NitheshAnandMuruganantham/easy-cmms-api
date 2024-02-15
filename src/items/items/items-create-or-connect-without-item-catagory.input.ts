@@ -6,12 +6,11 @@ import { ItemsCreateWithoutItemCatagoryInput } from './items-create-without-item
 
 @InputType()
 export class ItemsCreateOrConnectWithoutItemCatagoryInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsCreateWithoutItemCatagoryInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutItemCatagoryInput)
-    create!: ItemsCreateWithoutItemCatagoryInput;
+  @Field(() => ItemsCreateWithoutItemCatagoryInput, { nullable: false })
+  @Type(() => ItemsCreateWithoutItemCatagoryInput)
+  create!: ItemsCreateWithoutItemCatagoryInput;
 }

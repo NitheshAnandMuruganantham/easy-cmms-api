@@ -12,48 +12,57 @@ import { ReplacementsScalarWhereInput } from './replacements-scalar-where.input'
 
 @InputType()
 export class ReplacementsUpdateManyWithoutMaintenanceNestedInput {
+  @Field(() => [ReplacementsCreateWithoutMaintenanceInput], { nullable: true })
+  @Type(() => ReplacementsCreateWithoutMaintenanceInput)
+  create?: Array<ReplacementsCreateWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsCreateWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsCreateWithoutMaintenanceInput)
-    create?: Array<ReplacementsCreateWithoutMaintenanceInput>;
+  @Field(() => [ReplacementsCreateOrConnectWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsCreateOrConnectWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutMaintenanceInput>;
+  @Field(() => [ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput)
+  upsert?: Array<ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput)
-    upsert?: Array<ReplacementsUpsertWithWhereUniqueWithoutMaintenanceInput>;
+  @Field(() => ReplacementsCreateManyMaintenanceInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateManyMaintenanceInputEnvelope)
+  createMany?: ReplacementsCreateManyMaintenanceInputEnvelope;
 
-    @Field(() => ReplacementsCreateManyMaintenanceInputEnvelope, {nullable:true})
-    @Type(() => ReplacementsCreateManyMaintenanceInputEnvelope)
-    createMany?: ReplacementsCreateManyMaintenanceInputEnvelope;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  set?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    set?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  disconnect?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    disconnect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  delete?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    delete?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  connect?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    connect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput)
+  update?: Array<ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput)
-    update?: Array<ReplacementsUpdateWithWhereUniqueWithoutMaintenanceInput>;
+  @Field(() => [ReplacementsUpdateManyWithWhereWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpdateManyWithWhereWithoutMaintenanceInput)
+  updateMany?: Array<ReplacementsUpdateManyWithWhereWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsUpdateManyWithWhereWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsUpdateManyWithWhereWithoutMaintenanceInput)
-    updateMany?: Array<ReplacementsUpdateManyWithWhereWithoutMaintenanceInput>;
-
-    @Field(() => [ReplacementsScalarWhereInput], {nullable:true})
-    @Type(() => ReplacementsScalarWhereInput)
-    deleteMany?: Array<ReplacementsScalarWhereInput>;
+  @Field(() => [ReplacementsScalarWhereInput], { nullable: true })
+  @Type(() => ReplacementsScalarWhereInput)
+  deleteMany?: Array<ReplacementsScalarWhereInput>;
 }

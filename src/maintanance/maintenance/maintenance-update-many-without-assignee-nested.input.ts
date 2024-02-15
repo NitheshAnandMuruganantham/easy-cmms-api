@@ -12,48 +12,55 @@ import { MaintenanceScalarWhereInput } from './maintenance-scalar-where.input';
 
 @InputType()
 export class MaintenanceUpdateManyWithoutAssigneeNestedInput {
+  @Field(() => [MaintenanceCreateWithoutAssigneeInput], { nullable: true })
+  @Type(() => MaintenanceCreateWithoutAssigneeInput)
+  create?: Array<MaintenanceCreateWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceCreateWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceCreateWithoutAssigneeInput)
-    create?: Array<MaintenanceCreateWithoutAssigneeInput>;
+  @Field(() => [MaintenanceCreateOrConnectWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceCreateOrConnectWithoutAssigneeInput)
+  connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceCreateOrConnectWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutAssigneeInput)
-    connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutAssigneeInput>;
+  @Field(() => [MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput)
+  upsert?: Array<MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput)
-    upsert?: Array<MaintenanceUpsertWithWhereUniqueWithoutAssigneeInput>;
+  @Field(() => MaintenanceCreateManyAssigneeInputEnvelope, { nullable: true })
+  @Type(() => MaintenanceCreateManyAssigneeInputEnvelope)
+  createMany?: MaintenanceCreateManyAssigneeInputEnvelope;
 
-    @Field(() => MaintenanceCreateManyAssigneeInputEnvelope, {nullable:true})
-    @Type(() => MaintenanceCreateManyAssigneeInputEnvelope)
-    createMany?: MaintenanceCreateManyAssigneeInputEnvelope;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  set?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    set?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  disconnect?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    disconnect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  delete?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    delete?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput)
+  update?: Array<MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput)
-    update?: Array<MaintenanceUpdateWithWhereUniqueWithoutAssigneeInput>;
+  @Field(() => [MaintenanceUpdateManyWithWhereWithoutAssigneeInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpdateManyWithWhereWithoutAssigneeInput)
+  updateMany?: Array<MaintenanceUpdateManyWithWhereWithoutAssigneeInput>;
 
-    @Field(() => [MaintenanceUpdateManyWithWhereWithoutAssigneeInput], {nullable:true})
-    @Type(() => MaintenanceUpdateManyWithWhereWithoutAssigneeInput)
-    updateMany?: Array<MaintenanceUpdateManyWithWhereWithoutAssigneeInput>;
-
-    @Field(() => [MaintenanceScalarWhereInput], {nullable:true})
-    @Type(() => MaintenanceScalarWhereInput)
-    deleteMany?: Array<MaintenanceScalarWhereInput>;
+  @Field(() => [MaintenanceScalarWhereInput], { nullable: true })
+  @Type(() => MaintenanceScalarWhereInput)
+  deleteMany?: Array<MaintenanceScalarWhereInput>;
 }

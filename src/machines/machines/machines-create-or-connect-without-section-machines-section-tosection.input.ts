@@ -6,12 +6,13 @@ import { MachinesCreateWithoutSection_machines_sectionTosectionInput } from './m
 
 @InputType()
 export class MachinesCreateOrConnectWithoutSection_machines_sectionTosectionInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesCreateWithoutSection_machines_sectionTosectionInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutSection_machines_sectionTosectionInput)
-    create!: MachinesCreateWithoutSection_machines_sectionTosectionInput;
+  @Field(() => MachinesCreateWithoutSection_machines_sectionTosectionInput, {
+    nullable: false,
+  })
+  @Type(() => MachinesCreateWithoutSection_machines_sectionTosectionInput)
+  create!: MachinesCreateWithoutSection_machines_sectionTosectionInput;
 }

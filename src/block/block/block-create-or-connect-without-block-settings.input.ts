@@ -6,12 +6,11 @@ import { BlockCreateWithoutBlock_settingsInput } from './block-create-without-bl
 
 @InputType()
 export class BlockCreateOrConnectWithoutBlock_settingsInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutBlock_settingsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutBlock_settingsInput)
-    create!: BlockCreateWithoutBlock_settingsInput;
+  @Field(() => BlockCreateWithoutBlock_settingsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutBlock_settingsInput)
+  create!: BlockCreateWithoutBlock_settingsInput;
 }

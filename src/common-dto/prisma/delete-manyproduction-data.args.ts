@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyproductionDataArgs {
-
-    @Field(() => production_dataWhereInput, {nullable:true})
-    @Type(() => production_dataWhereInput)
-    where?: production_dataWhereInput;
+  @Field(() => production_dataWhereInput, { nullable: true })
+  @Type(() => production_dataWhereInput)
+  where?: production_dataWhereInput;
 }

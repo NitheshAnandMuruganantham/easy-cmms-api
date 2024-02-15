@@ -6,12 +6,11 @@ import { MaintenanceCreateWithoutBlockInput } from './maintenance-create-without
 
 @InputType()
 export class MaintenanceCreateOrConnectWithoutBlockInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceCreateWithoutBlockInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutBlockInput)
-    create!: MaintenanceCreateWithoutBlockInput;
+  @Field(() => MaintenanceCreateWithoutBlockInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutBlockInput)
+  create!: MaintenanceCreateWithoutBlockInput;
 }

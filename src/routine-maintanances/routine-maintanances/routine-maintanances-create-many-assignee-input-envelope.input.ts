@@ -5,11 +5,12 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class routine_maintanancesCreateManyAssigneeInputEnvelope {
+  @Field(() => [routine_maintanancesCreateManyAssigneeInput], {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesCreateManyAssigneeInput)
+  data!: Array<routine_maintanancesCreateManyAssigneeInput>;
 
-    @Field(() => [routine_maintanancesCreateManyAssigneeInput], {nullable:false})
-    @Type(() => routine_maintanancesCreateManyAssigneeInput)
-    data!: Array<routine_maintanancesCreateManyAssigneeInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

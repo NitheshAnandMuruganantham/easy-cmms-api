@@ -5,10 +5,11 @@ import { block_settingsBlock_idNameCompoundUniqueInput } from './block-settings-
 
 @InputType()
 export class block_settingsWhereUniqueInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
-
-    @Field(() => block_settingsBlock_idNameCompoundUniqueInput, {nullable:true})
-    block_id_name?: block_settingsBlock_idNameCompoundUniqueInput;
+  @Field(() => block_settingsBlock_idNameCompoundUniqueInput, {
+    nullable: true,
+  })
+  block_id_name?: block_settingsBlock_idNameCompoundUniqueInput;
 }

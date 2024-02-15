@@ -7,16 +7,15 @@ import { MaintenanceCreateWithoutMachinesInput } from './maintenance-create-with
 
 @InputType()
 export class MaintenanceUpsertWithWhereUniqueWithoutMachinesInput {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => MaintenanceUpdateWithoutMachinesInput)
+  update!: MaintenanceUpdateWithoutMachinesInput;
 
-    @Field(() => MaintenanceUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => MaintenanceUpdateWithoutMachinesInput)
-    update!: MaintenanceUpdateWithoutMachinesInput;
-
-    @Field(() => MaintenanceCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => MaintenanceCreateWithoutMachinesInput)
-    create!: MaintenanceCreateWithoutMachinesInput;
+  @Field(() => MaintenanceCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => MaintenanceCreateWithoutMachinesInput)
+  create!: MaintenanceCreateWithoutMachinesInput;
 }

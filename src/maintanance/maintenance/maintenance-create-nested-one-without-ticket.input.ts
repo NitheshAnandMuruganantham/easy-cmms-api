@@ -7,16 +7,15 @@ import { MaintenanceWhereUniqueInput } from './maintenance-where-unique.input';
 
 @InputType()
 export class MaintenanceCreateNestedOneWithoutTicketInput {
+  @Field(() => MaintenanceCreateWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceCreateWithoutTicketInput)
+  create?: MaintenanceCreateWithoutTicketInput;
 
-    @Field(() => MaintenanceCreateWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceCreateWithoutTicketInput)
-    create?: MaintenanceCreateWithoutTicketInput;
+  @Field(() => MaintenanceCreateOrConnectWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceCreateOrConnectWithoutTicketInput)
+  connectOrCreate?: MaintenanceCreateOrConnectWithoutTicketInput;
 
-    @Field(() => MaintenanceCreateOrConnectWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutTicketInput)
-    connectOrCreate?: MaintenanceCreateOrConnectWithoutTicketInput;
-
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: MaintenanceWhereUniqueInput;
 }

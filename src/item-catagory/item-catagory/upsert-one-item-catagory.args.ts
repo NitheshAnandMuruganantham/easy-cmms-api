@@ -7,16 +7,15 @@ import { ItemCatagoryUpdateInput } from './item-catagory-update.input';
 
 @ArgsType()
 export class UpsertOneItemCatagoryArgs {
+  @Field(() => ItemCatagoryWhereUniqueInput, { nullable: false })
+  @Type(() => ItemCatagoryWhereUniqueInput)
+  where!: ItemCatagoryWhereUniqueInput;
 
-    @Field(() => ItemCatagoryWhereUniqueInput, {nullable:false})
-    @Type(() => ItemCatagoryWhereUniqueInput)
-    where!: ItemCatagoryWhereUniqueInput;
+  @Field(() => ItemCatagoryCreateInput, { nullable: false })
+  @Type(() => ItemCatagoryCreateInput)
+  create!: ItemCatagoryCreateInput;
 
-    @Field(() => ItemCatagoryCreateInput, {nullable:false})
-    @Type(() => ItemCatagoryCreateInput)
-    create!: ItemCatagoryCreateInput;
-
-    @Field(() => ItemCatagoryUpdateInput, {nullable:false})
-    @Type(() => ItemCatagoryUpdateInput)
-    update!: ItemCatagoryUpdateInput;
+  @Field(() => ItemCatagoryUpdateInput, { nullable: false })
+  @Type(() => ItemCatagoryUpdateInput)
+  update!: ItemCatagoryUpdateInput;
 }

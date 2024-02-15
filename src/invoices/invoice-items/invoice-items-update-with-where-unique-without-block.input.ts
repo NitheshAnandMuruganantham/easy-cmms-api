@@ -6,12 +6,11 @@ import { invoice_itemsUpdateWithoutBlockInput } from './invoice-items-update-wit
 
 @InputType()
 export class invoice_itemsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => invoice_itemsWhereUniqueInput, { nullable: false })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  where!: invoice_itemsWhereUniqueInput;
 
-    @Field(() => invoice_itemsWhereUniqueInput, {nullable:false})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    where!: invoice_itemsWhereUniqueInput;
-
-    @Field(() => invoice_itemsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => invoice_itemsUpdateWithoutBlockInput)
-    data!: invoice_itemsUpdateWithoutBlockInput;
+  @Field(() => invoice_itemsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => invoice_itemsUpdateWithoutBlockInput)
+  data!: invoice_itemsUpdateWithoutBlockInput;
 }

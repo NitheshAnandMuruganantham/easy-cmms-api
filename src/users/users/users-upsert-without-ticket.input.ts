@@ -6,12 +6,11 @@ import { UsersCreateWithoutTicketInput } from './users-create-without-ticket.inp
 
 @InputType()
 export class UsersUpsertWithoutTicketInput {
+  @Field(() => UsersUpdateWithoutTicketInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutTicketInput)
+  update!: UsersUpdateWithoutTicketInput;
 
-    @Field(() => UsersUpdateWithoutTicketInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutTicketInput)
-    update!: UsersUpdateWithoutTicketInput;
-
-    @Field(() => UsersCreateWithoutTicketInput, {nullable:false})
-    @Type(() => UsersCreateWithoutTicketInput)
-    create!: UsersCreateWithoutTicketInput;
+  @Field(() => UsersCreateWithoutTicketInput, { nullable: false })
+  @Type(() => UsersCreateWithoutTicketInput)
+  create!: UsersCreateWithoutTicketInput;
 }

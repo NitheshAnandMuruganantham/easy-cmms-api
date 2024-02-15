@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneBlockArgs {
-
-    @Field(() => BlockCreateInput, {nullable:false})
-    @Type(() => BlockCreateInput)
-    data!: BlockCreateInput;
+  @Field(() => BlockCreateInput, { nullable: false })
+  @Type(() => BlockCreateInput)
+  data!: BlockCreateInput;
 }

@@ -9,24 +9,23 @@ import { BlockUpdateWithoutSectionsInput } from './block-update-without-sections
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutSectionsNestedInput {
+  @Field(() => BlockCreateWithoutSectionsInput, { nullable: true })
+  @Type(() => BlockCreateWithoutSectionsInput)
+  create?: BlockCreateWithoutSectionsInput;
 
-    @Field(() => BlockCreateWithoutSectionsInput, {nullable:true})
-    @Type(() => BlockCreateWithoutSectionsInput)
-    create?: BlockCreateWithoutSectionsInput;
+  @Field(() => BlockCreateOrConnectWithoutSectionsInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutSectionsInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutSectionsInput;
 
-    @Field(() => BlockCreateOrConnectWithoutSectionsInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutSectionsInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutSectionsInput;
+  @Field(() => BlockUpsertWithoutSectionsInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutSectionsInput)
+  upsert?: BlockUpsertWithoutSectionsInput;
 
-    @Field(() => BlockUpsertWithoutSectionsInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutSectionsInput)
-    upsert?: BlockUpsertWithoutSectionsInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutSectionsInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutSectionsInput)
-    update?: BlockUpdateWithoutSectionsInput;
+  @Field(() => BlockUpdateWithoutSectionsInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutSectionsInput)
+  update?: BlockUpdateWithoutSectionsInput;
 }

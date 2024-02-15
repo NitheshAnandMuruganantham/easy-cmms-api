@@ -8,31 +8,30 @@ import { SectionMaxAggregate } from './section-max-aggregate.output';
 
 @ObjectType()
 export class SectionGroupBy {
+  @Field(() => String, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => String, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => SectionCountAggregate, { nullable: true })
+  _count?: SectionCountAggregate;
 
-    @Field(() => SectionCountAggregate, {nullable:true})
-    _count?: SectionCountAggregate;
+  @Field(() => SectionAvgAggregate, { nullable: true })
+  _avg?: SectionAvgAggregate;
 
-    @Field(() => SectionAvgAggregate, {nullable:true})
-    _avg?: SectionAvgAggregate;
+  @Field(() => SectionSumAggregate, { nullable: true })
+  _sum?: SectionSumAggregate;
 
-    @Field(() => SectionSumAggregate, {nullable:true})
-    _sum?: SectionSumAggregate;
+  @Field(() => SectionMinAggregate, { nullable: true })
+  _min?: SectionMinAggregate;
 
-    @Field(() => SectionMinAggregate, {nullable:true})
-    _min?: SectionMinAggregate;
-
-    @Field(() => SectionMaxAggregate, {nullable:true})
-    _max?: SectionMaxAggregate;
+  @Field(() => SectionMaxAggregate, { nullable: true })
+  _max?: SectionMaxAggregate;
 }

@@ -8,19 +8,18 @@ import { Routine_maintanancesMaxAggregate } from './routine-maintanances-max-agg
 
 @ObjectType()
 export class AggregateRoutine_maintanances {
+  @Field(() => Routine_maintanancesCountAggregate, { nullable: true })
+  _count?: Routine_maintanancesCountAggregate;
 
-    @Field(() => Routine_maintanancesCountAggregate, {nullable:true})
-    _count?: Routine_maintanancesCountAggregate;
+  @Field(() => Routine_maintanancesAvgAggregate, { nullable: true })
+  _avg?: Routine_maintanancesAvgAggregate;
 
-    @Field(() => Routine_maintanancesAvgAggregate, {nullable:true})
-    _avg?: Routine_maintanancesAvgAggregate;
+  @Field(() => Routine_maintanancesSumAggregate, { nullable: true })
+  _sum?: Routine_maintanancesSumAggregate;
 
-    @Field(() => Routine_maintanancesSumAggregate, {nullable:true})
-    _sum?: Routine_maintanancesSumAggregate;
+  @Field(() => Routine_maintanancesMinAggregate, { nullable: true })
+  _min?: Routine_maintanancesMinAggregate;
 
-    @Field(() => Routine_maintanancesMinAggregate, {nullable:true})
-    _min?: Routine_maintanancesMinAggregate;
-
-    @Field(() => Routine_maintanancesMaxAggregate, {nullable:true})
-    _max?: Routine_maintanancesMaxAggregate;
+  @Field(() => Routine_maintanancesMaxAggregate, { nullable: true })
+  _max?: Routine_maintanancesMaxAggregate;
 }

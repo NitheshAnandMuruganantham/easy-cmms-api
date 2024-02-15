@@ -6,12 +6,11 @@ import { BlockCreateWithoutReportsInput } from './block-create-without-reports.i
 
 @InputType()
 export class BlockCreateOrConnectWithoutReportsInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutReportsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutReportsInput)
-    create!: BlockCreateWithoutReportsInput;
+  @Field(() => BlockCreateWithoutReportsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutReportsInput)
+  create!: BlockCreateWithoutReportsInput;
 }

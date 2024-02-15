@@ -9,30 +9,29 @@ import { MaintenanceUpdateWithoutTicketInput } from './maintenance-update-withou
 
 @InputType()
 export class MaintenanceUpdateOneWithoutTicketNestedInput {
+  @Field(() => MaintenanceCreateWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceCreateWithoutTicketInput)
+  create?: MaintenanceCreateWithoutTicketInput;
 
-    @Field(() => MaintenanceCreateWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceCreateWithoutTicketInput)
-    create?: MaintenanceCreateWithoutTicketInput;
+  @Field(() => MaintenanceCreateOrConnectWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceCreateOrConnectWithoutTicketInput)
+  connectOrCreate?: MaintenanceCreateOrConnectWithoutTicketInput;
 
-    @Field(() => MaintenanceCreateOrConnectWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutTicketInput)
-    connectOrCreate?: MaintenanceCreateOrConnectWithoutTicketInput;
+  @Field(() => MaintenanceUpsertWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceUpsertWithoutTicketInput)
+  upsert?: MaintenanceUpsertWithoutTicketInput;
 
-    @Field(() => MaintenanceUpsertWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceUpsertWithoutTicketInput)
-    upsert?: MaintenanceUpsertWithoutTicketInput;
+  @Field(() => Boolean, { nullable: true })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  delete?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceUpdateWithoutTicketInput, {nullable:true})
-    @Type(() => MaintenanceUpdateWithoutTicketInput)
-    update?: MaintenanceUpdateWithoutTicketInput;
+  @Field(() => MaintenanceUpdateWithoutTicketInput, { nullable: true })
+  @Type(() => MaintenanceUpdateWithoutTicketInput)
+  update?: MaintenanceUpdateWithoutTicketInput;
 }

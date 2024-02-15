@@ -7,16 +7,15 @@ import { MachinesCreateWithoutItemsInput } from './machines-create-without-items
 
 @InputType()
 export class MachinesUpsertWithWhereUniqueWithoutItemsInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
+  @Field(() => MachinesUpdateWithoutItemsInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutItemsInput)
+  update!: MachinesUpdateWithoutItemsInput;
 
-    @Field(() => MachinesUpdateWithoutItemsInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutItemsInput)
-    update!: MachinesUpdateWithoutItemsInput;
-
-    @Field(() => MachinesCreateWithoutItemsInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutItemsInput)
-    create!: MachinesCreateWithoutItemsInput;
+  @Field(() => MachinesCreateWithoutItemsInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutItemsInput)
+  create!: MachinesCreateWithoutItemsInput;
 }

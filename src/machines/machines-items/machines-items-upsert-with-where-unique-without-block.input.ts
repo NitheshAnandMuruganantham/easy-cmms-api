@@ -7,16 +7,15 @@ import { machines_itemsCreateWithoutBlockInput } from './machines-items-create-w
 
 @InputType()
 export class machines_itemsUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => machines_itemsWhereUniqueInput, { nullable: false })
+  @Type(() => machines_itemsWhereUniqueInput)
+  where!: machines_itemsWhereUniqueInput;
 
-    @Field(() => machines_itemsWhereUniqueInput, {nullable:false})
-    @Type(() => machines_itemsWhereUniqueInput)
-    where!: machines_itemsWhereUniqueInput;
+  @Field(() => machines_itemsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => machines_itemsUpdateWithoutBlockInput)
+  update!: machines_itemsUpdateWithoutBlockInput;
 
-    @Field(() => machines_itemsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => machines_itemsUpdateWithoutBlockInput)
-    update!: machines_itemsUpdateWithoutBlockInput;
-
-    @Field(() => machines_itemsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => machines_itemsCreateWithoutBlockInput)
-    create!: machines_itemsCreateWithoutBlockInput;
+  @Field(() => machines_itemsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => machines_itemsCreateWithoutBlockInput)
+  create!: machines_itemsCreateWithoutBlockInput;
 }

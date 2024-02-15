@@ -9,30 +9,29 @@ import { ItemsUpdateWithoutMachinesInput } from './items-update-without-machines
 
 @InputType()
 export class ItemsUpdateOneWithoutMachinesNestedInput {
+  @Field(() => ItemsCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => ItemsCreateWithoutMachinesInput)
+  create?: ItemsCreateWithoutMachinesInput;
 
-    @Field(() => ItemsCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutMachinesInput)
-    create?: ItemsCreateWithoutMachinesInput;
+  @Field(() => ItemsCreateOrConnectWithoutMachinesInput, { nullable: true })
+  @Type(() => ItemsCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutMachinesInput;
+  @Field(() => ItemsUpsertWithoutMachinesInput, { nullable: true })
+  @Type(() => ItemsUpsertWithoutMachinesInput)
+  upsert?: ItemsUpsertWithoutMachinesInput;
 
-    @Field(() => ItemsUpsertWithoutMachinesInput, {nullable:true})
-    @Type(() => ItemsUpsertWithoutMachinesInput)
-    upsert?: ItemsUpsertWithoutMachinesInput;
+  @Field(() => Boolean, { nullable: true })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  delete?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutMachinesInput, {nullable:true})
-    @Type(() => ItemsUpdateWithoutMachinesInput)
-    update?: ItemsUpdateWithoutMachinesInput;
+  @Field(() => ItemsUpdateWithoutMachinesInput, { nullable: true })
+  @Type(() => ItemsUpdateWithoutMachinesInput)
+  update?: ItemsUpdateWithoutMachinesInput;
 }

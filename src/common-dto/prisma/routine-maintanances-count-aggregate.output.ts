@@ -4,37 +4,36 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Routine_maintanancesCountAggregate {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => Int, { nullable: false })
+  name!: number;
 
-    @Field(() => Int, {nullable:false})
-    name!: number;
+  @Field(() => Int, { nullable: false })
+  description!: number;
 
-    @Field(() => Int, {nullable:false})
-    description!: number;
+  @Field(() => Int, { nullable: false })
+  cron!: number;
 
-    @Field(() => Int, {nullable:false})
-    cron!: number;
+  @Field(() => Int, { nullable: false })
+  duration!: number;
 
-    @Field(() => Int, {nullable:false})
-    duration!: number;
+  @Field(() => Int, { nullable: false })
+  assignee_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    assignee_id!: number;
+  @Field(() => Int, { nullable: false })
+  meachine_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    meachine_id!: number;
+  @Field(() => Int, { nullable: false })
+  created_at!: number;
 
-    @Field(() => Int, {nullable:false})
-    created_at!: number;
+  @Field(() => Int, { nullable: false })
+  updated_at!: number;
 
-    @Field(() => Int, {nullable:false})
-    updated_at!: number;
+  @Field(() => Int, { nullable: false })
+  block_id!: number;
 
-    @Field(() => Int, {nullable:false})
-    block_id!: number;
-
-    @Field(() => Int, {nullable:false})
-    _all!: number;
+  @Field(() => Int, { nullable: false })
+  _all!: number;
 }

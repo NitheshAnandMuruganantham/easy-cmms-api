@@ -6,12 +6,11 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @ArgsType()
 export class UpdateOneItemsArgs {
+  @Field(() => ItemsUpdateInput, { nullable: false })
+  @Type(() => ItemsUpdateInput)
+  data!: ItemsUpdateInput;
 
-    @Field(() => ItemsUpdateInput, {nullable:false})
-    @Type(() => ItemsUpdateInput)
-    data!: ItemsUpdateInput;
-
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 }

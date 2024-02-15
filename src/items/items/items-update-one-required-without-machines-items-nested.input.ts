@@ -9,24 +9,25 @@ import { ItemsUpdateWithoutMachines_itemsInput } from './items-update-without-ma
 
 @InputType()
 export class ItemsUpdateOneRequiredWithoutMachines_itemsNestedInput {
+  @Field(() => ItemsCreateWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => ItemsCreateWithoutMachines_itemsInput)
+  create?: ItemsCreateWithoutMachines_itemsInput;
 
-    @Field(() => ItemsCreateWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutMachines_itemsInput)
-    create?: ItemsCreateWithoutMachines_itemsInput;
+  @Field(() => ItemsCreateOrConnectWithoutMachines_itemsInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutMachines_itemsInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutMachines_itemsInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutMachines_itemsInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutMachines_itemsInput;
+  @Field(() => ItemsUpsertWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => ItemsUpsertWithoutMachines_itemsInput)
+  upsert?: ItemsUpsertWithoutMachines_itemsInput;
 
-    @Field(() => ItemsUpsertWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsUpsertWithoutMachines_itemsInput)
-    upsert?: ItemsUpsertWithoutMachines_itemsInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutMachines_itemsInput, {nullable:true})
-    @Type(() => ItemsUpdateWithoutMachines_itemsInput)
-    update?: ItemsUpdateWithoutMachines_itemsInput;
+  @Field(() => ItemsUpdateWithoutMachines_itemsInput, { nullable: true })
+  @Type(() => ItemsUpdateWithoutMachines_itemsInput)
+  update?: ItemsUpdateWithoutMachines_itemsInput;
 }

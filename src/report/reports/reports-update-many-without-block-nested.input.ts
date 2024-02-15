@@ -12,48 +12,53 @@ import { ReportsScalarWhereInput } from './reports-scalar-where.input';
 
 @InputType()
 export class ReportsUpdateManyWithoutBlockNestedInput {
+  @Field(() => [ReportsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ReportsCreateWithoutBlockInput)
+  create?: Array<ReportsCreateWithoutBlockInput>;
 
-    @Field(() => [ReportsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsCreateWithoutBlockInput)
-    create?: Array<ReportsCreateWithoutBlockInput>;
+  @Field(() => [ReportsCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => ReportsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ReportsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ReportsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ReportsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [ReportsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReportsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<ReportsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ReportsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<ReportsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => ReportsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ReportsCreateManyBlockInputEnvelope)
+  createMany?: ReportsCreateManyBlockInputEnvelope;
 
-    @Field(() => ReportsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ReportsCreateManyBlockInputEnvelope)
-    createMany?: ReportsCreateManyBlockInputEnvelope;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  set?: Array<ReportsWhereUniqueInput>;
 
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    set?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  disconnect?: Array<ReportsWhereUniqueInput>;
 
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    disconnect?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  delete?: Array<ReportsWhereUniqueInput>;
 
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    delete?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  connect?: Array<ReportsWhereUniqueInput>;
 
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    connect?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReportsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<ReportsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ReportsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<ReportsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [ReportsUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReportsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<ReportsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [ReportsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<ReportsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [ReportsScalarWhereInput], {nullable:true})
-    @Type(() => ReportsScalarWhereInput)
-    deleteMany?: Array<ReportsScalarWhereInput>;
+  @Field(() => [ReportsScalarWhereInput], { nullable: true })
+  @Type(() => ReportsScalarWhereInput)
+  deleteMany?: Array<ReportsScalarWhereInput>;
 }

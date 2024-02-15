@@ -9,23 +9,24 @@ import { SectionsScalarFieldEnum } from './sections-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstSectionsOrThrowArgs {
+  @Field(() => SectionsWhereInput, { nullable: true })
+  @Type(() => SectionsWhereInput)
+  where?: SectionsWhereInput;
 
-    @Field(() => SectionsWhereInput, {nullable:true})
-    @Type(() => SectionsWhereInput)
-    where?: SectionsWhereInput;
+  @Field(() => [SectionsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<SectionsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [SectionsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<SectionsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => SectionsWhereUniqueInput, { nullable: true })
+  cursor?: SectionsWhereUniqueInput;
 
-    @Field(() => SectionsWhereUniqueInput, {nullable:true})
-    cursor?: SectionsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [SectionsScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof SectionsScalarFieldEnum>;
+  @Field(() => [SectionsScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof SectionsScalarFieldEnum>;
 }

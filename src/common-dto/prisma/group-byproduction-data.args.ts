@@ -9,23 +9,24 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class GroupByproductionDataArgs {
+  @Field(() => production_dataWhereInput, { nullable: true })
+  @Type(() => production_dataWhereInput)
+  where?: production_dataWhereInput;
 
-    @Field(() => production_dataWhereInput, {nullable:true})
-    @Type(() => production_dataWhereInput)
-    where?: production_dataWhereInput;
+  @Field(() => [production_dataOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<production_dataOrderByWithAggregationInput>;
 
-    @Field(() => [production_dataOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<production_dataOrderByWithAggregationInput>;
+  @Field(() => [Production_dataScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof Production_dataScalarFieldEnum>;
 
-    @Field(() => [Production_dataScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof Production_dataScalarFieldEnum>;
+  @Field(() => production_dataScalarWhereWithAggregatesInput, {
+    nullable: true,
+  })
+  having?: production_dataScalarWhereWithAggregatesInput;
 
-    @Field(() => production_dataScalarWhereWithAggregatesInput, {nullable:true})
-    having?: production_dataScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
-
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }

@@ -8,20 +8,19 @@ import { MachinesWhereUniqueInput } from './machines-where-unique.input';
 
 @InputType()
 export class MachinesUncheckedCreateNestedManyWithoutSectionInput {
+  @Field(() => [MachinesCreateWithoutSectionInput], { nullable: true })
+  @Type(() => MachinesCreateWithoutSectionInput)
+  create?: Array<MachinesCreateWithoutSectionInput>;
 
-    @Field(() => [MachinesCreateWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesCreateWithoutSectionInput)
-    create?: Array<MachinesCreateWithoutSectionInput>;
+  @Field(() => [MachinesCreateOrConnectWithoutSectionInput], { nullable: true })
+  @Type(() => MachinesCreateOrConnectWithoutSectionInput)
+  connectOrCreate?: Array<MachinesCreateOrConnectWithoutSectionInput>;
 
-    @Field(() => [MachinesCreateOrConnectWithoutSectionInput], {nullable:true})
-    @Type(() => MachinesCreateOrConnectWithoutSectionInput)
-    connectOrCreate?: Array<MachinesCreateOrConnectWithoutSectionInput>;
+  @Field(() => MachinesCreateManySectionInputEnvelope, { nullable: true })
+  @Type(() => MachinesCreateManySectionInputEnvelope)
+  createMany?: MachinesCreateManySectionInputEnvelope;
 
-    @Field(() => MachinesCreateManySectionInputEnvelope, {nullable:true})
-    @Type(() => MachinesCreateManySectionInputEnvelope)
-    createMany?: MachinesCreateManySectionInputEnvelope;
-
-    @Field(() => [MachinesWhereUniqueInput], {nullable:true})
-    @Type(() => MachinesWhereUniqueInput)
-    connect?: Array<MachinesWhereUniqueInput>;
+  @Field(() => [MachinesWhereUniqueInput], { nullable: true })
+  @Type(() => MachinesWhereUniqueInput)
+  connect?: Array<MachinesWhereUniqueInput>;
 }

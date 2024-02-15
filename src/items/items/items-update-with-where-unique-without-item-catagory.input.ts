@@ -6,12 +6,11 @@ import { ItemsUpdateWithoutItemCatagoryInput } from './items-update-without-item
 
 @InputType()
 export class ItemsUpdateWithWhereUniqueWithoutItemCatagoryInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
-
-    @Field(() => ItemsUpdateWithoutItemCatagoryInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutItemCatagoryInput)
-    data!: ItemsUpdateWithoutItemCatagoryInput;
+  @Field(() => ItemsUpdateWithoutItemCatagoryInput, { nullable: false })
+  @Type(() => ItemsUpdateWithoutItemCatagoryInput)
+  data!: ItemsUpdateWithoutItemCatagoryInput;
 }

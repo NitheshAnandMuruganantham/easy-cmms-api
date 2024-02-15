@@ -7,16 +7,19 @@ import { routine_maintanancesCreateWithoutMeachineInput } from './routine-mainta
 
 @InputType()
 export class routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput {
+  @Field(() => routine_maintanancesWhereUniqueInput, { nullable: false })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  where!: routine_maintanancesWhereUniqueInput;
 
-    @Field(() => routine_maintanancesWhereUniqueInput, {nullable:false})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    where!: routine_maintanancesWhereUniqueInput;
+  @Field(() => routine_maintanancesUpdateWithoutMeachineInput, {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesUpdateWithoutMeachineInput)
+  update!: routine_maintanancesUpdateWithoutMeachineInput;
 
-    @Field(() => routine_maintanancesUpdateWithoutMeachineInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateWithoutMeachineInput)
-    update!: routine_maintanancesUpdateWithoutMeachineInput;
-
-    @Field(() => routine_maintanancesCreateWithoutMeachineInput, {nullable:false})
-    @Type(() => routine_maintanancesCreateWithoutMeachineInput)
-    create!: routine_maintanancesCreateWithoutMeachineInput;
+  @Field(() => routine_maintanancesCreateWithoutMeachineInput, {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesCreateWithoutMeachineInput)
+  create!: routine_maintanancesCreateWithoutMeachineInput;
 }

@@ -12,48 +12,53 @@ import { catagoryScalarWhereInput } from './catagory-scalar-where.input';
 
 @InputType()
 export class catagoryUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [catagoryCreateWithoutBlockInput], { nullable: true })
+  @Type(() => catagoryCreateWithoutBlockInput)
+  create?: Array<catagoryCreateWithoutBlockInput>;
 
-    @Field(() => [catagoryCreateWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryCreateWithoutBlockInput)
-    create?: Array<catagoryCreateWithoutBlockInput>;
+  @Field(() => [catagoryCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => catagoryCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<catagoryCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [catagoryCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<catagoryCreateOrConnectWithoutBlockInput>;
+  @Field(() => [catagoryUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => catagoryUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<catagoryUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [catagoryUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<catagoryUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => catagoryCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => catagoryCreateManyBlockInputEnvelope)
+  createMany?: catagoryCreateManyBlockInputEnvelope;
 
-    @Field(() => catagoryCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => catagoryCreateManyBlockInputEnvelope)
-    createMany?: catagoryCreateManyBlockInputEnvelope;
+  @Field(() => [catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  set?: Array<catagoryWhereUniqueInput>;
 
-    @Field(() => [catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    set?: Array<catagoryWhereUniqueInput>;
+  @Field(() => [catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  disconnect?: Array<catagoryWhereUniqueInput>;
 
-    @Field(() => [catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    disconnect?: Array<catagoryWhereUniqueInput>;
+  @Field(() => [catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  delete?: Array<catagoryWhereUniqueInput>;
 
-    @Field(() => [catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    delete?: Array<catagoryWhereUniqueInput>;
+  @Field(() => [catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  connect?: Array<catagoryWhereUniqueInput>;
 
-    @Field(() => [catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    connect?: Array<catagoryWhereUniqueInput>;
+  @Field(() => [catagoryUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => catagoryUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<catagoryUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [catagoryUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<catagoryUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [catagoryUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => catagoryUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<catagoryUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [catagoryUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => catagoryUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<catagoryUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [catagoryScalarWhereInput], {nullable:true})
-    @Type(() => catagoryScalarWhereInput)
-    deleteMany?: Array<catagoryScalarWhereInput>;
+  @Field(() => [catagoryScalarWhereInput], { nullable: true })
+  @Type(() => catagoryScalarWhereInput)
+  deleteMany?: Array<catagoryScalarWhereInput>;
 }

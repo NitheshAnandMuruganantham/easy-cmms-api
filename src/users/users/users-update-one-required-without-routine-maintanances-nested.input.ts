@@ -9,24 +9,25 @@ import { UsersUpdateWithoutRoutine_maintanancesInput } from './users-update-with
 
 @InputType()
 export class UsersUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
+  @Field(() => UsersCreateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
+  create?: UsersCreateWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersCreateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
-    create?: UsersCreateWithoutRoutine_maintanancesInput;
+  @Field(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput)
+  connectOrCreate?: UsersCreateOrConnectWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput)
-    connectOrCreate?: UsersCreateOrConnectWithoutRoutine_maintanancesInput;
+  @Field(() => UsersUpsertWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => UsersUpsertWithoutRoutine_maintanancesInput)
+  upsert?: UsersUpsertWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersUpsertWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersUpsertWithoutRoutine_maintanancesInput)
-    upsert?: UsersUpsertWithoutRoutine_maintanancesInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: UsersWhereUniqueInput;
-
-    @Field(() => UsersUpdateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersUpdateWithoutRoutine_maintanancesInput)
-    update?: UsersUpdateWithoutRoutine_maintanancesInput;
+  @Field(() => UsersUpdateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => UsersUpdateWithoutRoutine_maintanancesInput)
+  update?: UsersUpdateWithoutRoutine_maintanancesInput;
 }

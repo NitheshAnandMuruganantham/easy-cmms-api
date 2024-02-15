@@ -6,12 +6,11 @@ import { BlockCreateWithoutSectionsInput } from './block-create-without-sections
 
 @InputType()
 export class BlockCreateOrConnectWithoutSectionsInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutSectionsInput, {nullable:false})
-    @Type(() => BlockCreateWithoutSectionsInput)
-    create!: BlockCreateWithoutSectionsInput;
+  @Field(() => BlockCreateWithoutSectionsInput, { nullable: false })
+  @Type(() => BlockCreateWithoutSectionsInput)
+  create!: BlockCreateWithoutSectionsInput;
 }

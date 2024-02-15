@@ -7,16 +7,15 @@ import { TicketUpdateInput } from './ticket-update.input';
 
 @ArgsType()
 export class UpsertOneTicketArgs {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketCreateInput, { nullable: false })
+  @Type(() => TicketCreateInput)
+  create!: TicketCreateInput;
 
-    @Field(() => TicketCreateInput, {nullable:false})
-    @Type(() => TicketCreateInput)
-    create!: TicketCreateInput;
-
-    @Field(() => TicketUpdateInput, {nullable:false})
-    @Type(() => TicketUpdateInput)
-    update!: TicketUpdateInput;
+  @Field(() => TicketUpdateInput, { nullable: false })
+  @Type(() => TicketUpdateInput)
+  update!: TicketUpdateInput;
 }

@@ -6,12 +6,11 @@ import { ReportUpdateManyMutationInput } from './report-update-many-mutation.inp
 
 @InputType()
 export class ReportUpdateManyWithWhereWithoutMaintenanceInput {
+  @Field(() => ReportScalarWhereInput, { nullable: false })
+  @Type(() => ReportScalarWhereInput)
+  where!: ReportScalarWhereInput;
 
-    @Field(() => ReportScalarWhereInput, {nullable:false})
-    @Type(() => ReportScalarWhereInput)
-    where!: ReportScalarWhereInput;
-
-    @Field(() => ReportUpdateManyMutationInput, {nullable:false})
-    @Type(() => ReportUpdateManyMutationInput)
-    data!: ReportUpdateManyMutationInput;
+  @Field(() => ReportUpdateManyMutationInput, { nullable: false })
+  @Type(() => ReportUpdateManyMutationInput)
+  data!: ReportUpdateManyMutationInput;
 }

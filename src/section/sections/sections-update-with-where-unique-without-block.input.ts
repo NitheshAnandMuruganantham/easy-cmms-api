@@ -6,12 +6,11 @@ import { SectionsUpdateWithoutBlockInput } from './sections-update-without-block
 
 @InputType()
 export class SectionsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => SectionsWhereUniqueInput, { nullable: false })
+  @Type(() => SectionsWhereUniqueInput)
+  where!: SectionsWhereUniqueInput;
 
-    @Field(() => SectionsWhereUniqueInput, {nullable:false})
-    @Type(() => SectionsWhereUniqueInput)
-    where!: SectionsWhereUniqueInput;
-
-    @Field(() => SectionsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => SectionsUpdateWithoutBlockInput)
-    data!: SectionsUpdateWithoutBlockInput;
+  @Field(() => SectionsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => SectionsUpdateWithoutBlockInput)
+  data!: SectionsUpdateWithoutBlockInput;
 }

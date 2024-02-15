@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyInvoicesArgs {
+  @Field(() => [InvoicesCreateManyInput], { nullable: false })
+  @Type(() => InvoicesCreateManyInput)
+  data!: Array<InvoicesCreateManyInput>;
 
-    @Field(() => [InvoicesCreateManyInput], {nullable:false})
-    @Type(() => InvoicesCreateManyInput)
-    data!: Array<InvoicesCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

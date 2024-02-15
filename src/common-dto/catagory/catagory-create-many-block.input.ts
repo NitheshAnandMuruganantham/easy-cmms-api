@@ -4,16 +4,15 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @InputType()
 export class catagoryCreateManyBlockInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Date, { nullable: true })
+  created_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
 }

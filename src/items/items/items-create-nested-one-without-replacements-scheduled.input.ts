@@ -7,16 +7,19 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @InputType()
 export class ItemsCreateNestedOneWithoutReplacements_scheduledInput {
+  @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
+  create?: ItemsCreateWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsCreateWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsCreateWithoutReplacements_scheduledInput)
-    create?: ItemsCreateWithoutReplacements_scheduledInput;
+  @Field(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput, {
+    nullable: true,
+  })
+  @Type(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput)
+  connectOrCreate?: ItemsCreateOrConnectWithoutReplacements_scheduledInput;
 
-    @Field(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput, {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutReplacements_scheduledInput)
-    connectOrCreate?: ItemsCreateOrConnectWithoutReplacements_scheduledInput;
-
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: ItemsWhereUniqueInput;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: ItemsWhereUniqueInput;
 }

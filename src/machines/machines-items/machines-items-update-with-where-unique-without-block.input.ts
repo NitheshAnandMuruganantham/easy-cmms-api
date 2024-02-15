@@ -6,12 +6,11 @@ import { machines_itemsUpdateWithoutBlockInput } from './machines-items-update-w
 
 @InputType()
 export class machines_itemsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => machines_itemsWhereUniqueInput, { nullable: false })
+  @Type(() => machines_itemsWhereUniqueInput)
+  where!: machines_itemsWhereUniqueInput;
 
-    @Field(() => machines_itemsWhereUniqueInput, {nullable:false})
-    @Type(() => machines_itemsWhereUniqueInput)
-    where!: machines_itemsWhereUniqueInput;
-
-    @Field(() => machines_itemsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => machines_itemsUpdateWithoutBlockInput)
-    data!: machines_itemsUpdateWithoutBlockInput;
+  @Field(() => machines_itemsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => machines_itemsUpdateWithoutBlockInput)
+  data!: machines_itemsUpdateWithoutBlockInput;
 }

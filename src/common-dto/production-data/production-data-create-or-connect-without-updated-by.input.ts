@@ -6,12 +6,11 @@ import { production_dataCreateWithoutUpdatedByInput } from './production-data-cr
 
 @InputType()
 export class production_dataCreateOrConnectWithoutUpdatedByInput {
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
-
-    @Field(() => production_dataCreateWithoutUpdatedByInput, {nullable:false})
-    @Type(() => production_dataCreateWithoutUpdatedByInput)
-    create!: production_dataCreateWithoutUpdatedByInput;
+  @Field(() => production_dataCreateWithoutUpdatedByInput, { nullable: false })
+  @Type(() => production_dataCreateWithoutUpdatedByInput)
+  create!: production_dataCreateWithoutUpdatedByInput;
 }

@@ -5,10 +5,9 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class SectionsSumAggregate {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    block_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  block_id?: bigint | number;
 }

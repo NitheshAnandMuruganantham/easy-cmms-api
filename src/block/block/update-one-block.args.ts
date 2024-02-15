@@ -6,12 +6,11 @@ import { BlockWhereUniqueInput } from './block-where-unique.input';
 
 @ArgsType()
 export class UpdateOneBlockArgs {
+  @Field(() => BlockUpdateInput, { nullable: false })
+  @Type(() => BlockUpdateInput)
+  data!: BlockUpdateInput;
 
-    @Field(() => BlockUpdateInput, {nullable:false})
-    @Type(() => BlockUpdateInput)
-    data!: BlockUpdateInput;
-
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 }

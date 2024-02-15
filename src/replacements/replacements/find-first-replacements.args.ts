@@ -9,23 +9,24 @@ import { ReplacementsScalarFieldEnum } from './replacements-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstReplacementsArgs {
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  @Type(() => ReplacementsWhereInput)
+  where?: ReplacementsWhereInput;
 
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    @Type(() => ReplacementsWhereInput)
-    where?: ReplacementsWhereInput;
+  @Field(() => [ReplacementsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ReplacementsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [ReplacementsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<ReplacementsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: true })
+  cursor?: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:true})
-    cursor?: ReplacementsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [ReplacementsScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof ReplacementsScalarFieldEnum>;
+  @Field(() => [ReplacementsScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof ReplacementsScalarFieldEnum>;
 }

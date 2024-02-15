@@ -6,12 +6,11 @@ import { production_dataUpdateManyMutationInput } from './production-data-update
 
 @InputType()
 export class production_dataUpdateManyWithWhereWithoutUpdatedByInput {
+  @Field(() => production_dataScalarWhereInput, { nullable: false })
+  @Type(() => production_dataScalarWhereInput)
+  where!: production_dataScalarWhereInput;
 
-    @Field(() => production_dataScalarWhereInput, {nullable:false})
-    @Type(() => production_dataScalarWhereInput)
-    where!: production_dataScalarWhereInput;
-
-    @Field(() => production_dataUpdateManyMutationInput, {nullable:false})
-    @Type(() => production_dataUpdateManyMutationInput)
-    data!: production_dataUpdateManyMutationInput;
+  @Field(() => production_dataUpdateManyMutationInput, { nullable: false })
+  @Type(() => production_dataUpdateManyMutationInput)
+  data!: production_dataUpdateManyMutationInput;
 }

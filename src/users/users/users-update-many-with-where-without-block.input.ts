@@ -6,12 +6,11 @@ import { UsersUpdateManyMutationInput } from './users-update-many-mutation.input
 
 @InputType()
 export class UsersUpdateManyWithWhereWithoutBlockInput {
+  @Field(() => UsersScalarWhereInput, { nullable: false })
+  @Type(() => UsersScalarWhereInput)
+  where!: UsersScalarWhereInput;
 
-    @Field(() => UsersScalarWhereInput, {nullable:false})
-    @Type(() => UsersScalarWhereInput)
-    where!: UsersScalarWhereInput;
-
-    @Field(() => UsersUpdateManyMutationInput, {nullable:false})
-    @Type(() => UsersUpdateManyMutationInput)
-    data!: UsersUpdateManyMutationInput;
+  @Field(() => UsersUpdateManyMutationInput, { nullable: false })
+  @Type(() => UsersUpdateManyMutationInput)
+  data!: UsersUpdateManyMutationInput;
 }

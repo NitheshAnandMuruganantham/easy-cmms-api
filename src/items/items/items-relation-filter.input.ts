@@ -4,10 +4,9 @@ import { ItemsWhereInput } from './items-where.input';
 
 @InputType()
 export class ItemsRelationFilter {
+  @Field(() => ItemsWhereInput, { nullable: true })
+  is?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    is?: ItemsWhereInput;
-
-    @Field(() => ItemsWhereInput, {nullable:true})
-    isNot?: ItemsWhereInput;
+  @Field(() => ItemsWhereInput, { nullable: true })
+  isNot?: ItemsWhereInput;
 }

@@ -6,12 +6,11 @@ import { routine_maintanancesUpdateManyMutationInput } from './routine-maintanan
 
 @InputType()
 export class routine_maintanancesUpdateManyWithWhereWithoutAssigneeInput {
+  @Field(() => routine_maintanancesScalarWhereInput, { nullable: false })
+  @Type(() => routine_maintanancesScalarWhereInput)
+  where!: routine_maintanancesScalarWhereInput;
 
-    @Field(() => routine_maintanancesScalarWhereInput, {nullable:false})
-    @Type(() => routine_maintanancesScalarWhereInput)
-    where!: routine_maintanancesScalarWhereInput;
-
-    @Field(() => routine_maintanancesUpdateManyMutationInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateManyMutationInput)
-    data!: routine_maintanancesUpdateManyMutationInput;
+  @Field(() => routine_maintanancesUpdateManyMutationInput, { nullable: false })
+  @Type(() => routine_maintanancesUpdateManyMutationInput)
+  data!: routine_maintanancesUpdateManyMutationInput;
 }

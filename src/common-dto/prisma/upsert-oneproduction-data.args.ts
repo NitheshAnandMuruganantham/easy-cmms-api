@@ -7,16 +7,15 @@ import { production_dataUpdateInput } from '../production-data/production-data-u
 
 @ArgsType()
 export class UpsertOneproductionDataArgs {
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
+  @Field(() => production_dataCreateInput, { nullable: false })
+  @Type(() => production_dataCreateInput)
+  create!: production_dataCreateInput;
 
-    @Field(() => production_dataCreateInput, {nullable:false})
-    @Type(() => production_dataCreateInput)
-    create!: production_dataCreateInput;
-
-    @Field(() => production_dataUpdateInput, {nullable:false})
-    @Type(() => production_dataUpdateInput)
-    update!: production_dataUpdateInput;
+  @Field(() => production_dataUpdateInput, { nullable: false })
+  @Type(() => production_dataUpdateInput)
+  update!: production_dataUpdateInput;
 }

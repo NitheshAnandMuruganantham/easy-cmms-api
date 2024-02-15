@@ -7,16 +7,15 @@ import { routine_maintanancesCreateWithoutBlockInput } from './routine-maintanan
 
 @InputType()
 export class routine_maintanancesUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => routine_maintanancesWhereUniqueInput, { nullable: false })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  where!: routine_maintanancesWhereUniqueInput;
 
-    @Field(() => routine_maintanancesWhereUniqueInput, {nullable:false})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    where!: routine_maintanancesWhereUniqueInput;
+  @Field(() => routine_maintanancesUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => routine_maintanancesUpdateWithoutBlockInput)
+  update!: routine_maintanancesUpdateWithoutBlockInput;
 
-    @Field(() => routine_maintanancesUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateWithoutBlockInput)
-    update!: routine_maintanancesUpdateWithoutBlockInput;
-
-    @Field(() => routine_maintanancesCreateWithoutBlockInput, {nullable:false})
-    @Type(() => routine_maintanancesCreateWithoutBlockInput)
-    create!: routine_maintanancesCreateWithoutBlockInput;
+  @Field(() => routine_maintanancesCreateWithoutBlockInput, { nullable: false })
+  @Type(() => routine_maintanancesCreateWithoutBlockInput)
+  create!: routine_maintanancesCreateWithoutBlockInput;
 }

@@ -8,19 +8,18 @@ import { MachinesMaxAggregate } from './machines-max-aggregate.output';
 
 @ObjectType()
 export class AggregateMachines {
+  @Field(() => MachinesCountAggregate, { nullable: true })
+  _count?: MachinesCountAggregate;
 
-    @Field(() => MachinesCountAggregate, {nullable:true})
-    _count?: MachinesCountAggregate;
+  @Field(() => MachinesAvgAggregate, { nullable: true })
+  _avg?: MachinesAvgAggregate;
 
-    @Field(() => MachinesAvgAggregate, {nullable:true})
-    _avg?: MachinesAvgAggregate;
+  @Field(() => MachinesSumAggregate, { nullable: true })
+  _sum?: MachinesSumAggregate;
 
-    @Field(() => MachinesSumAggregate, {nullable:true})
-    _sum?: MachinesSumAggregate;
+  @Field(() => MachinesMinAggregate, { nullable: true })
+  _min?: MachinesMinAggregate;
 
-    @Field(() => MachinesMinAggregate, {nullable:true})
-    _min?: MachinesMinAggregate;
-
-    @Field(() => MachinesMaxAggregate, {nullable:true})
-    _max?: MachinesMaxAggregate;
+  @Field(() => MachinesMaxAggregate, { nullable: true })
+  _max?: MachinesMaxAggregate;
 }

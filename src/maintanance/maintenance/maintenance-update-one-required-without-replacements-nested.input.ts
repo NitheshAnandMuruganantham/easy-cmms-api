@@ -9,24 +9,25 @@ import { MaintenanceUpdateWithoutReplacementsInput } from './maintenance-update-
 
 @InputType()
 export class MaintenanceUpdateOneRequiredWithoutReplacementsNestedInput {
+  @Field(() => MaintenanceCreateWithoutReplacementsInput, { nullable: true })
+  @Type(() => MaintenanceCreateWithoutReplacementsInput)
+  create?: MaintenanceCreateWithoutReplacementsInput;
 
-    @Field(() => MaintenanceCreateWithoutReplacementsInput, {nullable:true})
-    @Type(() => MaintenanceCreateWithoutReplacementsInput)
-    create?: MaintenanceCreateWithoutReplacementsInput;
+  @Field(() => MaintenanceCreateOrConnectWithoutReplacementsInput, {
+    nullable: true,
+  })
+  @Type(() => MaintenanceCreateOrConnectWithoutReplacementsInput)
+  connectOrCreate?: MaintenanceCreateOrConnectWithoutReplacementsInput;
 
-    @Field(() => MaintenanceCreateOrConnectWithoutReplacementsInput, {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutReplacementsInput)
-    connectOrCreate?: MaintenanceCreateOrConnectWithoutReplacementsInput;
+  @Field(() => MaintenanceUpsertWithoutReplacementsInput, { nullable: true })
+  @Type(() => MaintenanceUpsertWithoutReplacementsInput)
+  upsert?: MaintenanceUpsertWithoutReplacementsInput;
 
-    @Field(() => MaintenanceUpsertWithoutReplacementsInput, {nullable:true})
-    @Type(() => MaintenanceUpsertWithoutReplacementsInput)
-    upsert?: MaintenanceUpsertWithoutReplacementsInput;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceUpdateWithoutReplacementsInput, {nullable:true})
-    @Type(() => MaintenanceUpdateWithoutReplacementsInput)
-    update?: MaintenanceUpdateWithoutReplacementsInput;
+  @Field(() => MaintenanceUpdateWithoutReplacementsInput, { nullable: true })
+  @Type(() => MaintenanceUpdateWithoutReplacementsInput)
+  update?: MaintenanceUpdateWithoutReplacementsInput;
 }

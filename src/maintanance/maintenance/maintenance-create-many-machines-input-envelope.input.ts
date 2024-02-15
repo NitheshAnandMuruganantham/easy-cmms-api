@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class MaintenanceCreateManyMachinesInputEnvelope {
+  @Field(() => [MaintenanceCreateManyMachinesInput], { nullable: false })
+  @Type(() => MaintenanceCreateManyMachinesInput)
+  data!: Array<MaintenanceCreateManyMachinesInput>;
 
-    @Field(() => [MaintenanceCreateManyMachinesInput], {nullable:false})
-    @Type(() => MaintenanceCreateManyMachinesInput)
-    data!: Array<MaintenanceCreateManyMachinesInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

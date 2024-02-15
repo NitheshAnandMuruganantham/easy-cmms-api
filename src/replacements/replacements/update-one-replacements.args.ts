@@ -6,12 +6,11 @@ import { ReplacementsWhereUniqueInput } from './replacements-where-unique.input'
 
 @ArgsType()
 export class UpdateOneReplacementsArgs {
+  @Field(() => ReplacementsUpdateInput, { nullable: false })
+  @Type(() => ReplacementsUpdateInput)
+  data!: ReplacementsUpdateInput;
 
-    @Field(() => ReplacementsUpdateInput, {nullable:false})
-    @Type(() => ReplacementsUpdateInput)
-    data!: ReplacementsUpdateInput;
-
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 }

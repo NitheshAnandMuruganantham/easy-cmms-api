@@ -7,16 +7,15 @@ import { BlockWhereUniqueInput } from './block-where-unique.input';
 
 @InputType()
 export class BlockCreateNestedOneWithoutMachinesInput {
+  @Field(() => BlockCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => BlockCreateWithoutMachinesInput)
+  create?: BlockCreateWithoutMachinesInput;
 
-    @Field(() => BlockCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => BlockCreateWithoutMachinesInput)
-    create?: BlockCreateWithoutMachinesInput;
+  @Field(() => BlockCreateOrConnectWithoutMachinesInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => BlockCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutMachinesInput;
-
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 }

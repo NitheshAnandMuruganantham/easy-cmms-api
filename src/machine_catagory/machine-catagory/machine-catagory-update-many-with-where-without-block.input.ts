@@ -6,12 +6,11 @@ import { machine_catagoryUpdateManyMutationInput } from './machine-catagory-upda
 
 @InputType()
 export class machine_catagoryUpdateManyWithWhereWithoutBlockInput {
+  @Field(() => machine_catagoryScalarWhereInput, { nullable: false })
+  @Type(() => machine_catagoryScalarWhereInput)
+  where!: machine_catagoryScalarWhereInput;
 
-    @Field(() => machine_catagoryScalarWhereInput, {nullable:false})
-    @Type(() => machine_catagoryScalarWhereInput)
-    where!: machine_catagoryScalarWhereInput;
-
-    @Field(() => machine_catagoryUpdateManyMutationInput, {nullable:false})
-    @Type(() => machine_catagoryUpdateManyMutationInput)
-    data!: machine_catagoryUpdateManyMutationInput;
+  @Field(() => machine_catagoryUpdateManyMutationInput, { nullable: false })
+  @Type(() => machine_catagoryUpdateManyMutationInput)
+  data!: machine_catagoryUpdateManyMutationInput;
 }

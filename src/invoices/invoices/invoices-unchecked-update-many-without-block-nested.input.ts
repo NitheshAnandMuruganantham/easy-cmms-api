@@ -12,48 +12,53 @@ import { InvoicesScalarWhereInput } from './invoices-scalar-where.input';
 
 @InputType()
 export class InvoicesUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [InvoicesCreateWithoutBlockInput], { nullable: true })
+  @Type(() => InvoicesCreateWithoutBlockInput)
+  create?: Array<InvoicesCreateWithoutBlockInput>;
 
-    @Field(() => [InvoicesCreateWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesCreateWithoutBlockInput)
-    create?: Array<InvoicesCreateWithoutBlockInput>;
+  @Field(() => [InvoicesCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => InvoicesCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<InvoicesCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [InvoicesCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<InvoicesCreateOrConnectWithoutBlockInput>;
+  @Field(() => [InvoicesUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => InvoicesUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<InvoicesUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [InvoicesUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<InvoicesUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => InvoicesCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => InvoicesCreateManyBlockInputEnvelope)
+  createMany?: InvoicesCreateManyBlockInputEnvelope;
 
-    @Field(() => InvoicesCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => InvoicesCreateManyBlockInputEnvelope)
-    createMany?: InvoicesCreateManyBlockInputEnvelope;
+  @Field(() => [InvoicesWhereUniqueInput], { nullable: true })
+  @Type(() => InvoicesWhereUniqueInput)
+  set?: Array<InvoicesWhereUniqueInput>;
 
-    @Field(() => [InvoicesWhereUniqueInput], {nullable:true})
-    @Type(() => InvoicesWhereUniqueInput)
-    set?: Array<InvoicesWhereUniqueInput>;
+  @Field(() => [InvoicesWhereUniqueInput], { nullable: true })
+  @Type(() => InvoicesWhereUniqueInput)
+  disconnect?: Array<InvoicesWhereUniqueInput>;
 
-    @Field(() => [InvoicesWhereUniqueInput], {nullable:true})
-    @Type(() => InvoicesWhereUniqueInput)
-    disconnect?: Array<InvoicesWhereUniqueInput>;
+  @Field(() => [InvoicesWhereUniqueInput], { nullable: true })
+  @Type(() => InvoicesWhereUniqueInput)
+  delete?: Array<InvoicesWhereUniqueInput>;
 
-    @Field(() => [InvoicesWhereUniqueInput], {nullable:true})
-    @Type(() => InvoicesWhereUniqueInput)
-    delete?: Array<InvoicesWhereUniqueInput>;
+  @Field(() => [InvoicesWhereUniqueInput], { nullable: true })
+  @Type(() => InvoicesWhereUniqueInput)
+  connect?: Array<InvoicesWhereUniqueInput>;
 
-    @Field(() => [InvoicesWhereUniqueInput], {nullable:true})
-    @Type(() => InvoicesWhereUniqueInput)
-    connect?: Array<InvoicesWhereUniqueInput>;
+  @Field(() => [InvoicesUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => InvoicesUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<InvoicesUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [InvoicesUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<InvoicesUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [InvoicesUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => InvoicesUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<InvoicesUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [InvoicesUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => InvoicesUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<InvoicesUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [InvoicesScalarWhereInput], {nullable:true})
-    @Type(() => InvoicesScalarWhereInput)
-    deleteMany?: Array<InvoicesScalarWhereInput>;
+  @Field(() => [InvoicesScalarWhereInput], { nullable: true })
+  @Type(() => InvoicesScalarWhereInput)
+  deleteMany?: Array<InvoicesScalarWhereInput>;
 }

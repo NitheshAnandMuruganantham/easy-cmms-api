@@ -7,16 +7,19 @@ import { routine_maintanancesCreateWithoutAssigneeInput } from './routine-mainta
 
 @InputType()
 export class routine_maintanancesUpsertWithWhereUniqueWithoutAssigneeInput {
+  @Field(() => routine_maintanancesWhereUniqueInput, { nullable: false })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  where!: routine_maintanancesWhereUniqueInput;
 
-    @Field(() => routine_maintanancesWhereUniqueInput, {nullable:false})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    where!: routine_maintanancesWhereUniqueInput;
+  @Field(() => routine_maintanancesUpdateWithoutAssigneeInput, {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesUpdateWithoutAssigneeInput)
+  update!: routine_maintanancesUpdateWithoutAssigneeInput;
 
-    @Field(() => routine_maintanancesUpdateWithoutAssigneeInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateWithoutAssigneeInput)
-    update!: routine_maintanancesUpdateWithoutAssigneeInput;
-
-    @Field(() => routine_maintanancesCreateWithoutAssigneeInput, {nullable:false})
-    @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
-    create!: routine_maintanancesCreateWithoutAssigneeInput;
+  @Field(() => routine_maintanancesCreateWithoutAssigneeInput, {
+    nullable: false,
+  })
+  @Type(() => routine_maintanancesCreateWithoutAssigneeInput)
+  create!: routine_maintanancesCreateWithoutAssigneeInput;
 }

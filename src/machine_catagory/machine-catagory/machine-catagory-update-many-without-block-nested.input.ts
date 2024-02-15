@@ -12,48 +12,55 @@ import { machine_catagoryScalarWhereInput } from './machine-catagory-scalar-wher
 
 @InputType()
 export class machine_catagoryUpdateManyWithoutBlockNestedInput {
+  @Field(() => [machine_catagoryCreateWithoutBlockInput], { nullable: true })
+  @Type(() => machine_catagoryCreateWithoutBlockInput)
+  create?: Array<machine_catagoryCreateWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryCreateWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryCreateWithoutBlockInput)
-    create?: Array<machine_catagoryCreateWithoutBlockInput>;
+  @Field(() => [machine_catagoryCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<machine_catagoryCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<machine_catagoryCreateOrConnectWithoutBlockInput>;
+  @Field(() => [machine_catagoryUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<machine_catagoryUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<machine_catagoryUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => machine_catagoryCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => machine_catagoryCreateManyBlockInputEnvelope)
+  createMany?: machine_catagoryCreateManyBlockInputEnvelope;
 
-    @Field(() => machine_catagoryCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => machine_catagoryCreateManyBlockInputEnvelope)
-    createMany?: machine_catagoryCreateManyBlockInputEnvelope;
+  @Field(() => [machine_catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  set?: Array<machine_catagoryWhereUniqueInput>;
 
-    @Field(() => [machine_catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    set?: Array<machine_catagoryWhereUniqueInput>;
+  @Field(() => [machine_catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  disconnect?: Array<machine_catagoryWhereUniqueInput>;
 
-    @Field(() => [machine_catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    disconnect?: Array<machine_catagoryWhereUniqueInput>;
+  @Field(() => [machine_catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  delete?: Array<machine_catagoryWhereUniqueInput>;
 
-    @Field(() => [machine_catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    delete?: Array<machine_catagoryWhereUniqueInput>;
+  @Field(() => [machine_catagoryWhereUniqueInput], { nullable: true })
+  @Type(() => machine_catagoryWhereUniqueInput)
+  connect?: Array<machine_catagoryWhereUniqueInput>;
 
-    @Field(() => [machine_catagoryWhereUniqueInput], {nullable:true})
-    @Type(() => machine_catagoryWhereUniqueInput)
-    connect?: Array<machine_catagoryWhereUniqueInput>;
+  @Field(() => [machine_catagoryUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<machine_catagoryUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<machine_catagoryUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [machine_catagoryUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => machine_catagoryUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<machine_catagoryUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [machine_catagoryUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => machine_catagoryUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<machine_catagoryUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [machine_catagoryScalarWhereInput], {nullable:true})
-    @Type(() => machine_catagoryScalarWhereInput)
-    deleteMany?: Array<machine_catagoryScalarWhereInput>;
+  @Field(() => [machine_catagoryScalarWhereInput], { nullable: true })
+  @Type(() => machine_catagoryScalarWhereInput)
+  deleteMany?: Array<machine_catagoryScalarWhereInput>;
 }

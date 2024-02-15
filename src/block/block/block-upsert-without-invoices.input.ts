@@ -6,12 +6,11 @@ import { BlockCreateWithoutInvoicesInput } from './block-create-without-invoices
 
 @InputType()
 export class BlockUpsertWithoutInvoicesInput {
+  @Field(() => BlockUpdateWithoutInvoicesInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutInvoicesInput)
+  update!: BlockUpdateWithoutInvoicesInput;
 
-    @Field(() => BlockUpdateWithoutInvoicesInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutInvoicesInput)
-    update!: BlockUpdateWithoutInvoicesInput;
-
-    @Field(() => BlockCreateWithoutInvoicesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutInvoicesInput)
-    create!: BlockCreateWithoutInvoicesInput;
+  @Field(() => BlockCreateWithoutInvoicesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutInvoicesInput)
+  create!: BlockCreateWithoutInvoicesInput;
 }

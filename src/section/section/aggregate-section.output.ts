@@ -8,19 +8,18 @@ import { SectionMaxAggregate } from './section-max-aggregate.output';
 
 @ObjectType()
 export class AggregateSection {
+  @Field(() => SectionCountAggregate, { nullable: true })
+  _count?: SectionCountAggregate;
 
-    @Field(() => SectionCountAggregate, {nullable:true})
-    _count?: SectionCountAggregate;
+  @Field(() => SectionAvgAggregate, { nullable: true })
+  _avg?: SectionAvgAggregate;
 
-    @Field(() => SectionAvgAggregate, {nullable:true})
-    _avg?: SectionAvgAggregate;
+  @Field(() => SectionSumAggregate, { nullable: true })
+  _sum?: SectionSumAggregate;
 
-    @Field(() => SectionSumAggregate, {nullable:true})
-    _sum?: SectionSumAggregate;
+  @Field(() => SectionMinAggregate, { nullable: true })
+  _min?: SectionMinAggregate;
 
-    @Field(() => SectionMinAggregate, {nullable:true})
-    _min?: SectionMinAggregate;
-
-    @Field(() => SectionMaxAggregate, {nullable:true})
-    _max?: SectionMaxAggregate;
+  @Field(() => SectionMaxAggregate, { nullable: true })
+  _max?: SectionMaxAggregate;
 }

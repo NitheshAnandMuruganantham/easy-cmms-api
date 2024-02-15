@@ -1,8 +1,10 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum catagoryOrderByRelevanceFieldEnum {
-    name = "name"
+  name = 'name',
 }
 
-
-registerEnumType(catagoryOrderByRelevanceFieldEnum, { name: 'catagoryOrderByRelevanceFieldEnum', description: undefined })
+registerEnumType(catagoryOrderByRelevanceFieldEnum, {
+  name: 'catagoryOrderByRelevanceFieldEnum',
+  description: undefined,
+});

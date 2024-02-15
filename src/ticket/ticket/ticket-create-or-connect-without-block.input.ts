@@ -6,12 +6,11 @@ import { TicketCreateWithoutBlockInput } from './ticket-create-without-block.inp
 
 @InputType()
 export class TicketCreateOrConnectWithoutBlockInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
-
-    @Field(() => TicketCreateWithoutBlockInput, {nullable:false})
-    @Type(() => TicketCreateWithoutBlockInput)
-    create!: TicketCreateWithoutBlockInput;
+  @Field(() => TicketCreateWithoutBlockInput, { nullable: false })
+  @Type(() => TicketCreateWithoutBlockInput)
+  create!: TicketCreateWithoutBlockInput;
 }

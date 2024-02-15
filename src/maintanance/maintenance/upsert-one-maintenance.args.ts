@@ -7,16 +7,15 @@ import { MaintenanceUpdateInput } from './maintenance-update.input';
 
 @ArgsType()
 export class UpsertOneMaintenanceArgs {
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: false })
+  @Type(() => MaintenanceWhereUniqueInput)
+  where!: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:false})
-    @Type(() => MaintenanceWhereUniqueInput)
-    where!: MaintenanceWhereUniqueInput;
+  @Field(() => MaintenanceCreateInput, { nullable: false })
+  @Type(() => MaintenanceCreateInput)
+  create!: MaintenanceCreateInput;
 
-    @Field(() => MaintenanceCreateInput, {nullable:false})
-    @Type(() => MaintenanceCreateInput)
-    create!: MaintenanceCreateInput;
-
-    @Field(() => MaintenanceUpdateInput, {nullable:false})
-    @Type(() => MaintenanceUpdateInput)
-    update!: MaintenanceUpdateInput;
+  @Field(() => MaintenanceUpdateInput, { nullable: false })
+  @Type(() => MaintenanceUpdateInput)
+  update!: MaintenanceUpdateInput;
 }

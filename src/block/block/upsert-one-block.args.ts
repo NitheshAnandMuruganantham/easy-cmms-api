@@ -7,16 +7,15 @@ import { BlockUpdateInput } from './block-update.input';
 
 @ArgsType()
 export class UpsertOneBlockArgs {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
+  @Field(() => BlockCreateInput, { nullable: false })
+  @Type(() => BlockCreateInput)
+  create!: BlockCreateInput;
 
-    @Field(() => BlockCreateInput, {nullable:false})
-    @Type(() => BlockCreateInput)
-    create!: BlockCreateInput;
-
-    @Field(() => BlockUpdateInput, {nullable:false})
-    @Type(() => BlockUpdateInput)
-    update!: BlockUpdateInput;
+  @Field(() => BlockUpdateInput, { nullable: false })
+  @Type(() => BlockUpdateInput)
+  update!: BlockUpdateInput;
 }

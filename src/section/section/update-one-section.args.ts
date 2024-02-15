@@ -6,12 +6,11 @@ import { SectionWhereUniqueInput } from './section-where-unique.input';
 
 @ArgsType()
 export class UpdateOneSectionArgs {
+  @Field(() => SectionUpdateInput, { nullable: false })
+  @Type(() => SectionUpdateInput)
+  data!: SectionUpdateInput;
 
-    @Field(() => SectionUpdateInput, {nullable:false})
-    @Type(() => SectionUpdateInput)
-    data!: SectionUpdateInput;
-
-    @Field(() => SectionWhereUniqueInput, {nullable:false})
-    @Type(() => SectionWhereUniqueInput)
-    where!: SectionWhereUniqueInput;
+  @Field(() => SectionWhereUniqueInput, { nullable: false })
+  @Type(() => SectionWhereUniqueInput)
+  where!: SectionWhereUniqueInput;
 }

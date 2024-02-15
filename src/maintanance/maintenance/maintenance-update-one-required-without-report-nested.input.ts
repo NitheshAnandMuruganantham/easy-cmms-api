@@ -9,24 +9,23 @@ import { MaintenanceUpdateWithoutReportInput } from './maintenance-update-withou
 
 @InputType()
 export class MaintenanceUpdateOneRequiredWithoutReportNestedInput {
+  @Field(() => MaintenanceCreateWithoutReportInput, { nullable: true })
+  @Type(() => MaintenanceCreateWithoutReportInput)
+  create?: MaintenanceCreateWithoutReportInput;
 
-    @Field(() => MaintenanceCreateWithoutReportInput, {nullable:true})
-    @Type(() => MaintenanceCreateWithoutReportInput)
-    create?: MaintenanceCreateWithoutReportInput;
+  @Field(() => MaintenanceCreateOrConnectWithoutReportInput, { nullable: true })
+  @Type(() => MaintenanceCreateOrConnectWithoutReportInput)
+  connectOrCreate?: MaintenanceCreateOrConnectWithoutReportInput;
 
-    @Field(() => MaintenanceCreateOrConnectWithoutReportInput, {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutReportInput)
-    connectOrCreate?: MaintenanceCreateOrConnectWithoutReportInput;
+  @Field(() => MaintenanceUpsertWithoutReportInput, { nullable: true })
+  @Type(() => MaintenanceUpsertWithoutReportInput)
+  upsert?: MaintenanceUpsertWithoutReportInput;
 
-    @Field(() => MaintenanceUpsertWithoutReportInput, {nullable:true})
-    @Type(() => MaintenanceUpsertWithoutReportInput)
-    upsert?: MaintenanceUpsertWithoutReportInput;
+  @Field(() => MaintenanceWhereUniqueInput, { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: MaintenanceWhereUniqueInput;
 
-    @Field(() => MaintenanceWhereUniqueInput, {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: MaintenanceWhereUniqueInput;
-
-    @Field(() => MaintenanceUpdateWithoutReportInput, {nullable:true})
-    @Type(() => MaintenanceUpdateWithoutReportInput)
-    update?: MaintenanceUpdateWithoutReportInput;
+  @Field(() => MaintenanceUpdateWithoutReportInput, { nullable: true })
+  @Type(() => MaintenanceUpdateWithoutReportInput)
+  update?: MaintenanceUpdateWithoutReportInput;
 }

@@ -14,38 +14,37 @@ import { ItemCatagoryMaxAggregateInput } from './item-catagory-max-aggregate.inp
 
 @ArgsType()
 export class ItemCatagoryGroupByArgs {
+  @Field(() => ItemCatagoryWhereInput, { nullable: true })
+  @Type(() => ItemCatagoryWhereInput)
+  where?: ItemCatagoryWhereInput;
 
-    @Field(() => ItemCatagoryWhereInput, {nullable:true})
-    @Type(() => ItemCatagoryWhereInput)
-    where?: ItemCatagoryWhereInput;
+  @Field(() => [ItemCatagoryOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<ItemCatagoryOrderByWithAggregationInput>;
 
-    @Field(() => [ItemCatagoryOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<ItemCatagoryOrderByWithAggregationInput>;
+  @Field(() => [ItemCatagoryScalarFieldEnum], { nullable: false })
+  by!: Array<keyof typeof ItemCatagoryScalarFieldEnum>;
 
-    @Field(() => [ItemCatagoryScalarFieldEnum], {nullable:false})
-    by!: Array<keyof typeof ItemCatagoryScalarFieldEnum>;
+  @Field(() => ItemCatagoryScalarWhereWithAggregatesInput, { nullable: true })
+  having?: ItemCatagoryScalarWhereWithAggregatesInput;
 
-    @Field(() => ItemCatagoryScalarWhereWithAggregatesInput, {nullable:true})
-    having?: ItemCatagoryScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ItemCatagoryCountAggregateInput, { nullable: true })
+  _count?: ItemCatagoryCountAggregateInput;
 
-    @Field(() => ItemCatagoryCountAggregateInput, {nullable:true})
-    _count?: ItemCatagoryCountAggregateInput;
+  @Field(() => ItemCatagoryAvgAggregateInput, { nullable: true })
+  _avg?: ItemCatagoryAvgAggregateInput;
 
-    @Field(() => ItemCatagoryAvgAggregateInput, {nullable:true})
-    _avg?: ItemCatagoryAvgAggregateInput;
+  @Field(() => ItemCatagorySumAggregateInput, { nullable: true })
+  _sum?: ItemCatagorySumAggregateInput;
 
-    @Field(() => ItemCatagorySumAggregateInput, {nullable:true})
-    _sum?: ItemCatagorySumAggregateInput;
+  @Field(() => ItemCatagoryMinAggregateInput, { nullable: true })
+  _min?: ItemCatagoryMinAggregateInput;
 
-    @Field(() => ItemCatagoryMinAggregateInput, {nullable:true})
-    _min?: ItemCatagoryMinAggregateInput;
-
-    @Field(() => ItemCatagoryMaxAggregateInput, {nullable:true})
-    _max?: ItemCatagoryMaxAggregateInput;
+  @Field(() => ItemCatagoryMaxAggregateInput, { nullable: true })
+  _max?: ItemCatagoryMaxAggregateInput;
 }

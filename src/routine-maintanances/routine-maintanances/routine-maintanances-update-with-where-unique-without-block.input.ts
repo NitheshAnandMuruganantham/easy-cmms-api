@@ -6,12 +6,11 @@ import { routine_maintanancesUpdateWithoutBlockInput } from './routine-maintanan
 
 @InputType()
 export class routine_maintanancesUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => routine_maintanancesWhereUniqueInput, { nullable: false })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  where!: routine_maintanancesWhereUniqueInput;
 
-    @Field(() => routine_maintanancesWhereUniqueInput, {nullable:false})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    where!: routine_maintanancesWhereUniqueInput;
-
-    @Field(() => routine_maintanancesUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => routine_maintanancesUpdateWithoutBlockInput)
-    data!: routine_maintanancesUpdateWithoutBlockInput;
+  @Field(() => routine_maintanancesUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => routine_maintanancesUpdateWithoutBlockInput)
+  data!: routine_maintanancesUpdateWithoutBlockInput;
 }

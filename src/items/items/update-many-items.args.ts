@@ -6,12 +6,11 @@ import { ItemsWhereInput } from './items-where.input';
 
 @ArgsType()
 export class UpdateManyItemsArgs {
+  @Field(() => ItemsUpdateManyMutationInput, { nullable: false })
+  @Type(() => ItemsUpdateManyMutationInput)
+  data!: ItemsUpdateManyMutationInput;
 
-    @Field(() => ItemsUpdateManyMutationInput, {nullable:false})
-    @Type(() => ItemsUpdateManyMutationInput)
-    data!: ItemsUpdateManyMutationInput;
-
-    @Field(() => ItemsWhereInput, {nullable:true})
-    @Type(() => ItemsWhereInput)
-    where?: ItemsWhereInput;
+  @Field(() => ItemsWhereInput, { nullable: true })
+  @Type(() => ItemsWhereInput)
+  where?: ItemsWhereInput;
 }

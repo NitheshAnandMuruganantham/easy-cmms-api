@@ -8,20 +8,21 @@ import { ReportsWhereUniqueInput } from './reports-where-unique.input';
 
 @InputType()
 export class ReportsCreateNestedManyWithoutMaintenanceInput {
+  @Field(() => [ReportsCreateWithoutMaintenanceInput], { nullable: true })
+  @Type(() => ReportsCreateWithoutMaintenanceInput)
+  create?: Array<ReportsCreateWithoutMaintenanceInput>;
 
-    @Field(() => [ReportsCreateWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportsCreateWithoutMaintenanceInput)
-    create?: Array<ReportsCreateWithoutMaintenanceInput>;
+  @Field(() => [ReportsCreateOrConnectWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReportsCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: Array<ReportsCreateOrConnectWithoutMaintenanceInput>;
 
-    @Field(() => [ReportsCreateOrConnectWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportsCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: Array<ReportsCreateOrConnectWithoutMaintenanceInput>;
+  @Field(() => ReportsCreateManyMaintenanceInputEnvelope, { nullable: true })
+  @Type(() => ReportsCreateManyMaintenanceInputEnvelope)
+  createMany?: ReportsCreateManyMaintenanceInputEnvelope;
 
-    @Field(() => ReportsCreateManyMaintenanceInputEnvelope, {nullable:true})
-    @Type(() => ReportsCreateManyMaintenanceInputEnvelope)
-    createMany?: ReportsCreateManyMaintenanceInputEnvelope;
-
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    connect?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  connect?: Array<ReportsWhereUniqueInput>;
 }

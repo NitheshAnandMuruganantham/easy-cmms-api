@@ -6,12 +6,11 @@ import { MachinesCreateWithoutMachine_catagoryInput } from './machines-create-wi
 
 @InputType()
 export class MachinesCreateOrConnectWithoutMachine_catagoryInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesCreateWithoutMachine_catagoryInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutMachine_catagoryInput)
-    create!: MachinesCreateWithoutMachine_catagoryInput;
+  @Field(() => MachinesCreateWithoutMachine_catagoryInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutMachine_catagoryInput)
+  create!: MachinesCreateWithoutMachine_catagoryInput;
 }

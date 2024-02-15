@@ -8,20 +8,25 @@ import { routine_maintanancesWhereUniqueInput } from './routine-maintanances-whe
 
 @InputType()
 export class routine_maintanancesCreateNestedManyWithoutBlockInput {
+  @Field(() => [routine_maintanancesCreateWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateWithoutBlockInput)
+  create?: Array<routine_maintanancesCreateWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesCreateWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateWithoutBlockInput)
-    create?: Array<routine_maintanancesCreateWithoutBlockInput>;
+  @Field(() => [routine_maintanancesCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [routine_maintanancesCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutBlockInput>;
+  @Field(() => routine_maintanancesCreateManyBlockInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateManyBlockInputEnvelope)
+  createMany?: routine_maintanancesCreateManyBlockInputEnvelope;
 
-    @Field(() => routine_maintanancesCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => routine_maintanancesCreateManyBlockInputEnvelope)
-    createMany?: routine_maintanancesCreateManyBlockInputEnvelope;
-
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    connect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  connect?: Array<routine_maintanancesWhereUniqueInput>;
 }

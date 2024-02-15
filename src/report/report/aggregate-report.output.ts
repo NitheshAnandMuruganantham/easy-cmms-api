@@ -8,19 +8,18 @@ import { ReportMaxAggregate } from './report-max-aggregate.output';
 
 @ObjectType()
 export class AggregateReport {
+  @Field(() => ReportCountAggregate, { nullable: true })
+  _count?: ReportCountAggregate;
 
-    @Field(() => ReportCountAggregate, {nullable:true})
-    _count?: ReportCountAggregate;
+  @Field(() => ReportAvgAggregate, { nullable: true })
+  _avg?: ReportAvgAggregate;
 
-    @Field(() => ReportAvgAggregate, {nullable:true})
-    _avg?: ReportAvgAggregate;
+  @Field(() => ReportSumAggregate, { nullable: true })
+  _sum?: ReportSumAggregate;
 
-    @Field(() => ReportSumAggregate, {nullable:true})
-    _sum?: ReportSumAggregate;
+  @Field(() => ReportMinAggregate, { nullable: true })
+  _min?: ReportMinAggregate;
 
-    @Field(() => ReportMinAggregate, {nullable:true})
-    _min?: ReportMinAggregate;
-
-    @Field(() => ReportMaxAggregate, {nullable:true})
-    _max?: ReportMaxAggregate;
+  @Field(() => ReportMaxAggregate, { nullable: true })
+  _max?: ReportMaxAggregate;
 }

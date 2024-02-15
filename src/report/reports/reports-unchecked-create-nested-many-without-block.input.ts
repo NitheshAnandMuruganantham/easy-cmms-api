@@ -8,20 +8,19 @@ import { ReportsWhereUniqueInput } from './reports-where-unique.input';
 
 @InputType()
 export class ReportsUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [ReportsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ReportsCreateWithoutBlockInput)
+  create?: Array<ReportsCreateWithoutBlockInput>;
 
-    @Field(() => [ReportsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsCreateWithoutBlockInput)
-    create?: Array<ReportsCreateWithoutBlockInput>;
+  @Field(() => [ReportsCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => ReportsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ReportsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ReportsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ReportsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ReportsCreateOrConnectWithoutBlockInput>;
+  @Field(() => ReportsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ReportsCreateManyBlockInputEnvelope)
+  createMany?: ReportsCreateManyBlockInputEnvelope;
 
-    @Field(() => ReportsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ReportsCreateManyBlockInputEnvelope)
-    createMany?: ReportsCreateManyBlockInputEnvelope;
-
-    @Field(() => [ReportsWhereUniqueInput], {nullable:true})
-    @Type(() => ReportsWhereUniqueInput)
-    connect?: Array<ReportsWhereUniqueInput>;
+  @Field(() => [ReportsWhereUniqueInput], { nullable: true })
+  @Type(() => ReportsWhereUniqueInput)
+  connect?: Array<ReportsWhereUniqueInput>;
 }

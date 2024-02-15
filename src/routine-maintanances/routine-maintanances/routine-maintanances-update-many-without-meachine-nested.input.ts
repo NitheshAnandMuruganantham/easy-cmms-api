@@ -12,48 +12,61 @@ import { routine_maintanancesScalarWhereInput } from './routine-maintanances-sca
 
 @InputType()
 export class routine_maintanancesUpdateManyWithoutMeachineNestedInput {
+  @Field(() => [routine_maintanancesCreateWithoutMeachineInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateWithoutMeachineInput)
+  create?: Array<routine_maintanancesCreateWithoutMeachineInput>;
 
-    @Field(() => [routine_maintanancesCreateWithoutMeachineInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateWithoutMeachineInput)
-    create?: Array<routine_maintanancesCreateWithoutMeachineInput>;
+  @Field(() => [routine_maintanancesCreateOrConnectWithoutMeachineInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateOrConnectWithoutMeachineInput)
+  connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutMeachineInput>;
 
-    @Field(() => [routine_maintanancesCreateOrConnectWithoutMeachineInput], {nullable:true})
-    @Type(() => routine_maintanancesCreateOrConnectWithoutMeachineInput)
-    connectOrCreate?: Array<routine_maintanancesCreateOrConnectWithoutMeachineInput>;
+  @Field(
+    () => [routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput],
+    { nullable: true },
+  )
+  @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput)
+  upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput>;
 
-    @Field(() => [routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput], {nullable:true})
-    @Type(() => routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput)
-    upsert?: Array<routine_maintanancesUpsertWithWhereUniqueWithoutMeachineInput>;
+  @Field(() => routine_maintanancesCreateManyMeachineInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesCreateManyMeachineInputEnvelope)
+  createMany?: routine_maintanancesCreateManyMeachineInputEnvelope;
 
-    @Field(() => routine_maintanancesCreateManyMeachineInputEnvelope, {nullable:true})
-    @Type(() => routine_maintanancesCreateManyMeachineInputEnvelope)
-    createMany?: routine_maintanancesCreateManyMeachineInputEnvelope;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  set?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    set?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  disconnect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    disconnect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  delete?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    delete?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(() => [routine_maintanancesWhereUniqueInput], { nullable: true })
+  @Type(() => routine_maintanancesWhereUniqueInput)
+  connect?: Array<routine_maintanancesWhereUniqueInput>;
 
-    @Field(() => [routine_maintanancesWhereUniqueInput], {nullable:true})
-    @Type(() => routine_maintanancesWhereUniqueInput)
-    connect?: Array<routine_maintanancesWhereUniqueInput>;
+  @Field(
+    () => [routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput],
+    { nullable: true },
+  )
+  @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput)
+  update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput>;
 
-    @Field(() => [routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput)
-    update?: Array<routine_maintanancesUpdateWithWhereUniqueWithoutMeachineInput>;
+  @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutMeachineInput], {
+    nullable: true,
+  })
+  @Type(() => routine_maintanancesUpdateManyWithWhereWithoutMeachineInput)
+  updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutMeachineInput>;
 
-    @Field(() => [routine_maintanancesUpdateManyWithWhereWithoutMeachineInput], {nullable:true})
-    @Type(() => routine_maintanancesUpdateManyWithWhereWithoutMeachineInput)
-    updateMany?: Array<routine_maintanancesUpdateManyWithWhereWithoutMeachineInput>;
-
-    @Field(() => [routine_maintanancesScalarWhereInput], {nullable:true})
-    @Type(() => routine_maintanancesScalarWhereInput)
-    deleteMany?: Array<routine_maintanancesScalarWhereInput>;
+  @Field(() => [routine_maintanancesScalarWhereInput], { nullable: true })
+  @Type(() => routine_maintanancesScalarWhereInput)
+  deleteMany?: Array<routine_maintanancesScalarWhereInput>;
 }

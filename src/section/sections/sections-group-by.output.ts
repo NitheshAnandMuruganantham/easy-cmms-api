@@ -10,34 +10,33 @@ import { SectionsMaxAggregate } from './sections-max-aggregate.output';
 
 @ObjectType()
 export class SectionsGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => SectionsCountAggregate, { nullable: true })
+  _count?: SectionsCountAggregate;
 
-    @Field(() => SectionsCountAggregate, {nullable:true})
-    _count?: SectionsCountAggregate;
+  @Field(() => SectionsAvgAggregate, { nullable: true })
+  _avg?: SectionsAvgAggregate;
 
-    @Field(() => SectionsAvgAggregate, {nullable:true})
-    _avg?: SectionsAvgAggregate;
+  @Field(() => SectionsSumAggregate, { nullable: true })
+  _sum?: SectionsSumAggregate;
 
-    @Field(() => SectionsSumAggregate, {nullable:true})
-    _sum?: SectionsSumAggregate;
+  @Field(() => SectionsMinAggregate, { nullable: true })
+  _min?: SectionsMinAggregate;
 
-    @Field(() => SectionsMinAggregate, {nullable:true})
-    _min?: SectionsMinAggregate;
-
-    @Field(() => SectionsMaxAggregate, {nullable:true})
-    _max?: SectionsMaxAggregate;
+  @Field(() => SectionsMaxAggregate, { nullable: true })
+  _max?: SectionsMaxAggregate;
 }

@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueItemCatagoryOrThrowArgs {
-
-    @Field(() => ItemCatagoryWhereUniqueInput, {nullable:false})
-    @Type(() => ItemCatagoryWhereUniqueInput)
-    where!: ItemCatagoryWhereUniqueInput;
+  @Field(() => ItemCatagoryWhereUniqueInput, { nullable: false })
+  @Type(() => ItemCatagoryWhereUniqueInput)
+  where!: ItemCatagoryWhereUniqueInput;
 }

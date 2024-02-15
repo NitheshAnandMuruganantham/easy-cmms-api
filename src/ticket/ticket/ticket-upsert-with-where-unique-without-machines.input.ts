@@ -7,16 +7,15 @@ import { TicketCreateWithoutMachinesInput } from './ticket-create-without-machin
 
 @InputType()
 export class TicketUpsertWithWhereUniqueWithoutMachinesInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketUpdateWithoutMachinesInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutMachinesInput)
+  update!: TicketUpdateWithoutMachinesInput;
 
-    @Field(() => TicketUpdateWithoutMachinesInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutMachinesInput)
-    update!: TicketUpdateWithoutMachinesInput;
-
-    @Field(() => TicketCreateWithoutMachinesInput, {nullable:false})
-    @Type(() => TicketCreateWithoutMachinesInput)
-    create!: TicketCreateWithoutMachinesInput;
+  @Field(() => TicketCreateWithoutMachinesInput, { nullable: false })
+  @Type(() => TicketCreateWithoutMachinesInput)
+  create!: TicketCreateWithoutMachinesInput;
 }

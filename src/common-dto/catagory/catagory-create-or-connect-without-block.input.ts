@@ -6,12 +6,11 @@ import { catagoryCreateWithoutBlockInput } from './catagory-create-without-block
 
 @InputType()
 export class catagoryCreateOrConnectWithoutBlockInput {
+  @Field(() => catagoryWhereUniqueInput, { nullable: false })
+  @Type(() => catagoryWhereUniqueInput)
+  where!: catagoryWhereUniqueInput;
 
-    @Field(() => catagoryWhereUniqueInput, {nullable:false})
-    @Type(() => catagoryWhereUniqueInput)
-    where!: catagoryWhereUniqueInput;
-
-    @Field(() => catagoryCreateWithoutBlockInput, {nullable:false})
-    @Type(() => catagoryCreateWithoutBlockInput)
-    create!: catagoryCreateWithoutBlockInput;
+  @Field(() => catagoryCreateWithoutBlockInput, { nullable: false })
+  @Type(() => catagoryCreateWithoutBlockInput)
+  create!: catagoryCreateWithoutBlockInput;
 }

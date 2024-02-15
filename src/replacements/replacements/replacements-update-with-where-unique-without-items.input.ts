@@ -6,12 +6,11 @@ import { ReplacementsUpdateWithoutItemsInput } from './replacements-update-witho
 
 @InputType()
 export class ReplacementsUpdateWithWhereUniqueWithoutItemsInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
-
-    @Field(() => ReplacementsUpdateWithoutItemsInput, {nullable:false})
-    @Type(() => ReplacementsUpdateWithoutItemsInput)
-    data!: ReplacementsUpdateWithoutItemsInput;
+  @Field(() => ReplacementsUpdateWithoutItemsInput, { nullable: false })
+  @Type(() => ReplacementsUpdateWithoutItemsInput)
+  data!: ReplacementsUpdateWithoutItemsInput;
 }

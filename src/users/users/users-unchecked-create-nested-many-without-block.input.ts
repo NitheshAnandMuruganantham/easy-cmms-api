@@ -8,20 +8,19 @@ import { UsersWhereUniqueInput } from './users-where-unique.input';
 
 @InputType()
 export class UsersUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [UsersCreateWithoutBlockInput], { nullable: true })
+  @Type(() => UsersCreateWithoutBlockInput)
+  create?: Array<UsersCreateWithoutBlockInput>;
 
-    @Field(() => [UsersCreateWithoutBlockInput], {nullable:true})
-    @Type(() => UsersCreateWithoutBlockInput)
-    create?: Array<UsersCreateWithoutBlockInput>;
+  @Field(() => [UsersCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => UsersCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<UsersCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [UsersCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<UsersCreateOrConnectWithoutBlockInput>;
+  @Field(() => UsersCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => UsersCreateManyBlockInputEnvelope)
+  createMany?: UsersCreateManyBlockInputEnvelope;
 
-    @Field(() => UsersCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => UsersCreateManyBlockInputEnvelope)
-    createMany?: UsersCreateManyBlockInputEnvelope;
-
-    @Field(() => [UsersWhereUniqueInput], {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: Array<UsersWhereUniqueInput>;
+  @Field(() => [UsersWhereUniqueInput], { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: Array<UsersWhereUniqueInput>;
 }

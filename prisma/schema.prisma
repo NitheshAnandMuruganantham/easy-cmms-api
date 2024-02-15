@@ -20,7 +20,6 @@ datasource db {
 }
 
 model Block {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id                   BigInt                 @id @default(autoincrement())
   name                 String
   location             String
@@ -44,20 +43,16 @@ model Block {
 }
 
 model catagory {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt   @id @default(autoincrement())
   name       String
   items      Items[]  @relation("item_catagory")
   created_at DateTime @default(now())
-  /// @HideField({ output: false, input: true })
   block_id   BigInt
-  /// @HideField({ output: false, input: true })
   block      Block    @relation(fields: [block_id], references: [id])
   updated_at DateTime @updatedAt
 }
 
 model Items {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id            BigInt          @id @default(autoincrement())
   name          String
   code          String
@@ -68,21 +63,16 @@ model Items {
   replacements  Replacements[]
   created_at    DateTime        @default(now())
   updated_at    DateTime        @updatedAt
-  /// @HideField({ output: false, input: true })
   block_id      BigInt
-  /// @HideField({ output: false, input: true })
   block         Block           @relation(fields: [block_id], references: [id])
   invoice_items invoice_items[]
 }
 
 model Machines {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id                   BigInt                 @id @default(autoincrement())
   name                 String
   section_id           BigInt
-  /// @HideField({ output: false, input: true })
   block_id             BigInt
-  /// @HideField({ output: false, input: true })
   block                Block                  @relation(fields: [block_id], references: [id])
   label                String
   profile              Json                   @default("{}")
@@ -98,20 +88,16 @@ model Machines {
 }
 
 model machine_catagory {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt     @id @default(autoincrement())
   name       String
   machines   Machines[]
-  /// @HideField({ output: false, input: true })
   block_id   BigInt
-  /// @HideField({ output: false, input: true })
   block      Block      @relation(fields: [block_id], references: [id])
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
 }
 
 model Maintenance {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id           BigInt         @id @default(autoincrement())
   name         String
   photo        String?
@@ -131,14 +117,11 @@ model Maintenance {
   created_at   DateTime       @default(now())
   updated_at   DateTime       @updatedAt
   ticket       Ticket?
-  /// @HideField({ output: false, input: true })
   block_id     BigInt
-  /// @HideField({ output: false, input: true })
   block        Block          @relation(fields: [block_id], references: [id])
 }
 
 model Replacements {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id             BigInt      @id @default(autoincrement())
   name           String
   description    String
@@ -151,21 +134,16 @@ model Replacements {
   created_at     DateTime    @default(now())
   approved       Boolean     @default(false)
   updated_at     DateTime    @updatedAt
-  /// @HideField({ output: false, input: true })
   block_id       BigInt
-  /// @HideField({ output: false, input: true })
   block          Block       @relation(fields: [block_id], references: [id])
 }
 
 model Invoices {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id            BigInt          @id @default(autoincrement())
   total         Float
   invoice_date  DateTime
   number        String
-  /// @HideField({ output: false, input: true })
   block_id      BigInt
-  /// @HideField({ output: false, input: true })
   block         Block           @relation(fields: [block_id], references: [id])
   created_at    DateTime        @default(now())
   updated_at    DateTime        @updatedAt
@@ -173,7 +151,6 @@ model Invoices {
 }
 
 model invoice_items {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt   @id @default(autoincrement())
   invoice_id BigInt
   unit_price Float
@@ -182,16 +159,13 @@ model invoice_items {
   invoice    Invoices @relation(fields: [invoice_id], references: [id])
   item_id    BigInt
   item       Items    @relation(fields: [item_id], references: [id])
-  /// @HideField({ output: false, input: true })
   block_id   BigInt
-  /// @HideField({ output: false, input: true })
   block      Block    @relation(fields: [block_id], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
 model Reports {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id             BigInt      @id @default(autoincrement())
   report         String
   sign           String
@@ -202,36 +176,27 @@ model Reports {
   maintenance    Maintenance @relation("report_maintance_id_foreign", fields: [maintance_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "report_maintance_id_foreign")
   created_at     DateTime    @default(now())
   updated_at     DateTime    @updatedAt
-  /// @HideField({ output: false, input: true })
   block_id       BigInt
-  /// @HideField({ output: false, input: true })
   block          Block       @relation(fields: [block_id], references: [id])
 }
 
 model Sections {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt     @id @default(autoincrement())
   name       String
   machines   Machines[]
-  /// @HideField({ output: false, input: true })
   block_id   BigInt
-  /// @HideField({ output: false, input: true })
   block      Block      @relation(fields: [block_id], references: [id])
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
 }
 
 model Users {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id           BigInt  @id @default(autoincrement())
   profile      Json    @default("{}")
   phone        String  @unique
-  /// @HideField({ output: true, input: true })
   user_auth_id String? @unique
   name         String
-  /// @HideField({ output: false, input: true })
   blockId      BigInt
-  /// @HideField({ output: false, input: true })
 
   block                Block                  @relation(fields: [blockId], references: [id])
   maintenance          Maintenance[]
@@ -242,18 +207,14 @@ model Users {
   role_alias           String                 @default("user")
   ticket               Ticket[]
   routine_maintanances routine_maintanances[]
-  /// @HideField({ output: false, input: false })
 }
 
 model Ticket {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id             BigInt        @id @default(autoincrement())
   name           String
   description    String
   photos         String
-  /// @HideField({ output: false, input: true })
   user_id        BigInt
-  /// @HideField({ output: false, input: true })
   user           Users         @relation(fields: [user_id], references: [id])
   maintenance_id BigInt?       @unique
   maintenance    Maintenance?  @relation(fields: [maintenance_id], references: [id])
@@ -262,9 +223,7 @@ model Ticket {
   status         ticket_status
   created_at     DateTime      @default(now())
   updated_at     DateTime      @updatedAt
-  /// @HideField({ output: false, input: true })
   block_id       BigInt
-  /// @HideField({ output: false, input: true })
 
   block Block @relation(fields: [block_id], references: [id])
 }
@@ -281,7 +240,6 @@ enum Role {
 }
 
 model routine_maintanances {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id          BigInt   @id @default(autoincrement())
   name        String
   description String
@@ -293,9 +251,7 @@ model routine_maintanances {
   meachine    Machines @relation(fields: [meachine_id], references: [id])
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-  /// @HideField({ output: false, input: true })
   block_id    BigInt
-  /// @HideField({ output: false, input: true })
   block       Block    @relation(fields: [block_id], references: [id])
 }
 
@@ -306,7 +262,6 @@ enum ticket_status {
 }
 
 model block_settings {
-  /// @FieldType({ name: 'Scalars.GraphQLBigInt', from: 'graphql-scalars', input: false })
   id         BigInt   @id @default(autoincrement())
   block_id   BigInt
   block      Block    @relation(fields: [block_id], references: [id])

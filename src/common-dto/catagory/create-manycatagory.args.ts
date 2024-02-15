@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManycatagoryArgs {
+  @Field(() => [catagoryCreateManyInput], { nullable: false })
+  @Type(() => catagoryCreateManyInput)
+  data!: Array<catagoryCreateManyInput>;
 
-    @Field(() => [catagoryCreateManyInput], {nullable:false})
-    @Type(() => catagoryCreateManyInput)
-    data!: Array<catagoryCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

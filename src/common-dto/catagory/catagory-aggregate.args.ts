@@ -8,20 +8,21 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class catagoryAggregateArgs {
+  @Field(() => catagoryWhereInput, { nullable: true })
+  @Type(() => catagoryWhereInput)
+  where?: catagoryWhereInput;
 
-    @Field(() => catagoryWhereInput, {nullable:true})
-    @Type(() => catagoryWhereInput)
-    where?: catagoryWhereInput;
+  @Field(() => [catagoryOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<catagoryOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [catagoryOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<catagoryOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => catagoryWhereUniqueInput, { nullable: true })
+  cursor?: catagoryWhereUniqueInput;
 
-    @Field(() => catagoryWhereUniqueInput, {nullable:true})
-    cursor?: catagoryWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
-
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }

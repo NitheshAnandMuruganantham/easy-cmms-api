@@ -7,16 +7,15 @@ import { production_dataCreateWithoutUpdatedByInput } from './production-data-cr
 
 @InputType()
 export class production_dataUpsertWithWhereUniqueWithoutUpdatedByInput {
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
+  @Field(() => production_dataUpdateWithoutUpdatedByInput, { nullable: false })
+  @Type(() => production_dataUpdateWithoutUpdatedByInput)
+  update!: production_dataUpdateWithoutUpdatedByInput;
 
-    @Field(() => production_dataUpdateWithoutUpdatedByInput, {nullable:false})
-    @Type(() => production_dataUpdateWithoutUpdatedByInput)
-    update!: production_dataUpdateWithoutUpdatedByInput;
-
-    @Field(() => production_dataCreateWithoutUpdatedByInput, {nullable:false})
-    @Type(() => production_dataCreateWithoutUpdatedByInput)
-    create!: production_dataCreateWithoutUpdatedByInput;
+  @Field(() => production_dataCreateWithoutUpdatedByInput, { nullable: false })
+  @Type(() => production_dataCreateWithoutUpdatedByInput)
+  create!: production_dataCreateWithoutUpdatedByInput;
 }

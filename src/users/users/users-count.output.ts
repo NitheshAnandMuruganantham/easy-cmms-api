@@ -4,13 +4,12 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class UsersCount {
+  @Field(() => Int, { nullable: false })
+  maintenance?: number;
 
-    @Field(() => Int, {nullable:false})
-    maintenance?: number;
+  @Field(() => Int, { nullable: false })
+  ticket?: number;
 
-    @Field(() => Int, {nullable:false})
-    ticket?: number;
-
-    @Field(() => Int, {nullable:false})
-    routine_maintanances?: number;
+  @Field(() => Int, { nullable: false })
+  routine_maintanances?: number;
 }

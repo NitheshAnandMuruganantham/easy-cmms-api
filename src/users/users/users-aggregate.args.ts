@@ -13,35 +13,36 @@ import { UsersMaxAggregateInput } from './users-max-aggregate.input';
 
 @ArgsType()
 export class UsersAggregateArgs {
+  @Field(() => UsersWhereInput, { nullable: true })
+  @Type(() => UsersWhereInput)
+  where?: UsersWhereInput;
 
-    @Field(() => UsersWhereInput, {nullable:true})
-    @Type(() => UsersWhereInput)
-    where?: UsersWhereInput;
+  @Field(() => [UsersOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<UsersOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [UsersOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<UsersOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  cursor?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    cursor?: UsersWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => UsersCountAggregateInput, { nullable: true })
+  _count?: UsersCountAggregateInput;
 
-    @Field(() => UsersCountAggregateInput, {nullable:true})
-    _count?: UsersCountAggregateInput;
+  @Field(() => UsersAvgAggregateInput, { nullable: true })
+  _avg?: UsersAvgAggregateInput;
 
-    @Field(() => UsersAvgAggregateInput, {nullable:true})
-    _avg?: UsersAvgAggregateInput;
+  @Field(() => UsersSumAggregateInput, { nullable: true })
+  _sum?: UsersSumAggregateInput;
 
-    @Field(() => UsersSumAggregateInput, {nullable:true})
-    _sum?: UsersSumAggregateInput;
+  @Field(() => UsersMinAggregateInput, { nullable: true })
+  _min?: UsersMinAggregateInput;
 
-    @Field(() => UsersMinAggregateInput, {nullable:true})
-    _min?: UsersMinAggregateInput;
-
-    @Field(() => UsersMaxAggregateInput, {nullable:true})
-    _max?: UsersMaxAggregateInput;
+  @Field(() => UsersMaxAggregateInput, { nullable: true })
+  _max?: UsersMaxAggregateInput;
 }

@@ -9,24 +9,23 @@ import { UsersUpdateWithoutMaintenanceInput } from './users-update-without-maint
 
 @InputType()
 export class UsersUpdateOneRequiredWithoutMaintenanceNestedInput {
+  @Field(() => UsersCreateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => UsersCreateWithoutMaintenanceInput)
+  create?: UsersCreateWithoutMaintenanceInput;
 
-    @Field(() => UsersCreateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => UsersCreateWithoutMaintenanceInput)
-    create?: UsersCreateWithoutMaintenanceInput;
+  @Field(() => UsersCreateOrConnectWithoutMaintenanceInput, { nullable: true })
+  @Type(() => UsersCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: UsersCreateOrConnectWithoutMaintenanceInput;
 
-    @Field(() => UsersCreateOrConnectWithoutMaintenanceInput, {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: UsersCreateOrConnectWithoutMaintenanceInput;
+  @Field(() => UsersUpsertWithoutMaintenanceInput, { nullable: true })
+  @Type(() => UsersUpsertWithoutMaintenanceInput)
+  upsert?: UsersUpsertWithoutMaintenanceInput;
 
-    @Field(() => UsersUpsertWithoutMaintenanceInput, {nullable:true})
-    @Type(() => UsersUpsertWithoutMaintenanceInput)
-    upsert?: UsersUpsertWithoutMaintenanceInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: UsersWhereUniqueInput;
-
-    @Field(() => UsersUpdateWithoutMaintenanceInput, {nullable:true})
-    @Type(() => UsersUpdateWithoutMaintenanceInput)
-    update?: UsersUpdateWithoutMaintenanceInput;
+  @Field(() => UsersUpdateWithoutMaintenanceInput, { nullable: true })
+  @Type(() => UsersUpdateWithoutMaintenanceInput)
+  update?: UsersUpdateWithoutMaintenanceInput;
 }

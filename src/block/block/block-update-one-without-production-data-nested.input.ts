@@ -9,30 +9,31 @@ import { BlockUpdateWithoutProduction_dataInput } from './block-update-without-p
 
 @InputType()
 export class BlockUpdateOneWithoutProduction_dataNestedInput {
+  @Field(() => BlockCreateWithoutProduction_dataInput, { nullable: true })
+  @Type(() => BlockCreateWithoutProduction_dataInput)
+  create?: BlockCreateWithoutProduction_dataInput;
 
-    @Field(() => BlockCreateWithoutProduction_dataInput, {nullable:true})
-    @Type(() => BlockCreateWithoutProduction_dataInput)
-    create?: BlockCreateWithoutProduction_dataInput;
+  @Field(() => BlockCreateOrConnectWithoutProduction_dataInput, {
+    nullable: true,
+  })
+  @Type(() => BlockCreateOrConnectWithoutProduction_dataInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutProduction_dataInput;
 
-    @Field(() => BlockCreateOrConnectWithoutProduction_dataInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutProduction_dataInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutProduction_dataInput;
+  @Field(() => BlockUpsertWithoutProduction_dataInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutProduction_dataInput)
+  upsert?: BlockUpsertWithoutProduction_dataInput;
 
-    @Field(() => BlockUpsertWithoutProduction_dataInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutProduction_dataInput)
-    upsert?: BlockUpsertWithoutProduction_dataInput;
+  @Field(() => Boolean, { nullable: true })
+  disconnect?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    disconnect?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  delete?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    delete?: boolean;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutProduction_dataInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutProduction_dataInput)
-    update?: BlockUpdateWithoutProduction_dataInput;
+  @Field(() => BlockUpdateWithoutProduction_dataInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutProduction_dataInput)
+  update?: BlockUpdateWithoutProduction_dataInput;
 }

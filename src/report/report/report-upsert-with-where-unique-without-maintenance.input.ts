@@ -7,16 +7,15 @@ import { ReportCreateWithoutMaintenanceInput } from './report-create-without-mai
 
 @InputType()
 export class ReportUpsertWithWhereUniqueWithoutMaintenanceInput {
+  @Field(() => ReportWhereUniqueInput, { nullable: false })
+  @Type(() => ReportWhereUniqueInput)
+  where!: ReportWhereUniqueInput;
 
-    @Field(() => ReportWhereUniqueInput, {nullable:false})
-    @Type(() => ReportWhereUniqueInput)
-    where!: ReportWhereUniqueInput;
+  @Field(() => ReportUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReportUpdateWithoutMaintenanceInput)
+  update!: ReportUpdateWithoutMaintenanceInput;
 
-    @Field(() => ReportUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReportUpdateWithoutMaintenanceInput)
-    update!: ReportUpdateWithoutMaintenanceInput;
-
-    @Field(() => ReportCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => ReportCreateWithoutMaintenanceInput)
-    create!: ReportCreateWithoutMaintenanceInput;
+  @Field(() => ReportCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => ReportCreateWithoutMaintenanceInput)
+  create!: ReportCreateWithoutMaintenanceInput;
 }

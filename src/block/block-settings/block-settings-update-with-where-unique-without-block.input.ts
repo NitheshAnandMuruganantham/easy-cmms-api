@@ -6,12 +6,11 @@ import { block_settingsUpdateWithoutBlockInput } from './block-settings-update-w
 
 @InputType()
 export class block_settingsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => block_settingsWhereUniqueInput, { nullable: false })
+  @Type(() => block_settingsWhereUniqueInput)
+  where!: block_settingsWhereUniqueInput;
 
-    @Field(() => block_settingsWhereUniqueInput, {nullable:false})
-    @Type(() => block_settingsWhereUniqueInput)
-    where!: block_settingsWhereUniqueInput;
-
-    @Field(() => block_settingsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => block_settingsUpdateWithoutBlockInput)
-    data!: block_settingsUpdateWithoutBlockInput;
+  @Field(() => block_settingsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => block_settingsUpdateWithoutBlockInput)
+  data!: block_settingsUpdateWithoutBlockInput;
 }

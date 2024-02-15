@@ -4,10 +4,9 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @InputType()
 export class block_settingsBlock_idNameCompoundUniqueInput {
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
-
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: false })
+  name!: string;
 }

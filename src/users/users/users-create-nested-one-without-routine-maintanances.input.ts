@@ -7,16 +7,17 @@ import { UsersWhereUniqueInput } from './users-where-unique.input';
 
 @InputType()
 export class UsersCreateNestedOneWithoutRoutine_maintanancesInput {
+  @Field(() => UsersCreateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
+  create?: UsersCreateWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersCreateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersCreateWithoutRoutine_maintanancesInput)
-    create?: UsersCreateWithoutRoutine_maintanancesInput;
+  @Field(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput)
+  connectOrCreate?: UsersCreateOrConnectWithoutRoutine_maintanancesInput;
 
-    @Field(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => UsersCreateOrConnectWithoutRoutine_maintanancesInput)
-    connectOrCreate?: UsersCreateOrConnectWithoutRoutine_maintanancesInput;
-
-    @Field(() => UsersWhereUniqueInput, {nullable:true})
-    @Type(() => UsersWhereUniqueInput)
-    connect?: UsersWhereUniqueInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: true })
+  @Type(() => UsersWhereUniqueInput)
+  connect?: UsersWhereUniqueInput;
 }

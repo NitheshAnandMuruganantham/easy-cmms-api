@@ -8,20 +8,21 @@ import { MaintenanceWhereUniqueInput } from './maintenance-where-unique.input';
 
 @InputType()
 export class MaintenanceUncheckedCreateNestedManyWithoutBlockInput {
+  @Field(() => [MaintenanceCreateWithoutBlockInput], { nullable: true })
+  @Type(() => MaintenanceCreateWithoutBlockInput)
+  create?: Array<MaintenanceCreateWithoutBlockInput>;
 
-    @Field(() => [MaintenanceCreateWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceCreateWithoutBlockInput)
-    create?: Array<MaintenanceCreateWithoutBlockInput>;
+  @Field(() => [MaintenanceCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [MaintenanceCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutBlockInput>;
+  @Field(() => MaintenanceCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => MaintenanceCreateManyBlockInputEnvelope)
+  createMany?: MaintenanceCreateManyBlockInputEnvelope;
 
-    @Field(() => MaintenanceCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => MaintenanceCreateManyBlockInputEnvelope)
-    createMany?: MaintenanceCreateManyBlockInputEnvelope;
-
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: Array<MaintenanceWhereUniqueInput>;
 }

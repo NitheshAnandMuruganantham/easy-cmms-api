@@ -8,20 +8,19 @@ import { ItemsWhereUniqueInput } from './items-where-unique.input';
 
 @InputType()
 export class ItemsCreateNestedManyWithoutBlockInput {
+  @Field(() => [ItemsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ItemsCreateWithoutBlockInput)
+  create?: Array<ItemsCreateWithoutBlockInput>;
 
-    @Field(() => [ItemsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsCreateWithoutBlockInput)
-    create?: Array<ItemsCreateWithoutBlockInput>;
+  @Field(() => [ItemsCreateOrConnectWithoutBlockInput], { nullable: true })
+  @Type(() => ItemsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ItemsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ItemsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ItemsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ItemsCreateOrConnectWithoutBlockInput>;
+  @Field(() => ItemsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ItemsCreateManyBlockInputEnvelope)
+  createMany?: ItemsCreateManyBlockInputEnvelope;
 
-    @Field(() => ItemsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ItemsCreateManyBlockInputEnvelope)
-    createMany?: ItemsCreateManyBlockInputEnvelope;
-
-    @Field(() => [ItemsWhereUniqueInput], {nullable:true})
-    @Type(() => ItemsWhereUniqueInput)
-    connect?: Array<ItemsWhereUniqueInput>;
+  @Field(() => [ItemsWhereUniqueInput], { nullable: true })
+  @Type(() => ItemsWhereUniqueInput)
+  connect?: Array<ItemsWhereUniqueInput>;
 }

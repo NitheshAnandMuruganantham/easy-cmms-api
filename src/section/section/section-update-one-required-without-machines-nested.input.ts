@@ -9,24 +9,23 @@ import { SectionUpdateWithoutMachinesInput } from './section-update-without-mach
 
 @InputType()
 export class SectionUpdateOneRequiredWithoutMachinesNestedInput {
+  @Field(() => SectionCreateWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionCreateWithoutMachinesInput)
+  create?: SectionCreateWithoutMachinesInput;
 
-    @Field(() => SectionCreateWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionCreateWithoutMachinesInput)
-    create?: SectionCreateWithoutMachinesInput;
+  @Field(() => SectionCreateOrConnectWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionCreateOrConnectWithoutMachinesInput)
+  connectOrCreate?: SectionCreateOrConnectWithoutMachinesInput;
 
-    @Field(() => SectionCreateOrConnectWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionCreateOrConnectWithoutMachinesInput)
-    connectOrCreate?: SectionCreateOrConnectWithoutMachinesInput;
+  @Field(() => SectionUpsertWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionUpsertWithoutMachinesInput)
+  upsert?: SectionUpsertWithoutMachinesInput;
 
-    @Field(() => SectionUpsertWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionUpsertWithoutMachinesInput)
-    upsert?: SectionUpsertWithoutMachinesInput;
+  @Field(() => SectionWhereUniqueInput, { nullable: true })
+  @Type(() => SectionWhereUniqueInput)
+  connect?: SectionWhereUniqueInput;
 
-    @Field(() => SectionWhereUniqueInput, {nullable:true})
-    @Type(() => SectionWhereUniqueInput)
-    connect?: SectionWhereUniqueInput;
-
-    @Field(() => SectionUpdateWithoutMachinesInput, {nullable:true})
-    @Type(() => SectionUpdateWithoutMachinesInput)
-    update?: SectionUpdateWithoutMachinesInput;
+  @Field(() => SectionUpdateWithoutMachinesInput, { nullable: true })
+  @Type(() => SectionUpdateWithoutMachinesInput)
+  update?: SectionUpdateWithoutMachinesInput;
 }

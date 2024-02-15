@@ -4,10 +4,9 @@ import { GraphQLBigInt } from 'graphql-scalars';
 
 @ObjectType()
 export class Block_settingsSumAggregate {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
-
-    @Field(() => GraphQLBigInt, {nullable:true})
-    block_id?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  block_id?: bigint | number;
 }

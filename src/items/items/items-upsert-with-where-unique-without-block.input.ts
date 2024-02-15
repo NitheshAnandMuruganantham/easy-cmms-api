@@ -7,16 +7,15 @@ import { ItemsCreateWithoutBlockInput } from './items-create-without-block.input
 
 @InputType()
 export class ItemsUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => ItemsWhereUniqueInput, { nullable: false })
+  @Type(() => ItemsWhereUniqueInput)
+  where!: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:false})
-    @Type(() => ItemsWhereUniqueInput)
-    where!: ItemsWhereUniqueInput;
+  @Field(() => ItemsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ItemsUpdateWithoutBlockInput)
+  update!: ItemsUpdateWithoutBlockInput;
 
-    @Field(() => ItemsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ItemsUpdateWithoutBlockInput)
-    update!: ItemsUpdateWithoutBlockInput;
-
-    @Field(() => ItemsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => ItemsCreateWithoutBlockInput)
-    create!: ItemsCreateWithoutBlockInput;
+  @Field(() => ItemsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => ItemsCreateWithoutBlockInput)
+  create!: ItemsCreateWithoutBlockInput;
 }

@@ -6,12 +6,11 @@ import { BlockCreateWithoutProduction_dataInput } from './block-create-without-p
 
 @InputType()
 export class BlockUpsertWithoutProduction_dataInput {
+  @Field(() => BlockUpdateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => BlockUpdateWithoutProduction_dataInput)
+  update!: BlockUpdateWithoutProduction_dataInput;
 
-    @Field(() => BlockUpdateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => BlockUpdateWithoutProduction_dataInput)
-    update!: BlockUpdateWithoutProduction_dataInput;
-
-    @Field(() => BlockCreateWithoutProduction_dataInput, {nullable:false})
-    @Type(() => BlockCreateWithoutProduction_dataInput)
-    create!: BlockCreateWithoutProduction_dataInput;
+  @Field(() => BlockCreateWithoutProduction_dataInput, { nullable: false })
+  @Type(() => BlockCreateWithoutProduction_dataInput)
+  create!: BlockCreateWithoutProduction_dataInput;
 }

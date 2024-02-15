@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyMachinesArgs {
+  @Field(() => [MachinesCreateManyInput], { nullable: false })
+  @Type(() => MachinesCreateManyInput)
+  data!: Array<MachinesCreateManyInput>;
 
-    @Field(() => [MachinesCreateManyInput], {nullable:false})
-    @Type(() => MachinesCreateManyInput)
-    data!: Array<MachinesCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

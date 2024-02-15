@@ -6,12 +6,11 @@ import { UsersWhereUniqueInput } from './users-where-unique.input';
 
 @ArgsType()
 export class UpdateOneUsersArgs {
+  @Field(() => UsersUpdateInput, { nullable: false })
+  @Type(() => UsersUpdateInput)
+  data!: UsersUpdateInput;
 
-    @Field(() => UsersUpdateInput, {nullable:false})
-    @Type(() => UsersUpdateInput)
-    data!: UsersUpdateInput;
-
-    @Field(() => UsersWhereUniqueInput, {nullable:false})
-    @Type(() => UsersWhereUniqueInput)
-    where!: UsersWhereUniqueInput;
+  @Field(() => UsersWhereUniqueInput, { nullable: false })
+  @Type(() => UsersWhereUniqueInput)
+  where!: UsersWhereUniqueInput;
 }

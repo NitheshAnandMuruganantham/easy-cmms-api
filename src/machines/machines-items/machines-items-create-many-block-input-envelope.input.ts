@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class machines_itemsCreateManyBlockInputEnvelope {
+  @Field(() => [machines_itemsCreateManyBlockInput], { nullable: false })
+  @Type(() => machines_itemsCreateManyBlockInput)
+  data!: Array<machines_itemsCreateManyBlockInput>;
 
-    @Field(() => [machines_itemsCreateManyBlockInput], {nullable:false})
-    @Type(() => machines_itemsCreateManyBlockInput)
-    data!: Array<machines_itemsCreateManyBlockInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

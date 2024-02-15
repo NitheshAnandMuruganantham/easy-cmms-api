@@ -6,12 +6,11 @@ import { MachinesUpdateManyMutationInput } from './machines-update-many-mutation
 
 @InputType()
 export class MachinesUpdateManyWithWhereWithoutItemsInput {
+  @Field(() => MachinesScalarWhereInput, { nullable: false })
+  @Type(() => MachinesScalarWhereInput)
+  where!: MachinesScalarWhereInput;
 
-    @Field(() => MachinesScalarWhereInput, {nullable:false})
-    @Type(() => MachinesScalarWhereInput)
-    where!: MachinesScalarWhereInput;
-
-    @Field(() => MachinesUpdateManyMutationInput, {nullable:false})
-    @Type(() => MachinesUpdateManyMutationInput)
-    data!: MachinesUpdateManyMutationInput;
+  @Field(() => MachinesUpdateManyMutationInput, { nullable: false })
+  @Type(() => MachinesUpdateManyMutationInput)
+  data!: MachinesUpdateManyMutationInput;
 }

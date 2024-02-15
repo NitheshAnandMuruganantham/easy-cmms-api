@@ -6,12 +6,11 @@ import { BlockCreateWithoutRoutine_maintanancesInput } from './block-create-with
 
 @InputType()
 export class BlockCreateOrConnectWithoutRoutine_maintanancesInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
-    create!: BlockCreateWithoutRoutine_maintanancesInput;
+  @Field(() => BlockCreateWithoutRoutine_maintanancesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
+  create!: BlockCreateWithoutRoutine_maintanancesInput;
 }

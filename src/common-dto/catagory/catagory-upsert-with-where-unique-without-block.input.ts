@@ -7,16 +7,15 @@ import { catagoryCreateWithoutBlockInput } from './catagory-create-without-block
 
 @InputType()
 export class catagoryUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => catagoryWhereUniqueInput, { nullable: false })
+  @Type(() => catagoryWhereUniqueInput)
+  where!: catagoryWhereUniqueInput;
 
-    @Field(() => catagoryWhereUniqueInput, {nullable:false})
-    @Type(() => catagoryWhereUniqueInput)
-    where!: catagoryWhereUniqueInput;
+  @Field(() => catagoryUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => catagoryUpdateWithoutBlockInput)
+  update!: catagoryUpdateWithoutBlockInput;
 
-    @Field(() => catagoryUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => catagoryUpdateWithoutBlockInput)
-    update!: catagoryUpdateWithoutBlockInput;
-
-    @Field(() => catagoryCreateWithoutBlockInput, {nullable:false})
-    @Type(() => catagoryCreateWithoutBlockInput)
-    create!: catagoryCreateWithoutBlockInput;
+  @Field(() => catagoryCreateWithoutBlockInput, { nullable: false })
+  @Type(() => catagoryCreateWithoutBlockInput)
+  create!: catagoryCreateWithoutBlockInput;
 }

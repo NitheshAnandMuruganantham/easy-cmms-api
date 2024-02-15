@@ -6,12 +6,11 @@ import { ItemsUpdateManyMutationInput } from './items-update-many-mutation.input
 
 @InputType()
 export class ItemsUpdateManyWithWhereWithoutItemCatagoryInput {
+  @Field(() => ItemsScalarWhereInput, { nullable: false })
+  @Type(() => ItemsScalarWhereInput)
+  where!: ItemsScalarWhereInput;
 
-    @Field(() => ItemsScalarWhereInput, {nullable:false})
-    @Type(() => ItemsScalarWhereInput)
-    where!: ItemsScalarWhereInput;
-
-    @Field(() => ItemsUpdateManyMutationInput, {nullable:false})
-    @Type(() => ItemsUpdateManyMutationInput)
-    data!: ItemsUpdateManyMutationInput;
+  @Field(() => ItemsUpdateManyMutationInput, { nullable: false })
+  @Type(() => ItemsUpdateManyMutationInput)
+  data!: ItemsUpdateManyMutationInput;
 }

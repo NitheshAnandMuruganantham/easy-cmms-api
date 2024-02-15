@@ -6,12 +6,11 @@ import { UsersUpdateWithoutBlockInput } from './users-update-without-block.input
 
 @InputType()
 export class UsersUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => UsersWhereUniqueInput, { nullable: false })
+  @Type(() => UsersWhereUniqueInput)
+  where!: UsersWhereUniqueInput;
 
-    @Field(() => UsersWhereUniqueInput, {nullable:false})
-    @Type(() => UsersWhereUniqueInput)
-    where!: UsersWhereUniqueInput;
-
-    @Field(() => UsersUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => UsersUpdateWithoutBlockInput)
-    data!: UsersUpdateWithoutBlockInput;
+  @Field(() => UsersUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => UsersUpdateWithoutBlockInput)
+  data!: UsersUpdateWithoutBlockInput;
 }

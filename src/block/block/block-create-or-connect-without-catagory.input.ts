@@ -6,12 +6,11 @@ import { BlockCreateWithoutCatagoryInput } from './block-create-without-catagory
 
 @InputType()
 export class BlockCreateOrConnectWithoutCatagoryInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutCatagoryInput, {nullable:false})
-    @Type(() => BlockCreateWithoutCatagoryInput)
-    create!: BlockCreateWithoutCatagoryInput;
+  @Field(() => BlockCreateWithoutCatagoryInput, { nullable: false })
+  @Type(() => BlockCreateWithoutCatagoryInput)
+  create!: BlockCreateWithoutCatagoryInput;
 }

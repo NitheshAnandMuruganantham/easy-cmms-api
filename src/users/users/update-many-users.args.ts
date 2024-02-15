@@ -6,12 +6,11 @@ import { UsersWhereInput } from './users-where.input';
 
 @ArgsType()
 export class UpdateManyUsersArgs {
+  @Field(() => UsersUpdateManyMutationInput, { nullable: false })
+  @Type(() => UsersUpdateManyMutationInput)
+  data!: UsersUpdateManyMutationInput;
 
-    @Field(() => UsersUpdateManyMutationInput, {nullable:false})
-    @Type(() => UsersUpdateManyMutationInput)
-    data!: UsersUpdateManyMutationInput;
-
-    @Field(() => UsersWhereInput, {nullable:true})
-    @Type(() => UsersWhereInput)
-    where?: UsersWhereInput;
+  @Field(() => UsersWhereInput, { nullable: true })
+  @Type(() => UsersWhereInput)
+  where?: UsersWhereInput;
 }

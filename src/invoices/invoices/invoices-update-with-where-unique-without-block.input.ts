@@ -6,12 +6,11 @@ import { InvoicesUpdateWithoutBlockInput } from './invoices-update-without-block
 
 @InputType()
 export class InvoicesUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => InvoicesWhereUniqueInput, { nullable: false })
+  @Type(() => InvoicesWhereUniqueInput)
+  where!: InvoicesWhereUniqueInput;
 
-    @Field(() => InvoicesWhereUniqueInput, {nullable:false})
-    @Type(() => InvoicesWhereUniqueInput)
-    where!: InvoicesWhereUniqueInput;
-
-    @Field(() => InvoicesUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => InvoicesUpdateWithoutBlockInput)
-    data!: InvoicesUpdateWithoutBlockInput;
+  @Field(() => InvoicesUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => InvoicesUpdateWithoutBlockInput)
+  data!: InvoicesUpdateWithoutBlockInput;
 }

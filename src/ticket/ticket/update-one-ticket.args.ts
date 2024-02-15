@@ -6,12 +6,11 @@ import { TicketWhereUniqueInput } from './ticket-where-unique.input';
 
 @ArgsType()
 export class UpdateOneTicketArgs {
+  @Field(() => TicketUpdateInput, { nullable: false })
+  @Type(() => TicketUpdateInput)
+  data!: TicketUpdateInput;
 
-    @Field(() => TicketUpdateInput, {nullable:false})
-    @Type(() => TicketUpdateInput)
-    data!: TicketUpdateInput;
-
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 }

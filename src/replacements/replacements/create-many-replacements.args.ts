@@ -5,11 +5,10 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyReplacementsArgs {
+  @Field(() => [ReplacementsCreateManyInput], { nullable: false })
+  @Type(() => ReplacementsCreateManyInput)
+  data!: Array<ReplacementsCreateManyInput>;
 
-    @Field(() => [ReplacementsCreateManyInput], {nullable:false})
-    @Type(() => ReplacementsCreateManyInput)
-    data!: Array<ReplacementsCreateManyInput>;
-
-    @Field(() => Boolean, {nullable:true})
-    skipDuplicates?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  skipDuplicates?: boolean;
 }

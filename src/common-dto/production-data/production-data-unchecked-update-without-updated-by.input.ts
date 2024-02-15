@@ -8,25 +8,24 @@ import { HideField } from '@nestjs/graphql';
 
 @InputType()
 export class production_dataUncheckedUpdateWithoutUpdatedByInput {
+  @Field(() => BigIntFieldUpdateOperationsInput, { nullable: true })
+  id?: BigIntFieldUpdateOperationsInput;
 
-    @Field(() => BigIntFieldUpdateOperationsInput, {nullable:true})
-    id?: BigIntFieldUpdateOperationsInput;
+  @Field(() => GraphQLJSON, { nullable: true })
+  production?: any;
 
-    @Field(() => GraphQLJSON, {nullable:true})
-    production?: any;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  shift?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    shift?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  date?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    date?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  created_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    created_at?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updated_at?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updated_at?: DateTimeFieldUpdateOperationsInput;
-
-    @HideField()
-    blockId?: BigIntFieldUpdateOperationsInput;
+  @HideField()
+  blockId?: BigIntFieldUpdateOperationsInput;
 }

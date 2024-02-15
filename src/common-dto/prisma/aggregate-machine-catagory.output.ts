@@ -8,19 +8,18 @@ import { Machine_catagoryMaxAggregate } from './machine-catagory-max-aggregate.o
 
 @ObjectType()
 export class AggregateMachine_catagory {
+  @Field(() => Machine_catagoryCountAggregate, { nullable: true })
+  _count?: Machine_catagoryCountAggregate;
 
-    @Field(() => Machine_catagoryCountAggregate, {nullable:true})
-    _count?: Machine_catagoryCountAggregate;
+  @Field(() => Machine_catagoryAvgAggregate, { nullable: true })
+  _avg?: Machine_catagoryAvgAggregate;
 
-    @Field(() => Machine_catagoryAvgAggregate, {nullable:true})
-    _avg?: Machine_catagoryAvgAggregate;
+  @Field(() => Machine_catagorySumAggregate, { nullable: true })
+  _sum?: Machine_catagorySumAggregate;
 
-    @Field(() => Machine_catagorySumAggregate, {nullable:true})
-    _sum?: Machine_catagorySumAggregate;
+  @Field(() => Machine_catagoryMinAggregate, { nullable: true })
+  _min?: Machine_catagoryMinAggregate;
 
-    @Field(() => Machine_catagoryMinAggregate, {nullable:true})
-    _min?: Machine_catagoryMinAggregate;
-
-    @Field(() => Machine_catagoryMaxAggregate, {nullable:true})
-    _max?: Machine_catagoryMaxAggregate;
+  @Field(() => Machine_catagoryMaxAggregate, { nullable: true })
+  _max?: Machine_catagoryMaxAggregate;
 }

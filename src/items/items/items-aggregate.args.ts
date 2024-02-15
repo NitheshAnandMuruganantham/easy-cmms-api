@@ -13,35 +13,36 @@ import { ItemsMaxAggregateInput } from './items-max-aggregate.input';
 
 @ArgsType()
 export class ItemsAggregateArgs {
+  @Field(() => ItemsWhereInput, { nullable: true })
+  @Type(() => ItemsWhereInput)
+  where?: ItemsWhereInput;
 
-    @Field(() => ItemsWhereInput, {nullable:true})
-    @Type(() => ItemsWhereInput)
-    where?: ItemsWhereInput;
+  @Field(() => [ItemsOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<ItemsOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [ItemsOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<ItemsOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => ItemsWhereUniqueInput, { nullable: true })
+  cursor?: ItemsWhereUniqueInput;
 
-    @Field(() => ItemsWhereUniqueInput, {nullable:true})
-    cursor?: ItemsWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => ItemsCountAggregateInput, { nullable: true })
+  _count?: ItemsCountAggregateInput;
 
-    @Field(() => ItemsCountAggregateInput, {nullable:true})
-    _count?: ItemsCountAggregateInput;
+  @Field(() => ItemsAvgAggregateInput, { nullable: true })
+  _avg?: ItemsAvgAggregateInput;
 
-    @Field(() => ItemsAvgAggregateInput, {nullable:true})
-    _avg?: ItemsAvgAggregateInput;
+  @Field(() => ItemsSumAggregateInput, { nullable: true })
+  _sum?: ItemsSumAggregateInput;
 
-    @Field(() => ItemsSumAggregateInput, {nullable:true})
-    _sum?: ItemsSumAggregateInput;
+  @Field(() => ItemsMinAggregateInput, { nullable: true })
+  _min?: ItemsMinAggregateInput;
 
-    @Field(() => ItemsMinAggregateInput, {nullable:true})
-    _min?: ItemsMinAggregateInput;
-
-    @Field(() => ItemsMaxAggregateInput, {nullable:true})
-    _max?: ItemsMaxAggregateInput;
+  @Field(() => ItemsMaxAggregateInput, { nullable: true })
+  _max?: ItemsMaxAggregateInput;
 }

@@ -6,12 +6,11 @@ import { MachinesCreateWithoutMaintenanceInput } from './machines-create-without
 
 @InputType()
 export class MachinesUpsertWithoutMaintenanceInput {
+  @Field(() => MachinesUpdateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutMaintenanceInput)
+  update!: MachinesUpdateWithoutMaintenanceInput;
 
-    @Field(() => MachinesUpdateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutMaintenanceInput)
-    update!: MachinesUpdateWithoutMaintenanceInput;
-
-    @Field(() => MachinesCreateWithoutMaintenanceInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutMaintenanceInput)
-    create!: MachinesCreateWithoutMaintenanceInput;
+  @Field(() => MachinesCreateWithoutMaintenanceInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutMaintenanceInput)
+  create!: MachinesCreateWithoutMaintenanceInput;
 }

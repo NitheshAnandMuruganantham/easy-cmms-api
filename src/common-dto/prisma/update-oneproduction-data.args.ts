@@ -6,12 +6,11 @@ import { production_dataWhereUniqueInput } from '../production-data/production-d
 
 @ArgsType()
 export class UpdateOneproductionDataArgs {
+  @Field(() => production_dataUpdateInput, { nullable: false })
+  @Type(() => production_dataUpdateInput)
+  data!: production_dataUpdateInput;
 
-    @Field(() => production_dataUpdateInput, {nullable:false})
-    @Type(() => production_dataUpdateInput)
-    data!: production_dataUpdateInput;
-
-    @Field(() => production_dataWhereUniqueInput, {nullable:false})
-    @Type(() => production_dataWhereUniqueInput)
-    where!: production_dataWhereUniqueInput;
+  @Field(() => production_dataWhereUniqueInput, { nullable: false })
+  @Type(() => production_dataWhereUniqueInput)
+  where!: production_dataWhereUniqueInput;
 }

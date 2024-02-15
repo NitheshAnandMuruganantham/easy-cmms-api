@@ -8,20 +8,23 @@ import { ReplacementsWhereUniqueInput } from './replacements-where-unique.input'
 
 @InputType()
 export class ReplacementsUncheckedCreateNestedManyWithoutMaintenanceInput {
+  @Field(() => [ReplacementsCreateWithoutMaintenanceInput], { nullable: true })
+  @Type(() => ReplacementsCreateWithoutMaintenanceInput)
+  create?: Array<ReplacementsCreateWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsCreateWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsCreateWithoutMaintenanceInput)
-    create?: Array<ReplacementsCreateWithoutMaintenanceInput>;
+  @Field(() => [ReplacementsCreateOrConnectWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutMaintenanceInput>;
 
-    @Field(() => [ReplacementsCreateOrConnectWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReplacementsCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutMaintenanceInput>;
+  @Field(() => ReplacementsCreateManyMaintenanceInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateManyMaintenanceInputEnvelope)
+  createMany?: ReplacementsCreateManyMaintenanceInputEnvelope;
 
-    @Field(() => ReplacementsCreateManyMaintenanceInputEnvelope, {nullable:true})
-    @Type(() => ReplacementsCreateManyMaintenanceInputEnvelope)
-    createMany?: ReplacementsCreateManyMaintenanceInputEnvelope;
-
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    connect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  connect?: Array<ReplacementsWhereUniqueInput>;
 }

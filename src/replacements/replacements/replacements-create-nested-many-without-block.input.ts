@@ -8,20 +8,21 @@ import { ReplacementsWhereUniqueInput } from './replacements-where-unique.input'
 
 @InputType()
 export class ReplacementsCreateNestedManyWithoutBlockInput {
+  @Field(() => [ReplacementsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ReplacementsCreateWithoutBlockInput)
+  create?: Array<ReplacementsCreateWithoutBlockInput>;
 
-    @Field(() => [ReplacementsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsCreateWithoutBlockInput)
-    create?: Array<ReplacementsCreateWithoutBlockInput>;
+  @Field(() => [ReplacementsCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ReplacementsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutBlockInput>;
+  @Field(() => ReplacementsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ReplacementsCreateManyBlockInputEnvelope)
+  createMany?: ReplacementsCreateManyBlockInputEnvelope;
 
-    @Field(() => ReplacementsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ReplacementsCreateManyBlockInputEnvelope)
-    createMany?: ReplacementsCreateManyBlockInputEnvelope;
-
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    connect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  connect?: Array<ReplacementsWhereUniqueInput>;
 }

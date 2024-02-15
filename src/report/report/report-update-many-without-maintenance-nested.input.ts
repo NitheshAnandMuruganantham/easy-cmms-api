@@ -12,48 +12,55 @@ import { ReportScalarWhereInput } from './report-scalar-where.input';
 
 @InputType()
 export class ReportUpdateManyWithoutMaintenanceNestedInput {
+  @Field(() => [ReportCreateWithoutMaintenanceInput], { nullable: true })
+  @Type(() => ReportCreateWithoutMaintenanceInput)
+  create?: Array<ReportCreateWithoutMaintenanceInput>;
 
-    @Field(() => [ReportCreateWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportCreateWithoutMaintenanceInput)
-    create?: Array<ReportCreateWithoutMaintenanceInput>;
+  @Field(() => [ReportCreateOrConnectWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReportCreateOrConnectWithoutMaintenanceInput)
+  connectOrCreate?: Array<ReportCreateOrConnectWithoutMaintenanceInput>;
 
-    @Field(() => [ReportCreateOrConnectWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportCreateOrConnectWithoutMaintenanceInput)
-    connectOrCreate?: Array<ReportCreateOrConnectWithoutMaintenanceInput>;
+  @Field(() => [ReportUpsertWithWhereUniqueWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReportUpsertWithWhereUniqueWithoutMaintenanceInput)
+  upsert?: Array<ReportUpsertWithWhereUniqueWithoutMaintenanceInput>;
 
-    @Field(() => [ReportUpsertWithWhereUniqueWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportUpsertWithWhereUniqueWithoutMaintenanceInput)
-    upsert?: Array<ReportUpsertWithWhereUniqueWithoutMaintenanceInput>;
+  @Field(() => ReportCreateManyMaintenanceInputEnvelope, { nullable: true })
+  @Type(() => ReportCreateManyMaintenanceInputEnvelope)
+  createMany?: ReportCreateManyMaintenanceInputEnvelope;
 
-    @Field(() => ReportCreateManyMaintenanceInputEnvelope, {nullable:true})
-    @Type(() => ReportCreateManyMaintenanceInputEnvelope)
-    createMany?: ReportCreateManyMaintenanceInputEnvelope;
+  @Field(() => [ReportWhereUniqueInput], { nullable: true })
+  @Type(() => ReportWhereUniqueInput)
+  set?: Array<ReportWhereUniqueInput>;
 
-    @Field(() => [ReportWhereUniqueInput], {nullable:true})
-    @Type(() => ReportWhereUniqueInput)
-    set?: Array<ReportWhereUniqueInput>;
+  @Field(() => [ReportWhereUniqueInput], { nullable: true })
+  @Type(() => ReportWhereUniqueInput)
+  disconnect?: Array<ReportWhereUniqueInput>;
 
-    @Field(() => [ReportWhereUniqueInput], {nullable:true})
-    @Type(() => ReportWhereUniqueInput)
-    disconnect?: Array<ReportWhereUniqueInput>;
+  @Field(() => [ReportWhereUniqueInput], { nullable: true })
+  @Type(() => ReportWhereUniqueInput)
+  delete?: Array<ReportWhereUniqueInput>;
 
-    @Field(() => [ReportWhereUniqueInput], {nullable:true})
-    @Type(() => ReportWhereUniqueInput)
-    delete?: Array<ReportWhereUniqueInput>;
+  @Field(() => [ReportWhereUniqueInput], { nullable: true })
+  @Type(() => ReportWhereUniqueInput)
+  connect?: Array<ReportWhereUniqueInput>;
 
-    @Field(() => [ReportWhereUniqueInput], {nullable:true})
-    @Type(() => ReportWhereUniqueInput)
-    connect?: Array<ReportWhereUniqueInput>;
+  @Field(() => [ReportUpdateWithWhereUniqueWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReportUpdateWithWhereUniqueWithoutMaintenanceInput)
+  update?: Array<ReportUpdateWithWhereUniqueWithoutMaintenanceInput>;
 
-    @Field(() => [ReportUpdateWithWhereUniqueWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportUpdateWithWhereUniqueWithoutMaintenanceInput)
-    update?: Array<ReportUpdateWithWhereUniqueWithoutMaintenanceInput>;
+  @Field(() => [ReportUpdateManyWithWhereWithoutMaintenanceInput], {
+    nullable: true,
+  })
+  @Type(() => ReportUpdateManyWithWhereWithoutMaintenanceInput)
+  updateMany?: Array<ReportUpdateManyWithWhereWithoutMaintenanceInput>;
 
-    @Field(() => [ReportUpdateManyWithWhereWithoutMaintenanceInput], {nullable:true})
-    @Type(() => ReportUpdateManyWithWhereWithoutMaintenanceInput)
-    updateMany?: Array<ReportUpdateManyWithWhereWithoutMaintenanceInput>;
-
-    @Field(() => [ReportScalarWhereInput], {nullable:true})
-    @Type(() => ReportScalarWhereInput)
-    deleteMany?: Array<ReportScalarWhereInput>;
+  @Field(() => [ReportScalarWhereInput], { nullable: true })
+  @Type(() => ReportScalarWhereInput)
+  deleteMany?: Array<ReportScalarWhereInput>;
 }

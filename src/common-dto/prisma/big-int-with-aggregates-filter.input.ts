@@ -8,43 +8,42 @@ import { NestedBigIntFilter } from './nested-big-int-filter.input';
 
 @InputType()
 export class BigIntWithAggregatesFilter {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  equals?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    equals?: bigint | number;
+  @Field(() => [GraphQLBigInt], { nullable: true })
+  in?: Array<bigint> | Array<number>;
 
-    @Field(() => [GraphQLBigInt], {nullable:true})
-    in?: Array<bigint> | Array<number>;
+  @Field(() => [GraphQLBigInt], { nullable: true })
+  notIn?: Array<bigint> | Array<number>;
 
-    @Field(() => [GraphQLBigInt], {nullable:true})
-    notIn?: Array<bigint> | Array<number>;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  lt?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    lt?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  lte?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    lte?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  gt?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    gt?: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: true })
+  gte?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    gte?: bigint | number;
+  @Field(() => NestedBigIntWithAggregatesFilter, { nullable: true })
+  not?: NestedBigIntWithAggregatesFilter;
 
-    @Field(() => NestedBigIntWithAggregatesFilter, {nullable:true})
-    not?: NestedBigIntWithAggregatesFilter;
+  @Field(() => NestedIntFilter, { nullable: true })
+  _count?: NestedIntFilter;
 
-    @Field(() => NestedIntFilter, {nullable:true})
-    _count?: NestedIntFilter;
+  @Field(() => NestedFloatFilter, { nullable: true })
+  _avg?: NestedFloatFilter;
 
-    @Field(() => NestedFloatFilter, {nullable:true})
-    _avg?: NestedFloatFilter;
+  @Field(() => NestedBigIntFilter, { nullable: true })
+  _sum?: NestedBigIntFilter;
 
-    @Field(() => NestedBigIntFilter, {nullable:true})
-    _sum?: NestedBigIntFilter;
+  @Field(() => NestedBigIntFilter, { nullable: true })
+  _min?: NestedBigIntFilter;
 
-    @Field(() => NestedBigIntFilter, {nullable:true})
-    _min?: NestedBigIntFilter;
-
-    @Field(() => NestedBigIntFilter, {nullable:true})
-    _max?: NestedBigIntFilter;
+  @Field(() => NestedBigIntFilter, { nullable: true })
+  _max?: NestedBigIntFilter;
 }

@@ -8,20 +8,23 @@ import { production_dataWhereUniqueInput } from './production-data-where-unique.
 
 @InputType()
 export class production_dataCreateNestedManyWithoutUpdatedByInput {
+  @Field(() => [production_dataCreateWithoutUpdatedByInput], { nullable: true })
+  @Type(() => production_dataCreateWithoutUpdatedByInput)
+  create?: Array<production_dataCreateWithoutUpdatedByInput>;
 
-    @Field(() => [production_dataCreateWithoutUpdatedByInput], {nullable:true})
-    @Type(() => production_dataCreateWithoutUpdatedByInput)
-    create?: Array<production_dataCreateWithoutUpdatedByInput>;
+  @Field(() => [production_dataCreateOrConnectWithoutUpdatedByInput], {
+    nullable: true,
+  })
+  @Type(() => production_dataCreateOrConnectWithoutUpdatedByInput)
+  connectOrCreate?: Array<production_dataCreateOrConnectWithoutUpdatedByInput>;
 
-    @Field(() => [production_dataCreateOrConnectWithoutUpdatedByInput], {nullable:true})
-    @Type(() => production_dataCreateOrConnectWithoutUpdatedByInput)
-    connectOrCreate?: Array<production_dataCreateOrConnectWithoutUpdatedByInput>;
+  @Field(() => production_dataCreateManyUpdatedByInputEnvelope, {
+    nullable: true,
+  })
+  @Type(() => production_dataCreateManyUpdatedByInputEnvelope)
+  createMany?: production_dataCreateManyUpdatedByInputEnvelope;
 
-    @Field(() => production_dataCreateManyUpdatedByInputEnvelope, {nullable:true})
-    @Type(() => production_dataCreateManyUpdatedByInputEnvelope)
-    createMany?: production_dataCreateManyUpdatedByInputEnvelope;
-
-    @Field(() => [production_dataWhereUniqueInput], {nullable:true})
-    @Type(() => production_dataWhereUniqueInput)
-    connect?: Array<production_dataWhereUniqueInput>;
+  @Field(() => [production_dataWhereUniqueInput], { nullable: true })
+  @Type(() => production_dataWhereUniqueInput)
+  connect?: Array<production_dataWhereUniqueInput>;
 }

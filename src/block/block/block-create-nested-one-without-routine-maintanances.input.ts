@@ -7,16 +7,17 @@ import { BlockWhereUniqueInput } from './block-where-unique.input';
 
 @InputType()
 export class BlockCreateNestedOneWithoutRoutine_maintanancesInput {
+  @Field(() => BlockCreateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
+  create?: BlockCreateWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockCreateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
-    create?: BlockCreateWithoutRoutine_maintanancesInput;
+  @Field(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutRoutine_maintanancesInput;
-
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 }

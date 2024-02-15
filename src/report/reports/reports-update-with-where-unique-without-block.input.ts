@@ -6,12 +6,11 @@ import { ReportsUpdateWithoutBlockInput } from './reports-update-without-block.i
 
 @InputType()
 export class ReportsUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => ReportsWhereUniqueInput, { nullable: false })
+  @Type(() => ReportsWhereUniqueInput)
+  where!: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:false})
-    @Type(() => ReportsWhereUniqueInput)
-    where!: ReportsWhereUniqueInput;
-
-    @Field(() => ReportsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ReportsUpdateWithoutBlockInput)
-    data!: ReportsUpdateWithoutBlockInput;
+  @Field(() => ReportsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ReportsUpdateWithoutBlockInput)
+  data!: ReportsUpdateWithoutBlockInput;
 }

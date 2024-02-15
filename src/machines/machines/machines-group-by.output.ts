@@ -12,49 +12,48 @@ import { MachinesMaxAggregate } from './machines-max-aggregate.output';
 
 @ObjectType()
 export class MachinesGroupBy {
+  @Field(() => Scalars.GraphQLBigInt, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => Scalars.GraphQLBigInt, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  section_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    section_id!: bigint | number;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  label!: string;
 
-    @Field(() => String, {nullable:false})
-    label!: string;
+  @Field(() => GraphQLJSON, { nullable: false })
+  profile!: any;
 
-    @Field(() => GraphQLJSON, {nullable:false})
-    profile!: any;
+  @Field(() => Int, { nullable: false })
+  priority!: number;
 
-    @Field(() => Int, {nullable:false})
-    priority!: number;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  machine_catagory_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    machine_catagory_id!: bigint | number;
+  @Field(() => MachinesCountAggregate, { nullable: true })
+  _count?: MachinesCountAggregate;
 
-    @Field(() => MachinesCountAggregate, {nullable:true})
-    _count?: MachinesCountAggregate;
+  @Field(() => MachinesAvgAggregate, { nullable: true })
+  _avg?: MachinesAvgAggregate;
 
-    @Field(() => MachinesAvgAggregate, {nullable:true})
-    _avg?: MachinesAvgAggregate;
+  @Field(() => MachinesSumAggregate, { nullable: true })
+  _sum?: MachinesSumAggregate;
 
-    @Field(() => MachinesSumAggregate, {nullable:true})
-    _sum?: MachinesSumAggregate;
+  @Field(() => MachinesMinAggregate, { nullable: true })
+  _min?: MachinesMinAggregate;
 
-    @Field(() => MachinesMinAggregate, {nullable:true})
-    _min?: MachinesMinAggregate;
-
-    @Field(() => MachinesMaxAggregate, {nullable:true})
-    _max?: MachinesMaxAggregate;
+  @Field(() => MachinesMaxAggregate, { nullable: true })
+  _max?: MachinesMaxAggregate;
 }

@@ -8,20 +8,21 @@ import { machines_itemsWhereUniqueInput } from './machines-items-where-unique.in
 
 @InputType()
 export class machines_itemsCreateNestedManyWithoutMachineInput {
+  @Field(() => [machines_itemsCreateWithoutMachineInput], { nullable: true })
+  @Type(() => machines_itemsCreateWithoutMachineInput)
+  create?: Array<machines_itemsCreateWithoutMachineInput>;
 
-    @Field(() => [machines_itemsCreateWithoutMachineInput], {nullable:true})
-    @Type(() => machines_itemsCreateWithoutMachineInput)
-    create?: Array<machines_itemsCreateWithoutMachineInput>;
+  @Field(() => [machines_itemsCreateOrConnectWithoutMachineInput], {
+    nullable: true,
+  })
+  @Type(() => machines_itemsCreateOrConnectWithoutMachineInput)
+  connectOrCreate?: Array<machines_itemsCreateOrConnectWithoutMachineInput>;
 
-    @Field(() => [machines_itemsCreateOrConnectWithoutMachineInput], {nullable:true})
-    @Type(() => machines_itemsCreateOrConnectWithoutMachineInput)
-    connectOrCreate?: Array<machines_itemsCreateOrConnectWithoutMachineInput>;
+  @Field(() => machines_itemsCreateManyMachineInputEnvelope, { nullable: true })
+  @Type(() => machines_itemsCreateManyMachineInputEnvelope)
+  createMany?: machines_itemsCreateManyMachineInputEnvelope;
 
-    @Field(() => machines_itemsCreateManyMachineInputEnvelope, {nullable:true})
-    @Type(() => machines_itemsCreateManyMachineInputEnvelope)
-    createMany?: machines_itemsCreateManyMachineInputEnvelope;
-
-    @Field(() => [machines_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => machines_itemsWhereUniqueInput)
-    connect?: Array<machines_itemsWhereUniqueInput>;
+  @Field(() => [machines_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => machines_itemsWhereUniqueInput)
+  connect?: Array<machines_itemsWhereUniqueInput>;
 }

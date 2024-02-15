@@ -9,24 +9,23 @@ import { BlockUpdateWithoutReportsInput } from './block-update-without-reports.i
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutReportsNestedInput {
+  @Field(() => BlockCreateWithoutReportsInput, { nullable: true })
+  @Type(() => BlockCreateWithoutReportsInput)
+  create?: BlockCreateWithoutReportsInput;
 
-    @Field(() => BlockCreateWithoutReportsInput, {nullable:true})
-    @Type(() => BlockCreateWithoutReportsInput)
-    create?: BlockCreateWithoutReportsInput;
+  @Field(() => BlockCreateOrConnectWithoutReportsInput, { nullable: true })
+  @Type(() => BlockCreateOrConnectWithoutReportsInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutReportsInput;
 
-    @Field(() => BlockCreateOrConnectWithoutReportsInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutReportsInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutReportsInput;
+  @Field(() => BlockUpsertWithoutReportsInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutReportsInput)
+  upsert?: BlockUpsertWithoutReportsInput;
 
-    @Field(() => BlockUpsertWithoutReportsInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutReportsInput)
-    upsert?: BlockUpsertWithoutReportsInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutReportsInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutReportsInput)
-    update?: BlockUpdateWithoutReportsInput;
+  @Field(() => BlockUpdateWithoutReportsInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutReportsInput)
+  update?: BlockUpdateWithoutReportsInput;
 }

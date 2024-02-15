@@ -8,20 +8,21 @@ import { invoice_itemsWhereUniqueInput } from './invoice-items-where-unique.inpu
 
 @InputType()
 export class invoice_itemsUncheckedCreateNestedManyWithoutInvoiceInput {
+  @Field(() => [invoice_itemsCreateWithoutInvoiceInput], { nullable: true })
+  @Type(() => invoice_itemsCreateWithoutInvoiceInput)
+  create?: Array<invoice_itemsCreateWithoutInvoiceInput>;
 
-    @Field(() => [invoice_itemsCreateWithoutInvoiceInput], {nullable:true})
-    @Type(() => invoice_itemsCreateWithoutInvoiceInput)
-    create?: Array<invoice_itemsCreateWithoutInvoiceInput>;
+  @Field(() => [invoice_itemsCreateOrConnectWithoutInvoiceInput], {
+    nullable: true,
+  })
+  @Type(() => invoice_itemsCreateOrConnectWithoutInvoiceInput)
+  connectOrCreate?: Array<invoice_itemsCreateOrConnectWithoutInvoiceInput>;
 
-    @Field(() => [invoice_itemsCreateOrConnectWithoutInvoiceInput], {nullable:true})
-    @Type(() => invoice_itemsCreateOrConnectWithoutInvoiceInput)
-    connectOrCreate?: Array<invoice_itemsCreateOrConnectWithoutInvoiceInput>;
+  @Field(() => invoice_itemsCreateManyInvoiceInputEnvelope, { nullable: true })
+  @Type(() => invoice_itemsCreateManyInvoiceInputEnvelope)
+  createMany?: invoice_itemsCreateManyInvoiceInputEnvelope;
 
-    @Field(() => invoice_itemsCreateManyInvoiceInputEnvelope, {nullable:true})
-    @Type(() => invoice_itemsCreateManyInvoiceInputEnvelope)
-    createMany?: invoice_itemsCreateManyInvoiceInputEnvelope;
-
-    @Field(() => [invoice_itemsWhereUniqueInput], {nullable:true})
-    @Type(() => invoice_itemsWhereUniqueInput)
-    connect?: Array<invoice_itemsWhereUniqueInput>;
+  @Field(() => [invoice_itemsWhereUniqueInput], { nullable: true })
+  @Type(() => invoice_itemsWhereUniqueInput)
+  connect?: Array<invoice_itemsWhereUniqueInput>;
 }

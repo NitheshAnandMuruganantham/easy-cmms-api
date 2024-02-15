@@ -6,12 +6,11 @@ import { ReplacementsCreateWithoutItemsInput } from './replacements-create-witho
 
 @InputType()
 export class ReplacementsCreateOrConnectWithoutItemsInput {
+  @Field(() => ReplacementsWhereUniqueInput, { nullable: false })
+  @Type(() => ReplacementsWhereUniqueInput)
+  where!: ReplacementsWhereUniqueInput;
 
-    @Field(() => ReplacementsWhereUniqueInput, {nullable:false})
-    @Type(() => ReplacementsWhereUniqueInput)
-    where!: ReplacementsWhereUniqueInput;
-
-    @Field(() => ReplacementsCreateWithoutItemsInput, {nullable:false})
-    @Type(() => ReplacementsCreateWithoutItemsInput)
-    create!: ReplacementsCreateWithoutItemsInput;
+  @Field(() => ReplacementsCreateWithoutItemsInput, { nullable: false })
+  @Type(() => ReplacementsCreateWithoutItemsInput)
+  create!: ReplacementsCreateWithoutItemsInput;
 }

@@ -9,24 +9,25 @@ import { BlockUpdateWithoutRoutine_maintanancesInput } from './block-update-with
 
 @InputType()
 export class BlockUpdateOneRequiredWithoutRoutine_maintanancesNestedInput {
+  @Field(() => BlockCreateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
+  create?: BlockCreateWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockCreateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockCreateWithoutRoutine_maintanancesInput)
-    create?: BlockCreateWithoutRoutine_maintanancesInput;
+  @Field(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput, {
+    nullable: true,
+  })
+  @Type(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput)
+  connectOrCreate?: BlockCreateOrConnectWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockCreateOrConnectWithoutRoutine_maintanancesInput)
-    connectOrCreate?: BlockCreateOrConnectWithoutRoutine_maintanancesInput;
+  @Field(() => BlockUpsertWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => BlockUpsertWithoutRoutine_maintanancesInput)
+  upsert?: BlockUpsertWithoutRoutine_maintanancesInput;
 
-    @Field(() => BlockUpsertWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockUpsertWithoutRoutine_maintanancesInput)
-    upsert?: BlockUpsertWithoutRoutine_maintanancesInput;
+  @Field(() => BlockWhereUniqueInput, { nullable: true })
+  @Type(() => BlockWhereUniqueInput)
+  connect?: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:true})
-    @Type(() => BlockWhereUniqueInput)
-    connect?: BlockWhereUniqueInput;
-
-    @Field(() => BlockUpdateWithoutRoutine_maintanancesInput, {nullable:true})
-    @Type(() => BlockUpdateWithoutRoutine_maintanancesInput)
-    update?: BlockUpdateWithoutRoutine_maintanancesInput;
+  @Field(() => BlockUpdateWithoutRoutine_maintanancesInput, { nullable: true })
+  @Type(() => BlockUpdateWithoutRoutine_maintanancesInput)
+  update?: BlockUpdateWithoutRoutine_maintanancesInput;
 }

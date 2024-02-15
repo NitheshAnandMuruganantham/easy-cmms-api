@@ -6,12 +6,11 @@ import { MachinesUpdateWithoutMachine_catagoryInput } from './machines-update-wi
 
 @InputType()
 export class MachinesUpdateWithWhereUniqueWithoutMachine_catagoryInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesUpdateWithoutMachine_catagoryInput, {nullable:false})
-    @Type(() => MachinesUpdateWithoutMachine_catagoryInput)
-    data!: MachinesUpdateWithoutMachine_catagoryInput;
+  @Field(() => MachinesUpdateWithoutMachine_catagoryInput, { nullable: false })
+  @Type(() => MachinesUpdateWithoutMachine_catagoryInput)
+  data!: MachinesUpdateWithoutMachine_catagoryInput;
 }

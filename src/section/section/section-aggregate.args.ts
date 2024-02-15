@@ -13,35 +13,34 @@ import { SectionMaxAggregateInput } from './section-max-aggregate.input';
 
 @ArgsType()
 export class SectionAggregateArgs {
+  @Field(() => SectionWhereInput, { nullable: true })
+  @Type(() => SectionWhereInput)
+  where?: SectionWhereInput;
 
-    @Field(() => SectionWhereInput, {nullable:true})
-    @Type(() => SectionWhereInput)
-    where?: SectionWhereInput;
+  @Field(() => [SectionOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<SectionOrderByWithRelationInput>;
 
-    @Field(() => [SectionOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<SectionOrderByWithRelationInput>;
+  @Field(() => SectionWhereUniqueInput, { nullable: true })
+  cursor?: SectionWhereUniqueInput;
 
-    @Field(() => SectionWhereUniqueInput, {nullable:true})
-    cursor?: SectionWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => SectionCountAggregateInput, { nullable: true })
+  _count?: SectionCountAggregateInput;
 
-    @Field(() => SectionCountAggregateInput, {nullable:true})
-    _count?: SectionCountAggregateInput;
+  @Field(() => SectionAvgAggregateInput, { nullable: true })
+  _avg?: SectionAvgAggregateInput;
 
-    @Field(() => SectionAvgAggregateInput, {nullable:true})
-    _avg?: SectionAvgAggregateInput;
+  @Field(() => SectionSumAggregateInput, { nullable: true })
+  _sum?: SectionSumAggregateInput;
 
-    @Field(() => SectionSumAggregateInput, {nullable:true})
-    _sum?: SectionSumAggregateInput;
+  @Field(() => SectionMinAggregateInput, { nullable: true })
+  _min?: SectionMinAggregateInput;
 
-    @Field(() => SectionMinAggregateInput, {nullable:true})
-    _min?: SectionMinAggregateInput;
-
-    @Field(() => SectionMaxAggregateInput, {nullable:true})
-    _max?: SectionMaxAggregateInput;
+  @Field(() => SectionMaxAggregateInput, { nullable: true })
+  _max?: SectionMaxAggregateInput;
 }

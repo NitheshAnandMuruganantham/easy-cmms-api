@@ -9,24 +9,23 @@ import { catagoryUpdateWithoutItemsInput } from './catagory-update-without-items
 
 @InputType()
 export class catagoryUpdateOneRequiredWithoutItemsNestedInput {
+  @Field(() => catagoryCreateWithoutItemsInput, { nullable: true })
+  @Type(() => catagoryCreateWithoutItemsInput)
+  create?: catagoryCreateWithoutItemsInput;
 
-    @Field(() => catagoryCreateWithoutItemsInput, {nullable:true})
-    @Type(() => catagoryCreateWithoutItemsInput)
-    create?: catagoryCreateWithoutItemsInput;
+  @Field(() => catagoryCreateOrConnectWithoutItemsInput, { nullable: true })
+  @Type(() => catagoryCreateOrConnectWithoutItemsInput)
+  connectOrCreate?: catagoryCreateOrConnectWithoutItemsInput;
 
-    @Field(() => catagoryCreateOrConnectWithoutItemsInput, {nullable:true})
-    @Type(() => catagoryCreateOrConnectWithoutItemsInput)
-    connectOrCreate?: catagoryCreateOrConnectWithoutItemsInput;
+  @Field(() => catagoryUpsertWithoutItemsInput, { nullable: true })
+  @Type(() => catagoryUpsertWithoutItemsInput)
+  upsert?: catagoryUpsertWithoutItemsInput;
 
-    @Field(() => catagoryUpsertWithoutItemsInput, {nullable:true})
-    @Type(() => catagoryUpsertWithoutItemsInput)
-    upsert?: catagoryUpsertWithoutItemsInput;
+  @Field(() => catagoryWhereUniqueInput, { nullable: true })
+  @Type(() => catagoryWhereUniqueInput)
+  connect?: catagoryWhereUniqueInput;
 
-    @Field(() => catagoryWhereUniqueInput, {nullable:true})
-    @Type(() => catagoryWhereUniqueInput)
-    connect?: catagoryWhereUniqueInput;
-
-    @Field(() => catagoryUpdateWithoutItemsInput, {nullable:true})
-    @Type(() => catagoryUpdateWithoutItemsInput)
-    update?: catagoryUpdateWithoutItemsInput;
+  @Field(() => catagoryUpdateWithoutItemsInput, { nullable: true })
+  @Type(() => catagoryUpdateWithoutItemsInput)
+  update?: catagoryUpdateWithoutItemsInput;
 }

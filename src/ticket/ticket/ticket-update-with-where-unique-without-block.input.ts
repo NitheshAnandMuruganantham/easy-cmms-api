@@ -6,12 +6,11 @@ import { TicketUpdateWithoutBlockInput } from './ticket-update-without-block.inp
 
 @InputType()
 export class TicketUpdateWithWhereUniqueWithoutBlockInput {
+  @Field(() => TicketWhereUniqueInput, { nullable: false })
+  @Type(() => TicketWhereUniqueInput)
+  where!: TicketWhereUniqueInput;
 
-    @Field(() => TicketWhereUniqueInput, {nullable:false})
-    @Type(() => TicketWhereUniqueInput)
-    where!: TicketWhereUniqueInput;
-
-    @Field(() => TicketUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => TicketUpdateWithoutBlockInput)
-    data!: TicketUpdateWithoutBlockInput;
+  @Field(() => TicketUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => TicketUpdateWithoutBlockInput)
+  data!: TicketUpdateWithoutBlockInput;
 }

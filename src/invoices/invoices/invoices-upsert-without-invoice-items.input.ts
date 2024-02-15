@@ -6,12 +6,11 @@ import { InvoicesCreateWithoutInvoice_itemsInput } from './invoices-create-witho
 
 @InputType()
 export class InvoicesUpsertWithoutInvoice_itemsInput {
+  @Field(() => InvoicesUpdateWithoutInvoice_itemsInput, { nullable: false })
+  @Type(() => InvoicesUpdateWithoutInvoice_itemsInput)
+  update!: InvoicesUpdateWithoutInvoice_itemsInput;
 
-    @Field(() => InvoicesUpdateWithoutInvoice_itemsInput, {nullable:false})
-    @Type(() => InvoicesUpdateWithoutInvoice_itemsInput)
-    update!: InvoicesUpdateWithoutInvoice_itemsInput;
-
-    @Field(() => InvoicesCreateWithoutInvoice_itemsInput, {nullable:false})
-    @Type(() => InvoicesCreateWithoutInvoice_itemsInput)
-    create!: InvoicesCreateWithoutInvoice_itemsInput;
+  @Field(() => InvoicesCreateWithoutInvoice_itemsInput, { nullable: false })
+  @Type(() => InvoicesCreateWithoutInvoice_itemsInput)
+  create!: InvoicesCreateWithoutInvoice_itemsInput;
 }

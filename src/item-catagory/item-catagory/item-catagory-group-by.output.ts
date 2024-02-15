@@ -8,31 +8,30 @@ import { ItemCatagoryMaxAggregate } from './item-catagory-max-aggregate.output';
 
 @ObjectType()
 export class ItemCatagoryGroupBy {
+  @Field(() => String, { nullable: false })
+  id!: bigint | number;
 
-    @Field(() => String, {nullable:false})
-    id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Date, { nullable: false })
+  created_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    created_at!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updated_at!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updated_at!: Date | string;
+  @Field(() => ItemCatagoryCountAggregate, { nullable: true })
+  _count?: ItemCatagoryCountAggregate;
 
-    @Field(() => ItemCatagoryCountAggregate, {nullable:true})
-    _count?: ItemCatagoryCountAggregate;
+  @Field(() => ItemCatagoryAvgAggregate, { nullable: true })
+  _avg?: ItemCatagoryAvgAggregate;
 
-    @Field(() => ItemCatagoryAvgAggregate, {nullable:true})
-    _avg?: ItemCatagoryAvgAggregate;
+  @Field(() => ItemCatagorySumAggregate, { nullable: true })
+  _sum?: ItemCatagorySumAggregate;
 
-    @Field(() => ItemCatagorySumAggregate, {nullable:true})
-    _sum?: ItemCatagorySumAggregate;
+  @Field(() => ItemCatagoryMinAggregate, { nullable: true })
+  _min?: ItemCatagoryMinAggregate;
 
-    @Field(() => ItemCatagoryMinAggregate, {nullable:true})
-    _min?: ItemCatagoryMinAggregate;
-
-    @Field(() => ItemCatagoryMaxAggregate, {nullable:true})
-    _max?: ItemCatagoryMaxAggregate;
+  @Field(() => ItemCatagoryMaxAggregate, { nullable: true })
+  _max?: ItemCatagoryMaxAggregate;
 }

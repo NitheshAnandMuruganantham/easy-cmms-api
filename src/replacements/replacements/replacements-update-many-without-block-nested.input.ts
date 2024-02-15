@@ -12,48 +12,55 @@ import { ReplacementsScalarWhereInput } from './replacements-scalar-where.input'
 
 @InputType()
 export class ReplacementsUpdateManyWithoutBlockNestedInput {
+  @Field(() => [ReplacementsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => ReplacementsCreateWithoutBlockInput)
+  create?: Array<ReplacementsCreateWithoutBlockInput>;
 
-    @Field(() => [ReplacementsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsCreateWithoutBlockInput)
-    create?: Array<ReplacementsCreateWithoutBlockInput>;
+  @Field(() => [ReplacementsCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [ReplacementsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<ReplacementsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [ReplacementsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<ReplacementsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ReplacementsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<ReplacementsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => ReplacementsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => ReplacementsCreateManyBlockInputEnvelope)
+  createMany?: ReplacementsCreateManyBlockInputEnvelope;
 
-    @Field(() => ReplacementsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => ReplacementsCreateManyBlockInputEnvelope)
-    createMany?: ReplacementsCreateManyBlockInputEnvelope;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  set?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    set?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  disconnect?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    disconnect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  delete?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    delete?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsWhereUniqueInput], { nullable: true })
+  @Type(() => ReplacementsWhereUniqueInput)
+  connect?: Array<ReplacementsWhereUniqueInput>;
 
-    @Field(() => [ReplacementsWhereUniqueInput], {nullable:true})
-    @Type(() => ReplacementsWhereUniqueInput)
-    connect?: Array<ReplacementsWhereUniqueInput>;
+  @Field(() => [ReplacementsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<ReplacementsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [ReplacementsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<ReplacementsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [ReplacementsUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => ReplacementsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<ReplacementsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [ReplacementsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => ReplacementsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<ReplacementsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [ReplacementsScalarWhereInput], {nullable:true})
-    @Type(() => ReplacementsScalarWhereInput)
-    deleteMany?: Array<ReplacementsScalarWhereInput>;
+  @Field(() => [ReplacementsScalarWhereInput], { nullable: true })
+  @Type(() => ReplacementsScalarWhereInput)
+  deleteMany?: Array<ReplacementsScalarWhereInput>;
 }

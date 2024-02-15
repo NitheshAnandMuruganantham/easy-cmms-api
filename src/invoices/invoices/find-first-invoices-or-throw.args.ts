@@ -9,23 +9,24 @@ import { InvoicesScalarFieldEnum } from './invoices-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstInvoicesOrThrowArgs {
+  @Field(() => InvoicesWhereInput, { nullable: true })
+  @Type(() => InvoicesWhereInput)
+  where?: InvoicesWhereInput;
 
-    @Field(() => InvoicesWhereInput, {nullable:true})
-    @Type(() => InvoicesWhereInput)
-    where?: InvoicesWhereInput;
+  @Field(() => [InvoicesOrderByWithRelationAndSearchRelevanceInput], {
+    nullable: true,
+  })
+  orderBy?: Array<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
 
-    @Field(() => [InvoicesOrderByWithRelationAndSearchRelevanceInput], {nullable:true})
-    orderBy?: Array<InvoicesOrderByWithRelationAndSearchRelevanceInput>;
+  @Field(() => InvoicesWhereUniqueInput, { nullable: true })
+  cursor?: InvoicesWhereUniqueInput;
 
-    @Field(() => InvoicesWhereUniqueInput, {nullable:true})
-    cursor?: InvoicesWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [InvoicesScalarFieldEnum], {nullable:true})
-    distinct?: Array<keyof typeof InvoicesScalarFieldEnum>;
+  @Field(() => [InvoicesScalarFieldEnum], { nullable: true })
+  distinct?: Array<keyof typeof InvoicesScalarFieldEnum>;
 }

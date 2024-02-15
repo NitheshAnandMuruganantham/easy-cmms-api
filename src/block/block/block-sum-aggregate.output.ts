@@ -4,7 +4,6 @@ import * as Scalars from 'graphql-scalars';
 
 @ObjectType()
 export class BlockSumAggregate {
-
-    @Field(() => Scalars.GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => Scalars.GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 }

@@ -8,19 +8,18 @@ import { MaintenanceMaxAggregate } from './maintenance-max-aggregate.output';
 
 @ObjectType()
 export class AggregateMaintenance {
+  @Field(() => MaintenanceCountAggregate, { nullable: true })
+  _count?: MaintenanceCountAggregate;
 
-    @Field(() => MaintenanceCountAggregate, {nullable:true})
-    _count?: MaintenanceCountAggregate;
+  @Field(() => MaintenanceAvgAggregate, { nullable: true })
+  _avg?: MaintenanceAvgAggregate;
 
-    @Field(() => MaintenanceAvgAggregate, {nullable:true})
-    _avg?: MaintenanceAvgAggregate;
+  @Field(() => MaintenanceSumAggregate, { nullable: true })
+  _sum?: MaintenanceSumAggregate;
 
-    @Field(() => MaintenanceSumAggregate, {nullable:true})
-    _sum?: MaintenanceSumAggregate;
+  @Field(() => MaintenanceMinAggregate, { nullable: true })
+  _min?: MaintenanceMinAggregate;
 
-    @Field(() => MaintenanceMinAggregate, {nullable:true})
-    _min?: MaintenanceMinAggregate;
-
-    @Field(() => MaintenanceMaxAggregate, {nullable:true})
-    _max?: MaintenanceMaxAggregate;
+  @Field(() => MaintenanceMaxAggregate, { nullable: true })
+  _max?: MaintenanceMaxAggregate;
 }

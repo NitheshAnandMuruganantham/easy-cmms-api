@@ -6,12 +6,13 @@ import { MachinesCreateWithoutRoutine_maintanancesInput } from './machines-creat
 
 @InputType()
 export class MachinesCreateOrConnectWithoutRoutine_maintanancesInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesCreateWithoutRoutine_maintanancesInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutRoutine_maintanancesInput)
-    create!: MachinesCreateWithoutRoutine_maintanancesInput;
+  @Field(() => MachinesCreateWithoutRoutine_maintanancesInput, {
+    nullable: false,
+  })
+  @Type(() => MachinesCreateWithoutRoutine_maintanancesInput)
+  create!: MachinesCreateWithoutRoutine_maintanancesInput;
 }

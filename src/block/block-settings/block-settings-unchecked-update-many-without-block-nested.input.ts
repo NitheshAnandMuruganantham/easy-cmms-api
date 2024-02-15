@@ -12,48 +12,55 @@ import { block_settingsScalarWhereInput } from './block-settings-scalar-where.in
 
 @InputType()
 export class block_settingsUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [block_settingsCreateWithoutBlockInput], { nullable: true })
+  @Type(() => block_settingsCreateWithoutBlockInput)
+  create?: Array<block_settingsCreateWithoutBlockInput>;
 
-    @Field(() => [block_settingsCreateWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsCreateWithoutBlockInput)
-    create?: Array<block_settingsCreateWithoutBlockInput>;
+  @Field(() => [block_settingsCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => block_settingsCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<block_settingsCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [block_settingsCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<block_settingsCreateOrConnectWithoutBlockInput>;
+  @Field(() => [block_settingsUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => block_settingsUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<block_settingsUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [block_settingsUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<block_settingsUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => block_settingsCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => block_settingsCreateManyBlockInputEnvelope)
+  createMany?: block_settingsCreateManyBlockInputEnvelope;
 
-    @Field(() => block_settingsCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => block_settingsCreateManyBlockInputEnvelope)
-    createMany?: block_settingsCreateManyBlockInputEnvelope;
+  @Field(() => [block_settingsWhereUniqueInput], { nullable: true })
+  @Type(() => block_settingsWhereUniqueInput)
+  set?: Array<block_settingsWhereUniqueInput>;
 
-    @Field(() => [block_settingsWhereUniqueInput], {nullable:true})
-    @Type(() => block_settingsWhereUniqueInput)
-    set?: Array<block_settingsWhereUniqueInput>;
+  @Field(() => [block_settingsWhereUniqueInput], { nullable: true })
+  @Type(() => block_settingsWhereUniqueInput)
+  disconnect?: Array<block_settingsWhereUniqueInput>;
 
-    @Field(() => [block_settingsWhereUniqueInput], {nullable:true})
-    @Type(() => block_settingsWhereUniqueInput)
-    disconnect?: Array<block_settingsWhereUniqueInput>;
+  @Field(() => [block_settingsWhereUniqueInput], { nullable: true })
+  @Type(() => block_settingsWhereUniqueInput)
+  delete?: Array<block_settingsWhereUniqueInput>;
 
-    @Field(() => [block_settingsWhereUniqueInput], {nullable:true})
-    @Type(() => block_settingsWhereUniqueInput)
-    delete?: Array<block_settingsWhereUniqueInput>;
+  @Field(() => [block_settingsWhereUniqueInput], { nullable: true })
+  @Type(() => block_settingsWhereUniqueInput)
+  connect?: Array<block_settingsWhereUniqueInput>;
 
-    @Field(() => [block_settingsWhereUniqueInput], {nullable:true})
-    @Type(() => block_settingsWhereUniqueInput)
-    connect?: Array<block_settingsWhereUniqueInput>;
+  @Field(() => [block_settingsUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => block_settingsUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<block_settingsUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [block_settingsUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<block_settingsUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [block_settingsUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => block_settingsUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<block_settingsUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [block_settingsUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => block_settingsUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<block_settingsUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [block_settingsScalarWhereInput], {nullable:true})
-    @Type(() => block_settingsScalarWhereInput)
-    deleteMany?: Array<block_settingsScalarWhereInput>;
+  @Field(() => [block_settingsScalarWhereInput], { nullable: true })
+  @Type(() => block_settingsScalarWhereInput)
+  deleteMany?: Array<block_settingsScalarWhereInput>;
 }

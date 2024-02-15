@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteManyReplacementsArgs {
-
-    @Field(() => ReplacementsWhereInput, {nullable:true})
-    @Type(() => ReplacementsWhereInput)
-    where?: ReplacementsWhereInput;
+  @Field(() => ReplacementsWhereInput, { nullable: true })
+  @Type(() => ReplacementsWhereInput)
+  where?: ReplacementsWhereInput;
 }

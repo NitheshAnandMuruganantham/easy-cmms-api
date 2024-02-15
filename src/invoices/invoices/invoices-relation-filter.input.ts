@@ -4,10 +4,9 @@ import { InvoicesWhereInput } from './invoices-where.input';
 
 @InputType()
 export class InvoicesRelationFilter {
+  @Field(() => InvoicesWhereInput, { nullable: true })
+  is?: InvoicesWhereInput;
 
-    @Field(() => InvoicesWhereInput, {nullable:true})
-    is?: InvoicesWhereInput;
-
-    @Field(() => InvoicesWhereInput, {nullable:true})
-    isNot?: InvoicesWhereInput;
+  @Field(() => InvoicesWhereInput, { nullable: true })
+  isNot?: InvoicesWhereInput;
 }

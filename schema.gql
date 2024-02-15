@@ -164,8 +164,18 @@ type Users {
   extra_roles: [Role!]
   role_alias: String!
   block: Block!
-  maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
-  ticket(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, limit: Int, offset: Int): [Ticket!]
+  maintenance(
+    where: MaintenanceWhereInput
+    orderBy: MaintenanceOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Maintenance!]
+  ticket(
+    where: TicketWhereInput
+    orderBy: TicketOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Ticket!]
   routine_maintanances: [routine_maintanances!]
   _count: UsersCount!
 }
@@ -885,7 +895,12 @@ type Invoices {
   created_at: DateTime!
   updated_at: DateTime!
   block: Block!
-  invoice_items(where: invoice_itemsWhereInput, orderBy: invoice_itemsOrderByRelationAggregateInput, limit: Int, offset: Int): [invoice_items!]
+  invoice_items(
+    where: invoice_itemsWhereInput
+    orderBy: invoice_itemsOrderByRelationAggregateInput
+    limit: Int
+    offset: Int
+  ): [invoice_items!]
   _count: InvoicesCount!
 }
 
@@ -924,7 +939,12 @@ type Items {
   updated_at: DateTime!
   block_id: BigInt!
   catagory: catagory!
-  replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]
+  replacements(
+    where: ReplacementsWhereInput
+    orderBy: ReplacementsOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Replacements!]
   block: Block!
   invoice_items: [invoice_items!]
   _count: ItemsCount!
@@ -1045,7 +1065,12 @@ type machine_catagory {
   block_id: BigInt!
   created_at: DateTime!
   updated_at: DateTime!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, skip: Int, take: Int): [Machines!]
+  machines(
+    where: MachinesWhereInput
+    orderBy: MachinesOrderByWithRelationInput
+    skip: Int
+    take: Int
+  ): [Machines!]
   block: Block!
   _count: Machine_catagoryCount!
 }
@@ -1069,7 +1094,12 @@ type Machines {
   machine_catagory_id: BigInt!
   block: Block!
   section: Sections!
-  maintenance(where: MaintenanceWhereInput, orderBy: MaintenanceOrderByWithRelationInput, limit: Int, offset: Int): [Maintenance!]
+  maintenance(
+    where: MaintenanceWhereInput
+    orderBy: MaintenanceOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Maintenance!]
   Ticket: [Ticket!]
   machine_catagory: machine_catagory!
   routine_maintanances: [routine_maintanances!]
@@ -1093,7 +1123,12 @@ type Block {
   Mailings: [String!]
   created_at: DateTime!
   updated_at: DateTime!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithAggregationInput, limit: Int, offset: Int): [Machines!]
+  machines(
+    where: MachinesWhereInput
+    orderBy: MachinesOrderByWithAggregationInput
+    limit: Int
+    offset: Int
+  ): [Machines!]
   Users: [Users!]
   block_settings: [block_settings!]
   catagory: [catagory!]
@@ -1302,7 +1337,12 @@ type ItemCatagoryCount {
 type ItemCatagory {
   id: ID!
   name: String!
-  items(where: ItemsWhereInput, orderBy: ItemsOrderByWithAggregationInput, limit: Int, offset: Int): [Items!]
+  items(
+    where: ItemsWhereInput
+    orderBy: ItemsOrderByWithAggregationInput
+    limit: Int
+    offset: Int
+  ): [Items!]
   created_at: DateTime!
   updated_at: DateTime!
   _count: CatagoryCount!
@@ -1981,7 +2021,12 @@ type SectionCount {
 type Section {
   id: ID!
   name: String!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, skip: Int, take: Int): [Machines!]
+  machines(
+    where: MachinesWhereInput
+    orderBy: MachinesOrderByWithRelationInput
+    skip: Int
+    take: Int
+  ): [Machines!]
   created_at: DateTime!
   updated_at: DateTime!
   _count: SectionCount!
@@ -2031,42 +2076,162 @@ type InvoicesMaxAggregate {
 }
 
 type Query {
-  blocks(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): [Block!]!
-  blocksCount(limit: Int, offset: Int, where: BlockWhereInput, orderBy: BlockOrderByWithAggregationInput): Int!
+  blocks(
+    limit: Int
+    offset: Int
+    where: BlockWhereInput
+    orderBy: BlockOrderByWithAggregationInput
+  ): [Block!]!
+  blocksCount(
+    limit: Int
+    offset: Int
+    where: BlockWhereInput
+    orderBy: BlockOrderByWithAggregationInput
+  ): Int!
   block(id: Int!): Block!
-  itemCatagories(limit: Int, offset: Int, orderBy: ItemCatagoryOrderByWithAggregationInput, where: ItemCatagoryWhereInput): [ItemCatagory!]!
-  itemCatagoriesCount(limit: Int, offset: Int, orderBy: ItemCatagoryOrderByWithAggregationInput, where: ItemCatagoryWhereInput): Int!
+  itemCatagories(
+    limit: Int
+    offset: Int
+    orderBy: ItemCatagoryOrderByWithAggregationInput
+    where: ItemCatagoryWhereInput
+  ): [ItemCatagory!]!
+  itemCatagoriesCount(
+    limit: Int
+    offset: Int
+    orderBy: ItemCatagoryOrderByWithAggregationInput
+    where: ItemCatagoryWhereInput
+  ): Int!
   itemCatagory(id: Int!): ItemCatagory!
-  items(where: ItemsWhereInput, orderBy: ItemsOrderByWithRelationInput, limit: Int, offset: Int): [Items!]!
-  itemsCount(where: ItemsWhereInput, orderBy: ItemsOrderByWithRelationInput, limit: Int, offset: Int): Int!
+  items(
+    where: ItemsWhereInput
+    orderBy: ItemsOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Items!]!
+  itemsCount(
+    where: ItemsWhereInput
+    orderBy: ItemsOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): Int!
   item(id: Int!): Items!
-  machines(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, limit: Int, offset: Int): [Machines!]!
-  machinesCount(where: MachinesWhereInput, orderBy: MachinesOrderByWithRelationInput, limit: Int, offset: Int): Int!
+  machines(
+    where: MachinesWhereInput
+    orderBy: MachinesOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Machines!]!
+  machinesCount(
+    where: MachinesWhereInput
+    orderBy: MachinesOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): Int!
   machine(id: Int!): Machines!
-  maintenances(limit: Int, offset: Int, orderBy: MaintenanceOrderByWithRelationInput, where: MaintenanceWhereInput): [Maintenance!]!
-  maintenanceCount(limit: Int, offset: Int, orderBy: MaintenanceOrderByWithRelationInput, where: MaintenanceWhereInput): Int!
+  maintenances(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): [Maintenance!]!
+  maintenanceCount(
+    limit: Int
+    offset: Int
+    orderBy: MaintenanceOrderByWithRelationInput
+    where: MaintenanceWhereInput
+  ): Int!
   maintenance(id: Int!): Maintenance!
-  replacements(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): [Replacements!]!
-  replacementsCount(where: ReplacementsWhereInput, orderBy: ReplacementsOrderByWithRelationInput, limit: Int, offset: Int): Int!
+  replacements(
+    where: ReplacementsWhereInput
+    orderBy: ReplacementsOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Replacements!]!
+  replacementsCount(
+    where: ReplacementsWhereInput
+    orderBy: ReplacementsOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): Int!
   replacement(id: Int!): Replacements!
-  invoices(where: InvoicesWhereInput, orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, limit: Int, offset: Int): [Invoices!]!
-  invoiceCount(where: InvoicesWhereInput, orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput, limit: Int, offset: Int): Int!
+  invoices(
+    where: InvoicesWhereInput
+    orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput
+    limit: Int
+    offset: Int
+  ): [Invoices!]!
+  invoiceCount(
+    where: InvoicesWhereInput
+    orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput
+    limit: Int
+    offset: Int
+  ): Int!
   invoice(id: Int!): Invoices!
-  machineCatagories(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): [machine_catagory!]!
-  machineCatagoriesCount(where: machine_catagoryWhereInput, orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput, skip: Int, take: Int): Int!
+  machineCatagories(
+    where: machine_catagoryWhereInput
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput
+    skip: Int
+    take: Int
+  ): [machine_catagory!]!
+  machineCatagoriesCount(
+    where: machine_catagoryWhereInput
+    orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput
+    skip: Int
+    take: Int
+  ): Int!
   machineCategory(id: Int!): machine_catagory!
   report(id: Int!): Reports!
-  sections(where: SectionWhereInput, orderBy: SectionOrderByWithRelationInput, skip: Int, take: Int): [Section!]!
-  sectionsCount(where: SectionWhereInput, orderBy: SectionOrderByWithRelationInput, skip: Int, take: Int): Int!
+  sections(
+    where: SectionWhereInput
+    orderBy: SectionOrderByWithRelationInput
+    skip: Int
+    take: Int
+  ): [Section!]!
+  sectionsCount(
+    where: SectionWhereInput
+    orderBy: SectionOrderByWithRelationInput
+    skip: Int
+    take: Int
+  ): Int!
   section(id: Int!): Section!
-  users(where: UsersWhereInput, orderBy: UsersOrderByWithRelationInput, limit: Int, offset: Int): [Users!]!
-  usersCount(where: UsersWhereInput, orderBy: UsersOrderByWithRelationInput, limit: Int, offset: Int): Int!
+  users(
+    where: UsersWhereInput
+    orderBy: UsersOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): [Users!]!
+  usersCount(
+    where: UsersWhereInput
+    orderBy: UsersOrderByWithRelationInput
+    limit: Int
+    offset: Int
+  ): Int!
   user(id: Int!): Users!
-  ticketsCount(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, skip: Float, take: Float): Int!
-  tickets(where: TicketWhereInput, orderBy: TicketOrderByWithRelationInput, skip: Float, take: Float): [Ticket!]!
+  ticketsCount(
+    where: TicketWhereInput
+    orderBy: TicketOrderByWithRelationInput
+    skip: Float
+    take: Float
+  ): Int!
+  tickets(
+    where: TicketWhereInput
+    orderBy: TicketOrderByWithRelationInput
+    skip: Float
+    take: Float
+  ): [Ticket!]!
   ticket(id: Int!): Ticket!
-  routineMaintanances(limit: Int, offset: Int, where: routine_maintanancesWhereInput, orderBy: routine_maintanancesSumOrderByAggregateInput): [routine_maintanances!]!
-  routineMaintanancesCount(limit: Int, offset: Int, where: routine_maintanancesWhereInput, orderBy: routine_maintanancesSumOrderByAggregateInput): Int!
+  routineMaintanances(
+    limit: Int
+    offset: Int
+    where: routine_maintanancesWhereInput
+    orderBy: routine_maintanancesSumOrderByAggregateInput
+  ): [routine_maintanances!]!
+  routineMaintanancesCount(
+    limit: Int
+    offset: Int
+    where: routine_maintanancesWhereInput
+    orderBy: routine_maintanancesSumOrderByAggregateInput
+  ): Int!
   routineMaintanance(id: Int!): routine_maintanances!
 }
 
@@ -2327,8 +2492,13 @@ type Mutation {
   createBlock(createBlockInput: BlockCreateInput!): Block!
   updateBlock(id: Int!, updateBlockInput: BlockUpdateInput!): Block!
   removeBlock(id: Int!): Block!
-  createItemCatagory(createItemCatagoryInput: ItemCatagoryCreateInput!): ItemCatagory!
-  updateItemCatagory(id: Int!, updateItemCatagoryInput: ItemCatagoryUpdateInput!): ItemCatagory!
+  createItemCatagory(
+    createItemCatagoryInput: ItemCatagoryCreateInput!
+  ): ItemCatagory!
+  updateItemCatagory(
+    id: Int!
+    updateItemCatagoryInput: ItemCatagoryUpdateInput!
+  ): ItemCatagory!
   removeItemCatagory(id: Int!): ItemCatagory!
   createItem(createItemInput: ItemsCreateInput!): Items!
   updateItem(id: Int!, updateItemInput: ItemsUpdateInput!): Items!
@@ -2336,23 +2506,43 @@ type Mutation {
   createMachine(createMachineInput: MachinesCreateInput!): Machines!
   updateMachine(id: Int!, updateMachineInput: MachinesUpdateInput!): Machines!
   removeMachine(id: Int!): Machines!
-  createMaintanance(createMaintananceInput: MaintenanceCreateInput!): Maintenance!
-  updateMaintanance(id: Int!, updateMaintananceInput: MaintenanceUpdateInput!): Maintenance!
+  createMaintanance(
+    createMaintananceInput: MaintenanceCreateInput!
+  ): Maintenance!
+  updateMaintanance(
+    id: Int!
+    updateMaintananceInput: MaintenanceUpdateInput!
+  ): Maintenance!
   removeMaintanance(id: Int!): Maintenance!
-  createReplacement(createReplacementInput: ReplacementsCreateInput!): Replacements!
-  updateReplacement(id: Int!, updateReplacementInput: ReplacementsUpdateInput!): Replacements!
+  createReplacement(
+    createReplacementInput: ReplacementsCreateInput!
+  ): Replacements!
+  updateReplacement(
+    id: Int!
+    updateReplacementInput: ReplacementsUpdateInput!
+  ): Replacements!
   removeReplacement(id: Int!): Replacements!
   createInvoice(createInvoiceInput: InvoicesCreateInput!): Invoices!
   updateInvoices(id: Int!, updateInvoiceInput: InvoicesUpdateInput!): Invoices!
   removeInvoices(id: Int!): Invoices!
-  createMachineCategory(createCategoryInput: machine_catagoryCreateWithoutMachinesInput!): machine_catagory!
-  updateMachineCatagories(id: Int!, data: machine_catagoryUpdateOneWithoutMachinesNestedInput!): machine_catagory!
+  createMachineCategory(
+    createCategoryInput: machine_catagoryCreateWithoutMachinesInput!
+  ): machine_catagory!
+  updateMachineCatagories(
+    id: Int!
+    data: machine_catagoryUpdateOneWithoutMachinesNestedInput!
+  ): machine_catagory!
   removeMachineCatagories(id: Int!): machine_catagory!
   createReport(createReportInput: ReportsCreateInput!): Reports!
   updateReport(id: Int!, updateReportInput: ReportsUpdateInput!): Reports!
   removeReport(id: Int!): Reports!
-  createSection(createSectionInput: SectionCreateWithoutMachinesInput!): Section!
-  updateSection(id: Int!, updateSectionInput: SectionUpdateWithoutMachinesInput!): Section!
+  createSection(
+    createSectionInput: SectionCreateWithoutMachinesInput!
+  ): Section!
+  updateSection(
+    id: Int!
+    updateSectionInput: SectionUpdateWithoutMachinesInput!
+  ): Section!
   removeSection(id: Int!): Section!
   createUser(createUserInput: UsersCreateInput!): Users!
   updateUser(id: Int!, updateUserInput: UsersUpdateInput!): Users!
@@ -2360,8 +2550,13 @@ type Mutation {
   createTicket(createTicketInput: TicketCreateInput!): Ticket!
   updateTicket(id: Int!, updateTicketInput: TicketUpdateInput!): Ticket!
   removeTicket(id: Int!): Ticket!
-  createRoutineMaintanance(createRoutineMaintananceInput: routine_maintanancesCreateInput!): routine_maintanances!
-  updateRoutineMaintanance(id: Int!, updateRoutineMaintananceInput: routine_maintanancesUpdateInput!): routine_maintanances!
+  createRoutineMaintanance(
+    createRoutineMaintananceInput: routine_maintanancesCreateInput!
+  ): routine_maintanances!
+  updateRoutineMaintanance(
+    id: Int!
+    updateRoutineMaintananceInput: routine_maintanancesUpdateInput!
+  ): routine_maintanances!
   removeRoutineMaintanance(id: Int!): routine_maintanances!
 }
 

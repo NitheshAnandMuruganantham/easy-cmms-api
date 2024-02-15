@@ -7,16 +7,15 @@ import { ReportsCreateWithoutBlockInput } from './reports-create-without-block.i
 
 @InputType()
 export class ReportsUpsertWithWhereUniqueWithoutBlockInput {
+  @Field(() => ReportsWhereUniqueInput, { nullable: false })
+  @Type(() => ReportsWhereUniqueInput)
+  where!: ReportsWhereUniqueInput;
 
-    @Field(() => ReportsWhereUniqueInput, {nullable:false})
-    @Type(() => ReportsWhereUniqueInput)
-    where!: ReportsWhereUniqueInput;
+  @Field(() => ReportsUpdateWithoutBlockInput, { nullable: false })
+  @Type(() => ReportsUpdateWithoutBlockInput)
+  update!: ReportsUpdateWithoutBlockInput;
 
-    @Field(() => ReportsUpdateWithoutBlockInput, {nullable:false})
-    @Type(() => ReportsUpdateWithoutBlockInput)
-    update!: ReportsUpdateWithoutBlockInput;
-
-    @Field(() => ReportsCreateWithoutBlockInput, {nullable:false})
-    @Type(() => ReportsCreateWithoutBlockInput)
-    create!: ReportsCreateWithoutBlockInput;
+  @Field(() => ReportsCreateWithoutBlockInput, { nullable: false })
+  @Type(() => ReportsCreateWithoutBlockInput)
+  create!: ReportsCreateWithoutBlockInput;
 }

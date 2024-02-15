@@ -12,48 +12,55 @@ import { MaintenanceScalarWhereInput } from './maintenance-scalar-where.input';
 
 @InputType()
 export class MaintenanceUncheckedUpdateManyWithoutBlockNestedInput {
+  @Field(() => [MaintenanceCreateWithoutBlockInput], { nullable: true })
+  @Type(() => MaintenanceCreateWithoutBlockInput)
+  create?: Array<MaintenanceCreateWithoutBlockInput>;
 
-    @Field(() => [MaintenanceCreateWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceCreateWithoutBlockInput)
-    create?: Array<MaintenanceCreateWithoutBlockInput>;
+  @Field(() => [MaintenanceCreateOrConnectWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceCreateOrConnectWithoutBlockInput)
+  connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutBlockInput>;
 
-    @Field(() => [MaintenanceCreateOrConnectWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceCreateOrConnectWithoutBlockInput)
-    connectOrCreate?: Array<MaintenanceCreateOrConnectWithoutBlockInput>;
+  @Field(() => [MaintenanceUpsertWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpsertWithWhereUniqueWithoutBlockInput)
+  upsert?: Array<MaintenanceUpsertWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [MaintenanceUpsertWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceUpsertWithWhereUniqueWithoutBlockInput)
-    upsert?: Array<MaintenanceUpsertWithWhereUniqueWithoutBlockInput>;
+  @Field(() => MaintenanceCreateManyBlockInputEnvelope, { nullable: true })
+  @Type(() => MaintenanceCreateManyBlockInputEnvelope)
+  createMany?: MaintenanceCreateManyBlockInputEnvelope;
 
-    @Field(() => MaintenanceCreateManyBlockInputEnvelope, {nullable:true})
-    @Type(() => MaintenanceCreateManyBlockInputEnvelope)
-    createMany?: MaintenanceCreateManyBlockInputEnvelope;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  set?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    set?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  disconnect?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    disconnect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  delete?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    delete?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceWhereUniqueInput], { nullable: true })
+  @Type(() => MaintenanceWhereUniqueInput)
+  connect?: Array<MaintenanceWhereUniqueInput>;
 
-    @Field(() => [MaintenanceWhereUniqueInput], {nullable:true})
-    @Type(() => MaintenanceWhereUniqueInput)
-    connect?: Array<MaintenanceWhereUniqueInput>;
+  @Field(() => [MaintenanceUpdateWithWhereUniqueWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpdateWithWhereUniqueWithoutBlockInput)
+  update?: Array<MaintenanceUpdateWithWhereUniqueWithoutBlockInput>;
 
-    @Field(() => [MaintenanceUpdateWithWhereUniqueWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceUpdateWithWhereUniqueWithoutBlockInput)
-    update?: Array<MaintenanceUpdateWithWhereUniqueWithoutBlockInput>;
+  @Field(() => [MaintenanceUpdateManyWithWhereWithoutBlockInput], {
+    nullable: true,
+  })
+  @Type(() => MaintenanceUpdateManyWithWhereWithoutBlockInput)
+  updateMany?: Array<MaintenanceUpdateManyWithWhereWithoutBlockInput>;
 
-    @Field(() => [MaintenanceUpdateManyWithWhereWithoutBlockInput], {nullable:true})
-    @Type(() => MaintenanceUpdateManyWithWhereWithoutBlockInput)
-    updateMany?: Array<MaintenanceUpdateManyWithWhereWithoutBlockInput>;
-
-    @Field(() => [MaintenanceScalarWhereInput], {nullable:true})
-    @Type(() => MaintenanceScalarWhereInput)
-    deleteMany?: Array<MaintenanceScalarWhereInput>;
+  @Field(() => [MaintenanceScalarWhereInput], { nullable: true })
+  @Type(() => MaintenanceScalarWhereInput)
+  deleteMany?: Array<MaintenanceScalarWhereInput>;
 }

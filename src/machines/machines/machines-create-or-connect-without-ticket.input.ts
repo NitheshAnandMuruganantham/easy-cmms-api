@@ -6,12 +6,11 @@ import { MachinesCreateWithoutTicketInput } from './machines-create-without-tick
 
 @InputType()
 export class MachinesCreateOrConnectWithoutTicketInput {
+  @Field(() => MachinesWhereUniqueInput, { nullable: false })
+  @Type(() => MachinesWhereUniqueInput)
+  where!: MachinesWhereUniqueInput;
 
-    @Field(() => MachinesWhereUniqueInput, {nullable:false})
-    @Type(() => MachinesWhereUniqueInput)
-    where!: MachinesWhereUniqueInput;
-
-    @Field(() => MachinesCreateWithoutTicketInput, {nullable:false})
-    @Type(() => MachinesCreateWithoutTicketInput)
-    create!: MachinesCreateWithoutTicketInput;
+  @Field(() => MachinesCreateWithoutTicketInput, { nullable: false })
+  @Type(() => MachinesCreateWithoutTicketInput)
+  create!: MachinesCreateWithoutTicketInput;
 }

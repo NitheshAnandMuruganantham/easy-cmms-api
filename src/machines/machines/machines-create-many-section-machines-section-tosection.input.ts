@@ -6,28 +6,27 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class MachinesCreateManySection_machines_sectionTosectionInput {
+  @Field(() => GraphQLBigInt, { nullable: true })
+  id?: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:true})
-    id?: bigint | number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => GraphQLBigInt, { nullable: false })
+  block_id!: bigint | number;
 
-    @Field(() => GraphQLBigInt, {nullable:false})
-    block_id!: bigint | number;
+  @Field(() => String, { nullable: false })
+  label!: string;
 
-    @Field(() => String, {nullable:false})
-    label!: string;
+  @Field(() => GraphQLJSON, { nullable: true })
+  profile?: any;
 
-    @Field(() => GraphQLJSON, {nullable:true})
-    profile?: any;
+  @Field(() => Int, { nullable: false })
+  priority!: number;
 
-    @Field(() => Int, {nullable:false})
-    priority!: number;
+  @Field(() => Date, { nullable: true })
+  created_at?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    created_at?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updated_at?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updated_at?: Date | string;
 }

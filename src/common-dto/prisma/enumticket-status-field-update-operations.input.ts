@@ -4,7 +4,6 @@ import { ticket_status } from './ticket-status.enum';
 
 @InputType()
 export class Enumticket_statusFieldUpdateOperationsInput {
-
-    @Field(() => ticket_status, {nullable:true})
-    set?: keyof typeof ticket_status;
+  @Field(() => ticket_status, { nullable: true })
+  set?: keyof typeof ticket_status;
 }

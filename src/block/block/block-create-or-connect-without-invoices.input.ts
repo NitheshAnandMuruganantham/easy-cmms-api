@@ -6,12 +6,11 @@ import { BlockCreateWithoutInvoicesInput } from './block-create-without-invoices
 
 @InputType()
 export class BlockCreateOrConnectWithoutInvoicesInput {
+  @Field(() => BlockWhereUniqueInput, { nullable: false })
+  @Type(() => BlockWhereUniqueInput)
+  where!: BlockWhereUniqueInput;
 
-    @Field(() => BlockWhereUniqueInput, {nullable:false})
-    @Type(() => BlockWhereUniqueInput)
-    where!: BlockWhereUniqueInput;
-
-    @Field(() => BlockCreateWithoutInvoicesInput, {nullable:false})
-    @Type(() => BlockCreateWithoutInvoicesInput)
-    create!: BlockCreateWithoutInvoicesInput;
+  @Field(() => BlockCreateWithoutInvoicesInput, { nullable: false })
+  @Type(() => BlockCreateWithoutInvoicesInput)
+  create!: BlockCreateWithoutInvoicesInput;
 }

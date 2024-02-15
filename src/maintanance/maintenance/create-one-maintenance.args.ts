@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneMaintenanceArgs {
-
-    @Field(() => MaintenanceCreateInput, {nullable:false})
-    @Type(() => MaintenanceCreateInput)
-    data!: MaintenanceCreateInput;
+  @Field(() => MaintenanceCreateInput, { nullable: false })
+  @Type(() => MaintenanceCreateInput)
+  data!: MaintenanceCreateInput;
 }
