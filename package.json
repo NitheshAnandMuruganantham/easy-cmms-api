@@ -9,7 +9,6 @@
     "node": "18.x.x"
   },
   "scripts": {
-    "deploy": "npm install && npm run build && npm run start:dev",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -24,6 +23,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@apollo/server": "^4.10.0",
     "@casl/ability": "^6.5.0",
     "@casl/prisma": "^1.4.1",
     "@nestjs-modules/mailer": "^1.10.3",

@@ -17,12 +17,9 @@ spec:
     spec:
       containers:
         - name: easycmms-server
-          image: anand252825/server:latest
+          image: anand252825/server:9617c24a2a9d7d969de89840433c3b3297fae9ea
           ports:
-            - containerPort: 80
-          volumeMounts:
-            - mountPath: /temp
-              name: temp-volume
+            - containerPort: 8000
           env:
             - name: DATABASE_URL
               valueFrom:
