@@ -1,0 +1,183 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: easycmms-api-deployment
+  namespace: default
+  labels:
+    app: easycmms-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: easycmms-server
+  template:
+    metadata:
+      labels:
+        app: easycmms-server
+    spec:
+      containers:
+        - name: easycmms-server
+          image: anand252825/server:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /temp
+              name: temp-volume
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: DATABASE_URL
+                  optional: false
+            - name: DIRECT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: DIRECT_URL
+                  optional: false
+            - name: APP_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: APP_NAME
+                  optional: false
+
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: API_KEY
+                  optional: false
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: JWT_SECRET
+                  optional: false
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: TWILIO_ACCOUNT_SID
+                  optional: false
+            - name: TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: TWILIO_AUTH_TOKEN
+                  optional: false
+            - name: TWILIO_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: TWILIO_FROM
+                  optional: false
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: PORT
+                  optional: false
+            - name: API_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: API_ENDPOINT
+                  optional: false
+            - name: FRONTEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: FRONTEND_URL
+                  optional: false
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: REDIS_URL
+                  optional: false
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: AWS_ACCESS_KEY_ID
+                  optional: false
+            - name: AWS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: AWS_SECRET
+                  optional: false
+            - name: BILL_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: BILL_BUCKET_NAME
+                  optional: false
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SENTRY_DSN
+                  optional: true
+            - name: NODE_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: NODE_ENV
+                  optional: false
+            - name: RELEASE
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: RELEASE
+                  optional: true
+            - name: TZ
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: TZ
+                  optional: false
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_HOST
+                  optional: false
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_PORT
+                  optional: false
+            - name: SMTP_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_FROM
+                  optional: false
+            - name: SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_USERNAME
+                  optional: false
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_PASSWORD
+                  optional: false
+            - name: SMTP_FROM_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: easycmms-prod-secrets
+                  key: SMTP_FROM_NAME
+                  optional: false
+
+      imagePullSecrets:
+        - name: easycmms-github-container-registry
+      volumes:
+        - name: temp-volume
+          emptyDir: {}

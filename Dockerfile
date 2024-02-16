@@ -9,11 +9,11 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 
-RUN yarn install && yarn prisma generate
+RUN npm install && npm run prisma generate
 
 COPY --chown=node:node . .
 
-RUN yarn build
+RUN npm run build
 
 FROM node:18
 
