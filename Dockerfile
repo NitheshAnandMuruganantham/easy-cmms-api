@@ -13,7 +13,7 @@ RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 
-RUN yarn build
+RUN yarn start:prod
 
 FROM node:18
 
