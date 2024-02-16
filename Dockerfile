@@ -13,7 +13,7 @@ RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 
-RUN yarn start:prod
+RUN yarn build
 
 FROM node:18
 
@@ -29,4 +29,4 @@ COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 EXPOSE 8000
 
-CMD ["node", "dist/main.js"]
+CMD ["yarn", "start:prod"]
