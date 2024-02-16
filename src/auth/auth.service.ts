@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class AuthService {
         404,
       );
     }
-    const isPasswordValid = bcrypt.compareSync(user.password, password);
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
       throw new HttpException(
         {
