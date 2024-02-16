@@ -45,7 +45,8 @@ export class RoutineMaintanancesResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: routine_maintanancesWhereInput,
+    @Args('where', { nullable: true })
+    where: routine_maintanancesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: routine_maintanancesSumOrderByAggregateInput,
   ) {
@@ -64,7 +65,8 @@ export class RoutineMaintanancesResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: routine_maintanancesWhereInput,
+    @Args('where', { nullable: true })
+    where: routine_maintanancesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: routine_maintanancesSumOrderByAggregateInput,
   ) {

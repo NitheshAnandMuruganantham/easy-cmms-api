@@ -25,7 +25,8 @@ import {
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { subject } from '@casl/ability';
-
+import { v4 as uuid } from 'uuid';
+import { hashSync } from 'bcryptjs';
 @Injectable()
 export class UsersService {
   constructor(
@@ -38,15 +39,12 @@ export class UsersService {
       new UnauthorizedException("You don't have permission to create user");
     }
 
-    // const signUpResult = await Passwordless.signInUp({
-    //   phoneNumber: createUserInput.phone,
-    // });
-    // TODO
     try {
       return this.prisma.users.create({
         data: {
           ...createUserInput,
           user_auth_id: '',
+          password: hashSync(uuid(), 10),
           blockId: session.User.blockId,
         } as any,
       });

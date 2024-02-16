@@ -40,7 +40,7 @@ export class MachinesResolver {
   @Query(() => [Machines], { name: 'machines' })
   findAll(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -52,7 +52,7 @@ export class MachinesResolver {
   @Query(() => Int, { name: 'machinesCount' })
   count(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -90,7 +90,7 @@ export class MachinesResolver {
   maintenance(
     @Session() session: SessionContainer,
     @Parent() { id }: Machines,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { GraphQLJSON } from 'graphql-type-json';
-import { HideField } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Role } from '../../common-dto/prisma/role.enum';
 import { Block } from '../../block/block/block.model';
@@ -22,8 +21,8 @@ export class Users {
   @Field(() => String, { nullable: false })
   phone!: string;
 
-  @HideField()
-  user_auth_id!: string | null;
+  @Field(() => String, { nullable: false })
+  email!: string;
 
   @Field(() => String, { nullable: false })
   name!: string;

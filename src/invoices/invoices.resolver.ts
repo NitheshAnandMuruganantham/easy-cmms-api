@@ -39,7 +39,7 @@ export class InvoicesResolver {
   @Query(() => [Invoices], { name: 'invoices' })
   findAll(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: InvoicesWhereInput,
+    @Args('where', { nullable: true }) where: InvoicesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -51,7 +51,7 @@ export class InvoicesResolver {
   @Query(() => Int, { name: 'invoiceCount' })
   count(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: InvoicesWhereInput,
+    @Args('where', { nullable: true }) where: InvoicesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -89,7 +89,7 @@ export class InvoicesResolver {
   invoice_items(
     @Session() session: SessionContainer,
     @Parent() { id }: Invoices,
-    @Args('where', { nullable: true }) where: invoice_itemsWhereInput,
+    @Args('where', { nullable: true }) where: invoice_itemsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: invoice_itemsOrderByRelationAggregateInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

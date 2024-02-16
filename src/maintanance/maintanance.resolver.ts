@@ -45,7 +45,7 @@ export class MaintananceResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
   ) {
     return this.maintananceService.findAll(
       session,
@@ -64,7 +64,7 @@ export class MaintananceResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
   ) {
     return this.maintananceService.count(
       session,

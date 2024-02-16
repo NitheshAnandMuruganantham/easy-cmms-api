@@ -38,7 +38,7 @@ export class ReplacementsResolver {
   findAll(
     @Session()
     session: SessionContainer,
-    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReplacementsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -57,7 +57,7 @@ export class ReplacementsResolver {
   count(
     @Session()
     session: SessionContainer,
-    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReplacementsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

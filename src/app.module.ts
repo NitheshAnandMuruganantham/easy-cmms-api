@@ -80,20 +80,12 @@ import { InvoicesModule } from './invoices/invoices.module';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      debug: true,
       playground: true,
       introspection: true,
       cache: 'bounded',
       logger: getLogger(),
-      cors: {
-        credentials: false,
-        origin: true,
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-        allowedHeaders:
-          'Content-Type,Accept,Authorization,Access-Control-Allow-Origin',
-      },
-      autoSchemaFile: 'schema.gql',
-
+      sortSchema: true,
+      autoSchemaFile: true,
       context: (ctx) => ctx,
     }),
     BlockModule,

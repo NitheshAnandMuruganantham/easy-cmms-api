@@ -11,9 +11,9 @@ import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { accessibleBy } from '@casl/prisma';
 import { S3Service } from 'src/s3/s3.service';
-import { nanoid } from 'nanoid';
 import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class MaintenanceService {
@@ -33,7 +33,6 @@ export class MaintenanceService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Maintenance');
 
     const data: any = await this.prisma.maintenance.create({
-      // @ts-ignore
       data: {
         ...createMaintenanceInput,
         block: {
@@ -41,7 +40,7 @@ export class MaintenanceService {
             id: session.User.id,
           },
         },
-      },
+      } as any,
       include: {
         assignee: true,
         machines: {
@@ -218,7 +217,7 @@ export class MaintenanceService {
     if (updateMaintenanceInput?.photo?.set) {
       updateMaintenanceInput.photo.set = await this.s3Service.uploadBase64Image(
         updateMaintenanceInput.photo.set,
-        nanoid(10),
+        uuid(),
       );
     }
 
@@ -243,8 +242,7 @@ export class MaintenanceService {
 
     const updated = await this.prisma.maintenance.update({
       where: { id },
-      // @ts-ignore
-      data: updateMaintenanceInput,
+      data: updateMaintenanceInput as any,
     });
     return updated;
   }

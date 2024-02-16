@@ -43,7 +43,7 @@ export class BlockResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: BlockWhereInput,
+    @Args('where', { nullable: true }) where: BlockWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: BlockOrderByWithAggregationInput,
   ) {
@@ -56,7 +56,7 @@ export class BlockResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: BlockWhereInput,
+    @Args('where', { nullable: true }) where: BlockWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: BlockOrderByWithAggregationInput,
   ) {
@@ -96,7 +96,7 @@ export class BlockResolver {
     @Session()
     session: SessionContainer,
     @Parent() block: Block,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithAggregationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

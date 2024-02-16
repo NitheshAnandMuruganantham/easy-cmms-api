@@ -42,7 +42,7 @@ export class TicketResolver {
 
   @Query(() => Int, { name: 'ticketsCount' })
   count(
-    @Args('where', { nullable: true }) where: TicketWhereInput,
+    @Args('where', { nullable: true }) where: TicketWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: TicketOrderByWithRelationInput,
     @Args('skip', { nullable: true }) skip: number,
@@ -54,7 +54,7 @@ export class TicketResolver {
 
   @Query(() => [Ticket], { name: 'tickets' })
   findAll(
-    @Args('where', { nullable: true }) where: TicketWhereInput,
+    @Args('where', { nullable: true }) where: TicketWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: TicketOrderByWithRelationInput,
     @Args('skip', { nullable: true }) skip: number,

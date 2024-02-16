@@ -21,6 +21,9 @@ export class UsersCreateInput {
   @Field(() => String, { nullable: false })
   phone!: string;
 
+  @Field(() => String, { nullable: false })
+  email!: string;
+
   @HideField()
   user_auth_id?: string;
 

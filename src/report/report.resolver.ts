@@ -38,7 +38,7 @@ export class ReportResolver {
 
   @Query(() => [Reports], { name: 'report' })
   findAll(
-    @Args('where', { nullable: true }) where: ReportsWhereInput,
+    @Args('where', { nullable: true }) where: ReportsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReportsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

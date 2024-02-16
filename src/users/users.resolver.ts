@@ -42,7 +42,7 @@ export class UsersResolver {
 
   @Query(() => [Users], { name: 'users' })
   findAll(
-    @Args('where', { nullable: true }) where: UsersWhereInput,
+    @Args('where', { nullable: true }) where: UsersWhereInput = {},
     @Args('orderBy', { nullable: true }) orderBy: UsersOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
@@ -53,7 +53,7 @@ export class UsersResolver {
 
   @Query(() => Int, { name: 'usersCount' })
   count(
-    @Args('where', { nullable: true }) where: UsersWhereInput,
+    @Args('where', { nullable: true }) where: UsersWhereInput = {},
     @Args('orderBy', { nullable: true }) orderBy: UsersOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
@@ -92,7 +92,7 @@ export class UsersResolver {
   @ResolveField(() => [Maintenance])
   maintenance(
     @Parent() user: Users,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
     @Session() session: SessionContainer,
@@ -112,7 +112,7 @@ export class UsersResolver {
   @ResolveField(() => [Ticket])
   ticket(
     @Parent() user: Users,
-    @Args('where', { nullable: true }) where: TicketWhereInput,
+    @Args('where', { nullable: true }) where: TicketWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: TicketOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

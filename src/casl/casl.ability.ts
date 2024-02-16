@@ -18,7 +18,6 @@ import { PureAbility, AbilityBuilder, subject } from '@casl/ability';
 import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import { Redis } from 'ioredis';
 import { ForbiddenError } from 'apollo-server-core';
 import getPermission from './permisson';
 
@@ -45,27 +44,22 @@ type AppAbility = PureAbility<[action, subject], PrismaQuery>;
 
 @Injectable()
 export class CaslAbilityFactory {
-  redis: Redis;
   constructor(private readonly prisma: PrismaService) {}
   async getCurrentUserAbility(session) {
     if (!session?.userId) {
       throw new ForbiddenException('You are not a part of our system');
     }
     let user: Users = undefined;
-    const getCacheUser = await this.redis.get(`user_${session.userId}`);
-    if (getCacheUser) {
-      user = JSON.parse(getCacheUser);
-    } else {
-      user = await this.prisma.users.findUnique({
-        where: {
-          blockId_email: {
-            blockId: session.blockId,
-            email: session.email,
-          },
+
+    user = await this.prisma.users.findUnique({
+      where: {
+        blockId_email: {
+          blockId: session.blockId,
+          email: session.email,
         },
-      });
-      await this.redis.set(`user_${user.id}`, JSON.stringify(user));
-    }
+      },
+    });
+
     if (!user) {
       throw new ForbiddenError('user not exists in the organization');
     }

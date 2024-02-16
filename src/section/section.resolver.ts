@@ -46,7 +46,7 @@ export class SectionResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: SectionWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: SectionOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -60,7 +60,7 @@ export class SectionResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: SectionWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: SectionOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -104,7 +104,7 @@ export class SectionResolver {
     session: SessionContainer,
     @Parent() { id }: Section,
     @Args('where', { nullable: true })
-    where: MachinesWhereInput,
+    where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,

@@ -47,7 +47,7 @@ export class MachineCatagoriesResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: machine_catagoryWhereInput,
+    where: machine_catagoryWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -67,7 +67,7 @@ export class MachineCatagoriesResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: machine_catagoryWhereInput,
+    where: machine_catagoryWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -121,7 +121,7 @@ export class MachineCatagoriesResolver {
     session: SessionContainer,
     @Parent() { id }: Section,
     @Args('where', { nullable: true })
-    where: MachinesWhereInput,
+    where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,

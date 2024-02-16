@@ -1,6 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import { Redis } from 'ioredis';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import SessionContainer from './types/session';
@@ -13,7 +12,6 @@ import { CaslAbilityFactory } from './casl/casl.ability';
 import { ForbiddenError } from '@casl/ability';
 @Injectable()
 export class AppService implements OnModuleInit {
-  redis: Redis;
   constructor(
     private readonly prisma: PrismaService,
     private readonly scheduler: SchedulerRegistry,
@@ -96,7 +94,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
@@ -119,7 +117,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
@@ -187,7 +185,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
@@ -260,7 +258,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
 
@@ -298,7 +296,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'SUPERVISOR') {
       return this.prisma.ticket.findMany({

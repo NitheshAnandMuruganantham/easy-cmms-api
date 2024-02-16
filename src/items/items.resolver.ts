@@ -40,7 +40,7 @@ export class ItemsResolver {
   @Query(() => [Items], { name: 'items' })
   findAll(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: ItemsWhereInput,
+    @Args('where', { nullable: true }) where: ItemsWhereInput = {},
     @Args('orderBy', { nullable: true }) orderBy: ItemsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
@@ -51,7 +51,7 @@ export class ItemsResolver {
   @Query(() => Int, { name: 'itemsCount' })
   count(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: ItemsWhereInput,
+    @Args('where', { nullable: true }) where: ItemsWhereInput = {},
     @Args('orderBy', { nullable: true }) orderBy: ItemsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
@@ -93,7 +93,7 @@ export class ItemsResolver {
   replacements(
     @Session() session: SessionContainer,
     @Parent() { id }: Items,
-    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReplacementsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

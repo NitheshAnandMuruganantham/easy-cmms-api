@@ -50,7 +50,7 @@ export class ItemCatagoryResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: ItemCatagoryOrderByWithAggregationInput,
-    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput,
+    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput = {},
   ) {
     return this.itemCatagoryService.findAll(
       session,
@@ -69,7 +69,7 @@ export class ItemCatagoryResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: ItemCatagoryOrderByWithAggregationInput,
-    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput,
+    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput = {},
   ) {
     return this.itemCatagoryService.count(
       session,
@@ -118,7 +118,7 @@ export class ItemCatagoryResolver {
     @Session()
     session: SessionContainer,
     @Parent() { id }: ItemCatagory,
-    @Args('where', { nullable: true }) where: ItemsWhereInput,
+    @Args('where', { nullable: true }) where: ItemsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ItemsOrderByWithAggregationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
