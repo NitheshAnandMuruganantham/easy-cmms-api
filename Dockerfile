@@ -9,11 +9,11 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 
-RUN npm install && npm run prisma generate
+RUN yarn install && yarn prisma generate
 
 COPY --chown=node:node . .
 
-RUN npm run build
+RUN yarn build
 
 FROM node:18
 
@@ -29,4 +29,4 @@ COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
 
 EXPOSE 8000
 
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]
