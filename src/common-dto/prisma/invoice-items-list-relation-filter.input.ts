@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { invoice_itemsWhereInput } from '../../invoices/invoice-items/invoice-items-where.input';
+import { invoice_itemsWhereInput } from '../../invoices/dto/invoice-items/invoice-items-where.input';
 
 @InputType()
 export class Invoice_itemsListRelationFilter {

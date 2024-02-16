@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { routine_maintanancesCreateManyInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-create-many.input';
+import { routine_maintanancesCreateManyInput } from '../../routine-maintanances/dto/routine-maintanances-create-many.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

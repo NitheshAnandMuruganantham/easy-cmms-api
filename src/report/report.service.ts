@@ -8,7 +8,7 @@ import {
   ReportsOrderByWithRelationInput,
   ReportsUpdateInput,
   ReportsWhereInput,
-} from 'src/report/reports';
+} from 'src/report/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 
 interface SessionContainer {

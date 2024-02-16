@@ -2,10 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../../common-dto/prisma/sort-order.enum';
 import { HideField } from '@nestjs/graphql';
-import { catagoryOrderByWithRelationAndSearchRelevanceInput } from '../../common-dto/catagory/catagory-order-by-with-relation-and-search-relevance.input';
-import { ReplacementsOrderByRelationAggregateInput } from '../../replacements/replacements/replacements-order-by-relation-aggregate.input';
-import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../../block/block/block-order-by-with-relation-and-search-relevance.input';
-import { invoice_itemsOrderByRelationAggregateInput } from '../../invoices/invoice-items/invoice-items-order-by-relation-aggregate.input';
+import { catagoryOrderByWithRelationAndSearchRelevanceInput } from '../catagory/catagory-order-by-with-relation-and-search-relevance.input';
+import { ReplacementsOrderByRelationAggregateInput } from '../../replacements/dto/replacements-order-by-relation-aggregate.input';
+import { BlockOrderByWithRelationAndSearchRelevanceInput } from '../../block/dto/block/block-order-by-with-relation-and-search-relevance.input';
+import { invoice_itemsOrderByRelationAggregateInput } from '../../invoices/dto/invoice-items/invoice-items-order-by-relation-aggregate.input';
 import { ItemsOrderByRelevanceInput } from './items-order-by-relevance.input';
 
 @InputType()

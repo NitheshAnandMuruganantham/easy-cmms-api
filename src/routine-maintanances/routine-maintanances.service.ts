@@ -9,7 +9,7 @@ import {
   routine_maintanancesSumOrderByAggregateInput,
   routine_maintanancesUpdateInput,
   routine_maintanancesWhereInput,
-} from 'src/routine-maintanances/routine-maintanances';
+} from 'src/routine-maintanances/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { TwilioService } from 'nestjs-twilio';

@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machines_itemsCreateManyInput } from '../../machines/machines-items/machines-items-create-many.input';
+import { machines_itemsCreateManyInput } from '../../machines/dto/machines-items/machines-items-create-many.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

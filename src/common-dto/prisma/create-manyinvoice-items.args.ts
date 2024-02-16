@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsCreateManyInput } from '../../invoices/invoice-items/invoice-items-create-many.input';
+import { invoice_itemsCreateManyInput } from '../../invoices/dto/invoice-items/invoice-items-create-many.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

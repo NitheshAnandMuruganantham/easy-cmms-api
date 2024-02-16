@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { routine_maintanancesWhereInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-where.input';
+import { routine_maintanancesWhereInput } from '../../routine-maintanances/dto/routine-maintanances-where.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

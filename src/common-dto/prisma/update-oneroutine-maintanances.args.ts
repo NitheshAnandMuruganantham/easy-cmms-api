@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { routine_maintanancesUpdateInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-update.input';
+import { routine_maintanancesUpdateInput } from '../../routine-maintanances/dto/routine-maintanances-update.input';
 import { Type } from 'class-transformer';
-import { routine_maintanancesWhereUniqueInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-where-unique.input';
+import { routine_maintanancesWhereUniqueInput } from '../../routine-maintanances/dto/routine-maintanances-where-unique.input';
 
 @ArgsType()
 export class UpdateOneroutineMaintanancesArgs {

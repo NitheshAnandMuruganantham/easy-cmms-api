@@ -1,11 +1,11 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machines_itemsWhereInput } from '../../machines/machines-items/machines-items-where.input';
+import { machines_itemsWhereInput } from '../../machines/dto/machines-items/machines-items-where.input';
 import { Type } from 'class-transformer';
-import { machines_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../machines/machines-items/machines-items-order-by-with-relation-and-search-relevance.input';
-import { machines_itemsWhereUniqueInput } from '../../machines/machines-items/machines-items-where-unique.input';
+import { machines_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../machines/dto/machines-items/machines-items-order-by-with-relation-and-search-relevance.input';
+import { machines_itemsWhereUniqueInput } from '../../machines/dto/machines-items/machines-items-where-unique.input';
 import { Int } from '@nestjs/graphql';
-import { Machines_itemsScalarFieldEnum } from '../../machines/machines/machines-items-scalar-field.enum';
+import { Machines_itemsScalarFieldEnum } from '../../machines/dto/machines/machines-items-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstmachinesItemsOrThrowArgs {

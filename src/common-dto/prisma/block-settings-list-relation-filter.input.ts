@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { block_settingsWhereInput } from '../../block/block-settings/block-settings-where.input';
+import { block_settingsWhereInput } from '../../block/dto/block-settings/block-settings-where.input';
 
 @InputType()
 export class Block_settingsListRelationFilter {

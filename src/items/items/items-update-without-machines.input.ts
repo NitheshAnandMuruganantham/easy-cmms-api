@@ -6,8 +6,8 @@ import { IntFieldUpdateOperationsInput } from '../../common-dto/prisma/int-field
 import { FloatFieldUpdateOperationsInput } from '../../common-dto/prisma/float-field-update-operations.input';
 import { ItemsUpdatemachines_idInput } from './items-updatemachines-id.input';
 import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date-time-field-update-operations.input';
-import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../../common-dto/catagory/catagory-update-one-required-without-items-nested.input';
-import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/replacements/replacements-update-many-without-items-nested.input';
+import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
+import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/dto/replacements-update-many-without-items-nested.input';
 
 @InputType()
 export class ItemsUpdateWithoutMachinesInput {

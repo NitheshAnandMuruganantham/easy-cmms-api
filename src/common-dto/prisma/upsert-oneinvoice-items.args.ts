@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsWhereUniqueInput } from '../../invoices/invoice-items/invoice-items-where-unique.input';
+import { invoice_itemsWhereUniqueInput } from '../../invoices/dto/invoice-items/invoice-items-where-unique.input';
 import { Type } from 'class-transformer';
-import { invoice_itemsCreateInput } from '../../invoices/invoice-items/invoice-items-create.input';
-import { invoice_itemsUpdateInput } from '../../invoices/invoice-items/invoice-items-update.input';
+import { invoice_itemsCreateInput } from '../../invoices/dto/invoice-items/invoice-items-create.input';
+import { invoice_itemsUpdateInput } from '../../invoices/dto/invoice-items/invoice-items-update.input';
 
 @ArgsType()
 export class UpsertOneinvoiceItemsArgs {

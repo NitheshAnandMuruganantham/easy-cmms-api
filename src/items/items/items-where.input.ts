@@ -6,8 +6,8 @@ import { FloatFilter } from '../../common-dto/prisma/float-filter.input';
 import { DateTimeFilter } from '../../common-dto/prisma/date-time-filter.input';
 import { HideField } from '@nestjs/graphql';
 import { CatagoryRelationFilter } from '../../common-dto/prisma/catagory-relation-filter.input';
-import { ReplacementsListRelationFilter } from '../../replacements/replacements/replacements-list-relation-filter.input';
-import { BlockRelationFilter } from '../../block/block/block-relation-filter.input';
+import { ReplacementsListRelationFilter } from '../../replacements/dto/replacements-list-relation-filter.input';
+import { BlockRelationFilter } from '../../block/dto/block/block-relation-filter.input';
 import { Invoice_itemsListRelationFilter } from '../../common-dto/prisma/invoice-items-list-relation-filter.input';
 
 @InputType()

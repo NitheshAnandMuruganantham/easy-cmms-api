@@ -3,9 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
-import { catagoryCreateNestedOneWithoutItemsInput } from '../../common-dto/catagory/catagory-create-nested-one-without-items.input';
-import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/replacements/replacements-create-nested-many-without-items.input';
-import { BlockCreateNestedOneWithoutItemsInput } from '../../block/block/block-create-nested-one-without-items.input';
+import { catagoryCreateNestedOneWithoutItemsInput } from '../catagory/catagory-create-nested-one-without-items.input';
+import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/dto/replacements-create-nested-many-without-items.input';
+import { BlockCreateNestedOneWithoutItemsInput } from '../../block/dto/block/block-create-nested-one-without-items.input';
 import { HideField } from '@nestjs/graphql';
 
 @InputType()

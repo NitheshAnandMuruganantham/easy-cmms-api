@@ -12,13 +12,13 @@ import {
 import {
   ReplacementsOrderByWithRelationInput,
   ReplacementsWhereInput,
-} from 'src/replacements/replacements';
+} from 'src/replacements/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import {
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/machines/machines';
+} from 'src/machines/dto/machines';
 
 @Injectable()
 export class ItemsService {

@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Block_settingsCountAggregate } from './block-settings-count-aggregate.output';
-import { Block_settingsAvgAggregate } from '../../block/block/block-settings-avg-aggregate.output';
-import { Block_settingsSumAggregate } from '../../block/block/block-settings-sum-aggregate.output';
-import { Block_settingsMinAggregate } from '../../block/block/block-settings-min-aggregate.output';
-import { Block_settingsMaxAggregate } from '../../block/block/block-settings-max-aggregate.output';
+import { Block_settingsAvgAggregate } from '../../block/dto/block/block-settings-avg-aggregate.output';
+import { Block_settingsSumAggregate } from '../../block/dto/block/block-settings-sum-aggregate.output';
+import { Block_settingsMinAggregate } from '../../block/dto/block/block-settings-min-aggregate.output';
+import { Block_settingsMaxAggregate } from '../../block/dto/block/block-settings-max-aggregate.output';
 
 @ObjectType()
 export class AggregateBlock_settings {

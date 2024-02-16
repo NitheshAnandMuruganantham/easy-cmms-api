@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsWhereUniqueInput } from '../../invoices/invoice-items/invoice-items-where-unique.input';
+import { invoice_itemsWhereUniqueInput } from '../../invoices/dto/invoice-items/invoice-items-where-unique.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

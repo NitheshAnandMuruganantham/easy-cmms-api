@@ -7,15 +7,15 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Machines } from 'src/machines/machines';
+import { Machines } from 'src/machines/dto/machines';
 import {
   routine_maintanances,
   routine_maintanancesCreateInput,
   routine_maintanancesSumOrderByAggregateInput,
   routine_maintanancesUpdateInput,
   routine_maintanancesWhereInput,
-} from 'src/routine-maintanances/routine-maintanances';
-import { Users } from 'src/users/users';
+} from 'src/routine-maintanances/dto';
+import { Users } from 'src/users/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { RoutineMaintanancesService } from './routine-maintanances.service';

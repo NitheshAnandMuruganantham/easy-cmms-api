@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsUpdateManyMutationInput } from '../../invoices/invoice-items/invoice-items-update-many-mutation.input';
+import { invoice_itemsUpdateManyMutationInput } from '../../invoices/dto/invoice-items/invoice-items-update-many-mutation.input';
 import { Type } from 'class-transformer';
-import { invoice_itemsWhereInput } from '../../invoices/invoice-items/invoice-items-where.input';
+import { invoice_itemsWhereInput } from '../../invoices/dto/invoice-items/invoice-items-where.input';
 
 @ArgsType()
 export class UpdateManyinvoiceItemsArgs {

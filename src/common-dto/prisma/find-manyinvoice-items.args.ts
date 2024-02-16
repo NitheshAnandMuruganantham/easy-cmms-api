@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsWhereInput } from '../../invoices/invoice-items/invoice-items-where.input';
+import { invoice_itemsWhereInput } from '../../invoices/dto/invoice-items/invoice-items-where.input';
 import { Type } from 'class-transformer';
-import { invoice_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../invoices/invoice-items/invoice-items-order-by-with-relation-and-search-relevance.input';
-import { invoice_itemsWhereUniqueInput } from '../../invoices/invoice-items/invoice-items-where-unique.input';
+import { invoice_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../invoices/dto/invoice-items/invoice-items-order-by-with-relation-and-search-relevance.input';
+import { invoice_itemsWhereUniqueInput } from '../../invoices/dto/invoice-items/invoice-items-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { Invoice_itemsScalarFieldEnum } from './invoice-items-scalar-field.enum';
 

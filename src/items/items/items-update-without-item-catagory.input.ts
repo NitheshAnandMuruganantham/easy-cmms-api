@@ -4,7 +4,7 @@ import { BigIntFieldUpdateOperationsInput } from '../../common-dto/prisma/big-in
 import { StringFieldUpdateOperationsInput } from '../../common-dto/prisma/string-field-update-operations.input';
 import { IntFieldUpdateOperationsInput } from '../../common-dto/prisma/int-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../../common-dto/prisma/float-field-update-operations.input';
-import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/replacements/replacements-update-many-without-items-nested.input';
+import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/dto/replacements-update-many-without-items-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date-time-field-update-operations.input';
 
 @InputType()

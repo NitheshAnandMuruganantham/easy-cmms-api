@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { routine_maintanancesUpdateManyMutationInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-update-many-mutation.input';
+import { routine_maintanancesUpdateManyMutationInput } from '../../routine-maintanances/dto/routine-maintanances-update-many-mutation.input';
 import { Type } from 'class-transformer';
-import { routine_maintanancesWhereInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-where.input';
+import { routine_maintanancesWhereInput } from '../../routine-maintanances/dto/routine-maintanances-where.input';
 
 @ArgsType()
 export class UpdateManyroutineMaintanancesArgs {

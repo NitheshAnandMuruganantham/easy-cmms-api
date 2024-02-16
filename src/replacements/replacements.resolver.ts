@@ -14,8 +14,8 @@ import {
   ReplacementsOrderByWithRelationInput,
   ReplacementsUpdateInput,
   ReplacementsWhereInput,
-} from 'src/replacements/replacements';
-import { Maintenance } from 'src/maintanance/maintenance';
+} from 'src/replacements/dto';
+import { Maintenance } from 'src/maintanance/dto';
 import { ReplacementsService } from './replacements.service';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';

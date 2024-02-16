@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
-import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/replacements/replacements-create-nested-many-without-items.input';
+import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/dto/replacements-create-nested-many-without-items.input';
 
 @InputType()
 export class ItemsCreateWithoutItemCatagoryInput {

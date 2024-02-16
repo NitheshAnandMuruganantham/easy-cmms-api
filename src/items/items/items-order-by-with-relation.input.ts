@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../../common-dto/prisma/sort-order.enum';
-import { catagoryOrderByWithRelationInput } from '../../common-dto/catagory/catagory-order-by-with-relation.input';
-import { ReplacementsOrderByRelationAggregateInput } from '../../replacements/replacements/replacements-order-by-relation-aggregate.input';
+import { catagoryOrderByWithRelationInput } from '../catagory/catagory-order-by-with-relation.input';
+import { ReplacementsOrderByRelationAggregateInput } from '../../replacements/dto/replacements-order-by-relation-aggregate.input';
 
 @InputType()
 export class ItemsOrderByWithRelationInput {

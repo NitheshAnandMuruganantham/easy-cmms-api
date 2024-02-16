@@ -8,16 +8,16 @@ import {
   MachinesOrderByWithRelationInput,
   MachinesUpdateInput,
   MachinesWhereInput,
-} from 'src/machines/machines';
+} from 'src/machines/dto/machines';
 import {
   machines_itemsOrderByWithRelationAndSearchRelevanceInput,
   machines_itemsWhereInput,
-} from 'src/machines/machines-items';
+} from 'src/machines/dto/machines-items';
 
 import {
   MaintenanceWhereInput,
   MaintenanceOrderByWithRelationInput,
-} from 'src/maintanance/maintenance';
+} from 'src/maintanance/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 

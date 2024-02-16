@@ -4,7 +4,7 @@ import { GraphQLBigInt } from 'graphql-scalars';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
-import { ReplacementsUncheckedCreateNestedManyWithoutItemsInput } from '../../replacements/replacements/replacements-unchecked-create-nested-many-without-items.input';
+import { ReplacementsUncheckedCreateNestedManyWithoutItemsInput } from '../../replacements/dto/replacements-unchecked-create-nested-many-without-items.input';
 
 @InputType()
 export class ItemsUncheckedCreateWithoutMachines_itemsInput {

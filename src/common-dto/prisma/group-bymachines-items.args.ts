@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machines_itemsWhereInput } from '../../machines/machines-items/machines-items-where.input';
+import { machines_itemsWhereInput } from '../../machines/dto/machines-items/machines-items-where.input';
 import { Type } from 'class-transformer';
-import { machines_itemsOrderByWithAggregationInput } from '../../machines/machines-items/machines-items-order-by-with-aggregation.input';
-import { Machines_itemsScalarFieldEnum } from '../../machines/machines/machines-items-scalar-field.enum';
-import { machines_itemsScalarWhereWithAggregatesInput } from '../../machines/machines-items/machines-items-scalar-where-with-aggregates.input';
+import { machines_itemsOrderByWithAggregationInput } from '../../machines/dto/machines-items/machines-items-order-by-with-aggregation.input';
+import { Machines_itemsScalarFieldEnum } from '../../machines/dto/machines/machines-items-scalar-field.enum';
+import { machines_itemsScalarWhereWithAggregatesInput } from '../../machines/dto/machines-items/machines-items-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 
 @ArgsType()

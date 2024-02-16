@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { block_settingsCreateManyInput } from '../../block/block-settings/block-settings-create-many.input';
+import { block_settingsCreateManyInput } from '../../block/dto/block-settings/block-settings-create-many.input';
 import { Type } from 'class-transformer';
 
 @ArgsType()

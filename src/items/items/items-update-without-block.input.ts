@@ -4,9 +4,9 @@ import { BigIntFieldUpdateOperationsInput } from '../../common-dto/prisma/big-in
 import { StringFieldUpdateOperationsInput } from '../../common-dto/prisma/string-field-update-operations.input';
 import { FloatFieldUpdateOperationsInput } from '../../common-dto/prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date-time-field-update-operations.input';
-import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../../common-dto/catagory/catagory-update-one-required-without-items-nested.input';
-import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/replacements/replacements-update-many-without-items-nested.input';
-import { invoice_itemsUpdateManyWithoutItemNestedInput } from '../../invoices/invoice-items/invoice-items-update-many-without-item-nested.input';
+import { catagoryUpdateOneRequiredWithoutItemsNestedInput } from '../catagory/catagory-update-one-required-without-items-nested.input';
+import { ReplacementsUpdateManyWithoutItemsNestedInput } from '../../replacements/dto/replacements-update-many-without-items-nested.input';
+import { invoice_itemsUpdateManyWithoutItemNestedInput } from '../../invoices/dto/invoice-items/invoice-items-update-many-without-item-nested.input';
 
 @InputType()
 export class ItemsUpdateWithoutBlockInput {

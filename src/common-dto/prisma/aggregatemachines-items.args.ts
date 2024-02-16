@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machines_itemsWhereInput } from '../../machines/machines-items/machines-items-where.input';
+import { machines_itemsWhereInput } from '../../machines/dto/machines-items/machines-items-where.input';
 import { Type } from 'class-transformer';
-import { machines_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../machines/machines-items/machines-items-order-by-with-relation-and-search-relevance.input';
-import { machines_itemsWhereUniqueInput } from '../../machines/machines-items/machines-items-where-unique.input';
+import { machines_itemsOrderByWithRelationAndSearchRelevanceInput } from '../../machines/dto/machines-items/machines-items-order-by-with-relation-and-search-relevance.input';
+import { machines_itemsWhereUniqueInput } from '../../machines/dto/machines-items/machines-items-where-unique.input';
 import { Int } from '@nestjs/graphql';
 
 @ArgsType()

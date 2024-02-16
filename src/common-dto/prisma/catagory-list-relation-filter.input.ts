@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { catagoryWhereInput } from '../catagory/catagory-where.input';
+import { catagoryWhereInput } from '../../items/catagory/catagory-where.input';
 
 @InputType()
 export class CatagoryListRelationFilter {

@@ -14,12 +14,12 @@ import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceUpdateInput,
   MaintenanceWhereInput,
-} from 'src/maintanance/maintenance';
-import { Users } from 'src/users/users';
-import { Machines } from 'src/machines/machines';
-import { Replacements } from 'src/replacements/replacements';
-import { Reports } from 'src/report/reports';
-import { Ticket } from 'src/ticket/ticket';
+} from 'src/maintanance/dto';
+import { Users } from 'src/users/dto';
+import { Machines } from 'src/machines/dto/machines';
+import { Replacements } from 'src/replacements/dto';
+import { Reports } from 'src/report/dto';
+import { Ticket } from 'src/ticket/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 

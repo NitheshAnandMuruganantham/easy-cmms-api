@@ -13,7 +13,7 @@ import {
   InvoicesOrderByWithRelationAndSearchRelevanceInput,
   InvoicesUpdateInput,
   InvoicesWhereInput,
-} from 'src/invoices/invoices';
+} from 'src/invoices/dto/invoices';
 
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
@@ -22,7 +22,7 @@ import {
   invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
-} from 'src/invoices/invoice-items';
+} from 'src/invoices/dto/invoice-items';
 
 @Resolver(() => Invoices)
 export class InvoicesResolver {

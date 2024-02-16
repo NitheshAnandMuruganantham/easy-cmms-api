@@ -8,19 +8,19 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Block } from 'src/block/block';
+import { Block } from 'src/block/dto/block';
 import {
   Machines,
   MachinesCreateInput,
   MachinesOrderByWithRelationInput,
   MachinesUpdateInput,
   MachinesWhereInput,
-} from 'src/machines/machines';
+} from 'src/machines/dto/machines';
 import {
   Maintenance,
   MaintenanceWhereInput,
   MaintenanceOrderByWithRelationInput,
-} from 'src/maintanance/maintenance';
+} from 'src/maintanance/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachinesService } from './machines.service';

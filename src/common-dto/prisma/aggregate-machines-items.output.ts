@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
-import { Machines_itemsCountAggregate } from '../../machines/machines/machines-items-count-aggregate.output';
+import { Machines_itemsCountAggregate } from '../../machines/dto/machines/machines-items-count-aggregate.output';
 import { Machines_itemsAvgAggregate } from './machines-items-avg-aggregate.output';
 import { Machines_itemsSumAggregate } from './machines-items-sum-aggregate.output';
 import { Machines_itemsMinAggregate } from './machines-items-min-aggregate.output';

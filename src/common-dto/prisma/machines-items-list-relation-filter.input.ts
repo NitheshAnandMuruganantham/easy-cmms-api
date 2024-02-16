@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { machines_itemsWhereInput } from '../../machines/machines-items/machines-items-where.input';
+import { machines_itemsWhereInput } from '../../machines/dto/machines-items/machines-items-where.input';
 
 @InputType()
 export class Machines_itemsListRelationFilter {

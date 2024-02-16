@@ -3,10 +3,10 @@ import { ObjectType } from '@nestjs/graphql';
 import * as Scalars from 'graphql-scalars';
 import { Float } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
-import { catagory } from '../../common-dto/catagory/catagory.model';
-import { Replacements } from '../../replacements/replacements/replacements.model';
-import { Block } from '../../block/block/block.model';
-import { invoice_items } from '../../invoices/invoice-items/invoice-items.model';
+import { catagory } from '../catagory/catagory.model';
+import { Replacements } from '../../replacements/dto/replacements.model';
+import { Block } from '../../block/dto/block/block.model';
+import { invoice_items } from '../../invoices/dto/invoice-items/invoice-items.model';
 import { ItemsCount } from './items-count.output';
 
 @ObjectType()

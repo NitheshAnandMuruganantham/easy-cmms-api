@@ -8,7 +8,7 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { catagory } from 'src/common-dto/catagory';
+import { catagory } from 'src/items/catagory';
 import {
   Items,
   ItemsCreateInput,
@@ -20,7 +20,7 @@ import {
   Replacements,
   ReplacementsOrderByWithRelationInput,
   ReplacementsWhereInput,
-} from 'src/replacements/replacements';
+} from 'src/replacements/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { ItemsService } from './items.service';

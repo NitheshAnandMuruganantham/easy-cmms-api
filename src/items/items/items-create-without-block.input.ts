@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Float } from '@nestjs/graphql';
-import { catagoryCreateNestedOneWithoutItemsInput } from '../../common-dto/catagory/catagory-create-nested-one-without-items.input';
-import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/replacements/replacements-create-nested-many-without-items.input';
-import { invoice_itemsCreateNestedManyWithoutItemInput } from '../../invoices/invoice-items/invoice-items-create-nested-many-without-item.input';
+import { catagoryCreateNestedOneWithoutItemsInput } from '../catagory/catagory-create-nested-one-without-items.input';
+import { ReplacementsCreateNestedManyWithoutItemsInput } from '../../replacements/dto/replacements-create-nested-many-without-items.input';
+import { invoice_itemsCreateNestedManyWithoutItemInput } from '../../invoices/dto/invoice-items/invoice-items-create-nested-many-without-item.input';
 
 @InputType()
 export class ItemsCreateWithoutBlockInput {

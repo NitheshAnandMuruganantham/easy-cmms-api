@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machine_catagoryUpdateManyMutationInput } from '../../machine_catagory/machine-catagory/machine-catagory-update-many-mutation.input';
+import { machine_catagoryUpdateManyMutationInput } from '../../machine_catagory/dto/machine-catagory-update-many-mutation.input';
 import { Type } from 'class-transformer';
-import { machine_catagoryWhereInput } from '../../machine_catagory/machine-catagory/machine-catagory-where.input';
+import { machine_catagoryWhereInput } from '../../machine_catagory/dto/machine-catagory-where.input';
 
 @ArgsType()
 export class UpdateManymachineCatagoryArgs {

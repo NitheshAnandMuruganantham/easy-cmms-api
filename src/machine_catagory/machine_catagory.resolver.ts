@@ -12,8 +12,8 @@ import {
   Machines,
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/machines/machines';
-import { Section } from 'src/section/section';
+} from 'src/machines/dto/machines';
+import { Section } from 'src/section/dto/section';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachineCatagoriesService } from './machine_catagory.service';
@@ -23,7 +23,7 @@ import {
   machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
   machine_catagoryUpdateOneWithoutMachinesNestedInput,
   machine_catagoryWhereInput,
-} from 'src/machine_catagory/machine-catagory';
+} from 'src/machine_catagory/dto';
 import { Machine_catagoryCount } from 'src/common-dto/prisma';
 
 @Resolver(() => machine_catagory)

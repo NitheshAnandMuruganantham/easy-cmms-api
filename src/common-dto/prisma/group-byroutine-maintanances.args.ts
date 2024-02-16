@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { routine_maintanancesWhereInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-where.input';
+import { routine_maintanancesWhereInput } from '../../routine-maintanances/dto/routine-maintanances-where.input';
 import { Type } from 'class-transformer';
-import { routine_maintanancesOrderByWithAggregationInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-order-by-with-aggregation.input';
+import { routine_maintanancesOrderByWithAggregationInput } from '../../routine-maintanances/dto/routine-maintanances-order-by-with-aggregation.input';
 import { Routine_maintanancesScalarFieldEnum } from './routine-maintanances-scalar-field.enum';
-import { routine_maintanancesScalarWhereWithAggregatesInput } from '../../routine-maintanances/routine-maintanances/routine-maintanances-scalar-where-with-aggregates.input';
+import { routine_maintanancesScalarWhereWithAggregatesInput } from '../../routine-maintanances/dto/routine-maintanances-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 
 @ArgsType()

@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { GraphQLBigInt } from 'graphql-scalars';
 import { Float } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
-import { invoice_itemsUncheckedCreateNestedManyWithoutItemInput } from '../../invoices/invoice-items/invoice-items-unchecked-create-nested-many-without-item.input';
+import { invoice_itemsUncheckedCreateNestedManyWithoutItemInput } from '../../invoices/dto/invoice-items/invoice-items-unchecked-create-nested-many-without-item.input';
 
 @InputType()
 export class ItemsUncheckedCreateWithoutReplacementsInput {

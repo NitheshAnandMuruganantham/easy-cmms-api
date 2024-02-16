@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { block_settingsWhereInput } from '../../block/block-settings/block-settings-where.input';
+import { block_settingsWhereInput } from '../../block/dto/block-settings/block-settings-where.input';
 import { Type } from 'class-transformer';
-import { block_settingsOrderByWithAggregationInput } from '../../block/block-settings/block-settings-order-by-with-aggregation.input';
+import { block_settingsOrderByWithAggregationInput } from '../../block/dto/block-settings/block-settings-order-by-with-aggregation.input';
 import { Block_settingsScalarFieldEnum } from './block-settings-scalar-field.enum';
-import { block_settingsScalarWhereWithAggregatesInput } from '../../block/block-settings/block-settings-scalar-where-with-aggregates.input';
+import { block_settingsScalarWhereWithAggregatesInput } from '../../block/dto/block-settings/block-settings-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 
 @ArgsType()

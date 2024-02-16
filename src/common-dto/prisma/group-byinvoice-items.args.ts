@@ -1,10 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { invoice_itemsWhereInput } from '../../invoices/invoice-items/invoice-items-where.input';
+import { invoice_itemsWhereInput } from '../../invoices/dto/invoice-items/invoice-items-where.input';
 import { Type } from 'class-transformer';
-import { invoice_itemsOrderByWithAggregationInput } from '../../invoices/invoice-items/invoice-items-order-by-with-aggregation.input';
+import { invoice_itemsOrderByWithAggregationInput } from '../../invoices/dto/invoice-items/invoice-items-order-by-with-aggregation.input';
 import { Invoice_itemsScalarFieldEnum } from './invoice-items-scalar-field.enum';
-import { invoice_itemsScalarWhereWithAggregatesInput } from '../../invoices/invoice-items/invoice-items-scalar-where-with-aggregates.input';
+import { invoice_itemsScalarWhereWithAggregatesInput } from '../../invoices/dto/invoice-items/invoice-items-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 
 @ArgsType()

@@ -9,19 +9,19 @@ import { accessibleBy } from '@casl/prisma';
 import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceWhereInput,
-} from 'src/maintanance/maintenance';
+} from 'src/maintanance/dto';
 
 import {
   TicketOrderByWithRelationInput,
   TicketWhereInput,
-} from 'src/ticket/ticket';
+} from 'src/ticket/dto';
 
 import {
   UsersCreateInput,
   UsersOrderByWithRelationInput,
   UsersUpdateInput,
   UsersWhereInput,
-} from 'src/users/users';
+} from 'src/users/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { subject } from '@casl/ability';

@@ -15,7 +15,7 @@ import {
   ItemCatagoryOrderByWithAggregationInput,
   ItemCatagoryUpdateInput,
   ItemCatagoryWhereInput,
-} from 'src/item-catagory/item-catagory';
+} from 'src/item-catagory/dto';
 
 import {
   Items,

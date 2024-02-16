@@ -5,8 +5,8 @@ import { StringFieldUpdateOperationsInput } from '../../common-dto/prisma/string
 import { FloatFieldUpdateOperationsInput } from '../../common-dto/prisma/float-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date-time-field-update-operations.input';
 import { HideField } from '@nestjs/graphql';
-import { ReplacementsUncheckedUpdateManyWithoutItemsNestedInput } from '../../replacements/replacements/replacements-unchecked-update-many-without-items-nested.input';
-import { invoice_itemsUncheckedUpdateManyWithoutItemNestedInput } from '../../invoices/invoice-items/invoice-items-unchecked-update-many-without-item-nested.input';
+import { ReplacementsUncheckedUpdateManyWithoutItemsNestedInput } from '../../replacements/dto/replacements-unchecked-update-many-without-items-nested.input';
+import { invoice_itemsUncheckedUpdateManyWithoutItemNestedInput } from '../../invoices/dto/invoice-items/invoice-items-unchecked-update-many-without-item-nested.input';
 
 @InputType()
 export class ItemsUncheckedUpdateWithoutCatagoryInput {

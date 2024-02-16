@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { machines_itemsWhereUniqueInput } from '../../machines/machines-items/machines-items-where-unique.input';
+import { machines_itemsWhereUniqueInput } from '../../machines/dto/machines-items/machines-items-where-unique.input';
 import { Type } from 'class-transformer';
-import { machines_itemsCreateInput } from '../../machines/machines-items/machines-items-create.input';
-import { machines_itemsUpdateInput } from '../../machines/machines-items/machines-items-update.input';
+import { machines_itemsCreateInput } from '../../machines/dto/machines-items/machines-items-create.input';
+import { machines_itemsUpdateInput } from '../../machines/dto/machines-items/machines-items-update.input';
 
 @ArgsType()
 export class UpsertOnemachinesItemsArgs {

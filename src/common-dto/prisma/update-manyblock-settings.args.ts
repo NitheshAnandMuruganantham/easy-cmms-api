@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { block_settingsUpdateManyMutationInput } from '../../block/block-settings/block-settings-update-many-mutation.input';
+import { block_settingsUpdateManyMutationInput } from '../../block/dto/block-settings/block-settings-update-many-mutation.input';
 import { Type } from 'class-transformer';
-import { block_settingsWhereInput } from '../../block/block-settings/block-settings-where.input';
+import { block_settingsWhereInput } from '../../block/dto/block-settings/block-settings-where.input';
 
 @ArgsType()
 export class UpdateManyblockSettingsArgs {
