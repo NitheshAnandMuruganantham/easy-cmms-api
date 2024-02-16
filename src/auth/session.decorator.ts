@@ -1,10 +1,9 @@
 import { createParamDecorator } from '@nestjs/common';
-import { SessionRequest } from 'supertokens-node/framework/express';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { PrismaClient, Users } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 export const Session = createParamDecorator(
   async (data: unknown, context: any) => {
-    let request: SessionRequest = undefined;
+    let request = undefined;
     if (context.getType() === 'graphql') {
       const ctx = GqlExecutionContext.create(context);
       request = ctx.getContext<any>().req;
@@ -13,10 +12,16 @@ export const Session = createParamDecorator(
     }
     const user = await new PrismaClient().users.findUnique({
       where: {
-        user_auth_id: request.session.getUserId(),
+        blockId_email: {
+          blockId: request?.user?.blockId,
+          email: request?.user?.email,
+        },
       },
     });
 
-    return { Session: request?.session, User: user };
+    return {
+      User: user,
+      Session: request?.user,
+    };
   },
 );

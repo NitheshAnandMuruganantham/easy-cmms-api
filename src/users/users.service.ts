@@ -4,29 +4,29 @@ import {
   UnauthorizedException,
   BadRequestException,
 } from '@nestjs/common/exceptions';
-import Passwordless from 'supertokens-node/recipe/passwordless';
 import { accessibleBy } from '@casl/prisma';
 
 import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceWhereInput,
-} from 'src/@generated/maintenance';
+} from 'src/maintanance/dto';
 
 import {
   TicketOrderByWithRelationInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
+} from 'src/ticket/dto';
 
 import {
   UsersCreateInput,
   UsersOrderByWithRelationInput,
   UsersUpdateInput,
   UsersWhereInput,
-} from 'src/@generated/users';
+} from 'src/users/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { subject } from '@casl/ability';
-
+import { v4 as uuid } from 'uuid';
+import { hashSync } from 'bcryptjs';
 @Injectable()
 export class UsersService {
   constructor(
@@ -39,15 +39,12 @@ export class UsersService {
       new UnauthorizedException("You don't have permission to create user");
     }
 
-    const signUpResult = await Passwordless.signInUp({
-      phoneNumber: createUserInput.phone,
-    });
-
     try {
       return this.prisma.users.create({
         data: {
           ...createUserInput,
-          user_auth_id: signUpResult.user.id,
+          user_auth_id: '',
+          password: hashSync(uuid(), 10),
           blockId: session.User.blockId,
         } as any,
       });

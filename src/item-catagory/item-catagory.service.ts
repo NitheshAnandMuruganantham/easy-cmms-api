@@ -7,11 +7,11 @@ import {
   ItemCatagoryOrderByWithAggregationInput,
   ItemCatagoryUpdateInput,
   ItemCatagoryWhereInput,
-} from 'src/@generated/item-catagory';
+} from 'src/item-catagory/dto';
 import {
   ItemsOrderByWithAggregationInput,
   ItemsWhereInput,
-} from 'src/@generated/items';
+} from 'src/items/items';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 

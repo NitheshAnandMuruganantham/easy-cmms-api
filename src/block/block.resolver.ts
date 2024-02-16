@@ -15,13 +15,12 @@ import {
   Block,
   BlockWhereInput,
   BlockCount,
-} from 'src/@generated/block';
+} from 'src/block/dto/block';
 import {
   Machines,
   MachinesOrderByWithAggregationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/machines/dto/machines';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { BlockService } from './block.service';
@@ -44,7 +43,7 @@ export class BlockResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: BlockWhereInput,
+    @Args('where', { nullable: true }) where: BlockWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: BlockOrderByWithAggregationInput,
   ) {
@@ -57,7 +56,7 @@ export class BlockResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: BlockWhereInput,
+    @Args('where', { nullable: true }) where: BlockWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: BlockOrderByWithAggregationInput,
   ) {
@@ -97,7 +96,7 @@ export class BlockResolver {
     @Session()
     session: SessionContainer,
     @Parent() block: Block,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithAggregationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

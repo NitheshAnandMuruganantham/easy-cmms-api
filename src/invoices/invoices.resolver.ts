@@ -1,4 +1,3 @@
-import { UseGuards } from '@nestjs/common/decorators';
 import {
   Resolver,
   Query,
@@ -14,9 +13,8 @@ import {
   InvoicesOrderByWithRelationAndSearchRelevanceInput,
   InvoicesUpdateInput,
   InvoicesWhereInput,
-} from 'src/@generated/invoices';
+} from 'src/invoices/dto/invoices';
 
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { InvoicesService } from './invoices.service';
@@ -24,7 +22,7 @@ import {
   invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
-} from 'src/@generated/invoice-items';
+} from 'src/invoices/dto/invoice-items';
 
 @Resolver(() => Invoices)
 export class InvoicesResolver {
@@ -41,7 +39,7 @@ export class InvoicesResolver {
   @Query(() => [Invoices], { name: 'invoices' })
   findAll(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: InvoicesWhereInput,
+    @Args('where', { nullable: true }) where: InvoicesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -53,7 +51,7 @@ export class InvoicesResolver {
   @Query(() => Int, { name: 'invoiceCount' })
   count(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: InvoicesWhereInput,
+    @Args('where', { nullable: true }) where: InvoicesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: InvoicesOrderByWithRelationAndSearchRelevanceInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -91,7 +89,7 @@ export class InvoicesResolver {
   invoice_items(
     @Session() session: SessionContainer,
     @Parent() { id }: Invoices,
-    @Args('where', { nullable: true }) where: invoice_itemsWhereInput,
+    @Args('where', { nullable: true }) where: invoice_itemsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: invoice_itemsOrderByRelationAggregateInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

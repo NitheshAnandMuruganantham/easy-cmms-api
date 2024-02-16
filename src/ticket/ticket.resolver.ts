@@ -14,14 +14,12 @@ import {
   TicketOrderByWithRelationInput,
   TicketUpdateInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
-import { Users } from 'src/@generated/users';
-import { Maintenance } from 'src/@generated/maintenance';
-import { Machines } from 'src/@generated/machines';
+} from 'src/ticket/dto';
+import { Users } from 'src/users/dto';
+import { Maintenance } from 'src/maintanance/dto';
+import { Machines } from 'src/machines/dto/machines';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Ticket)
 export class TicketResolver {
@@ -44,7 +42,7 @@ export class TicketResolver {
 
   @Query(() => Int, { name: 'ticketsCount' })
   count(
-    @Args('where', { nullable: true }) where: TicketWhereInput,
+    @Args('where', { nullable: true }) where: TicketWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: TicketOrderByWithRelationInput,
     @Args('skip', { nullable: true }) skip: number,
@@ -56,7 +54,7 @@ export class TicketResolver {
 
   @Query(() => [Ticket], { name: 'tickets' })
   findAll(
-    @Args('where', { nullable: true }) where: TicketWhereInput,
+    @Args('where', { nullable: true }) where: TicketWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: TicketOrderByWithRelationInput,
     @Args('skip', { nullable: true }) skip: number,

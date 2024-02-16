@@ -14,14 +14,12 @@ import {
   MaintenanceOrderByWithRelationInput,
   MaintenanceUpdateInput,
   MaintenanceWhereInput,
-} from 'src/@generated/maintenance';
-import { Users } from 'src/@generated/users';
-import { Machines } from 'src/@generated/machines';
-import { Replacements } from 'src/@generated/replacements';
-import { Reports } from 'src/@generated/reports';
-import { Ticket } from 'src/@generated/ticket';
-import { UseGuards } from '@nestjs/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/maintanance/dto';
+import { Users } from 'src/users/dto';
+import { Machines } from 'src/machines/dto/machines';
+import { Replacements } from 'src/replacements/dto';
+import { Reports } from 'src/report/dto';
+import { Ticket } from 'src/ticket/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 
@@ -47,7 +45,7 @@ export class MaintananceResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
   ) {
     return this.maintananceService.findAll(
       session,
@@ -66,7 +64,7 @@ export class MaintananceResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
   ) {
     return this.maintananceService.count(
       session,

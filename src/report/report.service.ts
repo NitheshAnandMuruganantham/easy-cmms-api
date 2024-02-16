@@ -8,9 +8,13 @@ import {
   ReportsOrderByWithRelationInput,
   ReportsUpdateInput,
   ReportsWhereInput,
-} from 'src/@generated/reports';
+} from 'src/report/dto';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+
+interface SessionContainer {
+  userId: number;
+  userRole: string;
+}
 
 @Injectable()
 export class ReportService {

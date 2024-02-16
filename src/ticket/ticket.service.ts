@@ -4,8 +4,8 @@ import {
   TicketOrderByWithRelationInput,
   TicketUpdateInput,
   TicketWhereInput,
-} from 'src/@generated/ticket';
-import { nanoid } from 'nanoid';
+} from 'src/ticket/dto';
+import { v4 as uuid } from 'uuid';
 import { PrismaService } from 'nestjs-prisma';
 import SessionContainer from '../types/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
@@ -30,10 +30,9 @@ export class TicketService {
     ForbiddenError.from(ability).throwUnlessCan('create', 'Ticket');
     const photo = await this.s3Service.uploadBase64Image(
       createTicketInput.photos,
-      `${nanoid(10)}`,
+      `${uuid()}`,
     );
     const data = await this.prisma.ticket.create({
-      // @ts-ignore
       data: {
         ...createTicketInput,
         block: {
@@ -42,7 +41,7 @@ export class TicketService {
           },
         },
         photos: photo,
-      },
+      } as any,
     });
 
     return data;
@@ -158,8 +157,7 @@ export class TicketService {
 
     return this.prisma.ticket.update({
       where: { id },
-      // @ts-ignore
-      data: updateTicketInput,
+      data: updateTicketInput as any,
       include: {
         machines: {
           include: {
@@ -199,6 +197,7 @@ export class TicketService {
   }
 
   async user(session: SessionContainer, id: bigint) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const ability = await this.caslFactory.getCurrentUserAbility(
       session.Session,
     );

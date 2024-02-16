@@ -7,15 +7,15 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Machines } from 'src/@generated/machines';
+import { Machines } from 'src/machines/dto/machines';
 import {
   routine_maintanances,
   routine_maintanancesCreateInput,
   routine_maintanancesSumOrderByAggregateInput,
   routine_maintanancesUpdateInput,
   routine_maintanancesWhereInput,
-} from 'src/@generated/routine-maintanances';
-import { Users } from 'src/@generated/users';
+} from 'src/routine-maintanances/dto';
+import { Users } from 'src/users/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { RoutineMaintanancesService } from './routine-maintanances.service';
@@ -45,7 +45,8 @@ export class RoutineMaintanancesResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: routine_maintanancesWhereInput,
+    @Args('where', { nullable: true })
+    where: routine_maintanancesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: routine_maintanancesSumOrderByAggregateInput,
   ) {
@@ -64,7 +65,8 @@ export class RoutineMaintanancesResolver {
     session: SessionContainer,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
-    @Args('where', { nullable: true }) where: routine_maintanancesWhereInput,
+    @Args('where', { nullable: true })
+    where: routine_maintanancesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: routine_maintanancesSumOrderByAggregateInput,
   ) {

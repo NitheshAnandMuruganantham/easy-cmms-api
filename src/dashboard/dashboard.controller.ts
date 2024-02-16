@@ -1,16 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
-import { Param, UseGuards } from '@nestjs/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { Param } from '@nestjs/common/decorators';
 import SessionContainer from '../types/session';
 import { DashboardService } from './dashboard.service';
 import { Session } from '../auth/session.decorator';
 @Controller('dashboard')
-@UseGuards(new AuthGuard())
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
   @Get('lastFiveDayTickets')
-  getLastFiveDayTickets() {
-    return this.dashboardService.getLastFiveDayTickets();
+  getLastFiveDayTickets(
+    @Session()
+    session: SessionContainer,
+  ) {
+    return this.dashboardService.getLastFiveDayTickets(session.User.blockId);
   }
   @Get('MobileDashboard')
   getMobileDashboard(

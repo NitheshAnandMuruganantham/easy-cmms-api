@@ -1,12 +1,10 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { RedisService } from '@liaoliaots/nestjs-redis';
 import { PrismaService } from 'nestjs-prisma';
-import { Redis } from 'ioredis';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import SessionContainer from './types/session';
 import { accessibleBy } from '@casl/prisma';
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 import { S3Service } from 'src/s3/s3.service';
 import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
@@ -14,18 +12,14 @@ import { CaslAbilityFactory } from './casl/casl.ability';
 import { ForbiddenError } from '@casl/ability';
 @Injectable()
 export class AppService implements OnModuleInit {
-  redis: Redis;
   constructor(
     private readonly prisma: PrismaService,
     private readonly scheduler: SchedulerRegistry,
-    private readonly redisService: RedisService,
     private readonly s3Service: S3Service,
     private readonly twilio: TwilioService,
     private readonly casl: CaslAbilityFactory,
     private readonly config: ConfigService,
-  ) {
-    this.redis = this.redisService.getClient();
-  }
+  ) {}
   onModuleInit() {
     console.log('bootstrapping..................');
     Promise.all([this.getCrons()]);
@@ -100,7 +94,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
     ForbiddenError.from(ability).throwUnlessCan('read', 'Machines');
@@ -123,7 +117,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
@@ -191,7 +185,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'FITTER') {
       return this.prisma.maintenance.findMany({
@@ -264,7 +258,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     const ability = await this.casl.getCurrentUserAbility(session.Session);
 
@@ -302,7 +296,7 @@ export class AppService implements OnModuleInit {
     take: number,
     skip: number,
     orderBy: any,
-    where: any,
+    where: any = {},
   ) {
     if (session.User.role === 'SUPERVISOR') {
       return this.prisma.ticket.findMany({
@@ -370,7 +364,7 @@ export class AppService implements OnModuleInit {
   async raiseTicket(session: SessionContainer, data: any) {
     const photos = await this.s3Service.uploadBase64Image(
       data.photos,
-      `${nanoid(10)}`,
+      `${uuid()}`,
     );
     const result = await this.prisma.ticket.create({
       data: {
@@ -392,7 +386,7 @@ export class AppService implements OnModuleInit {
         block_id: session.User.blockId,
       },
     });
-    let result = {};
+    const result = {};
     data.forEach((item) => {
       result[item.name] = item.value;
     });
@@ -402,7 +396,7 @@ export class AppService implements OnModuleInit {
   async inputPastMaintenance(session: SessionContainer, data: any) {
     const photo_url = await this.s3Service.uploadBase64Image(
       data.photo,
-      `${nanoid(10)}`,
+      `${uuid()}`,
     );
     return this.prisma.maintenance.create({
       data: {
@@ -430,27 +424,6 @@ export class AppService implements OnModuleInit {
         },
       },
     });
-  }
-
-  async punchProduction(session: SessionContainer, data: any) {
-    const prod = await this.prisma.production_data.create({
-      data: {
-        updatedBy: {
-          connect: {
-            id: session.User.id,
-          },
-        },
-        date: new Date(new Date(data.date).setHours(0, 0, 0, 0)).toISOString(),
-        shift: data.shift,
-        Block: {
-          connect: {
-            id: session.User.blockId,
-          },
-        },
-        production: data,
-      },
-    });
-    return 'ok';
   }
 
   async requestSpares(session: SessionContainer, data: any) {

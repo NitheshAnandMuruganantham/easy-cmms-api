@@ -15,15 +15,14 @@ import {
   ItemCatagoryOrderByWithAggregationInput,
   ItemCatagoryUpdateInput,
   ItemCatagoryWhereInput,
-} from 'src/@generated/item-catagory';
+} from 'src/item-catagory/dto';
 
 import {
   Items,
   ItemsOrderByWithAggregationInput,
   ItemsWhereInput,
-} from 'src/@generated/items';
-import { CatagoryCount } from 'src/@generated/prisma';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/items/items';
+import { CatagoryCount } from 'src/common-dto/prisma';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 
@@ -51,7 +50,7 @@ export class ItemCatagoryResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: ItemCatagoryOrderByWithAggregationInput,
-    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput,
+    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput = {},
   ) {
     return this.itemCatagoryService.findAll(
       session,
@@ -70,7 +69,7 @@ export class ItemCatagoryResolver {
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Args('orderBy', { nullable: true })
     orderBy: ItemCatagoryOrderByWithAggregationInput,
-    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput,
+    @Args('where', { nullable: true }) where: ItemCatagoryWhereInput = {},
   ) {
     return this.itemCatagoryService.count(
       session,
@@ -119,7 +118,7 @@ export class ItemCatagoryResolver {
     @Session()
     session: SessionContainer,
     @Parent() { id }: ItemCatagory,
-    @Args('where', { nullable: true }) where: ItemsWhereInput,
+    @Args('where', { nullable: true }) where: ItemsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ItemsOrderByWithAggregationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

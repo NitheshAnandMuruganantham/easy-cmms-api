@@ -12,7 +12,7 @@ import {
   Machines,
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/dto/machines';
 import {
   Section,
   SectionCount,
@@ -22,8 +22,7 @@ import {
   SectionUpdateInput,
   SectionUpdateWithoutMachinesInput,
   SectionWhereInput,
-} from 'src/@generated/section';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/section/dto/section';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { SectionService } from './section.service';
@@ -47,7 +46,7 @@ export class SectionResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: SectionWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: SectionOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -61,7 +60,7 @@ export class SectionResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: SectionWhereInput,
+    where: SectionWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: SectionOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -105,7 +104,7 @@ export class SectionResolver {
     session: SessionContainer,
     @Parent() { id }: Section,
     @Args('where', { nullable: true })
-    where: MachinesWhereInput,
+    where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,

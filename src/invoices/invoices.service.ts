@@ -4,10 +4,9 @@ import { PrismaService } from 'nestjs-prisma';
 import { accessibleBy } from '@casl/prisma';
 
 import {
-  invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
-} from 'src/@generated/invoice-items';
+} from 'src/invoices/dto/invoice-items';
 
 import {
   Invoices,
@@ -15,7 +14,7 @@ import {
   InvoicesOrderByWithRelationAndSearchRelevanceInput,
   InvoicesUpdateInput,
   InvoicesWhereInput,
-} from 'src/@generated/invoices';
+} from 'src/invoices/dto/invoices';
 
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
@@ -34,7 +33,6 @@ export class InvoicesService {
 
     const createdInvoice = this.prisma.invoices
       .create({
-        // @ts-ignore
         data: {
           ...createItemInput,
           invoice_items: {
@@ -89,7 +87,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.findMany({
       where: {
-        AND: [accessibleBy(ability).Items, where],
+        AND: [accessibleBy(ability).Invoices, where],
       },
       orderBy,
       take: limit,
@@ -110,7 +108,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.count({
       where: {
-        AND: [accessibleBy(ability).Items, where],
+        AND: [accessibleBy(ability).Invoices, where],
       },
       orderBy,
       take: limit,
@@ -145,8 +143,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.update({
       where: { id },
-      // @ts-ignore
-      data: updateItemInput,
+      data: updateItemInput as any,
     });
   }
 

@@ -1,10 +1,8 @@
 import { Controller, Get, Res, Param, UseGuards, Body } from '@nestjs/common';
 import { GenerateReportService } from './generate-report.service';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from 'src/types/session';
 
-@UseGuards(new AuthGuard())
 @Controller('generate-report')
 export class GenerateReportController {
   constructor(private readonly generateReportService: GenerateReportService) {}
@@ -37,7 +35,6 @@ export class GenerateReportController {
         maintenanceFilter || [],
         ticketFilter || [],
         routineMaintenancesFilter || [],
-        productionFilter || [],
       );
     res.set({
       'Content-Type':
@@ -54,9 +51,12 @@ export class GenerateReportController {
       passthrough: true,
     })
     res: any,
+    @Session()
+    session: SessionContainer,
   ) {
     const filename = 'report.xlsx';
     const data = await this.generateReportService.getMachineMaintenancesReport(
+      session.User.blockId,
       parseInt(machineId),
     );
 

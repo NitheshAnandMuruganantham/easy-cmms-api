@@ -8,18 +8,16 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Maintenance } from 'src/@generated/maintenance';
+import { Maintenance } from 'src/maintanance/dto';
 import {
   Reports,
   ReportsCreateInput,
   ReportsOrderByWithRelationInput,
   ReportsUpdateInput,
   ReportsWhereInput,
-} from 'src/@generated/reports';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/report/dto';
 import { Session } from 'src/auth/session.decorator';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
 import { ReportService } from './report.service';
 
 @Resolver(() => Reports)
@@ -33,20 +31,20 @@ export class ReportResolver {
   createReport(
     @Args('createReportInput') createReportInput: ReportsCreateInput,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.create(session, createReportInput);
   }
 
   @Query(() => [Reports], { name: 'report' })
   findAll(
-    @Args('where', { nullable: true }) where: ReportsWhereInput,
+    @Args('where', { nullable: true }) where: ReportsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReportsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
     @Args('offset', { type: () => Int, nullable: true }) offset: number,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.findAll(session, where, orderBy, limit, offset);
   }
@@ -55,7 +53,7 @@ export class ReportResolver {
   findOne(
     @Args('id', { type: () => Int }) id: number,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.findOne(session, id);
   }
@@ -65,7 +63,7 @@ export class ReportResolver {
     @Args('id', { type: () => Int }) id: number,
     @Args('updateReportInput') updateReportInput: ReportsUpdateInput,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.update(session, id, updateReportInput);
   }
@@ -74,7 +72,7 @@ export class ReportResolver {
   removeReport(
     @Args('id', { type: () => Int }) id: number,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.remove(session, id);
   }
@@ -83,7 +81,7 @@ export class ReportResolver {
   maintenance(
     @Parent() { maintance_id }: Reports,
     @Session()
-    session: SessionContainer,
+    session,
   ) {
     return this.reportService.maintenance(session, maintance_id);
   }

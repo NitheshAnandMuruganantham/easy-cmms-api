@@ -7,20 +7,18 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Items } from 'src/@generated/items';
+import { Items } from 'src/items/items';
 import {
   Replacements,
   ReplacementsCreateInput,
   ReplacementsOrderByWithRelationInput,
   ReplacementsUpdateInput,
   ReplacementsWhereInput,
-} from 'src/@generated/replacements';
-import { Maintenance } from 'src/@generated/maintenance';
+} from 'src/replacements/dto';
+import { Maintenance } from 'src/maintanance/dto';
 import { ReplacementsService } from './replacements.service';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
-import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
 
 @Resolver(() => Replacements)
 export class ReplacementsResolver {
@@ -40,7 +38,7 @@ export class ReplacementsResolver {
   findAll(
     @Session()
     session: SessionContainer,
-    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReplacementsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -59,7 +57,7 @@ export class ReplacementsResolver {
   count(
     @Session()
     session: SessionContainer,
-    @Args('where', { nullable: true }) where: ReplacementsWhereInput,
+    @Args('where', { nullable: true }) where: ReplacementsWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: ReplacementsOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

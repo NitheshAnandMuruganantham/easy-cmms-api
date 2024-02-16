@@ -6,12 +6,12 @@ import {
   BlockOrderByWithAggregationInput,
   BlockUpdateInput,
   BlockWhereInput,
-} from 'src/@generated/block';
+} from 'src/block/dto/block';
 
 import {
   MachinesOrderByWithAggregationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/dto/machines';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import SessionContainer from '../types/session';
 import { accessibleBy } from '@casl/prisma';

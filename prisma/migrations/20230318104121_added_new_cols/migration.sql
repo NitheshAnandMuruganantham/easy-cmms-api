@@ -1,6 +1,0 @@
--- AlterTable
-ALTER TABLE "Users" ADD COLUMN     "blockId" BIGINT NOT NULL DEFAULT 1,
-ADD COLUMN     "role_alias" TEXT NOT NULL DEFAULT 'user';
-
--- AddForeignKey
-ALTER TABLE "Users" ADD CONSTRAINT "Users_blockId_fkey" FOREIGN KEY ("blockId") REFERENCES "Block"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

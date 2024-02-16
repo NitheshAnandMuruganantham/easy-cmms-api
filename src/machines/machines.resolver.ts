@@ -8,25 +8,22 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { Block } from 'src/@generated/block';
+import { Block } from 'src/block/dto/block';
 import {
   Machines,
   MachinesCreateInput,
   MachinesOrderByWithRelationInput,
   MachinesUpdateInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
+} from 'src/machines/dto/machines';
 import {
   Maintenance,
   MaintenanceWhereInput,
   MaintenanceOrderByWithRelationInput,
-} from 'src/@generated/maintenance';
-import { Sections } from 'src/@generated/sections';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/maintanance/dto';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachinesService } from './machines.service';
-import { machine_catagory } from 'src/@generated/machine-catagory';
 
 @Resolver(() => Machines)
 export class MachinesResolver {
@@ -43,7 +40,7 @@ export class MachinesResolver {
   @Query(() => [Machines], { name: 'machines' })
   findAll(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -55,7 +52,7 @@ export class MachinesResolver {
   @Query(() => Int, { name: 'machinesCount' })
   count(
     @Session() session: SessionContainer,
-    @Args('where', { nullable: true }) where: MachinesWhereInput,
+    @Args('where', { nullable: true }) where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,
@@ -93,7 +90,7 @@ export class MachinesResolver {
   maintenance(
     @Session() session: SessionContainer,
     @Parent() { id }: Machines,
-    @Args('where', { nullable: true }) where: MaintenanceWhereInput,
+    @Args('where', { nullable: true }) where: MaintenanceWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MaintenanceOrderByWithRelationInput,
     @Args('limit', { type: () => Int, nullable: true }) limit: number,

@@ -16,7 +16,6 @@ export class GenerateReportService {
     maintenanceFilter: any,
     ticketFilter: any,
     routineMaintenancesFilter: any,
-    productionFilter: any,
   ) {
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
@@ -45,11 +44,11 @@ export class GenerateReportService {
       },
     });
 
-    let sheet_1 = [
+    const sheet_1 = [
       ['id', 'date/time', 'assignee', 'machine', 'ticket', 'status', 'name'],
     ];
 
-    let sheet_2 = [
+    const sheet_2 = [
       [
         'id',
         'name',
@@ -89,7 +88,7 @@ export class GenerateReportService {
       },
     });
     AllTicketCsv.forEach((ticket) => {
-      let row = [];
+      const row = [];
       row.push(ticket.id);
       row.push(ticket.name);
       row.push(ticket.description);
@@ -102,7 +101,7 @@ export class GenerateReportService {
     });
 
     AllMaintenanceCsv.forEach((maintenance) => {
-      let row = [];
+      const row = [];
       row.push(maintenance.id);
       row.push(new Date(maintenance.from).toLocaleString());
       row.push(
@@ -126,7 +125,7 @@ export class GenerateReportService {
       sheet_1.push(row);
     });
 
-    let sheet_3 = [
+    const sheet_3 = [
       [
         'id',
         'name',
@@ -167,7 +166,7 @@ export class GenerateReportService {
       });
 
     AllRoutineMaintenanceCsv.forEach((maintenance) => {
-      let row = [];
+      const row = [];
       row.push(maintenance.id);
       row.push(maintenance.name);
       row.push(maintenance.description);
@@ -178,14 +177,6 @@ export class GenerateReportService {
       row.push(maintenance.created_at);
       sheet_3.push(row);
     });
-    const prod_rows = await this.generateProductionRows(
-      from,
-      to,
-      productionFilter,
-      block_id,
-    );
-
-    let sheet_4 = prod_rows;
 
     const buffer = xlsx.build(
       [
@@ -240,34 +231,6 @@ export class GenerateReportService {
             ],
           },
         },
-        {
-          name: 'production_data',
-          data: sheet_4,
-          options: {
-            '!cols': [
-              { wch: 6 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-              { wch: 20 },
-            ],
-          },
-        },
       ],
       {
         writeOptions: {
@@ -280,83 +243,10 @@ export class GenerateReportService {
     return buffer;
   }
 
-  async generateProductionRows(
-    from: any,
-    to: any,
-    productionFilter: any,
-    block_id: bigint,
-  ) {
-    let sheet = [];
-    const report_settings = await this.prisma.block_settings.findFirst({
-      where: {
-        AND: [
-          {
-            block_id: {
-              equals: block_id,
-            },
-          },
-          {
-            name: {
-              equals: 'REPORT_CONFIGURATION',
-            },
-          },
-          {
-            AND: productionFilter || [],
-          },
-        ],
-      },
-    });
-    sheet.push(['date', 'shift', ...report_settings.value['col_value']]);
-    const productionData = await this.prisma.production_data.findMany({
-      where: {
-        AND: [
-          {
-            date: {
-              gte: new Date(new Date(from).setHours(0, 0, 0, 0)),
-            },
-          },
-          {
-            date: {
-              lte: new Date(
-                new Date(
-                  new Date(to).setDate(new Date().getDate() - 1),
-                ).setHours(24, 60, 60, 0),
-              ),
-            },
-          },
-        ],
-      },
-    });
-    productionData.forEach((data) => {
-      try {
-        let row = [];
-        row.push(new Date(data.production['date']).toLocaleDateString());
-        row.push(data.production['shift']);
-        report_settings.value['col_value'].forEach((col) => {
-          if (
-            report_settings.value['parsers']['toHumanDuration'].includes(col)
-          ) {
-            row.push(
-              humanizeDuration(data.production['data'][col] * 60 * 1000, {
-                units: ['h', 'm'],
-              }),
-            );
-          } else {
-            row.push(data.production['data'][col]);
-          }
-        });
-        sheet.push(row);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-    console.log(sheet);
-    return sheet;
-  }
-
-  async getMachineMaintenancesReport(machineId: number) {
+  async getMachineMaintenancesReport(block_id: bigint, machineId: number) {
     const MachineMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
+        block_id,
         machine_id: machineId,
       },
       include: {
@@ -373,6 +263,9 @@ export class GenerateReportService {
     ];
     const AllMaintenanceCsv = await this.prisma.maintenance.findMany({
       where: {
+        block_id: {
+          equals: block_id,
+        },
         machine_id: {
           equals: machineId,
         },
@@ -387,7 +280,7 @@ export class GenerateReportService {
       },
     });
     AllMaintenanceCsv.forEach((maintenance) => {
-      let row = [];
+      const row = [];
       row.push(maintenance.id);
       row.push(new Date(maintenance.from).toLocaleString());
       row.push(

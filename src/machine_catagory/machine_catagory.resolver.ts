@@ -12,15 +12,8 @@ import {
   Machines,
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
-} from 'src/@generated/machines';
-import {
-  Section,
-  SectionCreateInput,
-  SectionOrderByWithRelationInput,
-  SectionUpdateInput,
-  SectionWhereInput,
-} from 'src/@generated/section';
-import { AuthGuard } from 'src/auth/auth.guard';
+} from 'src/machines/dto/machines';
+import { Section } from 'src/section/dto/section';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachineCatagoriesService } from './machine_catagory.service';
@@ -30,8 +23,8 @@ import {
   machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
   machine_catagoryUpdateOneWithoutMachinesNestedInput,
   machine_catagoryWhereInput,
-} from 'src/@generated/machine-catagory';
-import { Machine_catagoryCount } from 'src/@generated/prisma';
+} from 'src/machine_catagory/dto';
+import { Machine_catagoryCount } from 'src/common-dto/prisma';
 
 @Resolver(() => machine_catagory)
 export class MachineCatagoriesResolver {
@@ -54,7 +47,7 @@ export class MachineCatagoriesResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: machine_catagoryWhereInput,
+    where: machine_catagoryWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -74,7 +67,7 @@ export class MachineCatagoriesResolver {
     @Session()
     session: SessionContainer,
     @Args('where', { nullable: true })
-    where: machine_catagoryWhereInput,
+    where: machine_catagoryWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: machine_catagoryOrderByWithRelationAndSearchRelevanceInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,
@@ -128,7 +121,7 @@ export class MachineCatagoriesResolver {
     session: SessionContainer,
     @Parent() { id }: Section,
     @Args('where', { nullable: true })
-    where: MachinesWhereInput,
+    where: MachinesWhereInput = {},
     @Args('orderBy', { nullable: true })
     orderBy: MachinesOrderByWithRelationInput,
     @Args('skip', { type: () => Int, nullable: true }) skip: number,

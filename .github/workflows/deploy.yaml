@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker Login
+        run: docker login  -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_JSON }}
+
+      - name: build docker container
+        run: docker build . -t anand252825/server:${{ github.sha }}
+
+      - name: push docker container
+        run: docker push anand252825/server:${{ github.sha }}
+
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: default
+          manifests: |
+            kubernetes/deployment.yaml
+          images: |
+            anand252825/server:${{ github.sha }}
