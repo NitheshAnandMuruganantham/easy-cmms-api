@@ -21,7 +21,6 @@ import {
   MachinesOrderByWithAggregationInput,
   MachinesWhereInput,
 } from 'src/machines/machines';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { BlockService } from './block.service';

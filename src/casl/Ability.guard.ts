@@ -1,6 +1,5 @@
 import { CanActivate, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { SessionRequest } from 'supertokens-node/framework/express';
 import { Reflector } from '@nestjs/core';
 import { CaslAbilityFactory } from './casl.ability';
 import { CHECK_ABILITY, RequirementRule } from './ability.decorator';
@@ -18,7 +17,7 @@ export class AbilityGuard implements CanActivate {
       context.getHandler(),
     );
 
-    let request: SessionRequest = undefined;
+    let request = undefined;
     if (context.getType() === 'graphql') {
       const ctx = GqlExecutionContext.create(context);
       request = ctx.getContext<any>().req;

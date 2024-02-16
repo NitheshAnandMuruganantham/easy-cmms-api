@@ -19,8 +19,6 @@ import { Maintenance } from 'src/maintanance/maintenance';
 import { ReplacementsService } from './replacements.service';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
-import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
 
 @Resolver(() => Replacements)
 export class ReplacementsResolver {

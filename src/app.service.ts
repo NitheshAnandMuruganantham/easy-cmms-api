@@ -1,12 +1,11 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { RedisService } from '@liaoliaots/nestjs-redis';
 import { PrismaService } from 'nestjs-prisma';
 import { Redis } from 'ioredis';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import SessionContainer from './types/session';
 import { accessibleBy } from '@casl/prisma';
-import { nanoid } from 'nanoid';
+import { v4 as uuid } from 'uuid';
 import { S3Service } from 'src/s3/s3.service';
 import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
@@ -18,14 +17,11 @@ export class AppService implements OnModuleInit {
   constructor(
     private readonly prisma: PrismaService,
     private readonly scheduler: SchedulerRegistry,
-    private readonly redisService: RedisService,
     private readonly s3Service: S3Service,
     private readonly twilio: TwilioService,
     private readonly casl: CaslAbilityFactory,
     private readonly config: ConfigService,
-  ) {
-    this.redis = this.redisService.getClient();
-  }
+  ) {}
   onModuleInit() {
     console.log('bootstrapping..................');
     Promise.all([this.getCrons()]);
@@ -370,7 +366,7 @@ export class AppService implements OnModuleInit {
   async raiseTicket(session: SessionContainer, data: any) {
     const photos = await this.s3Service.uploadBase64Image(
       data.photos,
-      `${nanoid(10)}`,
+      `${uuid()}`,
     );
     const result = await this.prisma.ticket.create({
       data: {
@@ -402,7 +398,7 @@ export class AppService implements OnModuleInit {
   async inputPastMaintenance(session: SessionContainer, data: any) {
     const photo_url = await this.s3Service.uploadBase64Image(
       data.photo,
-      `${nanoid(10)}`,
+      `${uuid()}`,
     );
     return this.prisma.maintenance.create({
       data: {

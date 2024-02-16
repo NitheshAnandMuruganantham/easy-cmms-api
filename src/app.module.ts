@@ -1,7 +1,6 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { Module, NestModule } from '@nestjs/common';
-import { createPrismaRedisCache } from 'prisma-redis-middleware';
+import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConfigModule } from '@nestjs/config/dist';
 import { PrismaModule, PrismaService } from 'nestjs-prisma';
@@ -21,7 +20,6 @@ import { ReportModule } from './report/report.module';
 import { SectionModule } from './section/section.module';
 import { UsersModule } from './users/users.module';
 import { ApolloDriverConfig } from '@nestjs/apollo';
-import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { ApolloDriver } from '@nestjs/apollo/dist/drivers';
 import { TicketModule } from './ticket/ticket.module';
 import { AuthModule } from './auth/auth.module';
@@ -29,9 +27,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { getLogger } from 'log4js';
 import { RoutineMaintanancesModule } from './routine-maintanances/routine-maintanances.module';
 import { ScheduleModule } from '@nestjs/schedule/dist';
-import { authMiddleware } from './middleware/auth';
-import { Redis } from 'ioredis';
-import { SentryModule } from '@ntegral/nestjs-sentry';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
 import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
@@ -40,28 +35,7 @@ import { InvoicesModule } from './invoices/invoices.module';
 
 @Module({
   imports: [
-    SentryModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: async (cfg: ConfigService) => ({
-        dsn: cfg.get('SENTRY_DSN'),
-        debug: true,
-        environment: cfg.get('NODE_ENV'),
-        release: cfg.get('RELEASE'),
-        logLevels: ['debug'],
-      }),
-      inject: [ConfigService],
-    }),
     ScheduleModule.forRoot(),
-    RedisModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory(configService: ConfigService) {
-        return {
-          config: {
-            url: configService.getOrThrow('REDIS_URL'),
-          },
-        };
-      },
-    }),
     PrismaModule.forRoot({
       isGlobal: true,
       prismaServiceOptions: {},
@@ -112,17 +86,11 @@ import { InvoicesModule } from './invoices/invoices.module';
       cache: 'bounded',
       logger: getLogger(),
       cors: {
-        origin: process.env.FRONTEND_URL,
-        allowedHeaders: [
-          'content-type',
-          'anti-csrf',
-          'rid',
-          'fdi-version',
-          'authorization',
-          'st-auth-mode',
-        ],
-        methods: ['GET', 'PUT', 'POST', 'DELETE'],
-        credentials: true,
+        credentials: false,
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        allowedHeaders:
+          'Content-Type,Accept,Authorization,Access-Control-Allow-Origin',
       },
       autoSchemaFile: 'schema.gql',
 
@@ -150,11 +118,4 @@ import { InvoicesModule } from './invoices/invoices.module';
   controllers: [AppController],
   providers: [AppService, S3Service, PrismaService],
 })
-export class AppModule implements NestModule {
-  constructor(private readonly config: ConfigService) {}
-  configure(consumer) {
-    consumer
-      .apply(authMiddleware(this.config.getOrThrow('API_KEY')))
-      .forRoutes('/graphql');
-  }
-}
+export class AppModule {}

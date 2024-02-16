@@ -4,7 +4,6 @@ import { PrismaService } from 'nestjs-prisma';
 import { accessibleBy } from '@casl/prisma';
 
 import {
-  invoice_items,
   invoice_itemsWhereInput,
   invoice_itemsOrderByRelationAggregateInput,
 } from 'src/invoices/invoice-items';
@@ -34,7 +33,6 @@ export class InvoicesService {
 
     const createdInvoice = this.prisma.invoices
       .create({
-        // @ts-ignore
         data: {
           ...createItemInput,
           invoice_items: {
@@ -89,7 +87,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.findMany({
       where: {
-        AND: [accessibleBy(ability).Items, where],
+        AND: [accessibleBy(ability).Invoices, where],
       },
       orderBy,
       take: limit,
@@ -110,7 +108,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.count({
       where: {
-        AND: [accessibleBy(ability).Items, where],
+        AND: [accessibleBy(ability).Invoices, where],
       },
       orderBy,
       take: limit,
@@ -145,8 +143,7 @@ export class InvoicesService {
 
     return this.prisma.invoices.update({
       where: { id },
-      // @ts-ignore
-      data: updateItemInput,
+      data: updateItemInput as any,
     });
   }
 

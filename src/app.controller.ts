@@ -1,21 +1,20 @@
 import { Controller, Get } from '@nestjs/common';
 import {
   Body,
-  Param,
   Post,
+  SetMetadata,
   UploadedFile,
-  UseGuards,
   UseInterceptors,
 } from '@nestjs/common/decorators';
 import { S3Service } from './s3/s3.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
-import { AuthGuard } from './auth/auth.guard';
 import { v4 as uuid } from 'uuid';
 import { Session } from './auth/session.decorator';
 import SessionContainer from './types/session';
 import { PrismaService } from 'nestjs-prisma';
 import { ForbiddenException } from '@nestjs/common/exceptions';
+import { IS_PUBLIC_KEY } from './auth/public.decorator';
 
 @Controller()
 export class AppController {
@@ -26,6 +25,7 @@ export class AppController {
   ) {}
 
   @Get('/')
+  @SetMetadata(IS_PUBLIC_KEY, true)
   sandbox(): string {
     return `
       <div style="width: 100%; height: 100%;" id='embedded-sandbox'></div>
@@ -47,7 +47,6 @@ export class AppController {
   }
 
   @Get('token')
-  @UseGuards(new AuthGuard())
   async postExample(
     @Session() session: SessionContainer,
   ): Promise<{ token: any }> {
@@ -55,7 +54,6 @@ export class AppController {
     return { token: jwt };
   }
 
-  @UseGuards(new AuthGuard())
   @Get('/me/profile/status')
   getProfileStatus(
     @Session()
@@ -68,7 +66,6 @@ export class AppController {
     }
   }
 
-  @UseGuards(new AuthGuard())
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
@@ -77,7 +74,6 @@ export class AppController {
     return resp;
   }
 
-  @UseGuards(new AuthGuard())
   @Post('machines')
   async getMachines(
     @Body()
@@ -98,7 +94,6 @@ export class AppController {
     return this.appService.getMachines(session, take, skip, orderBy, where);
   }
 
-  @UseGuards(new AuthGuard())
   @Post('maintenance')
   async getMaintenance(
     @Body()
@@ -119,7 +114,6 @@ export class AppController {
     return this.appService.getMaintenances(session, take, skip, orderBy, where);
   }
 
-  @UseGuards(new AuthGuard())
   @Post('PastMaintenance')
   async getPastMaintenance(
     @Body()
@@ -146,7 +140,6 @@ export class AppController {
     );
   }
 
-  @UseGuards(new AuthGuard())
   @Post('tickets')
   async getTickets(
     @Body()
@@ -166,7 +159,6 @@ export class AppController {
   ) {
     return this.appService.getTickets(session, take, skip, orderBy, where);
   }
-  @UseGuards(new AuthGuard())
   @Post('RoutineMaintenance')
   async routineMaintenance(
     @Body()
@@ -188,19 +180,16 @@ export class AppController {
   }
 
   @Post('raiseTicket')
-  @UseGuards(new AuthGuard())
   raiseTicket(@Session() session: SessionContainer, @Body() data: any) {
     return this.appService.raiseTicket(session, data);
   }
 
   @Get('getBlockSettings')
-  @UseGuards(new AuthGuard())
   async getBlockSettings(@Session() session: SessionContainer) {
     return this.appService.getBlockSettings(session);
   }
 
   @Post('inputPastMaintenance')
-  @UseGuards(new AuthGuard())
   async inputPastMaintenance(
     @Session() session: SessionContainer,
     @Body() data: any,
@@ -209,13 +198,11 @@ export class AppController {
   }
 
   @Post('requestSpare')
-  @UseGuards(new AuthGuard())
   async requestSpare(@Session() session: SessionContainer, @Body() data: any) {
     return this.appService.requestSpares(session, data);
   }
 
   @Get('/getAllReplacementsRequests')
-  @UseGuards(new AuthGuard())
   async getAllReplacementsRequests(@Session() session: SessionContainer) {
     return this.appService.getAllReplacementsRequests(session);
   }

@@ -5,7 +5,6 @@ import { BlockCreateMailingsInput } from './block-create-mailings.input';
 import { MachinesCreateNestedManyWithoutBlockInput } from '../../machines/machines/machines-create-nested-many-without-block.input';
 import { UsersCreateNestedManyWithoutBlockInput } from '../../users/users/users-create-nested-many-without-block.input';
 import { block_settingsCreateNestedManyWithoutBlockInput } from '../block-settings/block-settings-create-nested-many-without-block.input';
-import { production_dataCreateNestedManyWithoutBlockInput } from '../../common-dto/production-data/production-data-create-nested-many-without-block.input';
 import { catagoryCreateNestedManyWithoutBlockInput } from '../../common-dto/catagory/catagory-create-nested-many-without-block.input';
 import { ItemsCreateNestedManyWithoutBlockInput } from '../../items/items/items-create-nested-many-without-block.input';
 import { machine_catagoryCreateNestedManyWithoutBlockInput } from '../../machine_catagory/machine-catagory/machine-catagory-create-nested-many-without-block.input';
@@ -46,11 +45,6 @@ export class BlockCreateWithoutMachines_itemsInput {
     nullable: true,
   })
   block_settings?: block_settingsCreateNestedManyWithoutBlockInput;
-
-  @Field(() => production_dataCreateNestedManyWithoutBlockInput, {
-    nullable: true,
-  })
-  production_data?: production_dataCreateNestedManyWithoutBlockInput;
 
   @Field(() => catagoryCreateNestedManyWithoutBlockInput, { nullable: true })
   catagory?: catagoryCreateNestedManyWithoutBlockInput;

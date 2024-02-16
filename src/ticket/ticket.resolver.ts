@@ -20,8 +20,6 @@ import { Maintenance } from 'src/maintanance/maintenance';
 import { Machines } from 'src/machines/machines';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Ticket)
 export class TicketResolver {

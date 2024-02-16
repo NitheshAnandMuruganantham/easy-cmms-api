@@ -21,7 +21,6 @@ import {
   ReplacementsOrderByWithRelationInput,
   ReplacementsWhereInput,
 } from 'src/replacements/replacements';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { ItemsService } from './items.service';

@@ -7,7 +7,6 @@ import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date
 import { MachinesUpdateManyWithoutBlockNestedInput } from '../../machines/machines/machines-update-many-without-block-nested.input';
 import { UsersUpdateManyWithoutBlockNestedInput } from '../../users/users/users-update-many-without-block-nested.input';
 import { block_settingsUpdateManyWithoutBlockNestedInput } from '../block-settings/block-settings-update-many-without-block-nested.input';
-import { production_dataUpdateManyWithoutBlockNestedInput } from '../../common-dto/production-data/production-data-update-many-without-block-nested.input';
 import { catagoryUpdateManyWithoutBlockNestedInput } from '../../common-dto/catagory/catagory-update-many-without-block-nested.input';
 import { ItemsUpdateManyWithoutBlockNestedInput } from '../../items/items/items-update-many-without-block-nested.input';
 import { machine_catagoryUpdateManyWithoutBlockNestedInput } from '../../machine_catagory/machine-catagory/machine-catagory-update-many-without-block-nested.input';
@@ -48,11 +47,6 @@ export class BlockUpdateWithoutMachines_itemsInput {
     nullable: true,
   })
   block_settings?: block_settingsUpdateManyWithoutBlockNestedInput;
-
-  @Field(() => production_dataUpdateManyWithoutBlockNestedInput, {
-    nullable: true,
-  })
-  production_data?: production_dataUpdateManyWithoutBlockNestedInput;
 
   @Field(() => catagoryUpdateManyWithoutBlockNestedInput, { nullable: true })
   catagory?: catagoryUpdateManyWithoutBlockNestedInput;

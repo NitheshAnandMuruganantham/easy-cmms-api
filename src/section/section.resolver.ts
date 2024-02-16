@@ -23,7 +23,6 @@ import {
   SectionUpdateWithoutMachinesInput,
   SectionWhereInput,
 } from 'src/section/section';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { SectionService } from './section.service';

@@ -5,7 +5,6 @@ import { BlockCreateMailingsInput } from './block-create-mailings.input';
 import { MachinesUncheckedCreateNestedManyWithoutBlockInput } from '../../machines/machines/machines-unchecked-create-nested-many-without-block.input';
 import { UsersUncheckedCreateNestedManyWithoutBlockInput } from '../../users/users/users-unchecked-create-nested-many-without-block.input';
 import { block_settingsUncheckedCreateNestedManyWithoutBlockInput } from '../block-settings/block-settings-unchecked-create-nested-many-without-block.input';
-import { production_dataUncheckedCreateNestedManyWithoutBlockInput } from '../../common-dto/production-data/production-data-unchecked-create-nested-many-without-block.input';
 import { catagoryUncheckedCreateNestedManyWithoutBlockInput } from '../../common-dto/catagory/catagory-unchecked-create-nested-many-without-block.input';
 import { ItemsUncheckedCreateNestedManyWithoutBlockInput } from '../../items/items/items-unchecked-create-nested-many-without-block.input';
 import { machine_catagoryUncheckedCreateNestedManyWithoutBlockInput } from '../../machine_catagory/machine-catagory/machine-catagory-unchecked-create-nested-many-without-block.input';
@@ -50,11 +49,6 @@ export class BlockUncheckedCreateWithoutMachines_itemsInput {
     nullable: true,
   })
   block_settings?: block_settingsUncheckedCreateNestedManyWithoutBlockInput;
-
-  @Field(() => production_dataUncheckedCreateNestedManyWithoutBlockInput, {
-    nullable: true,
-  })
-  production_data?: production_dataUncheckedCreateNestedManyWithoutBlockInput;
 
   @Field(() => catagoryUncheckedCreateNestedManyWithoutBlockInput, {
     nullable: true,

@@ -23,7 +23,6 @@ import {
   ItemsWhereInput,
 } from 'src/items/items';
 import { CatagoryCount } from 'src/common-dto/prisma';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 

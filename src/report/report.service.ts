@@ -10,7 +10,11 @@ import {
   ReportsWhereInput,
 } from 'src/report/reports';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
-import { SessionContainer } from 'supertokens-node/recipe/session';
+
+interface SessionContainer {
+  userId: number;
+  userRole: string;
+}
 
 @Injectable()
 export class ReportService {

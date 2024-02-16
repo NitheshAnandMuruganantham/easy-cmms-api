@@ -20,8 +20,6 @@ import { Machines } from 'src/machines/machines';
 import { Replacements } from 'src/replacements/replacements';
 import { Reports } from 'src/report/reports';
 import { Ticket } from 'src/ticket/ticket';
-import { UseGuards } from '@nestjs/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 

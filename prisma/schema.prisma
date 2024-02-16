@@ -1,22 +1,12 @@
-generator nestgraphql {
-  provider                        = "node node_modules/prisma-nestjs-graphql"
-  output                          = "../src/@generated"
-  reExport                        = Directories
-  fields_Scalars_from             = "graphql-scalars"
-  fields_Scalars_input            = true
-  fields_Scalars_output           = true
-  graphqlScalars_BigInt_name      = "GraphQLBigInt"
-  graphqlScalars_BigInt_specifier = "graphql-scalars"
-}
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Block {
@@ -190,14 +180,23 @@ model Sections {
   updated_at DateTime   @updatedAt
 }
 
-model Users {
-  id           BigInt  @id @default(autoincrement())
-  profile      Json    @default("{}")
-  phone        String  @unique
-  user_auth_id String? @unique
-  name         String
-  blockId      BigInt
+enum status {
+  ACTIVE
+  INACTIVE
+  INVITED
+}
 
+model Users {
+  id                   BigInt                 @id @default(autoincrement())
+  profile              Json                   @default("{}")
+  phone                String
+  email                String
+  password             String
+  invitation_code      String?
+  forgot_password_code String?
+  status               status                 @default(INVITED)
+  name                 String
+  blockId              BigInt
   block                Block                  @relation(fields: [blockId], references: [id])
   maintenance          Maintenance[]
   created_at           DateTime               @default(now())
@@ -207,6 +206,9 @@ model Users {
   role_alias           String                 @default("user")
   ticket               Ticket[]
   routine_maintanances routine_maintanances[]
+
+  @@unique([blockId, phone])
+  @@unique([blockId, email])
 }
 
 model Ticket {

@@ -15,7 +15,6 @@ import {
   InvoicesWhereInput,
 } from 'src/invoices/invoices';
 
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { InvoicesService } from './invoices.service';

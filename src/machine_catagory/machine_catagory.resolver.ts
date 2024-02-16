@@ -13,14 +13,7 @@ import {
   MachinesOrderByWithRelationInput,
   MachinesWhereInput,
 } from 'src/machines/machines';
-import {
-  Section,
-  SectionCreateInput,
-  SectionOrderByWithRelationInput,
-  SectionUpdateInput,
-  SectionWhereInput,
-} from 'src/section/section';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { Section } from 'src/section/section';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachineCatagoriesService } from './machine_catagory.service';

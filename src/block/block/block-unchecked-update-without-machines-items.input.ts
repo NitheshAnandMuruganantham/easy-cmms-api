@@ -7,7 +7,6 @@ import { DateTimeFieldUpdateOperationsInput } from '../../common-dto/prisma/date
 import { MachinesUncheckedUpdateManyWithoutBlockNestedInput } from '../../machines/machines/machines-unchecked-update-many-without-block-nested.input';
 import { UsersUncheckedUpdateManyWithoutBlockNestedInput } from '../../users/users/users-unchecked-update-many-without-block-nested.input';
 import { block_settingsUncheckedUpdateManyWithoutBlockNestedInput } from '../block-settings/block-settings-unchecked-update-many-without-block-nested.input';
-import { production_dataUncheckedUpdateManyWithoutBlockNestedInput } from '../../common-dto/production-data/production-data-unchecked-update-many-without-block-nested.input';
 import { catagoryUncheckedUpdateManyWithoutBlockNestedInput } from '../../common-dto/catagory/catagory-unchecked-update-many-without-block-nested.input';
 import { ItemsUncheckedUpdateManyWithoutBlockNestedInput } from '../../items/items/items-unchecked-update-many-without-block-nested.input';
 import { machine_catagoryUncheckedUpdateManyWithoutBlockNestedInput } from '../../machine_catagory/machine-catagory/machine-catagory-unchecked-update-many-without-block-nested.input';
@@ -52,11 +51,6 @@ export class BlockUncheckedUpdateWithoutMachines_itemsInput {
     nullable: true,
   })
   block_settings?: block_settingsUncheckedUpdateManyWithoutBlockNestedInput;
-
-  @Field(() => production_dataUncheckedUpdateManyWithoutBlockNestedInput, {
-    nullable: true,
-  })
-  production_data?: production_dataUncheckedUpdateManyWithoutBlockNestedInput;
 
   @Field(() => catagoryUncheckedUpdateManyWithoutBlockNestedInput, {
     nullable: true,

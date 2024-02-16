@@ -21,12 +21,9 @@ import {
   MaintenanceWhereInput,
   MaintenanceOrderByWithRelationInput,
 } from 'src/maintanance/maintenance';
-import { Sections } from 'src/section/sections';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from '../types/session';
 import { MachinesService } from './machines.service';
-import { machine_catagory } from 'src/machine_catagory/machine-catagory';
 
 @Resolver(() => Machines)
 export class MachinesResolver {
