@@ -37,7 +37,7 @@ export class MaintenanceService {
         ...createMaintenanceInput,
         block: {
           connect: {
-            id: session.User.id,
+            id: session.User.blockId,
           },
         },
       } as any,
