@@ -32,13 +32,12 @@ import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
 import { join } from 'path';
 import { InvoicesModule } from './invoices/invoices.module';
-
+import { createPrismaRedisCache } from './cache';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     PrismaModule.forRoot({
       isGlobal: true,
-      prismaServiceOptions: {},
     }),
     ConfigModule.forRoot({
       isGlobal: true,
@@ -85,7 +84,7 @@ import { InvoicesModule } from './invoices/invoices.module';
       cache: 'bounded',
       logger: getLogger(),
       sortSchema: true,
-      autoSchemaFile: true,
+      autoSchemaFile: 'schema.gql',
       context: (ctx) => ctx,
     }),
     BlockModule,
