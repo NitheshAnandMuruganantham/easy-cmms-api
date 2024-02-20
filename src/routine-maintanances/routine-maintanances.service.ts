@@ -118,6 +118,9 @@ export class RoutineMaintanancesService {
       orderBy,
       take: limit,
       skip: offset,
+      include: {
+        meachine: true,
+      },
     });
   }
   async count(

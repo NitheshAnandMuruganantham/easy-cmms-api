@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "status" AS ENUM ('ACTIVE', 'INACTIVE', 'INVITED');
+
+-- CreateEnum
 CREATE TYPE "Role" AS ENUM ('MANAGER', 'SUPERVISOR', 'ENGINEER', 'GUEST', 'FITTER', 'PRODUCTION_CONTROLLER', 'INPUT_CONTROLLER', 'ADMIN');
 
 -- CreateEnum
@@ -86,6 +89,8 @@ CREATE TABLE "Maintenance" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
     "block_id" BIGINT NOT NULL,
+    "service_cost" DOUBLE PRECISION,
+    "other_cost" DOUBLE PRECISION,
 
     CONSTRAINT "Maintenance_pkey" PRIMARY KEY ("id")
 );
@@ -167,7 +172,11 @@ CREATE TABLE "Users" (
     "id" BIGSERIAL NOT NULL,
     "profile" JSONB NOT NULL DEFAULT '{}',
     "phone" TEXT NOT NULL,
-    "user_auth_id" TEXT,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "invitation_code" TEXT,
+    "forgot_password_code" TEXT,
+    "status" "status" NOT NULL DEFAULT 'INVITED',
     "name" TEXT NOT NULL,
     "blockId" BIGINT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -225,10 +234,10 @@ CREATE TABLE "block_settings" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Users_phone_key" ON "Users"("phone");
+CREATE UNIQUE INDEX "Users_blockId_phone_key" ON "Users"("blockId", "phone");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Users_user_auth_id_key" ON "Users"("user_auth_id");
+CREATE UNIQUE INDEX "Users_blockId_email_key" ON "Users"("blockId", "email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Ticket_maintenance_id_key" ON "Ticket"("maintenance_id");

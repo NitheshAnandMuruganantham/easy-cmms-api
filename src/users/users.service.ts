@@ -43,7 +43,6 @@ export class UsersService {
       return this.prisma.users.create({
         data: {
           ...createUserInput,
-          user_auth_id: '',
           password: hashSync(uuid(), 10),
           blockId: session.User.blockId,
         } as any,
