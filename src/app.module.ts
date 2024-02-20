@@ -41,6 +41,17 @@ import { RedisService } from './redis/redis.service';
     ScheduleModule.forRoot(),
     PrismaModule.forRoot({
       isGlobal: true,
+      prismaServiceOptions: {
+        explicitConnect: true,
+        prismaOptions: {
+          log: [
+            {
+              emit: 'event',
+              level: 'query',
+            },
+          ],
+        },
+      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,
