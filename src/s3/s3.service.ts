@@ -1,17 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as AWS from 'aws-sdk';
+import * as AWS from '@aws-sdk/client-s3';
 import * as keygen from 'keygen';
+import { getSignedUrl as AwsGetSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 @Injectable()
 export class S3Service {
   constructor(private config: ConfigService) {}
   AWS_S3_BUCKET = this.config.get<string>('BILL_BUCKET_NAME');
   s3 = new AWS.S3({
-    accessKeyId: this.config.get<string>('AWS_ACCESS_KEY_ID'),
-    secretAccessKey: this.config.get<string>('AWS_SECRET'),
-    signatureVersion: 'v4',
     region: 'us-east-1',
+    credentials: {
+      secretAccessKey: this.config.get<string>('AWS_SECRET'),
+      accessKeyId: this.config.get<string>('AWS_ACCESS_KEY_ID'),
+    },
   });
 
   async uploadImage(file: Express.Multer.File, id: string) {
@@ -42,14 +44,15 @@ export class S3Service {
     const type = url.split(';')[0].split('/')[1];
 
     await this.s3
-      .upload({
-        Key: `${id}.${type}`,
-        ContentType: `image/${type}`,
-        Body: base64Data,
-        ContentEncoding: 'base64',
-        Bucket: this.AWS_S3_BUCKET + `/bills`,
-      })
-      .promise()
+      .send(
+        new AWS.PutObjectCommand({
+          Key: `${id}.${type}`,
+          ContentType: `image/${type}`,
+          Body: base64Data,
+          ContentEncoding: 'base64',
+          Bucket: this.AWS_S3_BUCKET + `/bills`,
+        }),
+      )
       .catch((err) => {
         console.log(err);
       });
@@ -59,27 +62,25 @@ export class S3Service {
   async uploadCsvReport(data: any) {
     const key = keygen.url(keygen.medium);
     return this.s3
-      .putObject({
-        Bucket: this.AWS_S3_BUCKET + `/reports`,
-        Key: `${key}.csv`,
-        Body: data,
-      })
-      .promise()
+      .send(
+        new AWS.PutObjectCommand({
+          Bucket: this.AWS_S3_BUCKET + `/reports`,
+          Key: `${key}.csv`,
+          Body: data,
+        }),
+      )
       .then(() => `${this.AWS_S3_BUCKET}/reports/${key}.csv`);
   }
 
   async uploadXlsxBuffer(data: Buffer) {
     const key = keygen.url(keygen.medium);
-    return await this.s3
-      .upload({
+    return await this.s3.send(
+      new AWS.PutObjectCommand({
         Bucket: this.AWS_S3_BUCKET + `/reports`,
         Key: `${key}.csv`,
         Body: data,
-      })
-      .promise()
-      .then((d) => {
-        return d.Location;
-      });
+      }),
+    );
   }
 
   async s3_upload(
@@ -88,27 +89,31 @@ export class S3Service {
     name: string,
     mimetype: string,
   ) {
-    await this.s3
-      .upload({
+    await this.s3.send(
+      new AWS.PutObjectCommand({
         Body: file,
         Bucket: bucket,
         Key: name,
         ContentType: mimetype,
         ContentDisposition: 'inline',
-      })
-      .promise();
+      }),
+    );
     return `${bucket}/${name}`;
   }
 
-  getSignedUrl(key?: string) {
+  async getSignedUrl(key?: string) {
     try {
       if (key !== null) {
         const dt = key.split('/');
-        const url = this.s3.getSignedUrl('getObject', {
-          Bucket: dt[0] + '/' + dt[1],
-          Key: dt[2],
-          Expires: 3 * 24 * 60 * 60, // 3 days
-        });
+
+        const url = await AwsGetSignedUrl(
+          this.s3,
+          new AWS.GetObjectCommand({
+            Bucket: dt[0] + '/' + dt[1],
+            Key: dt[2],
+          }),
+          { expiresIn: 60 * 60 * 24 * 3 },
+        );
         return url;
       } else {
         return null;
