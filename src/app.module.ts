@@ -1,4 +1,5 @@
 import { MailerModule } from '@nestjs-modules/mailer';
+import type { RedisClientOptions } from 'redis';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -6,6 +7,7 @@ import { ConfigModule } from '@nestjs/config/dist';
 import { PrismaModule, PrismaService } from 'nestjs-prisma';
 import { TwilioModule } from 'nestjs-twilio';
 import { GraphQLModule } from '@nestjs/graphql';
+import * as redisStore from 'cache-manager-redis-store';
 import { AppController } from './app.controller';
 import { S3Service } from './s3/s3.service';
 import { CaslModule } from './casl/casl.module';
@@ -32,7 +34,8 @@ import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
 import { join } from 'path';
 import { InvoicesModule } from './invoices/invoices.module';
-import { createPrismaRedisCache } from './cache';
+import { CacheModule } from '@nestjs/cache-manager';
+import { RedisService } from './redis/redis.service';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
@@ -41,6 +44,15 @@ import { createPrismaRedisCache } from './cache';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    CacheModule.registerAsync<RedisClientOptions>({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        store: redisStore as any,
+        url: configService.get('REDIS_URL'),
+        isGlobal: true,
+      }),
+      inject: [ConfigService],
     }),
     MailerModule.forRootAsync({
       inject: [ConfigService],
@@ -107,6 +119,6 @@ import { createPrismaRedisCache } from './cache';
     CronModule,
   ],
   controllers: [AppController],
-  providers: [AppService, S3Service, PrismaService],
+  providers: [AppService, S3Service, PrismaService, RedisService],
 })
 export class AppModule {}

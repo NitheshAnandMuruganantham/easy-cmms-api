@@ -13,4 +13,20 @@ export class AuthController {
   ) {
     return this.authService.login(org_id, email, password);
   }
+
+  @SetMetadata(IS_PUBLIC_KEY, true)
+  @Post('phone/code/get')
+  getAuthCode(@Body('phone') phone: string) {
+    return this.authService.getPhoneCode(phone);
+  }
+
+  @SetMetadata(IS_PUBLIC_KEY, true)
+  @Post('phone/code/consume')
+  consumeAuthCode(
+    @Body('phone') phone: string,
+    @Body('org_id') org_id: number,
+    @Body('code') code: string,
+  ) {
+    return this.authService.verifyPhoneCode(org_id, phone, code);
+  }
 }
