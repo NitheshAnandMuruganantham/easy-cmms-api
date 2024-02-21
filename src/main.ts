@@ -15,6 +15,7 @@ async function bootstrap() {
   });
 
   app.use(json({ limit: '50mb' }));
+  app.enableShutdownHooks();
   await app.listen(process.env.PORT || 8000);
 }
 
