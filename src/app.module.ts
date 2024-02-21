@@ -4,7 +4,6 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConfigModule } from '@nestjs/config/dist';
-import { PrismaModule, PrismaService } from 'nestjs-prisma';
 import { TwilioModule } from 'nestjs-twilio';
 import { GraphQLModule } from '@nestjs/graphql';
 import * as redisStore from 'cache-manager-redis-store';
@@ -36,23 +35,13 @@ import { join } from 'path';
 import { InvoicesModule } from './invoices/invoices.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { RedisService } from './redis/redis.service';
+import { PrismaClient } from '@prisma/client/scripts/default-index';
+import { withAccelerate } from '@prisma/extension-accelerate';
+import { PrismaModule } from './prisma/prisma.module';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
-    PrismaModule.forRoot({
-      isGlobal: true,
-      prismaServiceOptions: {
-        explicitConnect: true,
-        prismaOptions: {
-          log: [
-            {
-              emit: 'event',
-              level: 'query',
-            },
-          ],
-        },
-      },
-    }),
+
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -128,8 +117,9 @@ import { RedisService } from './redis/redis.service';
     RoutineMaintanancesModule,
     GenerateReportModule,
     CronModule,
+    PrismaModule,
   ],
   controllers: [AppController],
-  providers: [AppService, S3Service, PrismaService, RedisService],
+  providers: [AppService, S3Service, RedisService],
 })
 export class AppModule {}

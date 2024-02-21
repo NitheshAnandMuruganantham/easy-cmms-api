@@ -6,7 +6,7 @@ import {
   TicketWhereInput,
 } from 'src/ticket/dto';
 import { v4 as uuid } from 'uuid';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import SessionContainer from '../types/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { ForbiddenError, subject } from '@casl/ability';

@@ -2,7 +2,7 @@ import { ForbiddenError, subject } from '@casl/ability';
 import { accessibleBy } from '@casl/prisma';
 import { Injectable } from '@nestjs/common';
 import { take } from 'lodash';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import {
   MachinesCreateInput,
   MachinesOrderByWithRelationInput,
