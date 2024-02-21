@@ -5,7 +5,7 @@ import {
   ReplacementsUpdateInput,
   ReplacementsWhereInput,
 } from 'src/replacements/dto';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import SessionContainer from '../types/session';
 import { CaslAbilityFactory } from 'src/casl/casl.ability';
 import { ForbiddenError, subject } from '@casl/ability';

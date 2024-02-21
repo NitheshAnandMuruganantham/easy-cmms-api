@@ -1,7 +1,7 @@
 import { ForbiddenError, subject } from '@casl/ability';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import * as cron from 'cron-validator';
 import { CronJob } from 'cron';
 import {

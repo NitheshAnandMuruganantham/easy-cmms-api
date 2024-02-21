@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'nestjs-prisma';
 import {
   UnauthorizedException,
   BadRequestException,
@@ -27,6 +26,7 @@ import SessionContainer from '../types/session';
 import { subject } from '@casl/ability';
 import { v4 as uuid } from 'uuid';
 import { hashSync } from 'bcryptjs';
+import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class UsersService {
   constructor(

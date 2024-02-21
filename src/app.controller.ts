@@ -12,7 +12,7 @@ import { AppService } from './app.service';
 import { v4 as uuid } from 'uuid';
 import { Session } from './auth/session.decorator';
 import SessionContainer from './types/session';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { ForbiddenException } from '@nestjs/common/exceptions';
 import { IS_PUBLIC_KEY } from './auth/public.decorator';
 

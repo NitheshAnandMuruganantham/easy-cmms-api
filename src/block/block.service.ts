@@ -1,6 +1,6 @@
 import { ForbiddenError, subject } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import {
   BlockCreateInput,
   BlockOrderByWithAggregationInput,

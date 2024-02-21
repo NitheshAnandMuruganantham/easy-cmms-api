@@ -17,7 +17,7 @@ import {
 import { PureAbility, AbilityBuilder, subject } from '@casl/ability';
 import { createPrismaAbility, PrismaQuery, Subjects } from '@casl/prisma';
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'nestjs-prisma';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { ForbiddenError } from 'apollo-server-core';
 import getPermission from './permisson';
 
