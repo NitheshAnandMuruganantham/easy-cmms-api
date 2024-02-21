@@ -3,13 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 @Injectable()
-export class PrismaService
-  extends PrismaClient
-  implements OnModuleInit, OnModuleDestroy
-{
-  async onModuleInit() {
-    this.$extends(withAccelerate());
-  }
+export class PrismaService extends PrismaClient implements OnModuleDestroy {
   async onModuleDestroy() {
     await this.$disconnect();
   }
