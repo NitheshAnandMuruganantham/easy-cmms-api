@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
@@ -10,6 +10,9 @@ import { TwilioService } from 'nestjs-twilio';
 import { ConfigService } from '@nestjs/config';
 import { CaslAbilityFactory } from './casl/casl.ability';
 import { ForbiddenError } from '@casl/ability';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
+
 @Injectable()
 export class AppService implements OnModuleInit {
   constructor(
@@ -19,6 +22,7 @@ export class AppService implements OnModuleInit {
     private readonly twilio: TwilioService,
     private readonly casl: CaslAbilityFactory,
     private readonly config: ConfigService,
+    @Inject(CACHE_MANAGER) private cacheService: Cache,
   ) {}
   onModuleInit() {
     console.log('bootstrapping..................');
@@ -36,50 +40,65 @@ export class AppService implements OnModuleInit {
         this.scheduler.deleteCronJob(`routine_maintenances_${data.id}`);
       }
       const j = new CronJob(data.cron, async () => {
-        const from = new Date();
-        from.setHours(from.getHours() + 1);
-        const to = new Date(from);
-        to.setHours(to.getMinutes() + data.duration);
-        const result = await this.prisma.maintenance.create({
-          data: {
-            block_id: data.block_id,
-            machine_id: data.meachine_id,
-            name: data.name,
-            description: data.description,
-            resolved: false,
-            un_planned: false,
-            from: from,
-            to: to,
-            assignee_id: data.assignee_id,
-          },
-          include: {
-            assignee: true,
-            machines: {
-              include: {
-                machine_catagory: true,
-                block: true,
-                section: true,
+        const randomWaitMilliSeconds = Math.floor(Math.random() * 10000);
+        await new Promise((resolve) =>
+          setTimeout(resolve, randomWaitMilliSeconds),
+        );
+        await this.cacheService.set(
+          `lock_route_maintenance_${data.id}`,
+          true,
+          20000,
+        );
+        try {
+          const from = new Date();
+          from.setHours(from.getHours() + 1);
+          const to = new Date(from);
+          to.setHours(to.getMinutes() + data.duration);
+          const result = await this.prisma.maintenance.create({
+            data: {
+              block_id: data.block_id,
+              machine_id: data.meachine_id,
+              name: data.name,
+              description: data.description,
+              resolved: false,
+              un_planned: false,
+              from: from,
+              to: to,
+              assignee_id: data.assignee_id,
+            },
+            include: {
+              assignee: true,
+              machines: {
+                include: {
+                  machine_catagory: true,
+                  block: true,
+                  section: true,
+                },
               },
             },
-          },
-        });
+          });
 
-        this.twilio.client.messages
-          .create({
-            to: result.assignee.phone,
-            from: this.config.get('TWILIO_FROM'),
-            body:
-              `New maintenance request\n` +
-              `Name: ${data.name}\n` +
-              `Description: ${result.description}\n` +
-              `Machine : ${result.machines.label}\n` +
-              `Category: ${result.machines.machine_catagory.name}\n` +
-              `Block: ${result.machines.block.name}\n` +
-              `Section: ${result.machines.section.name}\n` +
-              `from : ${result.from.toLocaleString()}\n` +
-              `to : ${result.to.toLocaleString()}\n`,
-          })
-          .catch(() => null);
+          this.twilio.client.messages
+            .create({
+              to: result.assignee.phone,
+              from: this.config.get('TWILIO_FROM'),
+              body:
+                `New maintenance request\n` +
+                `Name: ${data.name}\n` +
+                `Description: ${result.description}\n` +
+                `Machine : ${result.machines.label}\n` +
+                `Category: ${result.machines.machine_catagory.name}\n` +
+                `Block: ${result.machines.block.name}\n` +
+                `Section: ${result.machines.section.name}\n` +
+                `from : ${result.from.toLocaleString()}\n` +
+                `to : ${result.to.toLocaleString()}\n`,
+            })
+            .catch(() => null);
+        } catch (e) {
+          throw new Error(e);
+        } finally {
+          await this.cacheService.del(`lock_route_maintenance_${data.id}`);
+        }
       });
       this.scheduler.addCronJob(`routine_maintenances_${data.id}`, j);
       j.start();

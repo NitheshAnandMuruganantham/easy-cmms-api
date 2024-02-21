@@ -27,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { getLogger } from 'log4js';
 import { RoutineMaintanancesModule } from './routine-maintanances/routine-maintanances.module';
-import { ScheduleModule } from '@nestjs/schedule/dist';
+import { ScheduleModule } from '@nestjs/schedule';
 import { MachineCatagoriesModule } from './machine_catagory/machine_catagory.module';
 import { GenerateReportModule } from './generate-report/generate-report.module';
 import { CronModule } from './cron/cron.module';
@@ -35,13 +35,21 @@ import { join } from 'path';
 import { InvoicesModule } from './invoices/invoices.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { RedisService } from './redis/redis.service';
-import { PrismaClient } from '@prisma/client/scripts/default-index';
-import { withAccelerate } from '@prisma/extension-accelerate';
 import { PrismaModule } from './prisma/prisma.module';
+import { BullModule } from '@nestjs/bull';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
-
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        redis: configService.get('REDIS_URL'),
+      }),
+      inject: [ConfigService],
+    }),
+    BullModule.registerQueue({
+      name: 'cron-queue',
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
