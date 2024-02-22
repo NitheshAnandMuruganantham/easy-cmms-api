@@ -12,6 +12,7 @@ datasource db {
 model Block {
   id                   BigInt                 @id @default(autoincrement())
   name                 String
+  key                  String                 @unique
   location             String
   machines             Machines[]
   Mailings             String[]               @default([])
