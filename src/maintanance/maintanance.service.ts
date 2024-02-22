@@ -152,6 +152,21 @@ export class MaintenanceService {
       orderBy,
       take: limit,
       skip: offset,
+      include: {
+        assignee: true,
+        machines: {
+          include: {
+            section: true,
+            machine_catagory: true,
+            block: true,
+          },
+        },
+        ticket: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
 
     const result = data.map((ticket) => {
@@ -187,6 +202,21 @@ export class MaintenanceService {
     const toGet = await this.prisma.maintenance.findUnique({
       where: {
         id,
+      },
+      include: {
+        assignee: true,
+        machines: {
+          include: {
+            section: true,
+            machine_catagory: true,
+            block: true,
+          },
+        },
+        ticket: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
     const ability = await this.casl.getCurrentUserAbility(session.Session);
@@ -350,5 +380,17 @@ export class MaintenanceService {
     } else {
       return false;
     }
+  }
+  async dropdown(session: SessionContainer) {
+    const ability = await this.casl.getCurrentUserAbility(session.Session);
+    ForbiddenError.from(ability).throwUnlessCan('read', 'Maintenance');
+    const data = await this.prisma.maintenance.findMany({
+      where: accessibleBy(ability).Maintenance,
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+    return data.map((item) => ({ label: item.name, value: item.id }));
   }
 }
