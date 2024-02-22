@@ -16,13 +16,13 @@ export class AuthService {
     private readonly config: ConfigService,
     @Inject(CACHE_MANAGER) private cacheService: Cache,
   ) {}
-  async login(org_id: number, email: string, password: string) {
-    const user = await this.prisma.users.findUnique({
+  async login(org_id: String, email: string, password: string) {
+    const user = await this.prisma.users.findFirst({
       where: {
-        blockId_email: {
-          blockId: org_id,
-          email: email,
+        block: {
+          key: org_id as string,
         },
+        email,
       },
     });
     if (!user) {

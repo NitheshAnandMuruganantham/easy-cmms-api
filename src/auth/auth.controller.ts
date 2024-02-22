@@ -7,7 +7,7 @@ export class AuthController {
   @SetMetadata(IS_PUBLIC_KEY, true)
   @Post('login')
   login(
-    @Body('org_id') org_id: number,
+    @Body('org_id') org_id: string,
     @Body('email') email: string,
     @Body('password') password: string,
   ) {

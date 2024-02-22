@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { MaintenanceService } from './maintanance.service';
 import { Session } from 'src/auth/session.decorator';
 import SessionContainer from 'src/types/session';
@@ -76,6 +84,15 @@ export class MaintananceController {
       id,
       updateMaintananceInput,
     );
+  }
+
+  @Delete('/:id')
+  async delete(
+    @Session()
+    session: SessionContainer,
+    @Param('id') id: number,
+  ) {
+    return await this.maintananceService.remove(session, id);
   }
 
   @Get('/dropdown')
