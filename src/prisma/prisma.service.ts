@@ -4,9 +4,14 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleDestroy {
-  async onModuleInit() {
+  constructor() {
+    super({
+      log: ['query', 'info', 'warn'],
+      errorFormat: 'colorless',
+    });
     this.$extends(withAccelerate());
   }
+
   async onModuleDestroy() {
     await this.$disconnect();
   }
